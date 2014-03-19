@@ -3,6 +3,9 @@
 #ifndef _STDMACROS_H
 #define _STDMACROS_H
 
+/**
+ * TODO comment
+ */
 #define UNUSED __attribute__((unused))
 
 #ifdef __cplusplus
