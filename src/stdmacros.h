@@ -29,4 +29,3 @@
 #endif
 
 #endif /* _STDMACROS_H */
-

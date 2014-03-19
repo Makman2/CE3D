@@ -6,4 +6,3 @@
 // include all public headers here
 
 #endif /* _CE3D_H */
-

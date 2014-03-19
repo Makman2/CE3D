@@ -35,6 +35,7 @@ namespace CE3D
 {
 
 // C++ Code
+// C++ symbols are named in CamelCase, C symbols with_such_a_name
 class CamelCaseName : BaseClass
 {
 // definitions within the header are not allowed.
@@ -48,7 +49,7 @@ public:
      * @param name and a description
      * @return description
      */
-    nontrivial_namespace::type NameOfFunction(const another_type name) const;
+    nontrivial_namespace::type NameOfFunction(const another_c_type name) const;
 protected:
     // all members have to be private or protected
 private:
@@ -57,7 +58,7 @@ private:
     /**
      * Property description.
      */
-    AUTO_PROPERTY(type, name, private)
+    AUTO_PROPERTY(type, Name, private)
 }
 
 } /* namespace CE3D */
