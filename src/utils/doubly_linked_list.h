@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _LIST_H
-#define _LIST_H
+#ifndef _DOUBLY_LINKED_LIST_H
+#define _DOUBLY_LINKED_LIST_H
 
 #include <stdmacros.h>
 
@@ -58,4 +58,4 @@ CE3D_doubly_linked_list* push_front(CE3D_doubly_linked_list* self, void* data);
 }
 #endif
 
-#endif /* _LIST_H */
+#endif /* _DOUBLY_LINKED_LIST_H */
