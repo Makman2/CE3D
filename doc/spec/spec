@@ -1,0 +1,88 @@
+CE3D
+====
+
+Code Style
+----------
+headername.hpp
+--------------
+
+headername.h
+------------
+// This file is part of CE3D. License: GPL3
+
+#ifndef _HEADERNAME_H
+#define _HEADERNAME_H
+
+// This file has to be included in every header
+#include <stdmacros.h>
+
+#include <stdlib1>
+...
+#include <stdlibn>
+
+#include "user1"
+...
+#include "usern"
+
+#define TO_DEFINE      DEFINITION
+#define ANOTHER_DEFINE ANOTHER_DEFINITION
+
+typedef an_existing_type some_idx_type;
+
+#ifdef __cplusplus
+
+namespace CE3D
+{
+
+// C++ Code
+class CamelCaseName : BaseClass
+{
+// definitions within the header are not allowed.
+public:
+    /**
+     * Brief description.
+     *
+     * Long description. Leave out trivial descriptions espeacially for
+     * getters and setters.
+     *
+     * @param name and a description
+     * @return description
+     */
+    nontrivial_namespace::type NameOfFunction(const another_type name) const;
+protected:
+    // all members have to be private or protected
+private:
+    // without trailing semicolon!
+    // you can access it in the class via m_name
+    /**
+     * Property description.
+     */
+    AUTO_PROPERTY(type, name, private)
+}
+
+} /* namespace CE3D */
+
+// if you use template classes and/or inline functions
+#include "headername_code.h"
+
+extern "C" {
+#endif
+
+/**
+ * Brief description.
+ *
+ * Long description. Leave out trivial descriptions espeacially for
+ * getters and setters.
+ *
+ * @param name and a description
+ * @return description
+ */
+type namespace_name_of_function(const another_type name);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* _HEADERNAME_H */
+// trailing newline at the end of file!
+------------
