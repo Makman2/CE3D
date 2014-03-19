@@ -8,6 +8,8 @@
  */
 #define UNUSED __attribute__((unused))
 
+#define PI 3.1415926535
+
 #ifdef __cplusplus
 
 /**
