@@ -77,7 +77,7 @@ extern "C" {
  * @param name and a description
  * @return description
  */
-type namespace_name_of_function(const another_type name);
+static type namespace_name_of_function(const another_type name);
 
 #ifdef __cplusplus
 }

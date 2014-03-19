@@ -4,3 +4,4 @@
 
 # TODO define colors
 
+include make/clean.mk
