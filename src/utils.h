@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _STDMACROS_H
-#define _STDMACROS_H
+#ifndef _UTILS_H
+#define _UTILS_H
 
 /**
  * TODO comment
@@ -34,6 +34,6 @@ typedef uint8_t bool;
                                     }                                          \
                             orig_scope:
 
-#endif
+#endif /* __cplusplus */
 
-#endif /* _STDMACROS_H */
+#endif /* _UTILS_H */
