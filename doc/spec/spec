@@ -58,7 +58,7 @@ private:
     /**
      * Property description.
      */
-    AUTO_PROPERTY(type, Name, private)
+    RW_PROPERTY(type, Name, private)
 }
 
 } /* namespace CE3D */
