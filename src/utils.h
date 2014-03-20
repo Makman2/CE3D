@@ -22,12 +22,36 @@ typedef uint8_t bool;
  * TODO doxygen comment
  * TODO doxygen comments for getters and setters
  */
-#define AUTO_PROPERTY(type, name, orig_scope) type m_ ## (name);               \
+#define AUTO_RW_PROPERTY(type, name, orig_scope) type m_ ## (name);                 \
                             public:                                            \
                                     inline type Get ## (name)() const          \
                                     {                                          \
                                         return m_ ## (name);                   \
                                     }                                          \
+                                    inline type Set ## (name)(const type copy) \
+                                    {                                          \
+                                        m_ ## (name) = copy;                   \
+                                    }                                          \
+                            orig_scope:
+
+/**
+ * TODO doxygen comment
+ * TODO doxygen comments for getters and setters
+ */
+#define R_PROPERTY(type, name, orig_scope) type m_ ## (name);                  \
+                            public:                                            \
+                                    inline type Get ## (name)() const          \
+                                    {                                          \
+                                        return m_ ## (name);                   \
+                                    }                                          \
+                            orig_scope:
+
+/**
+ * TODO doxygen comment
+ * TODO doxygen comments for getters and setters
+ */
+#define W_PROPERTY(type, name, orig_scope) type m_ ## (name);                  \
+                            public:                                            \
                                     inline type Set ## (name)(const type copy) \
                                     {                                          \
                                         m_ ## (name) = copy;                   \
