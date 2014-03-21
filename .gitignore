@@ -21,3 +21,5 @@
 *~
 *.swp
 
+# build directory
+build/*
