@@ -8,13 +8,10 @@
  */
 #define UNUSED __attribute__((unused))
 
+// can we use a boost constant for that?
 #define PI 3.1415926535
 
-typedef uint8_t bool;
-#define true  1
-#define false 0
-#define TRUE  1
-#define FALSE 0
+// TODO macros for C wrappers. Expeacially these extern C things, catching all exceptions and so on
 
 #ifdef __cplusplus
 
@@ -57,6 +54,13 @@ typedef uint8_t bool;
                                         m_ ## (name) = copy;                   \
                                     }                                          \
                             orig_scope:
+#else
+
+typedef uint8_t bool;
+#define true  1
+#define false 0
+#define TRUE  1
+#define FALSE 0
 
 #endif /* __cplusplus */
 
