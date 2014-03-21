@@ -3,8 +3,20 @@
 #ifndef _CONSOLE_H
 #define _CONSOLE_H
 
+#include <stdmacro.h>
+
+#include <string>
+
 namespace CE3D
 {
+
+typedef uint8_t ConsoleIdxType;
+
+typedef enum
+{
+    NORMAL
+    //TODO list more colors here
+} ConsoleColor;
 
 /**
  * TODO
@@ -16,6 +28,27 @@ public:
      * Returns an instance.
      */
     static Console* GetInstance();
+
+    // TODO write API comments
+    void SetColor(const ConsoleColor color);
+    void SetPosition(const ConsoleIdxType x, const ConsoleIdxType y);
+    void WriteChar(const char character);
+    void WriteChar(const char character, const ConsoleColor color);
+    void WriteChar(const char character, const ConsoleIdxType x,
+                   const ConsoleIdxType y);
+    void WriteChar(const char character, const ConsoleIdxType x,
+                   const ConsoleIdxType y, const ConsoleColor color);
+    void WriteString(const std::string str);
+    void WriteString(const std::string str, const ConsoleColor color);
+    void WriteString(const std::string str, const ConsoleIdxType x,
+                     const ConsoleIdxType y);
+    void WriteString(const std::string str, const ConsoleIdxType x,
+                     const ConsoleIdxType y, const ConsoleColor color);
+
+    void Flush() const;
+
+    ConsoleIdxType GetHeight() const;
+    ConsoleIdxType GetWidth() const;
 private:
     /**
      * This is a singleton.
