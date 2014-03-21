@@ -6,6 +6,7 @@
 // This file has to be included in every header first
 #include <stdmacro.h>
 
+// only include libraries needed for the header!
 #include <stdlib1>
 //...
 #include <stdlibn>
@@ -30,8 +31,8 @@ public:
     /**
      * Brief description.
      *
-     * Long description. Leave out trivial descriptions espeacially for
-     * getters and setters.
+     * Long description. Leave out trivial descriptions espeacially for getters
+     * and setters.
      *
      * @param name and a description
      * @return description
@@ -45,8 +46,8 @@ private:
     /**
      * Property description.
      * 
-     * The third parameter is the access modifier where the variable is
-     * (this has to match the one which the macro is in!)
+     * The third parameter is the access modifier where the variable is (this
+     * has to match the one which the macro is in!)
      */
     RW_PROPERTY(type, Name, private)
 }
