@@ -1,39 +1,28 @@
-CE3D
-====
-
-Code Style
-----------
-headername.h
-------------
 // This file is part of CE3D. License: GPL3
 
 #ifndef _HEADERNAME_H
 #define _HEADERNAME_H
 
 // This file has to be included in every header first
-#include <stdmacros.h>
+#include <stdmacro.h>
 
 #include <stdlib1>
-...
+//...
 #include <stdlibn>
 
 #include <anything/that/lies/in/src/util>
 
 #include "user1"
-...
+//...
 #include "usern"
-
-// avoid macros where possible
-#define TO_DEFINE      DEFINITION
-#define ANOTHER_DEFINE ANOTHER_DEFINITION
-
-typedef an_existing_type some_idx_type;
 
 namespace CE3D
 {
-
-// C++ Code
 // all C++ symbols are named in CamelCase
+
+// when using integers, only the use of (u)intXX_t is allowed!
+typedef AnExistingType SomeIdxType;
+
 class CamelCaseName : BaseClass
 {
 // definitions within the header are not allowed.
@@ -52,9 +41,12 @@ protected:
     // all members have to be private or protected
 private:
     // without trailing semicolon!
-    // you can access it in the class via m_name
+    // you can access it in the class via m_Name
     /**
      * Property description.
+     * 
+     * The third parameter is the access modifier where the variable is
+     * (this has to match the one which the macro is in!)
      */
     RW_PROPERTY(type, Name, private)
 }
@@ -66,18 +58,3 @@ private:
 
 #endif /* _HEADERNAME_H */
 // trailing newline at the end of file!
-------------
-Optional (C wrapper):
-headername_wrapper.h
-------------
-
-// This file is part of CE3D. License: GPL3
-
-#ifndef _HEADERNAME_WRAPPER_H
-#define _HEADERNAME_WRAPPER_H
-
-// TODO define standard wrapper header
-
-#endif /* _HEADERNAME_WRAPPER_H */
-// trailing newline at the end of file!
-------------------
