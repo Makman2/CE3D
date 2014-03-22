@@ -64,7 +64,7 @@ scope:
 */
 #define PROPERTY(scope, type, name)                                            \
 scope:                                                                         \
-    type m_ ## name
+    type m_ ## name;
 
 /**
 * TODO doxygen comment
