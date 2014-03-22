@@ -9,6 +9,10 @@ CE3D_CLEAN_TARGET = clean
 
 CMAKE := $(shell which cmake)
 
+ifeq ($(CMAKE),)
+$(error ERROR. Missing dependency: cmake)
+endif
+
 default:
 	@echo "No target chosen. Please select one of the following:"
 	@echo "  lib     : builds the CE3D library"
