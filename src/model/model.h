@@ -22,9 +22,10 @@ public:
         // TODO: Doxygen comments for all members and functions
         bool IsVisible();
         bool SetVisibility();
-        boost::container::vector<
+        // I'm not convinced of this method... what does it do?
+        /*boost::container::vector<
             boost::numeric::ublas::vector<ModelDataType>
-            > Vectors();
+            > Vectors();*/
 
         void Transform(boost::numeric::ublas::matrix<ModelDataType> matrix);
         void Translate(boost::numeric::ublas::vector<ModelDataType>
@@ -38,7 +39,7 @@ public:
         void RotateY(float angle);
         void RotateZ(float angle);
 protected:
-        PROPERTY(protected,
+        R_PROPERTY(protected,
             boost::container::vector<
                 boost::numeric::ublas::vector<ModelDataType>
                 >,
