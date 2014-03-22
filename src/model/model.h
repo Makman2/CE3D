@@ -3,6 +3,10 @@
 #ifndef _MODEL_H
 #define _MODEL_H
 
+#include <string>
+#include <boost/container/vector.hpp>
+#include <boost/numeric/ublas/vector.hpp>
+
 #include "util/stdmacro.h"
 
 namespace CE3D
@@ -14,6 +18,19 @@ namespace CE3D
 class Model
 {
 public:
+	
+	std::string Name;
+	boost::container::vector<boost::numeric::ublas::vector<model_data_t>> Vectors;
+
+
+	RW_PROPERTY(public, bool, IsVisible);
+
+	
+private:
+	
+
+	
+	
 private:
 };
 
