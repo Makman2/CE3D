@@ -1,4 +1,2 @@
-mkdir build
-cmake ..
-make
-
+To build the library, just run
+    make CE3D
