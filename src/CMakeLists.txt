@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_COLOR_MAKEFILE ON)
+set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 project(CE3D)
 
@@ -20,5 +21,9 @@ add_subdirectory("world")
 add_subdirectory("model")
 add_subdirectory("console")
 
-
-add_library(CE3D STATIC)
+add_library(CE3D STATIC
+    "${SRC_util}"
+    "${SRC_world}"
+    "${SRC_model}"
+    "${SRC_console}"
+    )
