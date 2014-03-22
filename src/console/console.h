@@ -46,7 +46,6 @@ public:
     void WriteString(const std::string str, const ConsoleIdxType x,
                      const ConsoleIdxType y, const ConsoleColor color);
 
-    void SetCallbackMode(const bool copy);
     void Clear() const;
     void Flush() const;
 private:
@@ -56,8 +55,6 @@ private:
     Console();
     Console(const Console& rhs);
     ~Console();
-
-    R_PROPERTY(private, bool, CallbackMode);
 
     static Console* s_Instance;
 

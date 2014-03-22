@@ -18,11 +18,6 @@ Console::Console()
     getmaxyx(m_Screen, m_Height, m_Width);
 }
 
-void Console::SetCallbackMode(const bool copy)
-{
-    // TODO
-}
-
 Console::~Console()
 {
     endwin();
