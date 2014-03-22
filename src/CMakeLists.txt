@@ -9,6 +9,22 @@ set(CE3D_VERSION_MAJOR 0)
 set(CE3D_VERSION_MINOR 0)
 set(CE3D_VERSION_MICRO 1)
 
+# Get the current working branch
+execute_process(
+  COMMAND git rev-parse --abbrev-ref HEAD
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE GIT_BRANCH
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+# Get the latest abbreviated commit hash of the working branch
+execute_process(
+  COMMAND git log -1 --format=%h
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE GIT_HEAD
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
 # TODO we need some dependency checking here -> boost
 
 configure_file(
