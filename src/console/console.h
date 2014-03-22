@@ -3,9 +3,9 @@
 #ifndef _CONSOLE_H
 #define _CONSOLE_H
 
-#include <stdmacro.h>
-
 #include <string>
+
+#include "util/stdmacro.h"
 
 namespace CE3D
 {
@@ -58,7 +58,7 @@ private:
     ~Console();
 
     static Console* s_instance;
-}
+};
 
 }
 
