@@ -1,2 +1,2 @@
-set(SRC_util )
-set(SRC_util "${SRC_util}" PARENT_SCOPE)
+list(APPEND SRC ${CMAKE_CURRENT_LIST_DIR}/stdmacro ${CMAKE_CURRENT_LIST_DIR}/stdmacro_c)
+set(SRC "${SRC}" PARENT_SCOPE)

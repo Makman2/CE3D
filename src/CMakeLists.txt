@@ -16,14 +16,10 @@ configure_file(
 include_directories("${PROJECT_SOURCE_DIR}")
 include_directories("${PROJECT_BINARY_DIR}")
 
+
 add_subdirectory("util")
 add_subdirectory("world")
 add_subdirectory("model")
 add_subdirectory("console")
 
-add_library(CE3D STATIC
-    "${SRC_util}"
-    "${SRC_world}"
-    "${SRC_model}"
-    "${SRC_console}"
-    )
+add_library(CE3D STATIC ${SRC})
