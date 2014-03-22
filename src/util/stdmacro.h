@@ -15,7 +15,7 @@
  * TODO doxygen comment
  * TODO doxygen comments for getters and setters
  */
-#define RW_PROPERTY(scope, type, name)                                         \
+#define RW_PROPERTY(scope, type, name);                                        \
 scope:                                                                         \
     type m_ ## name;                                                           \
 public:                                                                        \
@@ -34,7 +34,7 @@ scope:
  * TODO doxygen comment
  * TODO doxygen comments for getters and setters
  */
-#define R_PROPERTY(scope, type, name)                                          \
+#define R_PROPERTY(scope, type, name);                                         \
 scope:                                                                         \
     type m_ ## name;                                                           \
 public:                                                                        \
@@ -48,7 +48,7 @@ scope:
  * TODO doxygen comment
  * TODO doxygen comments for getters and setters
  */
-#define W_PROPERTY(scope, type, name)                                          \
+#define W_PROPERTY(scope, type, name);                                         \
 scope:                                                                         \
     type m_ ## name;                                                           \
 public:                                                                        \
@@ -62,7 +62,7 @@ scope:
  * TODO doxygen comment
  * TODO doxygen comments for getters and setters
  */
-#define PROPERTY(scope, type, name)                                            \
+#define PROPERTY(scope, type, name);                                           \
 scope:                                                                         \
     type m_ ## name;
 
