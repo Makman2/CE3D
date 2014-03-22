@@ -1,2 +1,4 @@
-list(APPEND SRC ${CMAKE_CURRENT_LIST_DIR}/world)
+list(APPEND SRC
+    ${CMAKE_CURRENT_LIST_DIR}/world
+    )
 set(SRC "${SRC}" PARENT_SCOPE)

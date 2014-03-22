@@ -17,7 +17,7 @@ class LineModel : public Model
 {
 public:
 private:
-}
+};
 
 }
 

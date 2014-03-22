@@ -3,9 +3,11 @@
 #ifndef _WORLD_H
 #define _WORLD_H
 
-#include <stdmacro.h>
-
 #include <boost/ptr_container/ptr_list.hpp>
+
+#include "util/stdmacro.h"
+
+#include "model/model.h"
 
 namespace CE3D
 {
@@ -17,8 +19,8 @@ class World
 {
 public:
 private:
-    boost::ptr_list<Model> m_ModelList;
-}
+    PROPERTY(private, boost::ptr_list<Model>, ModelList);
+};
 
 }
 

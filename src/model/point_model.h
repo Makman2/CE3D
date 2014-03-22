@@ -17,7 +17,7 @@ class PointModel : public Model
 {
 public:
 private:
-}
+};
 
 }
 

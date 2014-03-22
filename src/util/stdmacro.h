@@ -15,44 +15,55 @@
 * TODO doxygen comment
 * TODO doxygen comments for getters and setters
 */
-#define RW_PROPERTY(type, name, orig_scope)                               \
-    type m_ ## (name);                                                         \
+#define RW_PROPERTY(scope, type, name)                                         \
+scope:                                                                         \
+    type m_ ## name;                                                           \
 public:                                                                        \
-    inline type Get ## (name)() const                                          \
+    inline type Get ## name() const                                            \
     {                                                                          \
-        return m_ ## (name);                                                   \
+        return m_ ## name;                                                     \
     }                                                                          \
                                                                                \
-    inline type Set ## (name)(const type copy)                                 \
+    inline type Set ## name(const type copy)                                   \
     {                                                                          \
-        m_ ## (name) = copy;                                                   \
+        m_ ## name = copy;                                                     \
     }                                                                          \
-orig_scope:
+scope:
 
 /**
 * TODO doxygen comment
 * TODO doxygen comments for getters and setters
 */
-#define R_PROPERTY(type, name, orig_scope)                                     \
-    type m_ ## (name);                                                         \
+#define R_PROPERTY(scope, type, name)                                          \
+scope:                                                                         \
+    type m_ ## name;                                                           \
 public:                                                                        \
-    inline type Get ## (name)() const                                          \
+    inline type Get ## name() const                                            \
     {                                                                          \
-        return m_ ## (name);                                                   \
+        return m_ ## name;                                                     \
     }                                                                          \
-orig_scope:
+scope:
 
 /**
 * TODO doxygen comment
 * TODO doxygen comments for getters and setters
 */
-#define W_PROPERTY(type, name, orig_scope)                                     \
-    type m_ ## (name);                                                         \
+#define W_PROPERTY(scope, type, name)                                          \
+scope:                                                                         \
+    type m_ ## name;                                                           \
 public:                                                                        \
-    inline type Set ## (name)(const type copy)                                 \
+    inline type Set ## name(const type copy)                                   \
     {                                                                          \
-        m_ ## (name) = copy;                                                   \
+        m_ ## name = copy;                                                     \
     }                                                                          \
-orig_scope:
+scope:
+
+/**
+* TODO doxygen comment
+* TODO doxygen comments for getters and setters
+*/
+#define PROPERTY(scope, type, name)                                            \
+scope:                                                                         \
+    type m_ ## name;
 
 #endif /* _STDMACRO_H */

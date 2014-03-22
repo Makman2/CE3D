@@ -17,7 +17,7 @@ class TriangleModel : public Model
 {
 public:
 private:
-}
+};
 
 }
 

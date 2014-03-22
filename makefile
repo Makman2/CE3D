@@ -4,7 +4,8 @@
 
 CE3D_BUILD_DIR = build/CE3D
 CE3D_SRC_FROM_BUILD = ../../src
-CE3D_MAKE_FLAGS =
+CE3D_MAKE_FLAGS = --no-print-directory
+CE3D_CLEAN_TARGET = clean
 
 CMAKE := $(shell which cmake)
 
@@ -31,8 +32,8 @@ CONF_CE3D: CE3D_BUILD_DIR
 
 BUILD_CE3D: CONF_CE3D
 	@echo "Building CE3D library..."
-	@$(MAKE) -C $(CE3D_BUILD_DIR) $(CE3D_MAKE_FLAGS)				
+	@$(MAKE) -C $(CE3D_BUILD_DIR) $(CE3D_MAKE_FLAGS)
 	@echo "Done."
 
 CLEAN_CE3D:
-	@$(MAKE) -C $(CE3D_BUILD_DIR) clean
+	@$(MAKE) -C $(CE3D_BUILD_DIR) $(CE3D_MAKE_FLAGS) $(CE3D_CLEAN_TARGET)

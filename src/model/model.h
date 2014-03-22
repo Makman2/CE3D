@@ -3,7 +3,7 @@
 #ifndef _MODEL_H
 #define _MODEL_H
 
-#include <stdmacro.h>
+#include "util/stdmacro.h"
 
 namespace CE3D
 {
@@ -15,7 +15,7 @@ class Model
 {
 public:
 private:
-}
+};
 
 }
 

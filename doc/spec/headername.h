@@ -3,15 +3,13 @@
 #ifndef _HEADERNAME_H
 #define _HEADERNAME_H
 
-// This file has to be included in every header first
-#include <stdmacro.h>
-
 // only include libraries needed for the header!
 #include <stdlib1>
 //...
 #include <stdlibn>
 
-#include <anything/that/lies/in/src/util>
+// This file has to be included in every header directly after the stdlibs
+#include "util/stdmacro.h"
 
 #include "user1"
 //...
