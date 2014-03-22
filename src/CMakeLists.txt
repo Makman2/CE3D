@@ -9,6 +9,8 @@ set(CE3D_VERSION_MAJOR 0)
 set(CE3D_VERSION_MINOR 0)
 set(CE3D_VERSION_MICRO 1)
 
+find_package(Boost)
+
 # Get the current working branch
 execute_process(
   COMMAND git rev-parse --abbrev-ref HEAD
