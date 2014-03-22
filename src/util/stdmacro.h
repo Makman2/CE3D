@@ -64,6 +64,15 @@ scope:
  */
 #define PROPERTY(scope, type, name);                                           \
 scope:                                                                         \
-    type m_ ## name;
+    type m_ ## name
+
+/**
+* TODO doxygen comment
+*/
+typedef float model_data_t;
+/**
+* TODO doxygen comment
+*/
+typedef uint32_t model_idx_t;
 
 #endif /* _STDMACRO_H */
