@@ -6,7 +6,10 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 project(CE3D)
 
 set(CE3D_VERSION_MAJOR 0)
-set(CE3D_VERSION_MINOR 1)
+set(CE3D_VERSION_MINOR 0)
+set(CE3D_VERSION_MICRO 1)
+
+# TODO we need some dependency checking here -> boost
 
 configure_file(
     "${PROJECT_SOURCE_DIR}/CE3D_config.h.in"
