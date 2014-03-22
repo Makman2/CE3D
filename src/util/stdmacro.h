@@ -4,6 +4,7 @@
 #define _STDMACRO_H
 
 #include <stdint.h>
+#include "CE3D_config.h"
 
 /**
 * TODO comment

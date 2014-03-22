@@ -4,6 +4,7 @@
 #define _STDMACRO_C_H
 
 #include <stdint.h>
+#include "CE3D_config.h"
 
 typedef uint8_t bool;
 #define true 1
