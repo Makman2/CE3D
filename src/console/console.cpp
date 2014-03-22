@@ -9,6 +9,13 @@ namespace CE3D
 
 Console* Console::s_instance = NULL;
 
+Console::Console()
+{
+    m_Screen = initscr();
+    noecho();
+    getmaxyx(m_Screen, m_Height, m_Width);
+}
+
 Console* Console::GetInstance()
 {
     if (s_instance == NULL)
@@ -16,6 +23,16 @@ Console* Console::GetInstance()
         s_instance = new Console();
     }
     return s_instance;
+}
+
+void Console::Flush() const
+{
+    refresh();
+}
+
+void Console::Clear() const
+{
+    clear();
 }
 
 }

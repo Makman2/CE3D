@@ -4,6 +4,7 @@
 #define _CONSOLE_H
 
 #include <string>
+#include <curses.h>
 
 #include "util/stdmacro.h"
 
@@ -45,10 +46,8 @@ public:
     void WriteString(const std::string str, const ConsoleIdxType x,
                      const ConsoleIdxType y, const ConsoleColor color);
 
+    void Clear() const;
     void Flush() const;
-
-    ConsoleIdxType GetHeight() const;
-    ConsoleIdxType GetWidth() const;
 private:
     /**
      * This is a singleton.
@@ -58,6 +57,10 @@ private:
     ~Console();
 
     static Console* s_instance;
+
+    R_PROPERTY(private, ConsoleIdxType, Height);
+    R_PROPERTY(private, ConsoleIdxType, Width);
+    PROPERTY(private, WINDOW*, Screen);
 };
 
 }
