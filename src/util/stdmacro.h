@@ -69,10 +69,10 @@ scope:                                                                         \
 /**
 * TODO doxygen comment
 */
-typedef float model_data_t;
+typedef float ModelDataType;
 /**
 * TODO doxygen comment
 */
-typedef uint32_t model_idx_t;
+typedef uint32_t ModelIdxType;
 
 #endif /* _STDMACRO_H */

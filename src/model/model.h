@@ -22,20 +22,29 @@ public:
         // TODO: Doxygen comments for all members and functions
         bool IsVisible();
         bool SetVisibility();
-        boost::container::vector<boost::numeric::ublas::vector<model_data_t>> Vectors();
+        boost::container::vector<
+            boost::numeric::ublas::vector<ModelDataType>
+            > Vectors();
 
-        void Transform(boost::numeric::ublas::matrix<model_data_t> matrix);
-        void Translate(boost::numeric::ublas::vector<model_data_t> translation);
-        void Scale(model_data_t factor);
-        void Scale(boost::numeric::ublas::vector<model_data_t> scale);
-        void Rotate(boost::numeric::ublas::vector<model_data_t> axis, boost::numeric::ublas::vector<model_data_t> offset, float angle);
+        void Transform(boost::numeric::ublas::matrix<ModelDataType> matrix);
+        void Translate(boost::numeric::ublas::vector<ModelDataType>
+                           translation);
+        void Scale(ModelDataType factor);
+        void Scale(boost::numeric::ublas::vector<ModelDataType> scale);
+        void Rotate(boost::numeric::ublas::vector<ModelDataType> axis,
+                    boost::numeric::ublas::vector<ModelDataType> offset,
+                    float angle);
         void RotateX(float angle);
         void RotateY(float angle);
         void RotateZ(float angle);
 protected:
-        boost::container::vector<boost::numeric::ublas::vector<model_data_t>> m_Vectors;
+        PROPERTY(protected,
+            boost::container::vector<
+                boost::numeric::ublas::vector<ModelDataType>
+                >,
+            Vectors);
 private:
-        bool m_IsVisible;
+        PROPERTY(private, bool, IsVisible);
         RW_PROPERTY(private, std::string, Name);
 };
 

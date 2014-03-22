@@ -7,10 +7,10 @@
 
 namespace CE3D {
 
-template<typename... T>
+template<typename... Types>
 class Functor {
 public:
-    void operator()(T... args) = 0;
+    void operator()(Types... Args) = 0;
 };
 
 }
