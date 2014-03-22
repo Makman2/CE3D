@@ -7,7 +7,7 @@
 namespace CE3D
 {
 
-Console* Console::s_instance = NULL;
+Console* Console::s_Instance = NULL;
 
 Console::Console()
 {
@@ -30,11 +30,11 @@ Console::~Console()
 
 Console* Console::GetInstance()
 {
-    if (s_instance == NULL)
+    if (s_Instance == NULL)
     {
-        s_instance = new Console();
+        s_Instance = new Console();
     }
-    return s_instance;
+    return s_Instance;
 }
 
 void Console::Flush() const

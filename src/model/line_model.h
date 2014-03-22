@@ -3,7 +3,7 @@
 #ifndef _LINE_MODEL_H
 #define _LINE_MODEL_H
 
-#include <stdmacro.h>
+#include "util/stdmacro.h"
 
 #include "model.h"
 

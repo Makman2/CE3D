@@ -59,7 +59,7 @@ private:
 
     R_PROPERTY(private, bool, CallbackMode);
 
-    static Console* s_instance;
+    static Console* s_Instance;
 
     R_PROPERTY(private, ConsoleIdxType, Height);
     R_PROPERTY(private, ConsoleIdxType, Width);
