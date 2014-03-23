@@ -6,6 +6,7 @@
 #include <string>
 #include <boost/container/vector.hpp>
 #include <boost/numeric/ublas/vector.hpp>
+#include <boost/numeric/ublas/matrix.hpp>
 
 #include "util/stdmacro.h"
 
@@ -18,20 +19,34 @@ namespace CE3D
 class Model
 {
 public:
-	
-	std::string Name;
-	boost::container::vector<boost::numeric::ublas::vector<model_data_t>> Vectors;
+        // TODO: Doxygen comments for all members and functions
+        bool IsVisible();
+        bool SetVisibility();
+        // I'm not convinced of this method... what does it do?
+        /*boost::container::vector<
+            boost::numeric::ublas::vector<ModelDataType>
+            > Vectors();*/
 
-
-	RW_PROPERTY(public, bool, IsVisible);
-
-	
+        void Transform(boost::numeric::ublas::matrix<ModelDataType> matrix);
+        void Translate(boost::numeric::ublas::vector<ModelDataType>
+                           translation);
+        void Scale(ModelDataType factor);
+        void Scale(boost::numeric::ublas::vector<ModelDataType> scale);
+        void Rotate(boost::numeric::ublas::vector<ModelDataType> axis,
+                    boost::numeric::ublas::vector<ModelDataType> offset,
+                    float angle);
+        void RotateX(float angle);
+        void RotateY(float angle);
+        void RotateZ(float angle);
+protected:
+        R_PROPERTY(protected,
+            boost::container::vector<
+                boost::numeric::ublas::vector<ModelDataType>
+                >,
+            Vectors);
 private:
-	
-
-	
-	
-private:
+        PROPERTY(private, bool, IsVisible);
+        RW_PROPERTY(private, std::string, Name);
 };
 
 }

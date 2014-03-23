@@ -10,6 +10,7 @@ set(CE3D_VERSION_MINOR 0)
 set(CE3D_VERSION_MICRO 1)
 
 find_package(Boost REQUIRED)
+find_package(Curses REQUIRED)
 
 # Get the current working branch
 execute_process(
