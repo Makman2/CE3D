@@ -38,6 +38,7 @@ configure_file(
 include_directories("${PROJECT_SOURCE_DIR}")
 include_directories("${PROJECT_BINARY_DIR}")
 
+set(CMAKE_CXX_FLAGS "-std=c++11")
 
 add_subdirectory("util")
 add_subdirectory("world")

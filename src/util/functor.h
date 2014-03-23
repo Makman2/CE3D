@@ -10,7 +10,7 @@ namespace CE3D {
 template<typename... Types>
 class Functor {
 public:
-    void operator()(Types... Args) = 0;
+    virtual void operator()(Types... Args) = 0;
 };
 
 }
