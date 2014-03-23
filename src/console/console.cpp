@@ -7,15 +7,39 @@
 namespace CE3D
 {
 
-Console* Console::s_instance = NULL;
+Console* Console::s_Instance = NULL;
+
+Console::Console()
+{
+    m_Screen = initscr();
+    // turn of auto echoing
+    noecho();
+    // get terminal height/width
+    getmaxyx(m_Screen, m_Height, m_Width);
+}
+
+Console::~Console()
+{
+    endwin();
+}
 
 Console* Console::GetInstance()
 {
-    if (s_instance == NULL)
+    if (s_Instance == NULL)
     {
-        s_instance = new Console();
+        s_Instance = new Console();
     }
-    return s_instance;
+    return s_Instance;
+}
+
+void Console::Flush() const
+{
+    refresh();
+}
+
+void Console::Clear() const
+{
+    clear();
 }
 
 }

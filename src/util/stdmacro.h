@@ -7,15 +7,15 @@
 #include "CE3D_config.h"
 
 /**
-* TODO comment
-*/
+ * TODO comment
+ */
 #define UNUSED __attribute__((unused))
 
 /**
-* TODO doxygen comment
-* TODO doxygen comments for getters and setters
-*/
-#define RW_PROPERTY(scope, type, name)                                         \
+ * TODO doxygen comment
+ * TODO doxygen comments for getters and setters
+ */
+#define RW_PROPERTY(scope, type, name);                                        \
 scope:                                                                         \
     type m_ ## name;                                                           \
 public:                                                                        \
@@ -31,10 +31,10 @@ public:                                                                        \
 scope:
 
 /**
-* TODO doxygen comment
-* TODO doxygen comments for getters and setters
-*/
-#define R_PROPERTY(scope, type, name)                                          \
+ * TODO doxygen comment
+ * TODO doxygen comments for getters and setters
+ */
+#define R_PROPERTY(scope, type, name);                                         \
 scope:                                                                         \
     type m_ ## name;                                                           \
 public:                                                                        \
@@ -45,10 +45,10 @@ public:                                                                        \
 scope:
 
 /**
-* TODO doxygen comment
-* TODO doxygen comments for getters and setters
-*/
-#define W_PROPERTY(scope, type, name)                                          \
+ * TODO doxygen comment
+ * TODO doxygen comments for getters and setters
+ */
+#define W_PROPERTY(scope, type, name);                                         \
 scope:                                                                         \
     type m_ ## name;                                                           \
 public:                                                                        \
@@ -59,12 +59,21 @@ public:                                                                        \
 scope:
 
 /**
-* TODO doxygen comment
-* TODO doxygen comments for getters and setters
-*/
-#define PROPERTY(scope, type, name)                                            \
+ * TODO doxygen comment
+ * TODO doxygen comments for getters and setters
+ */
+#define PROPERTY(scope, type, name);                                           \
 scope:                                                                         \
-    type m_ ## name;
+    type m_ ## name
+
+/**
+* TODO doxygen comment
+*/
+typedef float ModelDataType;
+/**
+* TODO doxygen comment
+*/
+typedef uint32_t ModelIdxType;
 
 /**
 * TODO doxygen comment

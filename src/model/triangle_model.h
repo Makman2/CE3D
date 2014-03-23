@@ -3,7 +3,7 @@
 #ifndef _TRIANGLE_MODEL_H
 #define _TRIANGLE_MODEL_H
 
-#include <stdmacro.h>
+#include "util/stdmacro.h"
 
 #include "model.h"
 
