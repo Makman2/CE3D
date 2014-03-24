@@ -43,8 +43,8 @@ public:                                                                        \
 /**
  * This macro creates a property with a public getter and setter.
  *
- * @param scope The scope of the property [private, public] this scope will be
- * also active after this declaration.
+ * @param scope The scope of the property [private, protected] this scope will
+ * be also active after this declaration.
  * @param type The type of this property.
  * @param name a name. The property will be privately accessible by m_ ## name.
  */
@@ -77,8 +77,8 @@ scope:
 /**
  * This macro creates a property with a public getter.
  *
- * @param scope The scope of the property [private, public] this scope will be
- * also active after this declaration.
+ * @param scope The scope of the property [private, protected] this scope will
+ * be also active after this declaration.
  * @param type The type of this property.
  * @param name a name. The property will be privately accessible by m_ ## name.
  */
@@ -100,8 +100,8 @@ scope:
 /**
  * This macro creates a property with a public setter.
  *
- * @param scope The scope of the property [private, public] this scope will be
- * also active after this declaration.
+ * @param scope The scope of the property [private, protected] this scope will
+ * be also active after this declaration.
  * @param type The type of this property.
  * @param name a name. The property will be privately accessible by m_ ## name.
  */
@@ -125,8 +125,8 @@ scope:
 /**
  * This macro creates a property.
  *
- * @param scope The scope of the property [private, public] this scope will be
- * also active after this declaration.
+ * @param scope The scope of the property [private, protected] this scope will
+ * be also active after this declaration.
  * @param type The type of this property.
  * @param name a name. The property will be privately accessible by m_ ## name.
  */
@@ -137,10 +137,10 @@ scope:                                                                         \
 /**
  * Data type for model vectors.
  */
-typedef float ModelDataType;
+using ModelDataType = float;
 /**
  * Index type for model vectors.
  */
-typedef uint32_t ModelIdxType;
+using ModelIdxType = uint32_t;
 
 #endif /* _STDMACRO_H */
