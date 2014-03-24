@@ -11,20 +11,20 @@
 
 namespace CE3D {
 
-typedef enum
+using ModifierKeys = enum ModifierKeysEnum
 {
     CTRL,
     ALT,
     ENTF //?
-} MODIFIER_KEYS;
+};
 
-typedef char sign;
+using Sign = char;
 
 class KeyboardState {
     GENERATE_SINGLETON(KeyboardState);
 
-    R_PROPERTY(private, MODIFIER_KEYS, Modifiers);
-    R_PROPERTY(private, sign, Content);
+    R_PROPERTY(private, ModifierKeys, Modifiers);
+    R_PROPERTY(private, Sign, Content);
 };
 
 } /* namespace CE3D */

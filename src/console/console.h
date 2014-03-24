@@ -11,13 +11,13 @@
 namespace CE3D
 {
 
-typedef uint8_t ConsoleIdxType;
+using ConsoleIdxType = uint8_t;
 
-typedef enum
+using ConsoleColor = enum ConsoleColorEnum
 {
     NORMAL
     //TODO list more colors here
-} ConsoleColor;
+};
 
 /**
  * TODO
