@@ -12,6 +12,40 @@
 #define UNUSED __attribute__((unused))
 
 /**
+ * TODO
+ */
+#define GENERATE_SINGLETON(object)                                             \
+private:                                                                       \
+    /**                                                                        \
+     * This is a singleton.                                                    \
+     */                                                                        \
+    static object* s_Instance;                                                 \
+    /**                                                                        \
+     * This is a singleton.                                                    \
+     */                                                                        \
+    object();                                                                  \
+    /**                                                                        \
+     * This is a singleton.                                                    \
+     */                                                                        \
+    object(const object& rhs);                                                 \
+    /**                                                                        \
+     * This is a singleton.                                                    \
+     */                                                                        \
+    ~object();                                                                 \
+public:                                                                        \
+    /**                                                                        \
+     * Returns the same instance of this object every time.                    \
+     */                                                                        \
+    static object* GetInstance()                                               \
+    {                                                                          \
+        if (s_Instance == NULL)                                                \
+        {                                                                      \
+            s_Instance = new object();                                         \
+        }                                                                      \
+        return s_Instance;                                                     \
+    }
+
+/**
  * This macro creates a property with a public getter and setter.
  *
  * @param scope The scope of the property [private, public] this scope will be

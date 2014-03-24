@@ -4,13 +4,4 @@
 
 namespace CE3D {
 
-KeyboardState* KeyboardState::GetInstance()
-{
-    if (s_Instance == NULL)
-    {
-        s_Instance = new KeyboardState();
-    }
-    return s_Instance;
-}
-
 } /* namespace CE3D */

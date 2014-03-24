@@ -21,19 +21,7 @@ typedef enum
 typedef char sign;
 
 class KeyboardState {
-public:
-    static KeyboardState* GetInstance();
-private:
-    /**
-     * This is a singleton.
-     */
-    KeyboardState();
-    KeyboardState(const KeyboardState& rhs);
-    ~KeyboardState();
-
-    static KeyboardState* s_Instance;
-
-    friend void KeyboardThread::operator()(WINDOW*) const;
+    GENERATE_SINGLETON(KeyboardState);
 
     R_PROPERTY(private, MODIFIER_KEYS, Modifiers);
     R_PROPERTY(private, sign, Content);
