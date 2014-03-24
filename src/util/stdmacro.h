@@ -24,7 +24,7 @@ public:                                                                        \
         return m_ ## name;                                                     \
     }                                                                          \
                                                                                \
-    inline void Set ## name(const type copy)                                   \
+    inline void Set ## name(type const copy)                                   \
     {                                                                          \
         m_ ## name = copy;                                                     \
     }                                                                          \
@@ -52,7 +52,7 @@ scope:
 scope:                                                                         \
     type m_ ## name;                                                           \
 public:                                                                        \
-    inline void Set ## name(const type copy)                                   \
+    inline void Set ## name(type const copy)                                   \
     {                                                                          \
         m_ ## name = copy;                                                     \
     }                                                                          \

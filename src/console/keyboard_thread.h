@@ -20,14 +20,11 @@ class KeyboardThread
 public:
     KeyboardThread();
     void operator()(WINDOW* Screen) const;
-    void SetCallback(Functor<>* copy);
 private:
     /**
      * Holds the callback functor which is called on every keyboard event.
-     *
-     * We can't use W_PROPERTY, TODO research on the const error
      */
-    PROPERTY(private, Functor<>*, Callback);
+    W_PROPERTY(private, Functor<>*, Callback);
 };
 
 }

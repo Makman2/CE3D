@@ -28,9 +28,4 @@ void KeyboardThread::operator ()(WINDOW* Screen) const
     }
 }
 
-void KeyboardThread::SetCallback(Functor<>* copy)
-{
-    m_Callback = copy;
-}
-
 }
