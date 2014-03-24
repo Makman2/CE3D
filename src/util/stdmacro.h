@@ -7,11 +7,6 @@
 #include "CE3D_config.h"
 
 /**
- * TODO comment
- */
-#define UNUSED __attribute__((unused))
-
-/**
  * TODO
  */
 #define GENERATE_SINGLETON(object)                                             \
