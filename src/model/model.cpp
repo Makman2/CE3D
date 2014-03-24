@@ -7,15 +7,10 @@
 
 namespace CE3D
 {
-// TODO: Doxygen comments.
+
 void Model::Transform(boost::numeric::ublas::matrix<ModelDataType> matrix)
 {
-    for (boost::container::vector<
-            boost::numeric::ublas::vector<ModelDataType>
-            >::iterator
-        it = m_Vectors.begin();
-        it != m_Vectors.end();
-        it++)
+    for (auto it : m_Vectors)
     {
         boost::numeric::ublas::axpy_prod(matrix, *it, *it, true);
     }
