@@ -12,3 +12,4 @@ This is a draft which contains a short descriptions of the CodeChecker rules whi
 * use override and final whenever it is possible for cleaner code.
 * use nullptr instead of NULL (NULL must not be used in the whole project!)
 * when using the angle bracked for templates, two of the same brackets must have a space between them.
+* use static_assert() for compiletime assertions
