@@ -10,9 +10,9 @@ namespace CE3D
 
 void Model::Transform(boost::numeric::ublas::matrix<ModelDataType> matrix)
 {
-    for (auto it : m_Vectors)
+    for (auto& it : m_Vectors)
     {
-        boost::numeric::ublas::axpy_prod(matrix, *it, *it, true);
+        boost::numeric::ublas::axpy_prod(matrix, it, it, true);
     }
 }
 
