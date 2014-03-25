@@ -37,7 +37,7 @@ public:
      * 
      * @return The list of vectors.
      */
-    boost::container::vector<boost::numeric::ublas::vector<model_data_t>> Vectors();
+    boost::container::vector<boost::numeric::ublas::vector<model_data_t> > Vectors();
 
     /**
      * Gets the name or ID of the model.
@@ -136,7 +136,7 @@ protected:
     
     
 private:
-    boost::container::vector<boost::numeric::ublas::vector<model_data_t>> m_Vectors;
+    boost::container::vector<boost::numeric::ublas::vector<model_data_t> > m_Vectors;
     bool m_IsVisible;
     std::string m_Name;
 };
