@@ -37,7 +37,7 @@ public:
      * 
      * @return The list of vectors.
      */
-    boost::container::vector<boost::numeric::ublas::vector<model_data_t> > Vectors();
+    boost::container::vector<boost::numeric::ublas::vector<ModelDataType>> Vectors();
 
     /**
      * Gets the name or ID of the model.
@@ -52,30 +52,31 @@ public:
      */
     void SetName(std::string value);
 
+
     /**
      * Transforms all vertices in the model.
      *
      * @param matrix: The matrix to transform with.
      */
-    void Transform(const boost::numeric::ublas::matrix<model_data_t> matrix);
+    void Transform(const boost::numeric::ublas::matrix<ModelDataType> matrix);
     /**
      * Translates all vertices in the model.
      *
      * @param translation: The vector that describes the translation.
      */
-    void Translate(const boost::numeric::ublas::vector<model_data_t> translation);
+    void Translate(const boost::numeric::ublas::vector<ModelDataType> translation);
     /**
      * Scales all vertices in the model.
      *
      * @param factor: The factor to scale with.
      */
-    void Scale(const model_data_t factor);
+    void Scale(const ModelDataType factor);
     /**
      * Scales all vertices in the model.
      *
      * @param scale: The vector that describes the scale.
      */
-    void Scale(const boost::numeric::ublas::vector<model_data_t> scale);
+    void Scale(const boost::numeric::ublas::vector<ModelDataType> scale);
     /**
      * Rotates all vertices in the model.
      *
@@ -84,9 +85,10 @@ public:
      * @param offset: The offset of the rotation axis.
      * @param angle: The rotation angle.
      */
-    void Rotate(const boost::numeric::ublas::vector<model_data_t> planar1,
-        const boost::numeric::ublas::vector<model_data_t> planar2,
-        const boost::numeric::ublas::vector<model_data_t> offset, const float angle);
+    void Rotate(const boost::numeric::ublas::vector<ModelDataType> planar1,
+        const boost::numeric::ublas::vector<ModelDataType> planar2,
+        const boost::numeric::ublas::vector<ModelDataType> offset,
+        const float angle);
 
 
 
@@ -96,8 +98,8 @@ public:
      * @param translation: The translation vector."
      * @return A matrix that describes a translation.
      */
-    static boost::numeric::ublas::matrix<model_data_t> CreateTranslation(
-        boost::numeric::ublas::vector<model_data_t> translation);
+    static boost::numeric::ublas::matrix<ModelDataType> CreateTranslation(
+        boost::numeric::ublas::vector<ModelDataType> translation);
 
     /**
      * Creates a scale matrix.
@@ -105,8 +107,8 @@ public:
      * @param scale: The vector that describes the desired scale.
      * @return A matrix that describes a scale.
      */
-    static boost::numeric::ublas::matrix<model_data_t> CreateScale(
-        const boost::numeric::ublas::vector<model_data_t> scale);
+    static boost::numeric::ublas::matrix<ModelDataType> CreateScale(
+        const boost::numeric::ublas::vector<ModelDataType> scale);
 
     /**
      * Creates a scale matrix.
@@ -115,9 +117,9 @@ public:
      * @param dimension: The dimension of the matrix.
      * @return A matrix that describes a scale.
      */
-    static boost::numeric::ublas::matrix<model_data_t> CreateScale(
-        const model_data_t factor,
-        const boost::numeric::ublas::vector<model_data_t>::size_type dimension);
+    static boost::numeric::ublas::matrix<ModelDataType> CreateScale(
+        const ModelDataType factor,
+        const boost::numeric::ublas::vector<ModelDataType>::size_type dimension);
     
     /**
      * Creates a rotation matrix.
@@ -127,24 +129,19 @@ public:
      * @param ofset: The rotation offset.
      * @param angle: The rotation angle.
      */
-    static boost::numeric::ublas::matrix<model_data_t> CreateRotation(
-        const boost::numeric::ublas::vector<model_data_t> planar1,
-        const boost::numeric::ublas::vector<model_data_t> planar2,
-        const boost::numeric::ublas::vector<model_data_t> offset, const float angle);
+    static boost::numeric::ublas::matrix<ModelDataType> CreateRotation(
+        const boost::numeric::ublas::vector<ModelDataType> planar1,
+        const boost::numeric::ublas::vector<ModelDataType> planar2,
+        const boost::numeric::ublas::vector<ModelDataType> offset,
+        const float angle);
 
-protected:
-    
-    
 private:
-    boost::container::vector<boost::numeric::ublas::vector<model_data_t> > m_Vectors;
+    boost::container::vector<boost::numeric::ublas::vector<ModelDataType>> m_Vectors;
     bool m_IsVisible;
     std::string m_Name;
+
 };
 
-
-
 }
-
-
 
 #endif /* _MODEL_H */

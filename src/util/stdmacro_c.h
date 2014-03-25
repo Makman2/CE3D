@@ -6,6 +6,9 @@
 #include <stdint.h>
 #include "CE3D_config.h"
 
+/**
+ * A boolean type for C.
+ */
 typedef uint8_t bool;
 #define true 1
 #define false 0

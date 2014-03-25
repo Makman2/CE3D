@@ -1,0 +1,15 @@
+This is a draft which contains a short descriptions of the CodeChecker rules which shall be implemented for this project.
+
+* one space before brackets of a control flow keyword (if ())
+* no space before brackets of function declarations (function(params))
+* typedef's are not allowed. Use "using" instead for C++0x compliancy
+* use 4 spaces as tab. Tabs are not allowed
+* first line has to be our copyright comment
+* last line has to end with \n
+* for every class there has to be a test
+* include guards have to be on line 3, 4 and last with the given syntax
+* don't use raw pointers - use smart pointers instead!
+* use override and final whenever it is possible for cleaner code.
+* use nullptr instead of NULL (NULL must not be used in the whole project!)
+* when using the angle bracked for templates, two of the same brackets must have a space between them.
+* use static_assert() for compiletime assertions

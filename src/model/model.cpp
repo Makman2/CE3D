@@ -28,7 +28,7 @@ namespace CE3D
     }
 
 
-    void Model::Transform(boost::numeric::ublas::matrix<model_data_t> matrix)
+    void Model::Transform(boost::numeric::ublas::matrix<ModelDataType> matrix)
     {
         for (auto it : this->Vectors())
         {
@@ -36,7 +36,7 @@ namespace CE3D
         }	
     }
 
-    void Model::Translate(boost::numeric::ublas::vector<model_data_t> translation)
+    void Model::Translate(boost::numeric::ublas::vector<ModelDataType> translation)
     {
         // It's more performant to directly add the vertices together instead of
         // calling the Transform() function and creating a matrix for it.
@@ -46,7 +46,7 @@ namespace CE3D
         }
     }
 
-    void Model::Scale(const model_data_t factor)
+    void Model::Scale(const ModelDataType factor)
     {
         // And again it's more performant not to use matrices.
         for (auto it : this->Vectors())
@@ -55,7 +55,8 @@ namespace CE3D
         }
     }
 
-    void Model::Scale(const boost::numeric::ublas::vector<model_data_t> scale)
+
+    void Model::Scale(const boost::numeric::ublas::vector<ModelDataType> scale)
     {
         for (auto it : this->Vectors())
         {
@@ -63,23 +64,25 @@ namespace CE3D
         }
     }
 
-    void Model::Rotate(const boost::numeric::ublas::vector<model_data_t> planar1,
-        const boost::numeric::ublas::vector<model_data_t> planar2, 
-    const boost::numeric::ublas::vector<model_data_t> offset, const float angle)
+    void Model::Rotate(const boost::numeric::ublas::vector<ModelDataType> planar1,
+        const boost::numeric::ublas::vector<ModelDataType> planar2, 
+        const boost::numeric::ublas::vector<ModelDataType> offset,
+        const float angle)
     {
         this->Transform(CreateRotation(planar1, planar2, offset, angle));
     }
 
-    boost::numeric::ublas::matrix<model_data_t> Model::CreateTranslation(
-        boost::numeric::ublas::vector<model_data_t> translation)
+
+    boost::numeric::ublas::matrix<ModelDataType> Model::CreateTranslation(
+        boost::numeric::ublas::vector<ModelDataType> translation)
     {
-        boost::numeric::ublas::matrix<model_data_t> matrix(
+        boost::numeric::ublas::matrix<ModelDataType> matrix(
             translation.size() + 1, translation.size() + 1);
         
-        for (boost::numeric::ublas::matrix<model_data_t>::size_type row = 0;
+        for (boost::numeric::ublas::matrix<ModelDataType>::size_type row = 0;
              row < matrix.size1(); row++)
         {
-            boost::numeric::ublas::matrix<model_data_t>::size_type column;
+            boost::numeric::ublas::matrix<ModelDataType>::size_type column;
              
             for (column = 0; column < matrix.size2() - 1; column++)
             {
@@ -100,16 +103,17 @@ namespace CE3D
     }
 
 
-    boost::numeric::ublas::matrix<model_data_t> Model::CreateScale(
-        const boost::numeric::ublas::vector<model_data_t> scale)
+
+    boost::numeric::ublas::matrix<ModelDataType> Model::CreateScale(
+        const boost::numeric::ublas::vector<ModelDataType> scale)
     {
-        boost::numeric::ublas::matrix<model_data_t> matrix(
+        boost::numeric::ublas::matrix<ModelDataType> matrix(
             scale.size(), scale.size());            
         
-        for (boost::numeric::ublas::matrix<model_data_t>::size_type row = 0;
+        for (boost::numeric::ublas::matrix<ModelDataType>::size_type row = 0;
              row < matrix.size1(); row++)
         {
-            for (boost::numeric::ublas::matrix<model_data_t>::size_type column = 0;
+            for (boost::numeric::ublas::matrix<ModelDataType>::size_type column = 0;
                 column < matrix.size2(); column++)
             {
                 if (row == column)
@@ -122,16 +126,17 @@ namespace CE3D
         return matrix;
     }
 
-    boost::numeric::ublas::matrix<model_data_t> Model::CreateScale(
-    const model_data_t factor,
-    const boost::numeric::ublas::vector<model_data_t>::size_type dimension)
+
+    boost::numeric::ublas::matrix<ModelDataType> Model::CreateScale(
+    const ModelDataType factor,
+    const boost::numeric::ublas::vector<ModelDataType>::size_type dimension)
     {
-        boost::numeric::ublas::matrix<model_data_t> matrix(dimension, dimension);            
+        boost::numeric::ublas::matrix<ModelDataType> matrix(dimension, dimension);            
         
-        for (boost::numeric::ublas::matrix<model_data_t>::size_type row = 0;
+        for (boost::numeric::ublas::matrix<ModelDataType>::size_type row = 0;
              row < matrix.size1(); row++)
         {
-            for (boost::numeric::ublas::matrix<model_data_t>::size_type column = 0;
+            for (boost::numeric::ublas::matrix<ModelDataType>::size_type column = 0;
                 column < matrix.size2(); column++)
             {
                 if (row == column)
@@ -146,10 +151,11 @@ namespace CE3D
 
 
 
-    boost::numeric::ublas::matrix<model_data_t> Model::CreateRotation(
-        const boost::numeric::ublas::vector<model_data_t> planar1,
-        const boost::numeric::ublas::vector<model_data_t> planar2,
-        const boost::numeric::ublas::vector<model_data_t> offset, const float angle)
+    boost::numeric::ublas::matrix<ModelDataType> Model::CreateRotation(
+        const boost::numeric::ublas::vector<ModelDataType> planar1,
+        const boost::numeric::ublas::vector<ModelDataType> planar2,
+        const boost::numeric::ublas::vector<ModelDataType> offset,
+        const float angle)
     {
         // TODO Implement Model::CreateRotation.
     }
