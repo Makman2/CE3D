@@ -45,5 +45,6 @@ add_subdirectory("world")
 add_subdirectory("model")
 add_subdirectory("console")
 add_subdirectory("camera")
+add_subdirectory("renderer")
 
 add_library(CE3D STATIC ${SRC})
