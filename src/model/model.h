@@ -10,13 +10,15 @@
 
 #include "util/stdmacro.h"
 
+#include "transformation/itransformable.h"
+
 namespace CE3D
 {
 
 /**
  * TODO
  */
-class Model
+class Model : public Transformation::ITransformable
 {
 public:
     
@@ -58,25 +60,27 @@ public:
      *
      * @param matrix: The matrix to transform with.
      */
-    void Transform(const boost::numeric::ublas::matrix<ModelDataType> matrix);
+    virtual void Transform(
+        const boost::numeric::ublas::matrix<ModelDataType> matrix);
     /**
      * Translates all vertices in the model.
      *
      * @param translation: The vector that describes the translation.
      */
-    void Translate(const boost::numeric::ublas::vector<ModelDataType> translation);
+    virtual void Translate(
+        const boost::numeric::ublas::vector<ModelDataType> translation);
     /**
      * Scales all vertices in the model.
      *
      * @param factor: The factor to scale with.
      */
-    void Scale(const ModelDataType factor);
+    virtual void Scale(const ModelDataType factor);
     /**
      * Scales all vertices in the model.
      *
      * @param scale: The vector that describes the scale.
      */
-    void Scale(const boost::numeric::ublas::vector<ModelDataType> scale);
+    virtual void Scale(const boost::numeric::ublas::vector<ModelDataType> scale);
     /**
      * Rotates all vertices in the model.
      *
@@ -85,7 +89,7 @@ public:
      * @param offset: The offset of the rotation axis.
      * @param angle: The rotation angle.
      */
-    void Rotate(const boost::numeric::ublas::vector<ModelDataType> planar1,
+    virtual void Rotate(const boost::numeric::ublas::vector<ModelDataType> planar1,
         const boost::numeric::ublas::vector<ModelDataType> planar2,
         const boost::numeric::ublas::vector<ModelDataType> offset,
         const float angle);
