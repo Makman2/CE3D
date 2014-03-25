@@ -10,6 +10,12 @@ namespace CE3D
         return this->m_Models;
     }
 
+    boost::container::vector<boost::numeric::ublas::matrix<ModelDataType>>
+        World::Transformations()
+    {
+        return this->m_Transformations;
+    }
+
     void World::Transform(const boost::numeric::ublas::matrix<ModelDataType> matrix)
     {
         for (auto it : this->Models())

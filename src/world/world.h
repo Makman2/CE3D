@@ -4,6 +4,7 @@
 #define _WORLD_H
 
 #include <boost/ptr_container/ptr_list.hpp>
+#include <boost/container/vector.hpp>
 
 #include "util/stdmacro.h"
 
@@ -24,6 +25,14 @@ public:
      * @return The list of models.
      */
     boost::ptr_list<Model> Models();
+
+    /**
+     * The transformations that are applied on render.
+     *
+     * @return The list of transformation-matrices.
+     */
+    boost::container::vector<boost::numeric::ublas::matrix<ModelDataType>>
+        Transformations();
 
     /**
      * Transforms all models in the world.
@@ -67,6 +76,8 @@ protected:
 
 private:
     boost::ptr_list<Model> m_Models;
+    boost::container::vector<boost::numeric::ublas::matrix<ModelDataType>>
+        m_Transformations;
 };
 
 }
