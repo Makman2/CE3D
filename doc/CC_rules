@@ -10,6 +10,6 @@ This is a draft which contains a short descriptions of the CodeChecker rules whi
 * include guards have to be on line 3, 4 and last with the given syntax
 * don't use raw pointers - use smart pointers instead!
 * use override and final whenever it is possible for cleaner code.
-* use nullptr instead of NULL (NULL must not be used in the whole project!)
+* use nullptr instead of NULL (NULL must not be used in the whole project! Maybe its needed for comparision purposes when something returns NULL.)
 * when using the angle bracked for templates, two of the same brackets must have a space between them.
 * use static_assert() for compiletime assertions
