@@ -53,7 +53,7 @@ private:
      * This is a singleton.
      */
     Console();
-    Console(Console& const rhs);
+    Console(Console const& rhs);
     ~Console();
 
     static Console* s_Instance;

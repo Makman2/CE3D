@@ -19,40 +19,6 @@ namespace CE3D
 class Model
 {
 public:
-    
-    /**
-     * Determines whether the model should be rendered or not.
-     *
-     * @return true if visible, false if not.
-     */
-    bool IsVisible();
-    /**
-     * Sets whether the model should be rendered or not.
-     *
-     * @param value: The visibility state. true for visible, false for hidden.
-     */
-    void SetVisibility(bool value);
-    /**
-     * Gets the list of vectors the model contains.
-     * 
-     * @return The list of vectors.
-     */
-    boost::container::vector<boost::numeric::ublas::vector<ModelDataType>> Vectors();
-
-    /**
-     * Gets the name or ID of the model.
-     * 
-     * @return The name.
-     */
-    std::string GetName();
-    /**
-     * Sets the name or ID of the model.
-     * 
-     * @param value: The new name.
-     */
-    void SetName(std::string value);
-
-
     /**
      * Transforms all vertices in the model.
      *
@@ -136,9 +102,11 @@ public:
         const float angle);
 
 private:
-    boost::container::vector<boost::numeric::ublas::vector<ModelDataType>> m_Vectors;
-    bool m_IsVisible;
-    std::string m_Name;
+    R_PROPERTY(private, boost::container::vector<
+                            boost::numeric::ublas::vector<ModelDataType>
+                            >, Vectors);
+    RW_PROPERTY(private, bool, Visibility);
+    RW_PROPERTY(private, std::string, Name);
 
 };
 
