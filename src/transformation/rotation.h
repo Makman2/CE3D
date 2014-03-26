@@ -21,10 +21,14 @@ namespace Transformation
 class Rotation : public Transformation
 {
 private:
-    R_PROPERTY(private, boost::numeric::ublas::vector<ModelDataType>, Planar1);
-    R_PROPERTY(private, boost::numeric::ublas::vector<ModelDataType>, Planar2);
-    R_PROPERTY(private, boost::numeric::ublas::vector<ModelDataType>, Offset);
-    R_PROPERTY(private, float, Angle);
+	// TODO getter
+    boost::numeric::ublas::vector<ModelDataType> Planar1;
+	// TODO getter
+    boost::numeric::ublas::vector<ModelDataType> Planar2;
+	// TODO getter
+    boost::numeric::ublas::vector<ModelDataType> Offset;
+	// TODO getter
+    float Angle;
 
     boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
 

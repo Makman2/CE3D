@@ -23,8 +23,10 @@ namespace Transformation
 class DirectionalTranslation : public Translation
 {
 private:
-    R_PROPERTY(private, boost::numeric::ublas::vector<ModelDataType>, Direction);
-    R_PROPERTY(private, ModelDataType, Length);
+	// TODO getter
+    boost::numeric::ublas::vector<ModelDataType> Direction;
+    // TODO getter
+    ModelDataType Length;
     boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
 
 

@@ -21,13 +21,14 @@ namespace Transformation
 class Custom : public Transformation
 {
 private:
-    W_PROPERTY(private, boost::numeric::ublas::matrix<ModelDataType>, Matrix);
+    boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
     
 public:
-    inline virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix()
-    {
-        return m_Matrix;
-    }
+    inline virtual boost::numeric::ublas::matrix<ModelDataType> const&
+    GetMatrix()
+    { return m_Matrix; }
+
+    // TODO setter for matrix
 
 };
 
