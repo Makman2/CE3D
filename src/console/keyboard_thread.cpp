@@ -6,7 +6,7 @@ namespace CE3D
 {
 
 KeyboardThread::KeyboardThread()
- : m_Callback(NULL)
+ : m_Callback(nullptr)
 {
 }
 
@@ -21,7 +21,7 @@ void KeyboardThread::operator ()(WINDOW* Screen) const
     {
         c = getch();
         // TODO set keyboard state
-        if (m_Callback != NULL)
+        if (m_Callback != nullptr)
         {
             (*m_Callback)();
         }

@@ -24,7 +24,7 @@ private:
     /**
      * Holds the callback functor which is called on every keyboard event.
      */
-    W_PROPERTY(private, Functor<>*, Callback);
+    Functor<>* m_Callback;// TODO setter
 };
 
 }

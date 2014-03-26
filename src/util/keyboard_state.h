@@ -21,10 +21,21 @@ using ModifierKeys = enum ModifierKeysEnum
 using Sign = char;
 
 class KeyboardState {
-    GENERATE_SINGLETON(KeyboardState);
+private:
+    KeyboardState();
+    KeyboardState(KeyboardState const& rhs);
 
-    R_PROPERTY(private, ModifierKeys, Modifiers);
-    R_PROPERTY(private, Sign, Content);
+    ModifierKeys m_Modifiers;
+    Sign m_Content;
+
+    static KeyboardState* s_Instance;
+public:
+    KeyboardState* GetInstance();
+
+    inline ModifierKeys GetModifiers() const
+    { return m_Modifiers; }
+    inline Sign GetContent() const
+    { return m_Content; }
 };
 
 } /* namespace CE3D */

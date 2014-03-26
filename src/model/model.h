@@ -56,6 +56,11 @@ public:
         const boost::numeric::ublas::vector<ModelDataType> offset,
         const float angle);
 
+    inline boost::container::vector<
+        boost::numeric::ublas::vector<ModelDataType>
+        > GetVectors() const
+    { return m_Vectors; }
+
 
 
     /**
@@ -100,13 +105,16 @@ public:
         const boost::numeric::ublas::vector<ModelDataType> planar2,
         const boost::numeric::ublas::vector<ModelDataType> offset,
         const float angle);
+    
 
 private:
-    R_PROPERTY(private, boost::container::vector<
-                            boost::numeric::ublas::vector<ModelDataType>
-                            >, Vectors);
-    RW_PROPERTY(private, bool, Visibility);
-    RW_PROPERTY(private, std::string, Name);
+    boost::container::vector<
+        boost::numeric::ublas::vector<ModelDataType>
+        > m_Vectors;
+    // TODO getter, setter
+    bool m_Visible;
+    // TODO getter, setter
+    std::string m_Name;
 
 };
 

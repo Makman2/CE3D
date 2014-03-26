@@ -7,7 +7,7 @@
 namespace CE3D
 {
 
-Console* Console::s_Instance = NULL;
+Console* Console::s_Instance = nullptr;
 
 Console::Console()
 {
@@ -25,7 +25,7 @@ Console::~Console()
 
 Console* Console::GetInstance()
 {
-    if (s_Instance == NULL)
+    if (s_Instance == nullptr)
     {
         s_Instance = new Console();
     }

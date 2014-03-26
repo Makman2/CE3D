@@ -58,9 +58,11 @@ private:
 
     static Console* s_Instance;
 
-    R_PROPERTY(private, ConsoleIdxType, Height);
-    R_PROPERTY(private, ConsoleIdxType, Width);
-    PROPERTY(private, WINDOW*, Screen);
+    // TODO getter
+    ConsoleIdxType m_Height;
+    // TODO setter
+    ConsoleIdxType m_Width;
+    WINDOW* m_Screen;
 };
 
 }
