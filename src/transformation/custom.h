@@ -29,7 +29,6 @@ public:
     { return m_Matrix; }
 
     // TODO setter for matrix
-
 };
 
 }

@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _KEYBOARD_STATE_H
-#define _KEYBOARD_STATE_H
+#ifndef CE3D_UTIL_KEYBOARD_STATE_H
+#define CE3D_UTIL_KEYBOARD_STATE_H
 
 #include <curses.h>
 
@@ -40,4 +40,4 @@ public:
 
 } /* namespace CE3D */
 
-#endif /* _KEYBOARD_STATE_H */
+#endif /* CE3D_UTIL_KEYBOARD_STATE_H */
