@@ -20,7 +20,7 @@ using ConsoleColor = enum ConsoleColorEnum
 };
 
 /**
- * TODO
+ * This is basically a curses wrapper for C++.
  */
 class Console
 {

@@ -16,12 +16,12 @@ namespace CE3D
 {
 
 /**
- * TODO
+ * A camera is defined through position, direction and the world it's looking
+ * at.
  */
 class Camera
 {
 private:
-    // TODO getter, setter
     World m_World;
 public:
     // FIXME Maybe replace the description with a better one.
@@ -36,6 +36,11 @@ public:
     virtual World Paint() = 0;
 
     virtual ~Camera();
+
+    inline World const& GetWorld() const
+    { return m_World; }
+    inline void SetWorld(World const& copy)
+    { m_World = copy; }
 };
 
 }
