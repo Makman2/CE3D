@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _WORLD_H
-#define _WORLD_H
+#ifndef CE3D_WORLD_WORLD_H
+#define CE3D_WORLD_WORLD_H
 
 #include <boost/ptr_container/ptr_list.hpp>
 #include <boost/container/vector.hpp>
@@ -77,4 +77,4 @@ private:
 
 }
 
-#endif /* _WORLD_H */
+#endif /* CE3D_WORLD_WORLD_H */

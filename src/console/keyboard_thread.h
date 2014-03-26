@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _KEYBOARD_THREAD_H
-#define _KEYBOARD_THREAD_H
+#ifndef CE3D_CONSOLE_KEYBOARD_THREAD_H
+#define CE3D_CONSOLE_KEYBOARD_THREAD_H
 
 #include <curses.h>
 
@@ -31,4 +31,4 @@ public:
 
 }
 
-#endif /* _KEYBOARD_THREAD_H */
+#endif /* CE3D_CONSOLE_KEYBOARD_THREAD_H */

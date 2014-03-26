@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _MODEL_H
-#define _MODEL_H
+#ifndef CE3D_MODEL_MODEL_H
+#define CE3D_MODEL_MODEL_H
 
 #include <string>
 #include <boost/container/vector.hpp>
@@ -93,4 +93,4 @@ public:
 
 }
 
-#endif /* _MODEL_H */
+#endif /* CE3D_MODEL_MODEL_H */

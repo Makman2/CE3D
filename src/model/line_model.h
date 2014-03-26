@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _LINE_MODEL_H
-#define _LINE_MODEL_H
+#ifndef CE3D_MODEL_LINE_MODEL_H
+#define CE3D_MODEL_LINE_MODEL_H
 
 #include "util/stdmacro.h"
 
@@ -21,4 +21,4 @@ private:
 
 }
 
-#endif /* _LINE_MODEL_H */
+#endif /* CE3D_MODEL_LINE_MODEL_H */

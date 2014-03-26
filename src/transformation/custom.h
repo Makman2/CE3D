@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _CUSTOM_H
-#define _CUSTOM_H
+#ifndef CE3D_TRANSFORMATION_CUSTOM_H
+#define CE3D_TRANSFORMATION_CUSTOM_H
 
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
@@ -34,4 +34,4 @@ public:
 }
 }
 
-#endif /* _CUSTOM_H */
+#endif /* CE3D_TRANSFORMATION_CUSTOM_H */

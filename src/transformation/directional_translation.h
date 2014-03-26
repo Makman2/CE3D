@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _DIRECTIONAL_TRANSLATION_H
-#define _DIRECTIONAL_TRANSLATION_H
+#ifndef CE3D_TRANSFORMATION_DIRECTIONAL_TRANSLATION_H
+#define CE3D_TRANSFORMATION_DIRECTIONAL_TRANSLATION_H
 
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
@@ -50,4 +50,4 @@ public:
 }
 }
 
-#endif /* _DIRECTIONAL_TRANSLATION_H */
+#endif /* CE3D_TRANSFORMATION_DIRECTIONAL_TRANSLATION_H */

@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _CAMERA_H
-#define _CAMERA_H
+#ifndef CE3D_CAMERA_CAMERA_H
+#define CE3D_CAMERA_CAMERA_H
 
 #include <string>
 #include <boost/container/vector.hpp>
@@ -45,4 +45,4 @@ public:
 
 }
 
-#endif /* _CAMERA_H */
+#endif /* CE3D_CAMERA_CAMERA_H */

@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _FUNCTOR_H
-#define _FUNCTOR_H
+#ifndef CE3D_UTIL_FUNCTOR_H
+#define CE3D_UTIL_FUNCTOR_H
 
 #include "util/stdmacro.h"
 
@@ -19,4 +19,4 @@ public:
 
 }
 
-#endif /* _FUNCTOR_H */
+#endif /* CE3D_UTIL_FUNCTOR_H */

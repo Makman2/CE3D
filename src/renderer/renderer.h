@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _RENDERER_H
-#define _RENDERER_H
+#ifndef CE3D_RENDERER_RENDERER_H
+#define CE3D_RENDERER_RENDERER_H
 
 #include "util/stdmacro.h"
 
@@ -28,4 +28,4 @@ public:
 
 }
 
-#endif /* _RENDERER_H */
+#endif /* CE3D_RENDERER_RENDERER_H */

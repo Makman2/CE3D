@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _ROTATION_H
-#define _ROTATION_H
+#ifndef CE3D_TRANSFORMATION_ROTATION_H
+#define CE3D_TRANSFORMATION_ROTATION_H
 
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
@@ -75,4 +75,4 @@ public:
 }
 }
 
-#endif /* _ROTATION_H */
+#endif /* CE3D_TRANSFORMATION_ROTATION_H */

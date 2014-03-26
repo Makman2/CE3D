@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _CONSOLE_H
-#define _CONSOLE_H
+#ifndef CE3D_CONSOLE_CONSOLE_H
+#define CE3D_CONSOLE_CONSOLE_H
 
 #include <curses.h>
 #include <string>
@@ -70,4 +70,4 @@ public:
 
 }
 
-#endif /* _CONSOLE_H */
+#endif /* CE3D_CONSOLE_CONSOLE_H */
