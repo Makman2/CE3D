@@ -40,27 +40,25 @@ public:
      *
      * @param matrix: The matrix to transform with.
      */
-    virtual void Transform(
-        const boost::numeric::ublas::matrix<ModelDataType> matrix);
+    virtual void Transform(Transformation::Transformation const& matrix);
     /**
      * Translates all models in the world.
      *
      * @param translation: The vector that describes the translation.
      */
-    virtual void Translate(
-        const boost::numeric::ublas::vector<ModelDataType> translation);
+    virtual void Translate(Transformation::Translation const& translation);
     /**
      * Scales all models in the world.
      *
      * @param factor: The factor to scale with.
      */
-    virtual void Scale(const ModelDataType factor);
+    virtual void Scale(ModelDataType const factor);
     /**
      * Scales all models in the world.
      *
      * @param scale: The vector that describes the scale.
      */
-    virtual void Scale(const boost::numeric::ublas::vector<ModelDataType> scale);
+    virtual void Scale(Transformation::Scale const& scale);
     /**
      * Rotates all models in the world.
      *
@@ -69,13 +67,7 @@ public:
      * @param offset: The offset of the rotation axis.
      * @param angle: The rotation angle.
      */
-    virtual void Rotate(const boost::numeric::ublas::vector<ModelDataType> planar1,
-        const boost::numeric::ublas::vector<ModelDataType> planar2,
-        const boost::numeric::ublas::vector<ModelDataType> offset,
-        const float angle);
-
-
-protected:
+    virtual void Rotate(Transformation::Rotation const& rotation);
 
 private:
     boost::ptr_list<Model> m_Models;

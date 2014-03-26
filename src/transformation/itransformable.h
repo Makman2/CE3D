@@ -30,13 +30,13 @@ public:
      *
      * @param matrix: The matrix to transform with.
      */
-    virtual void Transform(Transformation& transformation) = 0;
+    virtual void Transform(Transformation const& transformation) = 0;
     /**
      * Translates all vertices.
      *
      * @param translation: The vector that describes the translation.
      */
-    virtual void Translate(Translation translation) = 0;
+    virtual void Translate(Translation const& translation) = 0;
     /**
      * Scales all vertices.
      *
@@ -48,7 +48,7 @@ public:
      *
      * @param scale: The vector that describes the scale.
      */
-    virtual void Scale(CE3D::Transformation::Scale scale) = 0;
+    virtual void Scale(CE3D::Transformation::Scale const& scale) = 0;
     /**
      * Rotates all vertices.
      *
@@ -57,7 +57,7 @@ public:
      * @param offset: The offset of the rotation axis.
      * @param angle: The rotation angle.
      */
-    virtual void Rotate(Rotation rotation) = 0;
+    virtual void Rotate(Rotation const& rotation) = 0;
     
 };
 

@@ -19,7 +19,7 @@ namespace Transformation
              row < matrix.size1(); row++)
         {
             boost::numeric::ublas::matrix<ModelDataType>::size_type column;
-             
+            
             for (column = 0; column < matrix.size2() - 1; column++)
             {
                 if (row == column)
