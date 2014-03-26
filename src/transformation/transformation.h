@@ -14,7 +14,7 @@ namespace Transformation
 class Transformation
 {
 public:
-    virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix() = 0;
+    virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix() const = 0;
     
 };
 

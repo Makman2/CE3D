@@ -28,7 +28,7 @@ namespace CE3D
     }
 
 
-    void Model::Transform(Transformation::Transformation& transformation)
+    void Model::Transform(Transformation::Transformation const& transformation)
     {
         boost::numeric::ublas::matrix<ModelDataType> matrix =
             transformation.GetMatrix();
@@ -38,7 +38,7 @@ namespace CE3D
         }	
     }
 
-    void Model::Translate(Transformation::Translation translation)
+    void Model::Translate(Transformation::Translation const& translation)
     {
         boost::numeric::ublas::vector<ModelDataType> translationvec =
             translation.GetTranslation();
@@ -60,7 +60,7 @@ namespace CE3D
     }
 
 
-    void Model::Scale(Transformation::Scale scale)
+    void Model::Scale(Transformation::Scale const& scale)
     {
         boost::numeric::ublas::vector<ModelDataType> scalevec =
             scale.GetScale();
@@ -71,23 +71,9 @@ namespace CE3D
     }
 
 
-    void Model::Rotate(Transformation::Rotation rotation)
+    void Model::Rotate(Transformation::Rotation const& rotation)
     {
         this->Transform(rotation);
-    }
-
-
-    
-
-
-
-    boost::numeric::ublas::matrix<ModelDataType> Model::CreateRotation(
-        const boost::numeric::ublas::vector<ModelDataType> planar1,
-        const boost::numeric::ublas::vector<ModelDataType> planar2,
-        const boost::numeric::ublas::vector<ModelDataType> offset,
-        const float angle)
-    {
-        // TODO Implement Model::CreateRotation.
     }
 
 }

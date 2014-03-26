@@ -35,5 +35,10 @@ namespace Transformation
     {
         // TODO Implement rotation matrix creation.
     }
+
+    boost::numeric::ublas::matrix<ModelDataType> Rotation::GetMatrix()
+    {
+        return m_Matrix;
+    }
 }
 }

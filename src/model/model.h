@@ -60,25 +60,25 @@ public:
      *
      * @param matrix: The matrix to transform with.
      */
-    virtual void Transform(Transformation::Transformation const& matrix);
+    virtual void Transform(Transformation::Transformation const& matrix) override;
     /**
      * Translates all vertices in the model.
      *
      * @param translation: The vector that describes the translation.
      */
-    virtual void Translate(Transformation::Translation const& translation);
+    virtual void Translate(Transformation::Translation const& translation) override;
     /**
      * Scales all vertices in the model.
      *
      * @param factor: The factor to scale with.
      */
-    virtual void Scale(const ModelDataType factor);
+    virtual void Scale(const ModelDataType factor) override;
     /**
      * Scales all vertices in the model.
      *
      * @param scale: The vector that describes the scale.
      */
-    virtual void Scale(Transformation::Scale const& scale);
+    virtual void Scale(Transformation::Scale const& scale) override;
     /**
      * Rotates all vertices in the model.
      *
@@ -87,7 +87,7 @@ public:
      * @param offset: The offset of the rotation axis.
      * @param angle: The rotation angle.
      */
-    virtual void Rotate(Transformation::Rotation const& rotation);
+    virtual void Rotate(Transformation::Rotation const& rotation) override;
 
 
 
