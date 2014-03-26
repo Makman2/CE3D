@@ -32,7 +32,8 @@ public:
      */
     virtual World Paint() = 0;
 private:
-    RW_PROPERTY(private, World, World);
+    // TODO getter, setter
+    World m_World;
 
 };
 

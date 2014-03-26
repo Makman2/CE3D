@@ -64,8 +64,11 @@ public:
         const boost::numeric::ublas::vector<ModelDataType> offset,
         const float angle);
 
+    boost::ptr_list<Model> GetModels() const
+    { return m_Models; }
+
 private:
-    R_PROPERTY(private, boost::ptr_list<Model>, Models);
+    boost::ptr_list<Model> m_Models;
     boost::container::vector<boost::numeric::ublas::matrix<ModelDataType>>
         m_Transformations;
 };
