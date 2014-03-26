@@ -9,6 +9,11 @@
 
 #include "util/stdmacro.h"
 
+#include "transformation/transformation.h"
+#include "transformation/translation.h"
+#include "transformation/scale.h"
+#include "transformation/rotation.h"
+
 namespace CE3D
 {
 namespace Transformation
@@ -17,7 +22,7 @@ namespace Transformation
 class ITransformable
 {
 public:
-    virtual ~ITransformable() {};
+    virtual ~ITransformable();
     
     
     /**
@@ -25,15 +30,13 @@ public:
      *
      * @param matrix: The matrix to transform with.
      */
-    virtual void Transform(
-        const boost::numeric::ublas::matrix<ModelDataType> matrix) = 0;
+    virtual void Transform(Transformation& transformation) = 0;
     /**
      * Translates all vertices.
      *
      * @param translation: The vector that describes the translation.
      */
-    virtual void Translate(
-        const boost::numeric::ublas::vector<ModelDataType> translation) = 0;
+    virtual void Translate(Translation translation) = 0;
     /**
      * Scales all vertices.
      *
@@ -45,7 +48,7 @@ public:
      *
      * @param scale: The vector that describes the scale.
      */
-    virtual void Scale(const boost::numeric::ublas::vector<ModelDataType> scale) = 0;
+    virtual void Scale(CE3D::Transformation::Scale scale) = 0;
     /**
      * Rotates all vertices.
      *
@@ -54,10 +57,7 @@ public:
      * @param offset: The offset of the rotation axis.
      * @param angle: The rotation angle.
      */
-    virtual void Rotate(const boost::numeric::ublas::vector<ModelDataType> planar1,
-        const boost::numeric::ublas::vector<ModelDataType> planar2,
-        const boost::numeric::ublas::vector<ModelDataType> offset,
-        const float angle) = 0;
+    virtual void Rotate(Rotation rotation) = 0;
     
 };
 

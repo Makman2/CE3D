@@ -60,15 +60,13 @@ public:
      *
      * @param matrix: The matrix to transform with.
      */
-    virtual void Transform(
-        const boost::numeric::ublas::matrix<ModelDataType> matrix);
+    virtual void Transform(Transformation::Transformation& matrix);
     /**
      * Translates all vertices in the model.
      *
      * @param translation: The vector that describes the translation.
      */
-    virtual void Translate(
-        const boost::numeric::ublas::vector<ModelDataType> translation);
+    virtual void Translate(Transformation::Translation translation);
     /**
      * Scales all vertices in the model.
      *
@@ -80,7 +78,7 @@ public:
      *
      * @param scale: The vector that describes the scale.
      */
-    virtual void Scale(const boost::numeric::ublas::vector<ModelDataType> scale);
+    virtual void Scale(Transformation::Scale scale);
     /**
      * Rotates all vertices in the model.
      *
@@ -89,55 +87,12 @@ public:
      * @param offset: The offset of the rotation axis.
      * @param angle: The rotation angle.
      */
-    virtual void Rotate(const boost::numeric::ublas::vector<ModelDataType> planar1,
-        const boost::numeric::ublas::vector<ModelDataType> planar2,
-        const boost::numeric::ublas::vector<ModelDataType> offset,
-        const float angle);
+    virtual void Rotate(Transformation::Rotation rotation);
 
 
 
-    /**
-     * Creates a translation matrix.
-     *
-     * @param translation: The translation vector."
-     * @return A matrix that describes a translation.
-     */
-    static boost::numeric::ublas::matrix<ModelDataType> CreateTranslation(
-        boost::numeric::ublas::vector<ModelDataType> translation);
-
-    /**
-     * Creates a scale matrix.
-     *
-     * @param scale: The vector that describes the desired scale.
-     * @return A matrix that describes a scale.
-     */
-    static boost::numeric::ublas::matrix<ModelDataType> CreateScale(
-        const boost::numeric::ublas::vector<ModelDataType> scale);
-
-    /**
-     * Creates a scale matrix.
-     *
-     * @param factor: The factor to scale with.
-     * @param dimension: The dimension of the matrix.
-     * @return A matrix that describes a scale.
-     */
-    static boost::numeric::ublas::matrix<ModelDataType> CreateScale(
-        const ModelDataType factor,
-        const boost::numeric::ublas::vector<ModelDataType>::size_type dimension);
     
-    /**
-     * Creates a rotation matrix.
-     *
-     * @param planar1: The first vector of the rotation plane.
-     * @param planar2: The second vector of the rotation plane.
-     * @param ofset: The rotation offset.
-     * @param angle: The rotation angle.
-     */
-    static boost::numeric::ublas::matrix<ModelDataType> CreateRotation(
-        const boost::numeric::ublas::vector<ModelDataType> planar1,
-        const boost::numeric::ublas::vector<ModelDataType> planar2,
-        const boost::numeric::ublas::vector<ModelDataType> offset,
-        const float angle);
+
 
 private:
     boost::container::vector<boost::numeric::ublas::vector<ModelDataType>> m_Vectors;

@@ -28,21 +28,25 @@ namespace CE3D
     }
 
 
-    void Model::Transform(boost::numeric::ublas::matrix<ModelDataType> matrix)
+    void Model::Transform(Transformation::Transformation& transformation)
     {
+        boost::numeric::ublas::matrix<ModelDataType> matrix =
+            transformation.GetMatrix();
         for (auto it : this->Vectors())
         {
             boost::numeric::ublas::axpy_prod(matrix, it, it, true);
         }	
     }
 
-    void Model::Translate(boost::numeric::ublas::vector<ModelDataType> translation)
+    void Model::Translate(Transformation::Translation translation)
     {
+        boost::numeric::ublas::vector<ModelDataType> translationvec =
+            translation.GetTranslation();
         // It's more performant to directly add the vertices together instead of
         // calling the Transform() function and creating a matrix for it.
         for (auto it : this->Vectors())
         {
-            it += translation;
+            it += translationvec;
         }
     }
 
@@ -56,98 +60,24 @@ namespace CE3D
     }
 
 
-    void Model::Scale(const boost::numeric::ublas::vector<ModelDataType> scale)
+    void Model::Scale(Transformation::Scale scale)
     {
+        boost::numeric::ublas::vector<ModelDataType> scalevec =
+            scale.GetScale();
         for (auto it : this->Vectors())
         {
-            it = boost::numeric::ublas::element_prod(it, scale);
+            it = boost::numeric::ublas::element_prod(it, scalevec);
         }
     }
 
-    void Model::Rotate(const boost::numeric::ublas::vector<ModelDataType> planar1,
-        const boost::numeric::ublas::vector<ModelDataType> planar2, 
-        const boost::numeric::ublas::vector<ModelDataType> offset,
-        const float angle)
+
+    void Model::Rotate(Transformation::Rotation rotation)
     {
-        this->Transform(CreateRotation(planar1, planar2, offset, angle));
+        this->Transform(rotation);
     }
 
 
-    boost::numeric::ublas::matrix<ModelDataType> Model::CreateTranslation(
-        boost::numeric::ublas::vector<ModelDataType> translation)
-    {
-        boost::numeric::ublas::matrix<ModelDataType> matrix(
-            translation.size() + 1, translation.size() + 1);
-        
-        for (boost::numeric::ublas::matrix<ModelDataType>::size_type row = 0;
-             row < matrix.size1(); row++)
-        {
-            boost::numeric::ublas::matrix<ModelDataType>::size_type column;
-             
-            for (column = 0; column < matrix.size2() - 1; column++)
-            {
-                if (row == column)
-                    matrix(row, column) = 1.0f;
-                else
-                    matrix(row, column) = 0.0f;
-            }
-            
-            column++;
-            if (row == matrix.size1() - 1)
-                matrix(row, column) = 1.0f;
-            else
-                matrix(row, column) = translation(row);
-        }
-
-        return matrix;
-    }
-
-
-
-    boost::numeric::ublas::matrix<ModelDataType> Model::CreateScale(
-        const boost::numeric::ublas::vector<ModelDataType> scale)
-    {
-        boost::numeric::ublas::matrix<ModelDataType> matrix(
-            scale.size(), scale.size());            
-        
-        for (boost::numeric::ublas::matrix<ModelDataType>::size_type row = 0;
-             row < matrix.size1(); row++)
-        {
-            for (boost::numeric::ublas::matrix<ModelDataType>::size_type column = 0;
-                column < matrix.size2(); column++)
-            {
-                if (row == column)
-                    matrix(row, column) = scale(row);
-                else
-                    matrix(row, column) = 0.0f;
-            }
-        }
-
-        return matrix;
-    }
-
-
-    boost::numeric::ublas::matrix<ModelDataType> Model::CreateScale(
-    const ModelDataType factor,
-    const boost::numeric::ublas::vector<ModelDataType>::size_type dimension)
-    {
-        boost::numeric::ublas::matrix<ModelDataType> matrix(dimension, dimension);            
-        
-        for (boost::numeric::ublas::matrix<ModelDataType>::size_type row = 0;
-             row < matrix.size1(); row++)
-        {
-            for (boost::numeric::ublas::matrix<ModelDataType>::size_type column = 0;
-                column < matrix.size2(); column++)
-            {
-                if (row == column)
-                    matrix(row, column) = factor;
-                else
-                    matrix(row, column) = 0.0f;
-            }
-        }
-
-        return matrix;
-    }
+    
 
 
 
