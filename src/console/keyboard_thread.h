@@ -17,14 +17,16 @@ namespace CE3D
  */
 class KeyboardThread
 {
-public:
-    KeyboardThread();
-    void operator()(WINDOW* Screen) const;
 private:
     /**
      * Holds the callback functor which is called on every keyboard event.
      */
-    Functor<>* m_Callback;// TODO setter
+    Functor<>* m_Callback;
+public:
+    KeyboardThread();
+    void operator()(WINDOW* Screen) const;
+    inline void SetCallback(Functor<>* const copy)
+    { m_Callback = copy; }
 };
 
 }

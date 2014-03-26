@@ -10,7 +10,7 @@ KeyboardThread::KeyboardThread()
 {
 }
 
-void KeyboardThread::operator ()(WINDOW* Screen) const
+void KeyboardThread::operator()(WINDOW* Screen) const
 {
     char c;
 

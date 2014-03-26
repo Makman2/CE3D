@@ -20,10 +20,23 @@ using ConsoleColor = enum ConsoleColorEnum
 };
 
 /**
- * TODO
+ * This is basically a curses wrapper for C++.
  */
 class Console
 {
+private:
+    /**
+     * This is a singleton.
+     */
+    Console();
+    Console(Console const& rhs);
+    ~Console();
+
+    static Console* s_Instance;
+
+    ConsoleIdxType m_Height;
+    ConsoleIdxType m_Width;
+    WINDOW* m_Screen;
 public:
     /**
      * Returns an instance.
@@ -48,21 +61,11 @@ public:
 
     void Clear() const;
     void Flush() const;
-private:
-    /**
-     * This is a singleton.
-     */
-    Console();
-    Console(Console const& rhs);
-    ~Console();
 
-    static Console* s_Instance;
-
-    // TODO getter
-    ConsoleIdxType m_Height;
-    // TODO setter
-    ConsoleIdxType m_Width;
-    WINDOW* m_Screen;
+    inline ConsoleIdxType const& GetHeight() const
+    { return m_Height; }
+    inline ConsoleIdxType const& GetWidth() const
+    { return m_Width; }
 };
 
 }
