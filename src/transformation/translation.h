@@ -21,13 +21,31 @@ namespace Transformation
 class Translation : public Transformation
 {
 public:
-    /**
-     * Returns the euclidean translation-vector.
-     *
-     * @return: The translation-vector.
-     */
-    virtual boost::numeric::ublas::vector<ModelDataType> GetTranslation() const = 0;
+private:
+    boost::numeric::ublas::vector<ModelDataType> m_TranslationVector;
+    boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
 
+    void UpdateMatrix();
+
+public:
+
+
+    virtual boost::numeric::ublas::vector<ModelDataType> GetTranslation() const
+    { return m_TranslationVector; }
+
+    /**
+     * Sets the translation-vector.
+     *
+     * @param shift: The translation-vector.
+     */
+    virtual void SetTranslation(boost::numeric::ublas::vector<ModelDataType> shift);
+    
+    virtual void SetTranslation(
+        boost::numeric::ublas::vector<ModelDataType> const direction,
+        ModelDataType const length);
+
+    virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix() const override
+    { return m_Matrix; }
 };
 
 }
