@@ -27,7 +27,6 @@ public:
      * @return: The translation-vector.
      */
     virtual boost::numeric::ublas::vector<ModelDataType> GetTranslation() const = 0;
-
 };
 
 }

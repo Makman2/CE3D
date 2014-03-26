@@ -15,7 +15,8 @@ class Transformation
 {
 public:
     virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix() const = 0;
-    
+
+    virtual ~Transformation();
 };
 
 

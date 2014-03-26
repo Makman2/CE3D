@@ -36,9 +36,7 @@ private:
 
 public:
     inline virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix()
-    {
-        return m_Matrix;
-    }
+    { return m_Matrix; }
     
     /**
      * Sets the first plane-vector.

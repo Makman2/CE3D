@@ -24,26 +24,23 @@ private:
     boost::numeric::ublas::vector<ModelDataType> m_Scale;
     boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
 
-
 public:
     inline virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix()
-    {
-        return m_Matrix;
-    }
-    
+    { return m_Matrix; }
+
     /**
      * Sets the scale-vector.
      *
      * @param value: The scale-vector to set.
      */
     void SetScale(boost::numeric::ublas::vector<ModelDataType> value);
+
     /**
      * Returns the scale vector.
-     * 
+     *
      * @return The scale-vector.
      */
     boost::numeric::ublas::vector<ModelDataType> GetScale() const;
-
 };
 
 }
