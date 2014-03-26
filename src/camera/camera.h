@@ -20,6 +20,9 @@ namespace CE3D
  */
 class Camera
 {
+private:
+    // TODO getter, setter
+    World m_World;
 public:
     // FIXME Maybe replace the description with a better one.
     /**
@@ -31,10 +34,8 @@ public:
      * @return The projection-transformed world.
      */
     virtual World Paint() = 0;
-private:
-    // TODO getter, setter
-    World m_World;
 
+    virtual ~Camera();
 };
 
 }
