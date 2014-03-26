@@ -8,6 +8,7 @@
 
 #include "util/stdmacro.h"
 
+#include "transformation/itransformable.h"
 #include "model/model.h"
 
 namespace CE3D
@@ -16,7 +17,7 @@ namespace CE3D
 /**
  * TODO
  */
-class World
+class World : public Transformation::ITransformable
 {
 public:
     /**
@@ -32,25 +33,25 @@ public:
      *
      * @param matrix: The matrix to transform with.
      */
-    void Transform(const boost::numeric::ublas::matrix<ModelDataType> matrix);
+    virtual void Transform(Transformation::Transformation const& matrix);
     /**
      * Translates all models in the world.
      *
      * @param translation: The vector that describes the translation.
      */
-    void Translate(const boost::numeric::ublas::vector<ModelDataType> translation);
+    virtual void Translate(Transformation::Translation const& translation);
     /**
      * Scales all models in the world.
      *
      * @param factor: The factor to scale with.
      */
-    void Scale(const ModelDataType factor);
+    virtual void Scale(ModelDataType const factor);
     /**
      * Scales all models in the world.
      *
      * @param scale: The vector that describes the scale.
      */
-    void Scale(const boost::numeric::ublas::vector<ModelDataType> scale);
+    virtual void Scale(Transformation::Scale const& scale);
     /**
      * Rotates all models in the world.
      *
@@ -59,18 +60,19 @@ public:
      * @param offset: The offset of the rotation axis.
      * @param angle: The rotation angle.
      */
-    void Rotate(const boost::numeric::ublas::vector<ModelDataType> planar1,
-        const boost::numeric::ublas::vector<ModelDataType> planar2,
-        const boost::numeric::ublas::vector<ModelDataType> offset,
-        const float angle);
+    virtual void Rotate(Transformation::Rotation const& rotation);
 
-    boost::ptr_list<Model> GetModels() const
+    virtual inline boost::ptr_list<Model> const& GetModels() const
     { return m_Models; }
+    virtual inline boost::ptr_list<Transformation::Transformation> const&
+        GetTransformations() const
+    { return m_Transformations; }
+
+
 
 private:
     boost::ptr_list<Model> m_Models;
-    boost::container::vector<boost::numeric::ublas::matrix<ModelDataType>>
-        m_Transformations;
+    boost::ptr_list<Transformation::Transformation> m_Transformations;
 };
 
 }

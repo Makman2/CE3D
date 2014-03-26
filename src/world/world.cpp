@@ -6,22 +6,16 @@
 namespace CE3D
 {
 
-boost::container::vector<boost::numeric::ublas::matrix<ModelDataType>>
-    World::Transformations()
-{
-    return m_Transformations;
-}
 
-void World::Transform(const boost::numeric::ublas::matrix<ModelDataType> matrix)
+void World::Transform(Transformation::Transformation const& transformation)
 {
     for (auto it : GetModels())
     {
-        it.Transform(matrix);
+        it.Transform(transformation);
     }
 }
 
-void World::Translate(
-    const boost::numeric::ublas::vector<ModelDataType> translation)
+void World::Translate(Transformation::Translation const& translation)
 {
     for (auto it : GetModels())
     {
@@ -37,23 +31,20 @@ void World::Scale(const ModelDataType factor)
     }
 }
 
-void World::Scale(const boost::numeric::ublas::vector<ModelDataType> scale)
+void World::Scale(Transformation::Scale const& scale)
 {
+
     for (auto it : GetModels())
     {
         it.Scale(scale);
     }
 }
 
-void World::Rotate(const boost::numeric::ublas::vector<ModelDataType> planar1,
-    const boost::numeric::ublas::vector<ModelDataType> planar2,
-    const boost::numeric::ublas::vector<ModelDataType> offset,
-    const float angle)
-{
-    for (auto it : GetModels())
+    void World::Rotate(Transformation::Rotation const& rotation)
     {
-        it.Rotate(planar1, planar2, offset, angle);
+        for (auto it : GetModels())
+        {
+            it.Rotate(rotation);
+        }
     }
-}
-
 }
