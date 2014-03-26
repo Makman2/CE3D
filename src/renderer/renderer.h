@@ -23,10 +23,7 @@ public:
 	 */
 	virtual void Render(Camera camera) = 0;
 
-protected:
-
-private:
-
+	virtual ~Renderer();
 };
 
 }

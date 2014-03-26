@@ -10,7 +10,11 @@ namespace CE3D {
 template<typename... Types>
 class Functor {
 public:
+	/**
+	 * A functor can be treated as a function.
+	 */
     virtual void operator()(Types... Args) = 0;
+    virtual ~Functor();
 };
 
 }
