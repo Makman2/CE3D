@@ -31,20 +31,20 @@ public:
     static Console* GetInstance();
 
     // TODO write API comments
-    void SetColor(const ConsoleColor color);
-    void SetPosition(const ConsoleIdxType x, const ConsoleIdxType y);
-    void WriteChar(const char character);
-    void WriteChar(const char character, const ConsoleColor color);
-    void WriteChar(const char character, const ConsoleIdxType x,
-                   const ConsoleIdxType y);
-    void WriteChar(const char character, const ConsoleIdxType x,
-                   const ConsoleIdxType y, const ConsoleColor color);
-    void WriteString(const std::string str);
-    void WriteString(const std::string str, const ConsoleColor color);
-    void WriteString(const std::string str, const ConsoleIdxType x,
-                     const ConsoleIdxType y);
-    void WriteString(const std::string str, const ConsoleIdxType x,
-                     const ConsoleIdxType y, const ConsoleColor color);
+    void SetColor(ConsoleColor const color);
+    void SetPosition(ConsoleIdxType const x, ConsoleIdxType const y);
+    void WriteChar(char const character);
+    void WriteChar(char const character, ConsoleColor const color);
+    void WriteChar(char const character, ConsoleIdxType const x,
+                   ConsoleIdxType const y);
+    void WriteChar(char const character, ConsoleIdxType const x,
+                   ConsoleIdxType const y, ConsoleColor const color);
+    void WriteString(std::string const str);
+    void WriteString(std::string const str, ConsoleColor const color);
+    void WriteString(std::string const str, ConsoleIdxType const x,
+                     ConsoleIdxType const y);
+    void WriteString(std::string const str, ConsoleIdxType const x,
+                     ConsoleIdxType const y, ConsoleColor const color);
 
     void Clear() const;
     void Flush() const;
@@ -53,7 +53,7 @@ private:
      * This is a singleton.
      */
     Console();
-    Console(const Console& rhs);
+    Console(Console& const rhs);
     ~Console();
 
     static Console* s_Instance;

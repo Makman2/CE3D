@@ -21,19 +21,6 @@ namespace CE3D
 class Camera
 {
 public:
-    /**
-     * Returns the world the camera looks at.
-     *
-     * @return The world.
-     */
-    World GetWorld();
-    /**
-     * Sets the world the camera should look at.
-     *
-     * @param value: The world to look at.
-     */
-    void SetWorld(World value);
-    
     // FIXME Maybe replace the description with a better one.
     /**
      * Paints the world onto a surface world.
@@ -44,12 +31,8 @@ public:
      * @return The projection-transformed world.
      */
     virtual World Paint() = 0;
-
-protected:
-    
-    
 private:
-    World m_World;
+    RW_PROPERTY(private, World, World);
 
 };
 

@@ -20,13 +20,6 @@ class World
 {
 public:
     /**
-     * The models the world contains.
-     *
-     * @return The list of models.
-     */
-    boost::ptr_list<Model> Models();
-
-    /**
      * The transformations that are applied on render.
      *
      * @return The list of transformation-matrices.
@@ -71,11 +64,8 @@ public:
         const boost::numeric::ublas::vector<ModelDataType> offset,
         const float angle);
 
-
-protected:
-
 private:
-    boost::ptr_list<Model> m_Models;
+    R_PROPERTY(private, boost::ptr_list<Model>, Models);
     boost::container::vector<boost::numeric::ublas::matrix<ModelDataType>>
         m_Transformations;
 };
