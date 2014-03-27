@@ -6,11 +6,9 @@ namespace CE3D
 {
 namespace Transformation
 {
-
-    void Scale::SetScale(
-        boost::numeric::ublas::vector<ModelDataType> value)
+    void Scale::UpdateMatrix()
     {
-        m_Matrix.resize(value.size(), value.size());
+        m_Matrix.resize(m_Scale.size(), m_Scale.size());
         
         for (boost::numeric::ublas::matrix<ModelDataType>::size_type row = 0;
              row < m_Matrix.size1(); row++)
@@ -19,13 +17,18 @@ namespace Transformation
                 column < m_Matrix.size2(); column++)
             {
                 if (row == column)
-                    m_Matrix(row, column) = value(row);
+                    m_Matrix(row, column) = m_Scale(row);
                 else
                     m_Matrix(row, column) = 0.0f;
             }
         }
+    }
 
-        m_Scale = value;
+    void Scale::SetScale(
+        boost::numeric::ublas::vector<ModelDataType> scale)
+    {
+        m_Scale = scale;
+        UpdateMatrix();
     }
     
 

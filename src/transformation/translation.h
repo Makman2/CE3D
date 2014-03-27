@@ -20,8 +20,8 @@ namespace Transformation
  */
 class Translation : public Transformation
 {
-public:
 private:
+
     boost::numeric::ublas::vector<ModelDataType> m_TranslationVector;
     boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
 
@@ -29,8 +29,17 @@ private:
 
 public:
 
+    inline virtual const boost::numeric::ublas::matrix<ModelDataType>&
+        GetMatrix() const override
+    { return m_Matrix; }
 
-    virtual boost::numeric::ublas::vector<ModelDataType> GetTranslation() const
+
+    /**
+     * Returns the translation-vector.
+     *
+     * @return The translation-vector.
+     */
+    inline const boost::numeric::ublas::vector<ModelDataType>& GetTranslation() const
     { return m_TranslationVector; }
 
     /**
@@ -38,14 +47,19 @@ public:
      *
      * @param shift: The translation-vector.
      */
-    virtual void SetTranslation(boost::numeric::ublas::vector<ModelDataType> shift);
-    
-    virtual void SetTranslation(
-        boost::numeric::ublas::vector<ModelDataType> const direction,
+    void SetTranslation(boost::numeric::ublas::vector<ModelDataType> const& shift);
+
+    /**
+     * Sets the translation-vector by means of direction and length.
+     *
+     * @param direction: The direction in which to translate.
+     * @param length: The distance to translate into direction.
+     */
+    void SetTranslation(
+        boost::numeric::ublas::vector<ModelDataType> const& direction,
         ModelDataType const length);
 
-    virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix() const override
-    { return m_Matrix; }
+    
 };
 
 }

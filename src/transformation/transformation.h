@@ -14,7 +14,13 @@ namespace Transformation
 class Transformation
 {
 public:
-    virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix() const = 0;
+    /**
+     * Returns the matrix that represents the linear transformation.
+     *
+     * @return The matrix.
+     */
+    virtual const boost::numeric::ublas::matrix<ModelDataType>&
+        GetMatrix() const = 0;
     
 };
 

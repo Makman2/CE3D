@@ -24,10 +24,9 @@ private:
     W_PROPERTY(private, boost::numeric::ublas::matrix<ModelDataType>, Matrix);
     
 public:
-    inline virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix()
-    {
-        return m_Matrix;
-    }
+    inline virtual const boost::numeric::ublas::matrix<ModelDataType>&
+        GetMatrix() const
+    { return m_Matrix; }
 
 };
 
