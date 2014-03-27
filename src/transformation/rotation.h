@@ -44,7 +44,7 @@ public:
      *
      * @return The planar vector.
      */
-    boost::numeric::ublas::vector<ModelDataType> const& GetPlanar1() const
+    inline boost::numeric::ublas::vector<ModelDataType> const& GetPlanar1() const
     { return m_Planar1; }
 
     /**
@@ -52,7 +52,7 @@ public:
      *
      * @return The planar vector.
      */
-    boost::numeric::ublas::vector<ModelDataType> const& GetPlanar2() const
+    inline boost::numeric::ublas::vector<ModelDataType> const& GetPlanar2() const
     { return m_Planar2; }
 
     /**
@@ -60,7 +60,7 @@ public:
      *
      * @return The plane offset.
      */
-    boost::numeric::ublas::vector<ModelDataType> const& GetOffset() const
+    inline boost::numeric::ublas::vector<ModelDataType> const& GetOffset() const
     { return m_Offset; }
 
     /**
@@ -68,7 +68,7 @@ public:
      *
      * @return The angle.
      */
-    float GetAngle() const
+    inline float GetAngle() const
     { return m_Angle; }
 
     /**
