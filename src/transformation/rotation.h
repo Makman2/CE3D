@@ -21,13 +21,9 @@ namespace Transformation
 class Rotation : public Transformation
 {
 private:
-    // TODO getter
     boost::numeric::ublas::vector<ModelDataType> m_Planar1;
-    // TODO getter
     boost::numeric::ublas::vector<ModelDataType> m_Planar2;
-    // TODO getter
     boost::numeric::ublas::vector<ModelDataType> m_Offset;
-    // TODO getter
     float m_Angle;
 
     boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
