@@ -22,33 +22,41 @@ namespace Transformation
 class ITransformable
 {
 public:
-    virtual ~ITransformable();
-    
-    
+    virtual
+    ~ITransformable();
+
     /**
      * Transforms all vertices.
      *
      * @param matrix: The matrix to transform with.
      */
-    virtual void Transform(Transformation const& transformation) = 0;
+    virtual void
+    Transform(Transformation const& transformation) = 0;
+
     /**
      * Translates all vertices.
      *
      * @param translation: The vector that describes the translation.
      */
-    virtual void Translate(Translation const& translation) = 0;
+    virtual void
+    Translate(Translation const& translation) = 0;
+
     /**
      * Scales all vertices.
      *
      * @param factor: The factor to scale with.
      */
-    virtual void Scale(const ModelDataType factor) = 0;
+    virtual void
+    Scale(const ModelDataType factor) = 0;
+
     /**
      * Scales all vertices.
      *
      * @param scale: The vector that describes the scale.
      */
-    virtual void Scale(CE3D::Transformation::Scale const& scale) = 0;
+    virtual void
+    Scale(CE3D::Transformation::Scale const& scale) = 0;
+
     /**
      * Rotates all vertices.
      *
@@ -57,7 +65,8 @@ public:
      * @param offset: The offset of the rotation axis.
      * @param angle: The rotation angle.
      */
-    virtual void Rotate(Rotation const& rotation) = 0;
+    virtual void
+    Rotate(Rotation const& rotation) = 0;
     
 };
 

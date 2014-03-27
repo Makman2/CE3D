@@ -25,12 +25,13 @@ private:
     boost::numeric::ublas::vector<ModelDataType> m_TranslationVector;
     boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
 
-    void UpdateMatrix();
+    void
+    UpdateMatrix();
 
 public:
 
     inline virtual const boost::numeric::ublas::matrix<ModelDataType>&
-        GetMatrix() const override
+    GetMatrix() const override
     { return m_Matrix; }
 
 

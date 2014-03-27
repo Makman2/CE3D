@@ -34,59 +34,77 @@ public:
      *
      * @return The visibility state. true if visible, false if not.
      */
-    bool IsVisible() const;
+    bool
+    IsVisible() const;
+
     /**
      * Sets the visibility of the model.
      *
      * @param value: The visibility state. true if visible, false if not.
      */
-    void SetVisibility(bool const value);
+
+    void
+    SetVisibility(bool const value);
     /**
      * Gets the name of the model.
      *
      * @return The name.
      */
-    std::string GetName() const;
+
+    std::string
+    GetName() const;
     /**
      * Sets the name of the model.
      *
      * @param value: The name to set.
      */
-    void SetName(std::string const value);
+
+    void
+    SetName(std::string const value);
     /**
      * Transforms all vertices in the model.
      *
      * @param matrix: The transformation to transform with.
      */
-    virtual void Transform(Transformation::Transformation const& matrix) override;
+
+    virtual void
+    Transform(Transformation::Transformation const& matrix) override;
     /**
      * Translates all vertices in the model.
      *
      * @param translation: The translate transformation to apply.
      */
-    virtual void Translate(Transformation::Translation const& translation) override;
+    virtual void
+    Translate(Transformation::Translation const& translation) override;
+
     /**
      * Scales all vertices in the model.
      *
      * @param factor: The factor to scale with.
      */
-    virtual void Scale(const ModelDataType factor) override;
+    virtual void
+    Scale(const ModelDataType factor) override;
+
     /**
      * Scales all vertices in the model.
      *
      * @param scale: The transformation that describes the scale.
      */
-    virtual void Scale(Transformation::Scale const& scale) override;
+    virtual void
+    Scale(Transformation::Scale const& scale) override;
+
     /**
      * Rotates all vertices in the model.
      *
      * @param rotation: The rotation transformation to apply.
      */
-    virtual void Rotate(Transformation::Rotation const& rotation) override;
+    virtual void
+    Rotate(Transformation::Rotation const& rotation) override;
 
     inline boost::container::vector<
         boost::numeric::ublas::vector<ModelDataType>
-        > GetVectors() const
+        >
+    GetVectors() const
     { return m_Vectors; }
 
 };

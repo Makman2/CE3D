@@ -26,32 +26,40 @@ public:
      * @return The list of transformation-matrices.
      */
     boost::container::vector<boost::numeric::ublas::matrix<ModelDataType>>
-        Transformations();
+    Transformations();
 
     /**
      * Transforms all models in the world.
      *
      * @param matrix: The matrix to transform with.
      */
-    virtual void Transform(Transformation::Transformation const& matrix);
+    virtual void
+    Transform(Transformation::Transformation const& matrix);
+
     /**
      * Translates all models in the world.
      *
      * @param translation: The vector that describes the translation.
      */
-    virtual void Translate(Transformation::Translation const& translation);
+    virtual void
+    Translate(Transformation::Translation const& translation);
+
     /**
      * Scales all models in the world.
      *
      * @param factor: The factor to scale with.
      */
-    virtual void Scale(ModelDataType const factor);
+    virtual void
+    Scale(ModelDataType const factor);
+
     /**
      * Scales all models in the world.
      *
      * @param scale: The vector that describes the scale.
      */
-    virtual void Scale(Transformation::Scale const& scale);
+    virtual void
+    Scale(Transformation::Scale const& scale);
+
     /**
      * Rotates all models in the world.
      *
@@ -60,12 +68,15 @@ public:
      * @param offset: The offset of the rotation axis.
      * @param angle: The rotation angle.
      */
-    virtual void Rotate(Transformation::Rotation const& rotation);
+    virtual void
+    Rotate(Transformation::Rotation const& rotation);
 
-    virtual inline boost::ptr_list<Model> const& GetModels() const
+    virtual inline boost::ptr_list<Model> const&
+    GetModels() const
     { return m_Models; }
+
     virtual inline boost::ptr_list<Transformation::Transformation*> const&
-        GetTransformations() const
+    GetTransformations() const
     { return m_Transformations; }
 
 

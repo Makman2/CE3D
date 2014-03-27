@@ -30,11 +30,15 @@ private:
 
     static KeyboardState* s_Instance;
 public:
-    KeyboardState* GetInstance();
+    KeyboardState*
+    GetInstance();
 
-    inline ModifierKeys GetModifiers() const
+    inline ModifierKeys const&
+    GetModifiers() const
     { return m_Modifiers; }
-    inline Sign GetContent() const
+
+    inline Sign const&
+    GetContent() const
     { return m_Content; }
 };
 

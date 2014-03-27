@@ -33,13 +33,18 @@ public:
      *
      * @return The projection-transformed world.
      */
-    virtual World Paint() = 0;
+    virtual World
+    Paint() = 0;
 
-    virtual ~Camera();
+    virtual
+    ~Camera();
 
-    inline World const& GetWorld() const
+    inline World const&
+    GetWorld() const
     { return m_World; }
-    inline void SetWorld(World const& copy)
+
+    inline void
+    SetWorld(World const& copy)
     { m_World = copy; }
 };
 
