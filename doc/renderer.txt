@@ -1,0 +1,10 @@
+The CE3D renderer classes are separated over multiple libraries,
+because the rendere often need specific external libraries (like
+OpenGL for the OpenGL renderer). The only renderer embedded into
+the core library is the console renderer.
+
+Planned layout:
+
+ce3d.dll/so  ->  console renderer
+
+ce3d_opengl.dll/so -> OpenGL renderer
