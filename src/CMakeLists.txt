@@ -41,9 +41,8 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall")
 
-# TODO add WError here when we have no warnings!
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wpedantic -Wextra -Werror")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wpedantic -Wextra -Werror -g")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 
 add_subdirectory("util")
 add_subdirectory("world")
@@ -53,6 +52,7 @@ add_subdirectory("camera")
 add_subdirectory("renderer")
 add_subdirectory("transformation")
 
+// TODO condition
 add_subdirectory("test")
 
 add_library(CE3D STATIC ${SRC})
