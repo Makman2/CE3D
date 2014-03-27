@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _ITRANSFORMABLE_H
-#define _ITRANSFORMABLE_H
+#ifndef CE3D_TRANSFORMATION_ITRANSFORMABLE_H
+#define CE3D_TRANSFORMATION_ITRANSFORMABLE_H
 
 
 #include <boost/numeric/ublas/matrix.hpp>
@@ -64,4 +64,4 @@ public:
 }
 }
 
-#endif /* _ITRANSFORMABLE_H */
+#endif /* CE3D_TRANSFORMATION_ITRANSFORMABLE_H */
