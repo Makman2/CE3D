@@ -21,9 +21,7 @@ namespace CE3D
 class Model : public Transformation::ITransformable
 {
 private:
-    boost::container::vector<
-        boost::numeric::ublas::vector<ModelDataType>
-        > m_Vectors;
+    boost::container::vector<Vector> m_Vectors;
     bool m_Visible;
     std::string m_Name;
 
@@ -34,41 +32,45 @@ public:
      *
      * @return The visibility state. true if visible, false if not.
      */
-    bool
-    IsVisible() const;
+    inline bool
+    IsVisible() const
+    { return m_Visible; }
 
     /**
      * Sets the visibility of the model.
      *
      * @param value: The visibility state. true if visible, false if not.
      */
+    inline void
+    SetVisibility(bool const value)
+    { m_Visible = value; }
 
-    void
-    SetVisibility(bool const value);
     /**
      * Gets the name of the model.
      *
      * @return The name.
      */
+    inline std::string
+    GetName() const
+    { return m_Name; }
 
-    std::string
-    GetName() const;
     /**
      * Sets the name of the model.
      *
      * @param value: The name to set.
      */
-
-    void
-    SetName(std::string const value);
+    inline void
+    SetName(std::string const value)
+    { m_Name = value; }
+ 
     /**
      * Transforms all vertices in the model.
      *
      * @param matrix: The transformation to transform with.
      */
-
     virtual void
     Transform(Transformation::Transformation const& matrix) override;
+   
     /**
      * Translates all vertices in the model.
      *
@@ -101,9 +103,7 @@ public:
     virtual void
     Rotate(Transformation::Rotation const& rotation) override;
 
-    inline boost::container::vector<
-        boost::numeric::ublas::vector<ModelDataType>
-        >
+    inline boost::container::vector<Vector> const&
     GetVectors() const
     { return m_Vectors; }
 

@@ -12,10 +12,9 @@ void Translation::UpdateMatrix()
     m_Matrix.resize(
         m_TranslationVector.size() + 1, m_TranslationVector.size() + 1);
 
-    for (boost::numeric::ublas::matrix<ModelDataType>::size_type row = 0;
-         row < m_Matrix.size1(); row++)
+    for (Matrix::size_type row = 0; row < m_Matrix.size1(); row++)
     {
-        boost::numeric::ublas::matrix<ModelDataType>::size_type column;
+        Matrix::size_type column;
 
         for (column = 0; column < m_Matrix.size2() - 1; column++)
         {
@@ -34,16 +33,13 @@ void Translation::UpdateMatrix()
 }
 
 
-void Translation::SetTranslation(
-    boost::numeric::ublas::vector<ModelDataType> const& shift)
+void Translation::SetTranslation(Vector const& shift)
 {
     m_TranslationVector = shift;
     UpdateMatrix();
 }
 
-void Translation::SetTranslation(
-    boost::numeric::ublas::vector<ModelDataType> const& direction,
-    ModelDataType const length)
+void Translation::SetTranslation(Vector const& direction, ModelDataType const length)
 {
     ModelDataType norm = boost::numeric::ublas::norm_2(direction);
     m_TranslationVector = (direction / norm) * length;

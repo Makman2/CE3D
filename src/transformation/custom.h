@@ -21,10 +21,10 @@ namespace Transformation
 class Custom : public Transformation
 {
 private:
-    boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
+    Matrix m_Matrix;
     
 public:
-    inline virtual boost::numeric::ublas::matrix<ModelDataType> const&
+    inline virtual Matrix const&
     GetMatrix() const
     { return m_Matrix; }
 
@@ -33,7 +33,7 @@ public:
      *
      * @param value: The new matrix.
      */
-    inline void SetMatrix(boost::numeric::ublas::matrix<ModelDataType> const& value)
+    inline void SetMatrix(Matrix const& value)
     { m_Matrix = value; }
 };
 
