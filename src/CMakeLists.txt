@@ -20,6 +20,7 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
+
 # Get the latest abbreviated commit hash of the working branch
 execute_process(
   COMMAND git log -1 --format=%h
@@ -38,7 +39,11 @@ configure_file(
 include_directories("${PROJECT_SOURCE_DIR}")
 include_directories("${PROJECT_BINARY_DIR}")
 
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++11 -Wall")
+
+# TODO add WError here when we have no warnings!
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wpedantic -Wextra -Werror")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
 
 add_subdirectory("util")
 add_subdirectory("world")

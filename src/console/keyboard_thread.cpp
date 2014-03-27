@@ -12,14 +12,15 @@ KeyboardThread::KeyboardThread()
 
 void KeyboardThread::operator()(WINDOW* Screen) const
 {
-    char c;
+    //char c;
 
     keypad(Screen, true);
     cbreak();
 
     while (1)
     {
-        c = getch();
+        //c = getch();
+
         // TODO set keyboard state
         if (m_Callback != nullptr)
         {
