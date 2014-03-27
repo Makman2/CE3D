@@ -7,19 +7,22 @@ namespace CE3D
 namespace Transformation
 {
 
-    void Rotation::SetPlanar1(boost::numeric::ublas::vector<ModelDataType> value)
+    void Rotation::SetPlanar1(
+        boost::numeric::ublas::vector<ModelDataType> const& value)
     {
         UpdateMatrix();
         m_Planar1 = value;
     }
     
-    void Rotation::SetPlanar2(boost::numeric::ublas::vector<ModelDataType> value)
+    void Rotation::SetPlanar2(
+        boost::numeric::ublas::vector<ModelDataType> const& value)
     {
         UpdateMatrix();
         m_Planar2 = value;
     }
 
-    void Rotation::SetOffset(boost::numeric::ublas::vector<ModelDataType> value)
+    void Rotation::SetOffset(
+        boost::numeric::ublas::vector<ModelDataType> const& value)
     {
         UpdateMatrix();
         m_Offset = value;
@@ -36,9 +39,6 @@ namespace Transformation
         // TODO Implement rotation matrix creation.
     }
 
-    boost::numeric::ublas::matrix<ModelDataType> Rotation::GetMatrix()
-    {
-        return m_Matrix;
-    }
+
 }
 }

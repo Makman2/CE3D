@@ -64,7 +64,7 @@ public:
 
     virtual inline boost::ptr_list<Model> const& GetModels() const
     { return m_Models; }
-    virtual inline boost::ptr_list<Transformation::Transformation> const&
+    virtual inline boost::ptr_list<Transformation::Transformation*> const&
         GetTransformations() const
     { return m_Transformations; }
 
@@ -72,7 +72,7 @@ public:
 
 private:
     boost::ptr_list<Model> m_Models;
-    boost::ptr_list<Transformation::Transformation> m_Transformations;
+    boost::ptr_list<Transformation::Transformation*> m_Transformations;
 };
 
 }

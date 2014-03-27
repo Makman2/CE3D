@@ -25,7 +25,7 @@ private:
     
 public:
     inline virtual boost::numeric::ublas::matrix<ModelDataType> const&
-    GetMatrix()
+    GetMatrix() const
     { return m_Matrix; }
 
     // TODO setter for matrix

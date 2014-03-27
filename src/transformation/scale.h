@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _SCALE_H
-#define _SCALE_H
+#ifndef CE3D_TRANSFORMATION_SCALE_H
+#define CE3D_TRANSFORMATION_SCALE_H
 
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
@@ -24,8 +24,11 @@ private:
     boost::numeric::ublas::vector<ModelDataType> m_Scale;
     boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
 
+    void UpdateMatrix();
+
 public:
-    inline virtual boost::numeric::ublas::matrix<ModelDataType> GetMatrix()
+    inline virtual boost::numeric::ublas::matrix<ModelDataType> const&
+    GetMatrix() const
     { return m_Matrix; }
 
     /**
@@ -33,7 +36,7 @@ public:
      *
      * @param value: The scale-vector to set.
      */
-    void SetScale(boost::numeric::ublas::vector<ModelDataType> value);
+    void SetScale(boost::numeric::ublas::vector<ModelDataType> const& scale);
 
     /**
      * Returns the scale vector.
@@ -46,4 +49,4 @@ public:
 }
 }
 
-#endif /* _SCALE_H */
+#endif /* CE3D_TRANSFORMATION_SCALE_H */
