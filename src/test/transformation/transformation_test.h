@@ -1,12 +1,7 @@
-/*
- * transformation_test.h
- *
- *  Created on: Mar 27, 2014
- *      Author: lasse
- */
+// This file is part of CE3D. License: GPL3
 
-#ifndef TRANSFORMATION_TEST_H_
-#define TRANSFORMATION_TEST_H_
+#ifndef CE3D_TEST_TRANSFORMATION_TRANSFORMATION_TEST_H
+#define CE3D_TEST_TRANSFORMATION_TRANSFORMATION_TEST_H
 
 #include "transformation/transformation.h"
 
@@ -16,6 +11,6 @@
  *
  * @param Tester The object under test.
  */
-void CE3DTestTransformationBase(CE3D::Transformation::Transformation& Tester);
+void CE3DTestTransformation(CE3D::Transformation::Transformation& Tester);
 
-#endif /* TRANSFORMATION_TEST_H_ */
+#endif /* CE3D_TEST_TRANSFORMATION_TRANSFORMATION_TEST_H */

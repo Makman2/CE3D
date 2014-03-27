@@ -2,7 +2,7 @@
 
 #include "transformation_test.h"
 
-void CE3DTestTransformationBase(CE3D::Transformation::Transformation& Tester)
+void CE3DTestTransformation(CE3D::Transformation::Transformation& Tester)
 {
     // There's nothing to test yet.
     return;
