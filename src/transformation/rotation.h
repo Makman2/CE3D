@@ -40,6 +40,38 @@ public:
     { return m_Matrix; }
     
     /**
+     * Returns the first vector that describes the rotation plane.
+     *
+     * @return The planar vector.
+     */
+    boost::numeric::ublas::vector<ModelDataType> const& GetPlanar1() const
+    { return m_Planar1; }
+
+    /**
+     * Returns the second vector that describes the rotation plane.
+     *
+     * @return The planar vector.
+     */
+    boost::numeric::ublas::vector<ModelDataType> const& GetPlanar2() const
+    { return m_Planar2; }
+
+    /**
+     * Returns the offset of the rotation plane.
+     *
+     * @return The plane offset.
+     */
+    boost::numeric::ublas::vector<ModelDataType> const& GetOffset() const
+    { return m_Offset; }
+
+    /**
+     * Returns the rotation angle.
+     *
+     * @return The angle.
+     */
+    float GetAngle() const
+    { return m_Angle; }
+
+    /**
      * Sets the first plane-vector.
      *
      * Sets the first planar vector, needed for the description of the rotation
