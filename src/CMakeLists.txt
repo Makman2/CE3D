@@ -53,4 +53,6 @@ add_subdirectory("camera")
 add_subdirectory("renderer")
 add_subdirectory("transformation")
 
+add_subdirectory("test")
+
 add_library(CE3D STATIC ${SRC})
