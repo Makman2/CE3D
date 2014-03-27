@@ -13,8 +13,11 @@ public:
 	/**
 	 * A functor can be treated as a function.
 	 */
-    virtual void operator()(Types... Args) = 0;
-    virtual ~Functor();
+    virtual void
+    operator()(Types... Args) = 0;
+
+    virtual
+    ~Functor();
 };
 
 }

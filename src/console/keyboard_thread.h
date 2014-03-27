@@ -24,8 +24,12 @@ private:
     Functor<>* m_Callback;
 public:
     KeyboardThread();
-    void operator()(WINDOW* Screen) const;
-    inline void SetCallback(Functor<>* const copy)
+
+    void
+    operator()(WINDOW* Screen) const;
+
+    inline void
+    SetCallback(Functor<>* const copy)
     { m_Callback = copy; }
 };
 

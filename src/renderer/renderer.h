@@ -21,9 +21,11 @@ public:
 	 *
 	 * @param camera: The camera-view to render.
 	 */
-	virtual void Render(Camera camera) = 0;
+	virtual void
+	Render(Camera camera) = 0;
 
-	virtual ~Renderer();
+	virtual
+	~Renderer();
 };
 
 }

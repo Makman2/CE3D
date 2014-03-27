@@ -29,7 +29,10 @@ private:
      * This is a singleton.
      */
     Console();
+
     Console(Console const& rhs);
+
+    virtual
     ~Console();
 
     static Console* s_Instance;
@@ -41,30 +44,56 @@ public:
     /**
      * Returns an instance.
      */
-    static Console* GetInstance();
+    static Console*
+    GetInstance();
 
     // TODO write API comments
-    void SetColor(ConsoleColor const color);
-    void SetPosition(ConsoleIdxType const x, ConsoleIdxType const y);
-    void WriteChar(char const character);
-    void WriteChar(char const character, ConsoleColor const color);
-    void WriteChar(char const character, ConsoleIdxType const x,
-                   ConsoleIdxType const y);
-    void WriteChar(char const character, ConsoleIdxType const x,
-                   ConsoleIdxType const y, ConsoleColor const color);
-    void WriteString(std::string const str);
-    void WriteString(std::string const str, ConsoleColor const color);
-    void WriteString(std::string const str, ConsoleIdxType const x,
-                     ConsoleIdxType const y);
-    void WriteString(std::string const str, ConsoleIdxType const x,
-                     ConsoleIdxType const y, ConsoleColor const color);
+    void
+    SetColor(ConsoleColor const color);
 
-    void Clear() const;
-    void Flush() const;
+    void
+    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y);
 
-    inline ConsoleIdxType const& GetHeight() const
+    void
+    WriteChar(char const character);
+
+    void
+    WriteChar(char const character, ConsoleColor const color);
+
+    void
+    WriteChar(char const character, ConsoleIdxType const x,
+              ConsoleIdxType const y);
+
+    void
+    WriteChar(char const character, ConsoleIdxType const x,
+              ConsoleIdxType const y, ConsoleColor const color);
+
+    void
+    WriteString(std::string const str);
+
+    void
+    WriteString(std::string const str, ConsoleColor const color);
+
+    void
+    WriteString(std::string const str, ConsoleIdxType const x,
+                ConsoleIdxType const y);
+
+    void
+    WriteString(std::string const str, ConsoleIdxType const x,
+                ConsoleIdxType const y, ConsoleColor const color);
+
+    void
+    Clear() const;
+
+    void
+    Flush() const;
+
+    inline ConsoleIdxType const&
+    GetHeight() const
     { return m_Height; }
-    inline ConsoleIdxType const& GetWidth() const
+
+    inline ConsoleIdxType const&
+    GetWidth() const
     { return m_Width; }
 };
 

@@ -28,19 +28,21 @@ private:
 
     boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
 
-    void UpdateMatrix();
+    void
+    UpdateMatrix();
 
 public:
     inline virtual boost::numeric::ublas::matrix<ModelDataType> const&
-        GetMatrix() const
+    GetMatrix() const
     { return m_Matrix; }
-    
+
     /**
      * Returns the first vector that describes the rotation plane.
      *
      * @return The planar vector.
      */
-    inline boost::numeric::ublas::vector<ModelDataType> const& GetPlanar1() const
+    inline boost::numeric::ublas::vector<ModelDataType> const&
+    GetPlanar1() const
     { return m_Planar1; }
 
     /**
@@ -48,7 +50,8 @@ public:
      *
      * @return The planar vector.
      */
-    inline boost::numeric::ublas::vector<ModelDataType> const& GetPlanar2() const
+    inline boost::numeric::ublas::vector<ModelDataType> const&
+    GetPlanar2() const
     { return m_Planar2; }
 
     /**
@@ -56,7 +59,8 @@ public:
      *
      * @return The plane offset.
      */
-    inline boost::numeric::ublas::vector<ModelDataType> const& GetOffset() const
+    inline boost::numeric::ublas::vector<ModelDataType> const&
+    GetOffset() const
     { return m_Offset; }
 
     /**
@@ -64,39 +68,47 @@ public:
      *
      * @return The angle.
      */
-    inline float GetAngle() const
+    inline float
+    GetAngle() const
     { return m_Angle; }
 
     /**
      * Sets the first plane-vector.
      *
-     * Sets the first planar vector, needed for the description of the rotation
-     * plane.
+     * Sets the first planar vector, needed for the description of the
+     * rotation plane.
      *
      * @param value: The plane-vector to set.
      */
-    void SetPlanar1(boost::numeric::ublas::vector<ModelDataType> const& value);
+    void
+    SetPlanar1(boost::numeric::ublas::vector<ModelDataType> const& value);
+
     /**
      * Sets the second plane-vector.
      *
-     * Sets the second planar vector, needed for the description of the rotation
-     * plane.
+     * Sets the second planar vector, needed for the description of the
+     * rotation plane.
      *
      * @param value: The plane-vector to set.
      */
-    void SetPlanar2(boost::numeric::ublas::vector<ModelDataType> const& value);
+    void
+    SetPlanar2(boost::numeric::ublas::vector<ModelDataType> const& value);
+
     /**
      * Sets the offset of the rotation.
      *
      * @param value: The offset-vector to set.
      */
-    void SetOffset(boost::numeric::ublas::vector<ModelDataType> const& value);
+    void
+    SetOffset(boost::numeric::ublas::vector<ModelDataType> const& value);
+
     /**
      * Sets the rotation angle.
      *
      * @param value: The rotation angle.
      */  
-    void SetAngle(float value);
+    void
+    SetAngle(float value);
 
 
 };
