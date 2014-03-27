@@ -47,6 +47,7 @@ void Translation::SetTranslation(
 {
     ModelDataType norm = boost::numeric::ublas::norm_2(direction);
     m_TranslationVector = (direction / norm) * length;
+
     UpdateMatrix();
 }
 

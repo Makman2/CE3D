@@ -31,6 +31,7 @@ public:
     GetMatrix() const
     { return m_Matrix; }
 
+
     /**
      * Sets the scale-vector.
      *
@@ -43,7 +44,8 @@ public:
      *
      * @return The scale-vector.
      */
-    boost::numeric::ublas::vector<ModelDataType> GetScale() const;
+    inline boost::numeric::ublas::vector<ModelDataType> const& GetScale() const
+    { return m_Scale; }
 };
 
 }

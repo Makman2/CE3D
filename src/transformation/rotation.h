@@ -21,13 +21,9 @@ namespace Transformation
 class Rotation : public Transformation
 {
 private:
-    // TODO getter
     boost::numeric::ublas::vector<ModelDataType> m_Planar1;
-    // TODO getter
     boost::numeric::ublas::vector<ModelDataType> m_Planar2;
-    // TODO getter
     boost::numeric::ublas::vector<ModelDataType> m_Offset;
-    // TODO getter
     float m_Angle;
 
     boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
@@ -39,6 +35,38 @@ public:
         GetMatrix() const
     { return m_Matrix; }
     
+    /**
+     * Returns the first vector that describes the rotation plane.
+     *
+     * @return The planar vector.
+     */
+    inline boost::numeric::ublas::vector<ModelDataType> const& GetPlanar1() const
+    { return m_Planar1; }
+
+    /**
+     * Returns the second vector that describes the rotation plane.
+     *
+     * @return The planar vector.
+     */
+    inline boost::numeric::ublas::vector<ModelDataType> const& GetPlanar2() const
+    { return m_Planar2; }
+
+    /**
+     * Returns the offset of the rotation plane.
+     *
+     * @return The plane offset.
+     */
+    inline boost::numeric::ublas::vector<ModelDataType> const& GetOffset() const
+    { return m_Offset; }
+
+    /**
+     * Returns the rotation angle.
+     *
+     * @return The angle.
+     */
+    inline float GetAngle() const
+    { return m_Angle; }
+
     /**
      * Sets the first plane-vector.
      *

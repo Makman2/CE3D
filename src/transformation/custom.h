@@ -28,7 +28,13 @@ public:
     GetMatrix() const
     { return m_Matrix; }
 
-    // TODO setter for matrix
+    /**
+     * Sets the transformation matrix.
+     *
+     * @param value: The new matrix.
+     */
+    inline void SetMatrix(boost::numeric::ublas::matrix<ModelDataType> const& value)
+    { m_Matrix = value; }
 };
 
 }
