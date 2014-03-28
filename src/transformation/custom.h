@@ -20,20 +20,15 @@ namespace Transformation
  */
 class Custom : public Transformation
 {
-private:
-    Matrix m_Matrix;
-    
 public:
-    inline virtual Matrix const&
-    GetMatrix() const
-    { return m_Matrix; }
 
     /**
      * Sets the transformation matrix.
      *
      * @param value: The new matrix.
      */
-    inline void SetMatrix(Matrix const& value)
+    inline void
+    SetMatrix(Matrix const& value)
     { m_Matrix = value; }
 };
 

@@ -22,16 +22,11 @@ class Scale : public Transformation
 {
 private:
     Vector m_Scale;
-    Matrix m_Matrix;
 
     void
     UpdateMatrix();
 
 public:
-    inline virtual Matrix const&
-    GetMatrix() const
-    { return m_Matrix; }
-
 
     /**
      * Sets the scale-vector.

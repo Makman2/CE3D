@@ -23,17 +23,11 @@ class Translation : public Transformation
 private:
 
     Vector m_TranslationVector;
-    Matrix m_Matrix;
-
+    
     void
     UpdateMatrix();
 
 public:
-
-    inline virtual Matrix const&
-    GetMatrix() const override
-    { return m_Matrix; }
-
 
     /**
      * Returns the translation-vector.
