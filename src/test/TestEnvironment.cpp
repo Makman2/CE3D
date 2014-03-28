@@ -13,12 +13,15 @@ std::uint8_t TestEnvironment::s_TestID = 0;
 TestEnvironment::TestEnvironment()
 {
     m_TestID = ++s_TestID;
-    std::cout << "[START:" << std::setw(3) << m_TestID << "]" << std::flush;
+    std::cout << "[START:" << std::setw(3)
+              << static_cast<unsigned int>(m_TestID) << "]" << std::flush;
 }
 
 TestEnvironment::~TestEnvironment()
 {
-    std::cout << " FINISHED (" << m_TestID << ")" << std::endl;
+    std::cout << " FINISHED ("
+              << static_cast<unsigned int>(m_TestID)
+              << ")" << std::endl;
 }
 
 } /* namespace Testing */
