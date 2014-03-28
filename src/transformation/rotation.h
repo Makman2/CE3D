@@ -21,18 +21,18 @@ namespace Transformation
 class Rotation : public Transformation
 {
 private:
-    boost::numeric::ublas::vector<ModelDataType> m_Planar1;
-    boost::numeric::ublas::vector<ModelDataType> m_Planar2;
-    boost::numeric::ublas::vector<ModelDataType> m_Offset;
+    Vector m_Planar1;
+    Vector m_Planar2;
+    Vector m_Offset;
     float m_Angle;
 
-    boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
+    Matrix m_Matrix;
 
     void
     UpdateMatrix();
 
 public:
-    inline virtual boost::numeric::ublas::matrix<ModelDataType> const&
+    inline virtual Matrix const&
     GetMatrix() const
     { return m_Matrix; }
 
@@ -41,7 +41,7 @@ public:
      *
      * @return The planar vector.
      */
-    inline boost::numeric::ublas::vector<ModelDataType> const&
+    inline Vector const&
     GetPlanar1() const
     { return m_Planar1; }
 
@@ -50,7 +50,7 @@ public:
      *
      * @return The planar vector.
      */
-    inline boost::numeric::ublas::vector<ModelDataType> const&
+    inline Vector const&
     GetPlanar2() const
     { return m_Planar2; }
 
@@ -59,7 +59,7 @@ public:
      *
      * @return The plane offset.
      */
-    inline boost::numeric::ublas::vector<ModelDataType> const&
+    inline Vector const&
     GetOffset() const
     { return m_Offset; }
 
@@ -81,7 +81,7 @@ public:
      * @param value: The plane-vector to set.
      */
     void
-    SetPlanar1(boost::numeric::ublas::vector<ModelDataType> const& value);
+    SetPlanar1(Vector const& value);
 
     /**
      * Sets the second plane-vector.
@@ -92,7 +92,7 @@ public:
      * @param value: The plane-vector to set.
      */
     void
-    SetPlanar2(boost::numeric::ublas::vector<ModelDataType> const& value);
+    SetPlanar2(Vector const& value);
 
     /**
      * Sets the offset of the rotation.
@@ -100,7 +100,7 @@ public:
      * @param value: The offset-vector to set.
      */
     void
-    SetOffset(boost::numeric::ublas::vector<ModelDataType> const& value);
+    SetOffset(Vector const& value);
 
     /**
      * Sets the rotation angle.

@@ -25,7 +25,7 @@ public:
      *
      * @return The list of transformation-matrices.
      */
-    boost::container::vector<boost::numeric::ublas::matrix<ModelDataType>>
+    boost::container::vector<Matrix>
     Transformations();
 
     /**

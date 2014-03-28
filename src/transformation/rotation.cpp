@@ -9,22 +9,19 @@ namespace CE3D
 namespace Transformation
 {
 
-    void Rotation::SetPlanar1(
-        boost::numeric::ublas::vector<ModelDataType> const& value)
+    void Rotation::SetPlanar1(Vector const& value)
     {
         UpdateMatrix();
         m_Planar1 = value;
     }
     
-    void Rotation::SetPlanar2(
-        boost::numeric::ublas::vector<ModelDataType> const& value)
+    void Rotation::SetPlanar2(Vector const& value)
     {
         UpdateMatrix();
         m_Planar2 = value;
     }
 
-    void Rotation::SetOffset(
-        boost::numeric::ublas::vector<ModelDataType> const& value)
+    void Rotation::SetOffset(Vector const& value)
     {
         UpdateMatrix();
         m_Offset = value;
@@ -40,18 +37,16 @@ namespace Transformation
     {
         // Orthonormalize planar vectors.
         ModelDataType norm1 = boost::numeric::ublas::norm_2(m_Planar1);
-        boost::numeric::ublas::vector<ModelDataType> normvec1 = (m_Planar1 / norm1);
+        Vector normvec1 = (m_Planar1 / norm1);
         
         // Project the second planar vector onto the first one.
-        boost::numeric::ublas::vector<ModelDataType> normvec2 = m_Planar2 -
+        Vector normvec2 = m_Planar2 -
             boost::numeric::ublas::inner_prod(m_Planar2, normvec1) * normvec1;
 
-        boost::numeric::ublas::matrix<ModelDataType> v =
-            boost::numeric::ublas::outer_prod(normvec1, normvec1) +
+        Matrix v = boost::numeric::ublas::outer_prod(normvec1, normvec1) +
             boost::numeric::ublas::outer_prod(normvec2, normvec2);
 
-        boost::numeric::ublas::matrix<ModelDataType> w =
-            boost::numeric::ublas::outer_prod(normvec1, normvec2) -
+        Matrix w = boost::numeric::ublas::outer_prod(normvec1, normvec2) -
             boost::numeric::ublas::outer_prod(normvec2, normvec1);
 
         

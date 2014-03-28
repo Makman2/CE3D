@@ -21,14 +21,14 @@ namespace Transformation
 class Scale : public Transformation
 {
 private:
-    boost::numeric::ublas::vector<ModelDataType> m_Scale;
-    boost::numeric::ublas::matrix<ModelDataType> m_Matrix;
+    Vector m_Scale;
+    Matrix m_Matrix;
 
     void
     UpdateMatrix();
 
 public:
-    inline virtual boost::numeric::ublas::matrix<ModelDataType> const&
+    inline virtual Matrix const&
     GetMatrix() const
     { return m_Matrix; }
 
@@ -39,14 +39,14 @@ public:
      * @param value: The scale-vector to set.
      */
     void
-    SetScale(boost::numeric::ublas::vector<ModelDataType> const& scale);
+    SetScale(Vector const& scale);
 
     /**
      * Returns the scale vector.
      *
      * @return The scale-vector.
      */
-    inline boost::numeric::ublas::vector<ModelDataType> const&
+    inline Vector const&
     GetScale() const
     { return m_Scale; }
 };

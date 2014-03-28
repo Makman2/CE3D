@@ -9,29 +9,10 @@
 namespace CE3D
 {
 
-    std::string Model::GetName() const
-    {
-        return this->m_Name;
-    }
-    void Model::SetName(std::string const value)
-    {
-        this->m_Name = value;
-    }
-
-    bool Model::IsVisible() const
-    {
-        return this->m_Visible;
-    }
-    void Model::SetVisibility(bool const value)
-    {
-        this->m_Visible = value;
-    }
-
 
     void Model::Transform(Transformation::Transformation const& transformation)
     {
-        boost::numeric::ublas::matrix<ModelDataType> matrix =
-            transformation.GetMatrix();
+        Matrix matrix = transformation.GetMatrix();
         for (auto it : GetVectors())
         {
             boost::numeric::ublas::axpy_prod(matrix, it, it, true);
@@ -40,8 +21,7 @@ namespace CE3D
 
     void Model::Translate(Transformation::Translation const& translation)
     {
-        boost::numeric::ublas::vector<ModelDataType> translationvec =
-            translation.GetTranslation();
+        Vector translationvec = translation.GetTranslation();
         // It's more performant to directly add the vertices together instead of
         // calling the Transform() function and creating a matrix for it.
         for (auto it : GetVectors())
@@ -62,9 +42,7 @@ void Model::Scale(const ModelDataType factor)
 
 void Model::Scale(Transformation::Scale const& scale)
 {
-    
-    boost::numeric::ublas::vector<ModelDataType> scalevec =
-        scale.GetScale();
+    Vector scalevec = scale.GetScale();
     for (auto it : GetVectors())
     {
         it = boost::numeric::ublas::element_prod(it, scalevec);

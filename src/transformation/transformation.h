@@ -19,7 +19,7 @@ public:
      *
      * @return The matrix.
      */
-    virtual boost::numeric::ublas::matrix<ModelDataType> const&
+    virtual Matrix const&
     GetMatrix() const = 0;
 
     virtual
