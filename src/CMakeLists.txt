@@ -9,8 +9,10 @@ set(CE3D_VERSION_MAJOR 0)
 set(CE3D_VERSION_MINOR 0)
 set(CE3D_VERSION_MICRO 1)
 
-find_package(Boost REQUIRED)
+find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 find_package(Curses REQUIRED)
+
+enable_testing()
 
 # Get the current working branch
 execute_process(
@@ -39,9 +41,16 @@ configure_file(
 include_directories("${PROJECT_SOURCE_DIR}")
 include_directories("${PROJECT_BINARY_DIR}")
 
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
+    "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set(WARNINGS "-Wpedantic -Wall -Wextra -Werror")
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    set(WARNINGS "/W4 /WX /EHsc")
+endif()
+
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall")
 
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wpedantic -Wextra -Werror -g")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${WARNINGS} -g")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 
 add_subdirectory("util")
@@ -52,7 +61,8 @@ add_subdirectory("camera")
 add_subdirectory("renderer")
 add_subdirectory("transformation")
 
-# TODO condition - do this only in debug compilation
+add_library(CE3D SHARED ${SRC})
+
+# TODO condition
 add_subdirectory("test")
 
-add_library(CE3D STATIC ${SRC})

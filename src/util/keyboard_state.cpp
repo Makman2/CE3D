@@ -1,8 +1,13 @@
 // This file is part of CE3D. License: GPL3
 
-#include "keyboard_state.h"
+#include "util/keyboard_state.h"
 
 namespace CE3D {
+
+KeyboardState* KeyboardState::s_Instance = nullptr;
+
+KeyboardState::KeyboardState()
+{}
 
 KeyboardState* KeyboardState::GetInstance()
 {
