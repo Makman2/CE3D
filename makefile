@@ -33,7 +33,7 @@ cleanrelease: CLEAN_CE3D_RELEASE
 CE3D_DEBUG_BUILD_DIR:
 	@if ! test -d $(CE3D_DEBUG_BUILD_DIR);			\
 	 then							\
-		echo -n "Creating build directory... ";		\
+		echo -n "Creating debug build directory... ";	\
 		mkdir -p $(CE3D_DEBUG_BUILD_DIR);		\
 		echo "Done.";					\
 	 fi
@@ -41,7 +41,7 @@ CE3D_DEBUG_BUILD_DIR:
 CE3D_RELEASE_BUILD_DIR:
 	@if ! test -d $(CE3D_RELEASE_BUILD_DIR);		\
 	 then							\
-		echo -n "Creating build directory... ";		\
+		echo -n "Creating release build directory... ";	\
 		mkdir -p $(CE3D_RELEASE_BUILD_DIR);		\
 		echo "Done.";					\
 	 fi
@@ -57,20 +57,21 @@ CONF_CE3D_RELEASE: CE3D_RELEASE_BUILD_DIR
 	 $(CMAKE) $(CE3D_SRC_FROM_BUILD) $(CMAKE_RELEASE_FLAGS)
 
 BUILD_CE3D_DEBUG: CONF_CE3D_DEBUG
-	@echo "Building CE3D library..."
+	@echo "Building CE3D library (debug)..."
 	@$(MAKE) -C $(CE3D_DEBUG_BUILD_DIR) $(CE3D_MAKE_FLAGS)
 	@echo "Done."
 
 BUILD_CE3D_RELEASE: CONF_CE3D_RELEASE
-	@echo "Building CE3D library..."
+	@echo "Building CE3D library (release)..."
 	@$(MAKE) -C $(CE3D_RELEASE_BUILD_DIR) $(CE3D_MAKE_FLAGS)
 	@echo "Done."
 
 CLEAN_CE3D_DEBUG:
+	@echo "Cleaning CE3D library (debug)..."
 	@$(MAKE) -C $(CE3D_DEBUG_BUILD_DIR) $(CE3D_MAKE_FLAGS)	\
 	$(CE3D_CLEAN_TARGET)
 
 CLEAN_CE3D_RELEASE:
+	@echo "Cleaning CE3D library (release)..."
 	@$(MAKE) -C $(CE3D_RELEASE_BUILD_DIR) $(CE3D_MAKE_FLAGS)	\
 	$(CE3D_CLEAN_TARGET)
-
