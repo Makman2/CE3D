@@ -28,7 +28,7 @@ public:
     { return m_Matrix; }
 
     virtual
-    ~Transformation() = 0;
+    ~Transformation() {};
 };
 
 

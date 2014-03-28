@@ -65,4 +65,3 @@ add_library(CE3D SHARED ${SRC})
 
 # TODO condition
 add_subdirectory("test")
-

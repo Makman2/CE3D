@@ -53,6 +53,8 @@ public:
      */
     void SetTranslation(Vector const& direction, ModelDataType const length);
 
+    inline Translation() {};
+    inline virtual ~Translation() {};
 };
 
 }
