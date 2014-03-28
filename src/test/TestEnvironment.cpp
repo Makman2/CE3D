@@ -2,7 +2,8 @@
 
 #include "test/TestEnvironment.h"
 
-#include <cstdio>
+#include <iostream>
+#include <iomanip>
 
 namespace CE3D {
 namespace Testing {
@@ -12,12 +13,15 @@ std::uint8_t TestEnvironment::s_TestID = 0;
 TestEnvironment::TestEnvironment()
 {
     m_TestID = ++s_TestID;
-    printf("[START:%3u]", m_TestID);
+    std::cout << "[START:" << std::setw(3)
+              << static_cast<unsigned int>(m_TestID) << "]" << std::flush;
 }
 
 TestEnvironment::~TestEnvironment()
 {
-    printf(" Finish (%u)", m_TestID);
+    std::cout << " FINISHED ("
+              << static_cast<unsigned int>(m_TestID)
+              << ")" << std::endl;
 }
 
 } /* namespace Testing */
