@@ -52,7 +52,7 @@ add_subdirectory("camera")
 add_subdirectory("renderer")
 add_subdirectory("transformation")
 
-# TODO condition
+# TODO condition - do this only in debug compilation
 add_subdirectory("test")
 
 add_library(CE3D STATIC ${SRC})
