@@ -26,16 +26,10 @@ private:
     Vector m_Offset;
     float m_Angle;
 
-    Matrix m_Matrix;
-
     void
     UpdateMatrix();
 
 public:
-    inline virtual Matrix const&
-    GetMatrix() const
-    { return m_Matrix; }
-
     /**
      * Returns the first vector that describes the rotation plane.
      *

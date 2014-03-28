@@ -13,17 +13,22 @@ namespace Transformation
 {
 class Transformation
 {
+protected:
+    /// The matrix that represents the transformation.
+    Matrix m_Matrix;
+
 public:
     /**
      * Returns the matrix that represents the linear transformation.
      *
      * @return The matrix.
      */
-    virtual Matrix const&
-    GetMatrix() const = 0;
+    Matrix const&
+    GetMatrix() const
+    { return m_Matrix; }
 
     virtual
-    ~Transformation();
+    ~Transformation() = 0;
 };
 
 
