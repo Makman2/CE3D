@@ -1,6 +1,4 @@
-set(TRANSFORMATION_SRC
+AddCE3DTest(TransformationTest 
     ${CMAKE_CURRENT_LIST_DIR}/transformation_test
     ${CMAKE_CURRENT_LIST_DIR}/translation_test
     )
-
-AddCE3DTest(TransformationTest ${TRANSFORMATION_SRC})
