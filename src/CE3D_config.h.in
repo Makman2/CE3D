@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _CE3D_CONFIG_H_IN
-#define _CE3D_CONFIG_H_IN
+#ifndef CE3D_CE3D_CONFIG_H_IN
+#define CE3D_CE3D_CONFIG_H_IN
 
 #define CE3D_VERSION_MAJOR      @CE3D_VERSION_MAJOR@
 #define CE3D_VERSION_MINOR      @CE3D_VERSION_MINOR@
@@ -10,4 +10,4 @@
 #define GIT_BRANCH              @GIT_BRANCH@
 #define GIT_HEAD                @GIT_HEAD@
 
-#endif /* _CE3D_CONFIG_H_IN */
+#endif /* CE3D_CE3D_CONFIG_H_IN */
