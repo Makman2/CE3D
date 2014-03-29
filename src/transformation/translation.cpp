@@ -24,7 +24,6 @@ void Translation::UpdateMatrix()
                 m_Matrix(row, column) = 0.0f;
         }
 
-        column++;
         if (row == m_Matrix.size1() - 1)
             m_Matrix(row, column) = 1.0f;
         else
