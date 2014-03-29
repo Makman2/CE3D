@@ -5,7 +5,7 @@
 
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
-#include <array>
+#include <vector>
 
 #include "util/stdmacro.h"
 
@@ -17,7 +17,6 @@ namespace Transformation
 {
 
     
-template <std::size_t N>
 
 /**
  * A transformation that describes an orthogonal projection.
@@ -26,7 +25,7 @@ class OrthogonalProjection : public Transformation
 {
 private:
 
-    std::array<Vector, N> m_ProjectionVectors;
+    std::vector<Vector> m_ProjectionVectors;
     
     void
     UpdateMatrix();
@@ -38,7 +37,7 @@ public:
      *
      * @return The projection vectors array.
      */
-    inline std::array<Vector, N> const&
+    inline std::vector<Vector> const&
     GetProjectionVectors() const
     { return m_ProjectionVectors; }
 
@@ -48,7 +47,7 @@ public:
      * @param vectors: The projection vectors.
      */
     void
-    SetProjectionVectors(std::array<Vector, N> const& vectors);
+    SetProjectionVectors(std::vector<Vector> const& vectors);
 
     /**
      * Sets the projection vectors of the n-1 subspace orthogonal to the given

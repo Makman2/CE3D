@@ -1,5 +1,6 @@
 // This file is part of CE3D. License: GPL3
 
+#include <boost/numeric/ublas/operation.hpp>
 
 #include "transformation/orthogonal_projection.h"
 #include "util/boost_extensions.h"
@@ -9,7 +10,6 @@ namespace CE3D
 namespace Transformation
 {
 
-template<std::size_t N>
 void OrthogonalProjection::UpdateMatrix()
 {
     // Concatenate vectors together.
@@ -18,33 +18,36 @@ void OrthogonalProjection::UpdateMatrix()
     {
         for (Matrix::size_type row = 0; row < m_Matrix.size1(); row++)
         {
-            m_Matrix(row, column) = m_ProjectionVectors[row];
+            m_Matrix(row, column) = m_ProjectionVectors[column](row);
         }
     }
-
+    
     Matrix inverted;
-    if (boost::numeric::ublas::invert(
-        boost::numeric::ublas::trans(m_Matrix) * m_Matrix, inverted
-                                     ) == false)
+    Matrix matxprod;
+    boost::numeric::ublas::axpy_prod(boost::numeric::ublas::trans(m_Matrix),
+        m_Matrix, matxprod);
+
+    if (boost::numeric::ublas::invert(matxprod, inverted) == false)
     {
         // Reset on fail.
-        m_ProjectionVectors = std::array<Vector, 0>;
+        m_ProjectionVectors.clear();
         throw std::invalid_argument(
             "The projection vectors are linearly dependent.");
     }
 
     // On success assign the special matrix product.
-    m_Matrix = (m_Matrix * inverted) * boost::numeric::ublas::trans(m_Matrix);
+    boost::numeric::ublas::axpy_prod(m_Matrix, inverted, matxprod);
+    boost::numeric::ublas::axpy_prod(matxprod,
+        boost::numeric::ublas::trans(m_Matrix), m_Matrix);
 
 }
 
-template<std::size_t N>
-void OrthogonalProjection::SetProjectionVectors(std::array<Vector, N> const& vectors)
+void OrthogonalProjection::SetProjectionVectors(std::vector<Vector> const& vectors)
 {
     // Check range equality of vectors.
     for (std::size_t i = 1; i < m_ProjectionVectors.size(); i++)
     {
-        if (m_ProjectionVectors[i - 1].size() != m_ProjectionVectors[i])
+        if (m_ProjectionVectors[i - 1].size() != m_ProjectionVectors[i].size())
             throw std::invalid_argument(
             "The size of the projection vectors vary.");
     }
@@ -53,14 +56,13 @@ void OrthogonalProjection::SetProjectionVectors(std::array<Vector, N> const& vec
     UpdateMatrix();
 }
 
-template<std::size_t N>
 void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
 {
     // Constructing orthogonalized vectors.
     
-    Vector orthovecs[] = new Vector[direction.size()];
+    Vector* orthovecs = new Vector[direction.size()];
     // Fill with the standard bases of the R^(n-1).
-    for (std::size_t i = 0; i < orthovecs.size(); i++)
+    for (std::size_t i = 0; i < direction.size(); i++)
     {
         for (Vector::size_type n = 0; n < direction.size(); n++)
         {
@@ -72,11 +74,11 @@ void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
     }
 
     // Setup the new array.
-    m_ProjectionVectors = std::array<Vector, orthovecs.size() - 1>();
+    m_ProjectionVectors = std::vector<Vector>(direction.size() - 1);
     std::size_t remain = 0;
 
     // Orthogonalize them.
-    for (std::size_t i = 0; i < orthovecs.size(); i++)
+    for (std::size_t i = 0; i < direction.size(); i++)
     {
         m_ProjectionVectors[i - remain] = orthovecs[i];
 
