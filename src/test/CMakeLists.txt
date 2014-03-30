@@ -29,3 +29,4 @@ target_link_libraries(TestEnvironment
     )
 
 add_subdirectory("transformation")
+add_subdirectory("console")
