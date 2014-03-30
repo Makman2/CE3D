@@ -3,13 +3,12 @@
 #ifndef CE3D_MODEL_MODEL_H
 #define CE3D_MODEL_MODEL_H
 
+#include "util/stdinc.h"
+
 #include <string>
 #include <boost/container/vector.hpp>
-#include <boost/numeric/ublas/vector.hpp>
-#include <boost/numeric/ublas/matrix.hpp>
 
-#include "util/stdmacro.h"
-
+#include "util/CE3D_vector.h"
 #include "transformation/itransformable.h"
 
 namespace CE3D

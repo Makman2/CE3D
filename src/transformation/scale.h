@@ -3,11 +3,9 @@
 #ifndef CE3D_TRANSFORMATION_SCALE_H
 #define CE3D_TRANSFORMATION_SCALE_H
 
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/vector.hpp>
+#include "util/stdinc.h"
 
-#include "util/stdmacro.h"
-
+#include "util/CE3D_vector.h"
 #include "transformation/transformation.h"
 
 namespace CE3D

@@ -3,9 +3,9 @@
 #ifndef CE3D_TRANSFORMATION_TRANSFORMATION_H
 #define CE3D_TRANSFORMATION_TRANSFORMATION_H
 
-#include <boost/numeric/ublas/matrix.hpp>
+#include "util/stdinc.h"
 
-#include "util/stdmacro.h"
+#include "util/CE3D_matrix.h"
 
 namespace CE3D
 {

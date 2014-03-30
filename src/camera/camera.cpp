@@ -3,4 +3,8 @@
 #include "camera.h"
 
 namespace CE3D
-{ }
+{
+
+
+
+}

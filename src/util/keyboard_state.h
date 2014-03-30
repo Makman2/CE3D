@@ -5,9 +5,7 @@
 
 #include <curses.h>
 
-#include "util/stdmacro.h"
-
-#include "console/keyboard_thread.h"
+#include "util/stdinc.h"
 
 namespace CE3D {
 

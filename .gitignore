@@ -23,3 +23,8 @@
 
 # build directory
 build/*
+
+# patches, patch related files
+*.orig
+*.patch
+*.diff

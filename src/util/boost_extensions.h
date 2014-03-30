@@ -2,8 +2,6 @@
 
 #include <boost/numeric/ublas/matrix.hpp>
 
-#include "util/stdmacro.h"
-
 namespace boost
 {
 namespace numeric

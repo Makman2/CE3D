@@ -3,12 +3,10 @@
 #ifndef CE3D_TRANSFORMATION_CUSTOM_H
 #define CE3D_TRANSFORMATION_CUSTOM_H
 
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/vector.hpp>
-
-#include "util/stdmacro.h"
+#include "util/stdinc.h"
 
 #include "transformation/transformation.h"
+#include "util/CE3D_matrix.h"
 
 namespace CE3D
 {

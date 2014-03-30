@@ -3,6 +3,8 @@
 #ifndef CE3D_TEST_TRANSFORMATION_TRANSFORMATION_TEST_H
 #define CE3D_TEST_TRANSFORMATION_TRANSFORMATION_TEST_H
 
+#include "util/stdinc.h"
+
 /**
  * This test method ensures that the intended functionality of any derived
  * object provided by the Transformation base class is available.

@@ -3,13 +3,13 @@
 #ifndef CE3D_WORLD_WORLD_H
 #define CE3D_WORLD_WORLD_H
 
-#include <boost/ptr_container/ptr_list.hpp>
-#include <boost/container/vector.hpp>
+#include "util/stdinc.h"
 
-#include "util/stdmacro.h"
+#include <boost/ptr_container/ptr_list.hpp>
 
 #include "transformation/itransformable.h"
 #include "model/model.h"
+#include "util/CE3D_matrix.h"
 
 namespace CE3D
 {

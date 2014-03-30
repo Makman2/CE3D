@@ -3,9 +3,9 @@
 #ifndef CE3D_MODEL_TRIANGLE_MODEL_H
 #define CE3D_MODEL_TRIANGLE_MODEL_H
 
-#include "util/stdmacro.h"
+#include "util/stdinc.h"
 
-#include "model.h"
+#include "model/model.h"
 
 namespace CE3D
 {

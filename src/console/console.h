@@ -3,20 +3,24 @@
 #ifndef CE3D_CONSOLE_CONSOLE_H
 #define CE3D_CONSOLE_CONSOLE_H
 
+#include "util/stdinc.h"
+
 #include <curses.h>
 #include <string>
-
-#include "util/stdmacro.h"
 
 namespace CE3D
 {
 
 using ConsoleIdxType = uint8_t;
 
-using ConsoleColor = enum ConsoleColorEnum
+using ConsoleColorEnum = enum _ConsoleColor
 {
     NORMAL
     //TODO list more colors here
+};
+
+class ConsoleColor
+{ // TODO
 };
 
 /**

@@ -1,5 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
+#include "util/stdinc.h"
+
 #include "transformation/transformation.h"
 
 /**

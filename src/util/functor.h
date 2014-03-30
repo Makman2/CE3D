@@ -3,8 +3,6 @@
 #ifndef CE3D_UTIL_FUNCTOR_H
 #define CE3D_UTIL_FUNCTOR_H
 
-#include "util/stdmacro.h"
-
 namespace CE3D {
 
 template<typename... Types>

@@ -2,8 +2,6 @@
 
 #include "console/console.h"
 
-#include <stddef.h>
-
 namespace CE3D
 {
 

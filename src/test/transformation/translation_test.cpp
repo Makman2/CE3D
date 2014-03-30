@@ -6,7 +6,7 @@
 #define BOOST_TEST_MODULE Translation
 #include <boost/test/unit_test.hpp>
 
-#include "util/stdmacro.h"
+#include "util/stdinc.h"
 #include "transformation/translation.h"
 
 namespace CE3D

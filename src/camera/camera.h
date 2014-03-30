@@ -3,7 +3,7 @@
 #ifndef CE3D_CAMERA_CAMERA_H
 #define CE3D_CAMERA_CAMERA_H
 
-#include "util/stdmacro.h"
+#include "util/stdinc.h"
 
 #include "world/world.h"
 

@@ -3,7 +3,7 @@
 #ifndef CE3D_RENDERER_RENDERER_H
 #define CE3D_RENDERER_RENDERER_H
 
-#include "util/stdmacro.h"
+#include "util/stdinc.h"
 
 #include "camera/camera.h"
 
