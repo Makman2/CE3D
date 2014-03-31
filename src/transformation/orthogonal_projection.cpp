@@ -12,20 +12,17 @@ namespace Transformation
 
 void OrthogonalProjection::UpdateMatrix()
 {
+    // For the math behind this function, see: doc/Orthogonal Projection Matrix.pdf
+    // P = (A^T A)^-1 A^T
+
     // Concatenate vectors together.
-    m_Matrix.resize(m_ProjectionVectors[0].size(), m_ProjectionVectors.size());
-    for (Matrix::size_type column = 0; column < m_Matrix.size2(); column++)
-    {
-        for (Matrix::size_type row = 0; row < m_Matrix.size1(); row++)
-        {
-            m_Matrix(row, column) = m_ProjectionVectors[column](row);
-        }
-    }
-    
+    m_Matrix = boost::numeric::ublas::concat_vectors(m_ProjectionVectors);
+        
     Matrix inverted;
     Matrix matxprod;
-    boost::numeric::ublas::axpy_prod(boost::numeric::ublas::trans(m_Matrix),
-        m_Matrix, matxprod);
+    Matrix transposed = boost::numeric::ublas::trans(m_Matrix);
+
+    boost::numeric::ublas::axpy_prod(transposed, m_Matrix, matxprod);
 
     if (boost::numeric::ublas::invert(matxprod, inverted) == false)
     {
@@ -35,11 +32,9 @@ void OrthogonalProjection::UpdateMatrix()
             "The projection vectors are linearly dependent.");
     }
 
-    // On success assign the special matrix product.
-    boost::numeric::ublas::axpy_prod(m_Matrix, inverted, matxprod);
-    boost::numeric::ublas::axpy_prod(matxprod,
-        boost::numeric::ublas::trans(m_Matrix), m_Matrix);
 
+    // On success assign the special matrix product.
+    boost::numeric::ublas::axpy_prod(inverted, transposed, m_Matrix);
 }
 
 void OrthogonalProjection::SetProjectionVectors(std::vector<Vector> const& vectors)
