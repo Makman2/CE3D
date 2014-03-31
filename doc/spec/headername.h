@@ -11,6 +11,9 @@
 // This file has to be included in every header directly after the stdlibs
 #include "util/stdmacro.h"
 
+// The user includes must start relative to the src directory.
+// For example your source lays in src/transformation/test.h:
+// #include "transformation/test.h"
 #include "user1"
 //...
 #include "usern"

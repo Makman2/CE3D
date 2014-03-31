@@ -1,65 +1,106 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef _CONSOLE_H
-#define _CONSOLE_H
+#ifndef CE3D_CONSOLE_CONSOLE_H
+#define CE3D_CONSOLE_CONSOLE_H
 
+#include "util/stdinc.h"
+
+#include <curses.h>
 #include <string>
-
-#include "util/stdmacro.h"
 
 namespace CE3D
 {
 
-typedef uint8_t ConsoleIdxType;
+using ConsoleIdxType = uint8_t;
 
-typedef enum
+using ConsoleColorEnum = enum _ConsoleColor
 {
     NORMAL
     //TODO list more colors here
-} ConsoleColor;
+};
+
+class ConsoleColor
+{ // TODO
+};
 
 /**
- * TODO
+ * This is basically a curses wrapper for C++.
  */
 class Console
 {
-public:
-    /**
-     * Returns an instance.
-     */
-    static Console* GetInstance();
-
-    // TODO write API comments
-    void SetColor(const ConsoleColor color);
-    void SetPosition(const ConsoleIdxType x, const ConsoleIdxType y);
-    void WriteChar(const char character);
-    void WriteChar(const char character, const ConsoleColor color);
-    void WriteChar(const char character, const ConsoleIdxType x,
-                   const ConsoleIdxType y);
-    void WriteChar(const char character, const ConsoleIdxType x,
-                   const ConsoleIdxType y, const ConsoleColor color);
-    void WriteString(const std::string str);
-    void WriteString(const std::string str, const ConsoleColor color);
-    void WriteString(const std::string str, const ConsoleIdxType x,
-                     const ConsoleIdxType y);
-    void WriteString(const std::string str, const ConsoleIdxType x,
-                     const ConsoleIdxType y, const ConsoleColor color);
-
-    void Flush() const;
-
-    ConsoleIdxType GetHeight() const;
-    ConsoleIdxType GetWidth() const;
 private:
     /**
      * This is a singleton.
      */
     Console();
-    Console(const Console& rhs);
+
+    Console(Console const& rhs);
+
+    virtual
     ~Console();
 
-    static Console* s_instance;
+    static Console* s_Instance;
+
+    ConsoleIdxType m_Height;
+    ConsoleIdxType m_Width;
+    WINDOW* m_Screen;
+public:
+    /**
+     * Returns an instance.
+     */
+    static Console*
+    GetInstance();
+
+    // TODO write API comments
+    void
+    SetColor(ConsoleColor const color);
+
+    void
+    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y);
+
+    void
+    WriteChar(char const character);
+
+    void
+    WriteChar(char const character, ConsoleColor const color);
+
+    void
+    WriteChar(char const character, ConsoleIdxType const x,
+              ConsoleIdxType const y);
+
+    void
+    WriteChar(char const character, ConsoleIdxType const x,
+              ConsoleIdxType const y, ConsoleColor const color);
+
+    void
+    WriteString(std::string const str);
+
+    void
+    WriteString(std::string const str, ConsoleColor const color);
+
+    void
+    WriteString(std::string const str, ConsoleIdxType const x,
+                ConsoleIdxType const y);
+
+    void
+    WriteString(std::string const str, ConsoleIdxType const x,
+                ConsoleIdxType const y, ConsoleColor const color);
+
+    void
+    Clear() const;
+
+    void
+    Flush() const;
+
+    inline ConsoleIdxType const&
+    GetHeight() const
+    { return m_Height; }
+
+    inline ConsoleIdxType const&
+    GetWidth() const
+    { return m_Width; }
 };
 
 }
 
-#endif /* _CONSOLE_H */
+#endif /* CE3D_CONSOLE_CONSOLE_H */
