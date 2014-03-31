@@ -1,5 +1,8 @@
 // This file is part of CE3D. License: GPL3
 
+#ifndef CE3D_UTIL_BOOST_EXTENSIONS_CODE_H
+#define CE3D_UTIL_BOOST_EXTENSIONS_CODE_H
+
 #include <boost/numeric/ublas/lu.hpp>
 #include <boost/numeric/ublas/io.hpp>
 
@@ -13,7 +16,6 @@ namespace ublas
 {
 
 template<class T>
-
 bool invert(matrix<T> const& input, matrix<T>& inverse)
 {
     // create a working copy of the input
@@ -40,3 +42,5 @@ bool invert(matrix<T> const& input, matrix<T>& inverse)
 }
 }
 }
+
+#endif /* CE3D_UTIL_BOOST_EXTENSIONS_CODE_H */

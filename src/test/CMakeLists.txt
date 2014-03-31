@@ -19,7 +19,6 @@ function(AddCE3DTest target)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Running ${target}" VERBATIM
         )
-
 endfunction()
 
 add_library(TestEnvironment SHARED TestEnvironment)
@@ -30,3 +29,4 @@ target_link_libraries(TestEnvironment
 
 add_subdirectory("transformation")
 add_subdirectory("console")
+add_subdirectory("util")

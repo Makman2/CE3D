@@ -5,6 +5,19 @@
 
 #include "util/stdinc.h"
 
+#include "util/CE3D_matrix.h"
+#include "util/CE3D_vector.h"
+
+/**
+ * Invokes BOOST_REQUIRE_EQUAL for each matrix element.
+ */
+void RequireMatrixEquality(CE3D::Matrix const, CE3D::Matrix const);
+
+/**
+ * Invokes BOOST_REQUIRE_EQUAL for each Vector element.
+ */
+void RequireVectorEquality(CE3D::Vector const, CE3D::Vector const);
+
 /**
  * This test method ensures that the intended functionality of any derived
  * object provided by the Transformation base class is available.

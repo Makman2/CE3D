@@ -7,6 +7,9 @@
 #include <boost/test/unit_test.hpp>
 
 #include "util/stdinc.h"
+
+#include "util/CE3D_matrix.h"
+#include "test/transformation/transformation_test.h"
 #include "transformation/translation.h"
 
 namespace CE3D
@@ -40,21 +43,14 @@ BOOST_AUTO_TEST_CASE(TestTranslationGetSet)
 
     TestUnit.SetTranslation(Shift);
 
-    CE3D::Matrix Comparision =
-        boost::numeric::ublas::zero_matrix<ModelDataType>(4, 4);
-    Comparision(0, 0) = Comparision(1, 1)
-        = Comparision(2, 2) = Comparision(3, 3) = 1;
+    CE3D::Matrix Comparision = boost::numeric::ublas::identity_matrix<ModelDataType>(4, 4);
     Comparision(0, 3) = 4;
     Comparision(1, 3) = 2;
     Comparision(2, 3) = 7;
 
-    for (ModelIdxType i = 0; i < 4; ++i)
-    {
-        for (ModelIdxType j = 0; i < 4; ++i)
-        {
-            BOOST_REQUIRE_EQUAL(Comparision(i,j), TestUnit.GetMatrix()(i,j));
-        }
-    }
+    RequireMatrixEquality(Comparision, TestUnit.GetMatrix());
+
+    RequireVectorEquality(TestUnit.GetTranslation(), Shift);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
