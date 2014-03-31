@@ -7,7 +7,8 @@
 #include <boost/numeric/ublas/vector.hpp>
 #include <vector>
 
-#include "util/stdmacro.h"
+#include "util/CE3D_vector.h"
+#include "util/CE3D_matrix.h"
 
 #include "transformation/transformation.h"
 
