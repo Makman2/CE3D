@@ -20,7 +20,7 @@ namespace Testing
 BOOST_FIXTURE_TEST_SUITE(OrthogonalProjection, TestEnvironment)
 
 /**
- * Tests the construction and destruction of Translation.
+ * Tests the construction and destruction of OrthogonalProjection.
  */
 BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionConstruction)
 {
@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionConstruction)
 }
 
 /**
- * Tests the construction and destruction of Translation.
+ * Tests the construction and destruction of OrthogonalProjection.
  */
 BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
 {
