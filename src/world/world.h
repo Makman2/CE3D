@@ -79,8 +79,9 @@ public:
     GetTransformations() const
     { return m_Transformations; }
 
-
-
+    virtual inline void
+    AddModel(Model* const model)
+    { m_Models.push_front(model); }
 private:
     boost::ptr_list<Model> m_Models;
     boost::ptr_list<Transformation::Transformation*> m_Transformations;

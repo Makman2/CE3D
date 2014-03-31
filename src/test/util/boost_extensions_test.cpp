@@ -30,6 +30,8 @@ BOOST_AUTO_TEST_CASE(TestInverseCalculation)
     boost::numeric::ublas::invert(identity, inversion);
 
     RequireMatrixEquality(identity, inversion);
+
+    // TODO test what invert does with wrong dimensions
 }
 
 BOOST_AUTO_TEST_SUITE_END()

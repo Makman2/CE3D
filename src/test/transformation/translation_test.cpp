@@ -41,6 +41,8 @@ BOOST_AUTO_TEST_CASE(TestTranslationGetSet)
     Shift[1] = 2.0f;
     Shift[2] = 7.0f;
 
+    CE3D::Vector OrigShift(Shift);
+
     TestUnit.SetTranslation(Shift);
 
     CE3D::Matrix Comparision = boost::numeric::ublas::identity_matrix<ModelDataType>(4, 4);
@@ -51,6 +53,8 @@ BOOST_AUTO_TEST_CASE(TestTranslationGetSet)
     RequireMatrixEquality(Comparision, TestUnit.GetMatrix());
 
     RequireVectorEquality(TestUnit.GetTranslation(), Shift);
+
+    RequireVectorEquality(Shift, OrigShift);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
