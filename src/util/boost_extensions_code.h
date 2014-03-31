@@ -3,6 +3,8 @@
 #ifndef CE3D_UTIL_BOOST_EXTENSIONS_CODE_H
 #define CE3D_UTIL_BOOST_EXTENSIONS_CODE_H
 
+#include <boost/numeric/ublas/matrix.hpp>
+#include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/lu.hpp>
 #include <boost/numeric/ublas/io.hpp>
 
