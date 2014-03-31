@@ -3,11 +3,7 @@
 #ifndef CE3D_TRANSFORMATION_ITRANSFORMABLE_H
 #define CE3D_TRANSFORMATION_ITRANSFORMABLE_H
 
-
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/vector.hpp>
-
-#include "util/stdmacro.h"
+#include "util/stdinc.h"
 
 #include "transformation/transformation.h"
 #include "transformation/translation.h"
@@ -47,7 +43,7 @@ public:
      * @param factor: The factor to scale with.
      */
     virtual void
-    Scale(const ModelDataType factor) = 0;
+    Scale(ModelDataType const factor) = 0;
 
     /**
      * Scales all vertices.

@@ -3,12 +3,7 @@
 #ifndef CE3D_CAMERA_CAMERA_H
 #define CE3D_CAMERA_CAMERA_H
 
-#include <string>
-#include <boost/container/vector.hpp>
-#include <boost/numeric/ublas/vector.hpp>
-#include <boost/numeric/ublas/matrix.hpp>
-
-#include "util/stdmacro.h"
+#include "util/stdinc.h"
 
 #include "world/world.h"
 

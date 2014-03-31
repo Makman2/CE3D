@@ -3,9 +3,9 @@
 #ifndef CE3D_CONSOLE_KEYBOARD_THREAD_H
 #define CE3D_CONSOLE_KEYBOARD_THREAD_H
 
-#include <curses.h>
+#include "util/stdinc.h"
 
-#include "util/stdmacro.h"
+#include <curses.h>
 
 #include "util/functor.h"
 

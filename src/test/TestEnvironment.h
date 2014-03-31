@@ -3,7 +3,7 @@
 #ifndef CE3D_TEST_TESTENVIRONMENT_H
 #define CE3D_TEST_TESTENVIRONMENT_H
 
-#include "util/stdmacro.h"
+#include "util/stdinc.h"
 
 namespace CE3D {
 namespace Testing {

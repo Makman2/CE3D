@@ -1,11 +1,9 @@
 // This file is part of CE3D. License: GPL3
 
-#include "world.h"
-
+#include "world/world.h"
 
 namespace CE3D
 {
-
 
 void World::Transform(Transformation::Transformation const& transformation)
 {

@@ -1,6 +1,6 @@
 // This file is part of CE3D. License: GPL3
 
-#include "keyboard_thread.h"
+#include "console/keyboard_thread.h"
 
 namespace CE3D
 {

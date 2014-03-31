@@ -1,7 +1,5 @@
 // This file is part of CE3D. License: GPL3
 
-#include <math.h>
-
 #include "transformation/rotation.h"
 
 namespace CE3D

@@ -3,13 +3,13 @@
 #ifndef CE3D_WORLD_WORLD_H
 #define CE3D_WORLD_WORLD_H
 
-#include <boost/ptr_container/ptr_list.hpp>
-#include <boost/container/vector.hpp>
+#include "util/stdinc.h"
 
-#include "util/stdmacro.h"
+#include <boost/ptr_container/ptr_list.hpp>
 
 #include "transformation/itransformable.h"
 #include "model/model.h"
+#include "util/CE3D_matrix.h"
 
 namespace CE3D
 {
@@ -79,8 +79,9 @@ public:
     GetTransformations() const
     { return m_Transformations; }
 
-
-
+    virtual inline void
+    AddModel(Model* const model)
+    { m_Models.push_front(model); }
 private:
     boost::ptr_list<Model> m_Models;
     boost::ptr_list<Transformation::Transformation*> m_Transformations;
