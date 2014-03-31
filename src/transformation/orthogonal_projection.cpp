@@ -18,9 +18,9 @@ void OrthogonalProjection::UpdateMatrix()
     // Concatenate vectors together.
     m_Matrix = boost::numeric::ublas::concat_vectors(m_ProjectionVectors);
         
-    Matrix inverted;
-    Matrix matxprod;
     Matrix transposed = boost::numeric::ublas::trans(m_Matrix);
+    Matrix matxprod(transposed.size1(), m_Matrix.size2());
+    Matrix inverted(transposed.size1(), m_Matrix.size2());
 
     boost::numeric::ublas::axpy_prod(transposed, m_Matrix, matxprod);
 
@@ -34,6 +34,7 @@ void OrthogonalProjection::UpdateMatrix()
 
 
     // On success assign the special matrix product.
+    m_Matrix.resize(inverted.size1(), transposed.size2() ,false);   
     boost::numeric::ublas::axpy_prod(inverted, transposed, m_Matrix);
 }
 

@@ -52,16 +52,16 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
 
     TestUnit.SetProjectionVectors(span);
 
-    CE3D::Matrix Comparision =
+    CE3D::Matrix Comparison =
         boost::numeric::ublas::matrix<ModelDataType>(2, 3);
-    Comparision(0, 0) = 0.5f;
-    Comparision(0, 1) = 0.0f;
-    Comparision(0, 2) = 0.0f;
-    Comparision(1, 0) = 0.0f;
-    Comparision(1, 1) = 0.0f;
-    Comparision(1, 2) = 1.0f;
+    Comparison(0, 0) = 0.5f;
+    Comparison(0, 1) = 0.0f;
+    Comparison(0, 2) = 0.0f;
+    Comparison(1, 0) = 0.0f;
+    Comparison(1, 1) = 0.0f;
+    Comparison(1, 2) = 1.0f;
 
-    RequireMatrixEquality(Comparision, TestUnit.GetMatrix());
+    RequireMatrixEquality(Comparison, TestUnit.GetMatrix());
 
 }
 
