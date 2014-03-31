@@ -3,9 +3,6 @@
 #ifndef CE3D_UTIL_BOOST_EXTENSIONS_H
 #define CE3D_UTIL_BOOST_EXTENSIONS_H
 
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/vector.hpp>
-
 #include "util/boost_extensions_code.h"
 
 namespace boost

@@ -3,6 +3,8 @@
 #ifndef CE3D_UTIL_BOOST_EXTENSIONS_CODE_H
 #define CE3D_UTIL_BOOST_EXTENSIONS_CODE_H
 
+#include <boost/numeric/ublas/matrix.hpp>
+#include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/lu.hpp>
 #include <boost/numeric/ublas/io.hpp>
 
@@ -53,8 +55,8 @@ invert(matrix<T> const& input, matrix<T>& inverse)
  * @return The concatenated matrix.
  */
 template<class T>
-boost::numeric::ublas::matrix<T>
-concat_vectors(boost::numeric::ublas::vector<T> const * const vectors, size_t count)
+matrix<T>
+concat_vectors(vector<T> const * const vectors, size_t count)
 {
     // Check bounds.
     for (size_t i = 1; i < count; i++)
@@ -63,12 +65,10 @@ concat_vectors(boost::numeric::ublas::vector<T> const * const vectors, size_t co
             throw std::invalid_argument("Vectors doesn't have the same length.");
     }
 
-    boost::numeric::ublas::matrix<T> M((*vectors).size(), count);
-    for (boost::numeric::ublas::matrix<T>::size_type column = 0; column < A.size2();
-        column++)
+    matrix<T> M((*vectors).size(), count);
+    for (matrix<T>::size_type column = 0; column < A.size2(); column++)
     {
-        for (boost::numeric::ublas::matrix<T>::size_type row = 0; row < A.size1();
-            row++)
+        for (matrix<T>::size_type row = 0; row < A.size1(); row++)
         {
             M(row, column) = vectors[column](row);
         }
@@ -84,22 +84,20 @@ concat_vectors(boost::numeric::ublas::vector<T> const * const vectors, size_t co
  * @return The concatenated matrix.
  */
 template<class T>
-boost::numeric::ublas::matrix<T>
-concat_vectors(std::vector<boost::numeric::ublas::vector<T>> const& vectors)
+matrix<T>
+concat_vectors(std::vector<vector<T>> const& vectors)
 {
     // Check bounds.
-    for (std::vector<T>::size_type size_t i = 1; i < count; i++)
+    for (std::vector<T>::size_type i = 1; i < count; i++)
     {
         if (vectors.at(i - 1).size() != vectors.at(i).size())
             throw std::invalid_argument("Vectors doesn't have the same length.");
     }
     
-    boost::numeric::ublas::matrix<T> M(vectors.at(0).size(), vectors.size());
-    for (boost::numeric::ublas::matrix<T>::size_type column = 0; column < A.size2();
-        column++)
+    matrix<T> M(vectors.at(0).size(), vectors.size());
+    for (matrix<T>::size_type column = 0; column < A.size2(); column++)
     {
-        for (boost::numeric::ublas::matrix<T>::size_type row = 0; row < A.size1();
-            row++)
+        for (matrix<T>::size_type row = 0; row < A.size1(); row++)
         {
             M(row, column) = vectors.at(column)(row);
         }
