@@ -3,7 +3,7 @@
 #include "test/TestEnvironment.h"
 
 #define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE Translation
+#define BOOST_TEST_MODULE Console
 #include <boost/test/unit_test.hpp>
 
 #include "util/stdinc.h"
