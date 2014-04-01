@@ -24,7 +24,12 @@ private:
     Vector m_Offset;
     float m_Angle;
 
-    void
+protected:
+
+    /**
+     * Updates the matrix.
+     */
+    virtual void
     UpdateMatrix();
 
 public:

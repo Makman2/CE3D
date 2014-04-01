@@ -21,7 +21,12 @@ class Scale : public Transformation
 private:
     Vector m_Scale;
 
-    void
+protected:
+
+    /**
+     * Updates the matrix.
+     */
+    virtual void
     UpdateMatrix();
 
 public:

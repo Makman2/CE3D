@@ -22,7 +22,12 @@ private:
 
     Vector m_TranslationVector;
     
-    void
+protected:
+
+    /**
+     * Updates the matrix.
+     */
+    virtual void
     UpdateMatrix();
 
 public:
