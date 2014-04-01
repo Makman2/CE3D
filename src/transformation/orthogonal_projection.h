@@ -28,7 +28,12 @@ private:
 
     std::vector<Vector> m_ProjectionVectors;
     
-    void
+protected:
+
+    /**
+     * Updates the matrix.
+     */
+    virtual void
     UpdateMatrix();
 
 public:
