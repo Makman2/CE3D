@@ -17,7 +17,7 @@ function(AddCE3DTest target)
         POST_BUILD
         COMMAND ${target}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Running ${target}" VERBATIM
+        COMMENT "Running ${target}..." VERBATIM
         )
 endfunction()
 
