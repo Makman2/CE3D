@@ -45,7 +45,8 @@ BOOST_AUTO_TEST_CASE(TestTranslationGetSet)
 
     TestUnit.SetTranslation(Shift);
 
-    CE3D::Matrix Comparision = boost::numeric::ublas::identity_matrix<ModelDataType>(4, 4);
+    CE3D::Matrix Comparision =
+        boost::numeric::ublas::identity_matrix<ModelDataType>(4, 4);
     Comparision(0, 3) = 4;
     Comparision(1, 3) = 2;
     Comparision(2, 3) = 7;

@@ -12,7 +12,7 @@ void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b)
     BOOST_REQUIRE_EQUAL(a.size2(), b.size2());
     for (CE3D::ModelIdxType i = 0; i < a.size1(); ++i)
     {
-        for (CE3D::ModelIdxType j = 0; i < a.size2(); ++i)
+        for (CE3D::ModelIdxType j = 0; j < a.size2(); ++j)
         {
             BOOST_REQUIRE_EQUAL(a(i,j), b(i,j));
         }
