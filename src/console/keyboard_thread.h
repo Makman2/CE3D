@@ -25,9 +25,19 @@ private:
 public:
     KeyboardThread();
 
+    /**
+     * This function is to be called as an own thread.
+     *
+     * @param Screen The curses environment.
+     */
     void
     operator()(WINDOW* Screen) const;
 
+    /**
+     * Sets the callback function.
+     *
+     * @param copy The callback function.
+     */
     inline void
     SetCallback(Functor<>* const copy)
     { m_Callback = copy; }
