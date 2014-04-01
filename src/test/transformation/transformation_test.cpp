@@ -27,5 +27,3 @@ void RequireVectorEquality(CE3D::Vector const a, CE3D::Vector const b)
         BOOST_REQUIRE_EQUAL(a[i], b[i]);
     }
 }
-
-void CE3DTestTransformation() {}
