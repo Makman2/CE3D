@@ -47,11 +47,27 @@ private:
 public:
     /**
      * Returns an instance.
+     *
+     * If there is no instance yet it will be created, a curses session will
+     * be started.
      */
     static Console*
     GetInstance();
 
-    // TODO write API comments
+    /**
+     * Deletes the instance and returns to normal console mode.
+     */
+    static void
+    DeleteInstance();
+
+    /**
+     * Sets the color.
+     *
+     * If you write characters without specifying a color, this color will be
+     * taken.
+     *
+     * @param color The color.
+     */
     void
     SetColor(ConsoleColor const color);
 

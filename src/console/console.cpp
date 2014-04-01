@@ -30,6 +30,14 @@ Console* Console::GetInstance()
     return s_Instance;
 }
 
+void Console::DeleteInstance()
+{
+    if (s_Instance != nullptr)
+    {
+        delete s_Instance;
+    }
+}
+
 void Console::Flush() const
 {
     refresh();

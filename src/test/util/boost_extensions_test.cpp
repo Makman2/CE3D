@@ -20,7 +20,7 @@ namespace Testing
 BOOST_FIXTURE_TEST_SUITE(Util, TestEnvironment)
 
 /**
- * Tests the construction and destruction of Translation.
+ * Tests the invert method.
  */
 BOOST_AUTO_TEST_CASE(TestInverseCalculation)
 {
@@ -33,6 +33,8 @@ BOOST_AUTO_TEST_CASE(TestInverseCalculation)
 
     // TODO test what invert does with wrong dimensions
 }
+
+// TODO test vector concatenation
 
 BOOST_AUTO_TEST_SUITE_END()
 
