@@ -17,6 +17,9 @@ namespace CE3D
 class Camera
 {
 private:
+    /**
+     * Holds the world where the camera lives.
+     */
     World m_World;
 public:
     // FIXME Maybe replace the description with a better one.
@@ -38,6 +41,11 @@ public:
     GetWorld() const
     { return m_World; }
 
+    /**
+     * Places the camera in this world.
+     *
+     * @param copy The world.
+     */
     inline void
     SetWorld(World const& copy)
     { m_World = copy; }
