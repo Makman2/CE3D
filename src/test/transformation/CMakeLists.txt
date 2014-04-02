@@ -6,5 +6,4 @@ AddCE3DTest(TranslationTest
 AddCE3DTest(OrthogonalProjectionTest
     ${CMAKE_CURRENT_LIST_DIR}/transformation_test
     ${CMAKE_CURRENT_LIST_DIR}/orthogonal_projection_test
-    ${CMAKE_CURRENT_LIST_DIR}/orthogonal_depth_projection_test
     )
