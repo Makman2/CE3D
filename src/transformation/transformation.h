@@ -21,8 +21,13 @@ namespace Transformation
 class Transformation
 {
 protected:
-    /// The matrix that represents the transformation.
-    Matrix m_Matrix;
+    /**
+     * The matrix that represents the transformation.
+     *
+     * This is mutable since derivated objects may update the matrix lazy on
+     * the GetMatrix invocation which is const.
+     */
+    mutable Matrix m_Matrix;
 
 public:
     /**
