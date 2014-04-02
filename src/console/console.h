@@ -17,14 +17,22 @@ namespace CE3D
 
 using ConsoleIdxType = uint8_t;
 
-using ConsoleColorEnum = enum _ConsoleColor
+using ConsoleColor = enum ConsoleColorEnum
 {
     NORMAL
     //TODO list more colors here
 };
 
-class ConsoleColor
+class ConsoleStringAttributes
 { // TODO
+private:
+    ConsoleColor m_Color;
+    /**
+     * The other attributes.
+     *
+     * This may be bold, underlined and so on. Stored curses compatible.
+     */
+    char m_Attributes;
 };
 
 /**
@@ -61,7 +69,7 @@ private:
      * Holds the color which is used for drawing without explicit color
      * argument.
      */
-    ConsoleColor m_CurrentColor;
+    ConsoleStringAttributes m_CurrentAttributes;
 
     /**
      * The thread object.
@@ -119,8 +127,8 @@ public:
      * @param color The color.
      */
     inline void
-    SetColor(ConsoleColor const color)
-    { m_CurrentColor = color; }
+    SetColor(ConsoleStringAttributes const attr)
+    { m_CurrentAttributes = attr; }
 
     /**
      * Sets the current position.
@@ -137,7 +145,7 @@ public:
     { addch(character); }
 
     void
-    WriteChar(ConsoleColor const color, char const character);
+    WriteChar(ConsoleStringAttributes const attr, char const character);
 
     inline void
     WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
@@ -146,16 +154,33 @@ public:
 
     void
     WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
-              ConsoleColor const color, char const character);
+              ConsoleStringAttributes const attr, char const character);
 
+    /**
+     * Writes a string to the current position with the current attributes.
+     *
+     * You can use it printf-like via the variadic template.
+     *
+     * @param str the format string
+     * @param Args the arguments for the format string
+     */
     template<typename... Types>
     inline void
     WriteString(std::string const str, Types... Args)
     { printw(str.c_str(), Args...); }
 
+    /**
+     * Writes a string to the current position with the given attributes.
+     *
+     * You can use it printf-like via the variadic template.
+     *
+     * @param attr the attributes
+     * @param str the format string
+     * @param Args the arguments for the format string
+     */
     template<typename... Types>
     void
-    WriteString(ConsoleColor const color, std::string const str,
+    WriteString(ConsoleStringAttributes const attr, std::string const str,
                 Types... Args);
 
     template<typename... Types>
@@ -167,7 +192,7 @@ public:
     template<typename... Types>
     void
     WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
-                ConsoleColor const color, std::string const str,
+                ConsoleStringAttributes const attr, std::string const str,
                 Types... Args);
 
     void
