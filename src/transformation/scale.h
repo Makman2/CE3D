@@ -19,6 +19,7 @@ namespace Transformation
 class Scale : public Transformation
 {
 private:
+    
     Vector m_Scale;
 
 protected:
@@ -27,7 +28,7 @@ protected:
      * Updates the matrix.
      */
     virtual void
-    UpdateMatrix();
+    UpdateMatrix() override;
 
 public:
 

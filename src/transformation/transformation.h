@@ -16,6 +16,10 @@ class Transformation
 protected:
     /// The matrix that represents the transformation.
     Matrix m_Matrix;
+    /// Determines whether the matrix was modified and needs to be updated.
+    bool m_needUpdate;
+
+    virtual void UpdateMatrix() = 0;
 
 public:
     /**
@@ -23,11 +27,12 @@ public:
      *
      * @return The matrix.
      */
-    Matrix const&
-    GetMatrix() const
-    { return m_Matrix; }
+    virtual Matrix const&
+    GetMatrix();
 
-    virtual
+    Transformation();
+
+    inline virtual
     ~Transformation() {};
 };
 

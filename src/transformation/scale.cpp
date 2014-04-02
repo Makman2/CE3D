@@ -25,7 +25,8 @@ namespace Transformation
     void Scale::SetScale(Vector const& scale)
     {
         m_Scale = scale;
-        UpdateMatrix();
+        
+        m_needUpdate = true;
     }
 
 }

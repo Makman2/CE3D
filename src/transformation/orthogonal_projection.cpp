@@ -26,15 +26,13 @@ void OrthogonalProjection::UpdateMatrix()
 
     if (boost::numeric::ublas::invert(matxprod, inverted) == false)
     {
-        // Reset on fail.
-        m_ProjectionVectors.clear();
         throw std::invalid_argument(
             "The projection vectors are linearly dependent.");
     }
 
 
     // On success assign the special matrix product.
-    m_Matrix.resize(inverted.size1(), transposed.size2() ,false);   
+    m_Matrix.resize(inverted.size1(), transposed.size2() ,false);
     boost::numeric::ublas::axpy_prod(inverted, transposed, m_Matrix);
 }
 
@@ -49,7 +47,8 @@ void OrthogonalProjection::SetProjectionVectors(std::vector<Vector> const& vecto
     }
     
     m_ProjectionVectors = vectors;
-    UpdateMatrix();
+    
+    m_needUpdate = true;
 }
 
 void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
@@ -104,7 +103,7 @@ void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
         }
     }
 
-    UpdateMatrix();
+    m_needUpdate = true;
 }
 
 }

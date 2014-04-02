@@ -28,7 +28,7 @@ protected:
      * Updates the matrix.
      */
     virtual void
-    UpdateMatrix();
+    UpdateMatrix() override;
 
 public:
 
@@ -57,7 +57,7 @@ public:
     void SetTranslation(Vector const& direction, ModelDataType const length);
 
     inline Translation() {};
-    inline virtual ~Translation() {};
+    inline virtual ~Translation() override {};
 };
 
 }

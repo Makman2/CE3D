@@ -19,6 +19,7 @@ namespace Transformation
 class Rotation : public Transformation
 {
 private:
+    
     Vector m_Planar1;
     Vector m_Planar2;
     Vector m_Offset;
@@ -30,7 +31,7 @@ protected:
      * Updates the matrix.
      */
     virtual void
-    UpdateMatrix();
+    UpdateMatrix() override;
 
 public:
     /**
