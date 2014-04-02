@@ -55,7 +55,7 @@ public:
      * @param scale: The scale transformation to apply.
      */
     virtual void
-    Scale(Scale const& scale) = 0;
+    Scale(CE3D::Transformation::Scale const& scale) = 0;
 
     /**
      * Rotates all vertices.
