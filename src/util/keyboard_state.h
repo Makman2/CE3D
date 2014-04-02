@@ -18,6 +18,9 @@ using ModifierKeys = enum ModifierKeysEnum
 
 using Sign = char;
 
+/**
+ * This singleton represents the current keyboard state.
+ */
 class KeyboardState {
 private:
     KeyboardState();

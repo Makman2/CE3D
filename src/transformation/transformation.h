@@ -11,6 +11,13 @@ namespace CE3D
 {
 namespace Transformation
 {
+
+/**
+ * A data type representing a transformation.
+ *
+ * Internally this is a transformation matrix. There are derivatives of this
+ * object that contain more abstract information about transformations.
+ */
 class Transformation
 {
 protected:

@@ -15,6 +15,9 @@ namespace CE3D
 namespace Transformation
 {
 
+/**
+ * Interface for something on that you can apply transformations.
+ */
 class ITransformable
 {
 public:
@@ -24,7 +27,8 @@ public:
     /**
      * Transforms all vertices.
      *
-     * @param matrix: The matrix to transform with.
+     * @param transformation: The matrix to transform with packed in a
+     * transformation.
      */
     virtual void
     Transform(Transformation const& transformation) = 0;
@@ -32,7 +36,7 @@ public:
     /**
      * Translates all vertices.
      *
-     * @param translation: The vector that describes the translation.
+     * @param translation: The translation to apply.
      */
     virtual void
     Translate(Translation const& translation) = 0;
@@ -48,18 +52,15 @@ public:
     /**
      * Scales all vertices.
      *
-     * @param scale: The vector that describes the scale.
+     * @param scale: The scale transformation to apply.
      */
     virtual void
-    Scale(CE3D::Transformation::Scale const& scale) = 0;
+    Scale(Scale const& scale) = 0;
 
     /**
      * Rotates all vertices.
      *
-     * @param planar1: The first vector of the rotation plane.
-     * @param planar2: The second vector of the rotation plane.
-     * @param offset: The offset of the rotation axis.
-     * @param angle: The rotation angle.
+     * @param rotation: The rotation to apply.
      */
     virtual void
     Rotate(Rotation const& rotation) = 0;
