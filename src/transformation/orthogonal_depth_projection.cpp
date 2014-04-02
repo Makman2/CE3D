@@ -32,7 +32,7 @@ void OrthogonalDepthProjection::UpdateMatrix() const
     }
 
     // Setup the new array.
-    std::vector<Vector> newbase = std::vector<Vector>(dimension - vecref.size);
+    std::vector<Vector> newbase = std::vector<Vector>(dimension - vecref.size());
     std::size_t remain = 0;
 
     // Orthogonalize them.

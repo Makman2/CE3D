@@ -60,8 +60,6 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     span2[1] = 0.0f;
     span2[2] = 1.0f;
 
-    BOOST_TEST_MESSAGE("Spans: " << span1 << " ## " << span2);
-
     span.push_back(span1);
     span.push_back(span2);
 
@@ -105,8 +103,6 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     span3[1] = 3;
     span3[2] = 4;
     span3[3] = 2;
-
-    BOOST_TEST_MESSAGE("Spans: " << span1 << " ## " << span2 << " ## " << span3);
     
     span.push_back(span1);
     span.push_back(span2);
