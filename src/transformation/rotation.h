@@ -14,7 +14,7 @@ namespace Transformation
 {
 
 /**
- * A transformation that describes a scale.
+ * A transformation that describes a rotation.
  */
 class Rotation : public Transformation
 {

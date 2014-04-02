@@ -11,11 +11,23 @@ namespace CE3D
 {
 namespace Transformation
 {
+
+/**
+ * A data type representing a transformation.
+ *
+ * Internally this is a transformation matrix. There are derivatives of this
+ * object that contain more abstract information about transformations.
+ */
 class Transformation
 {
 protected:
-    /// The matrix that represents the transformation.
-    Matrix m_Matrix;
+    /**
+     * The matrix that represents the transformation.
+     *
+     * This is mutable since derivated objects may update the matrix lazy on
+     * the GetMatrix invocation which is const.
+     */
+    mutable Matrix m_Matrix;
 
 public:
     /**
