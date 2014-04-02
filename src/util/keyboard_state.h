@@ -18,6 +18,8 @@ using ModifierKeys = enum ModifierKeysEnum
 
 using Sign = char;
 
+class Console;
+
 /**
  * This singleton represents the current keyboard state.
  */
@@ -28,10 +30,16 @@ private:
 
     ModifierKeys m_Modifiers;
     Sign m_Content;
+    char m_CursesInput;
 
     static KeyboardState* s_Instance;
+
+    void SetState(char CursesInput)
+    { m_CursesInput = CursesInput; }
+
+    friend Console;
 public:
-    KeyboardState*
+    static KeyboardState*
     GetInstance();
 
     inline ModifierKeys const&

@@ -6,7 +6,6 @@ function(AddCE3DTest target)
 
     target_link_libraries(${target}
         ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
-        ${CURSES_LIBRARY}
         TestEnvironment
         CE3D
         )
@@ -23,7 +22,6 @@ endfunction()
 
 add_library(TestEnvironment SHARED TestEnvironment)
 target_link_libraries(TestEnvironment
-    ${CURSES_LIBRARY}
     CE3D
     )
 

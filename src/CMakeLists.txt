@@ -9,7 +9,7 @@ set(CE3D_VERSION_MAJOR 0)
 set(CE3D_VERSION_MINOR 0)
 set(CE3D_VERSION_MICRO 1)
 
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+find_package(Boost COMPONENTS unit_test_framework thread system REQUIRED)
 find_package(Curses REQUIRED)
 
 # Get the current working branch
@@ -28,8 +28,6 @@ execute_process(
   OUTPUT_VARIABLE GIT_HEAD
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
-
-# TODO we need some dependency checking here -> boost
 
 configure_file(
     "${PROJECT_SOURCE_DIR}/CE3D_config.h.in"
@@ -60,6 +58,12 @@ add_subdirectory("renderer")
 add_subdirectory("transformation")
 
 add_library(CE3D SHARED ${SRC})
+
+target_link_libraries(CE3D
+    ${Boost_THREAD_LIBRARY}
+    ${Boost_SYSTEM_LIBRARY}
+    ${CURSES_LIBRARY}
+    )
 
 # TODO condition
 add_subdirectory("test")

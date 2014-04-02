@@ -7,6 +7,10 @@
 
 #include <curses.h>
 #include <string>
+#include <boost/thread.hpp>
+#include <boost/signals2/mutex.hpp>
+
+#include "util/functor.h"
 
 namespace CE3D
 {
@@ -41,9 +45,59 @@ private:
 
     static Console* s_Instance;
 
+    /**
+     * Holds the height of the console.
+     */
     ConsoleIdxType m_Height;
+    /**
+     * Holds the width of the console.
+     */
     ConsoleIdxType m_Width;
+    /**
+     * Holds the curses "object".
+     */
     WINDOW* m_Screen;
+    /**
+     * Holds the color which is used for drawing without explicit color
+     * argument.
+     */
+    ConsoleColor m_CurrentColor;
+    /**
+     * Holds the x component of the current position in the console.
+     */
+    ConsoleIdxType m_X;
+    /**
+     * Holds the y component of the current position in the console.
+     */
+    ConsoleIdxType m_Y;
+
+    /**
+     * The thread object.
+     */
+    boost::thread *m_KeyboardThread;
+
+    /**
+     * The keyboard thread function that translates the blocking getch of
+     * curses to callback events.
+     *
+     * This function has to be static to be executed as a thread.
+     */
+    static void KeyboardThread();
+
+    /**
+     * The callback function which is called if a keyboard event occurs.
+     */
+    static Functor<>* s_Callback;
+
+    /**
+     * If the thread holds the lock of this mutex, it's doing something
+     * important; if not we can kill it.
+     *
+     * We have to kill it since getch is a blocking invocation.
+     */
+    static boost::signals2::mutex s_KbThreadMutex;
+
+    static bool s_ThreadTerminator;
 public:
     /**
      * Returns an instance.
@@ -68,11 +122,13 @@ public:
      *
      * @param color The color.
      */
-    void
-    SetColor(ConsoleColor const color);
+    inline void
+    SetColor(ConsoleColor const color)
+    { m_CurrentColor = color; }
 
-    void
-    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y);
+    inline void
+    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y)
+    { m_X = x; m_Y = y; }
 
     void
     WriteChar(char const character);
