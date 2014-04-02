@@ -48,8 +48,6 @@ void Console::KeyboardThread()
 }
 
 Console::Console()
-: m_X(0)
-, m_Y(0)
 {
     // initialize curses
     m_Screen = initscr();

@@ -17,14 +17,22 @@ namespace CE3D
 
 using ConsoleIdxType = uint8_t;
 
-using ConsoleColorEnum = enum _ConsoleColor
+using ConsoleColor = enum ConsoleColorEnum
 {
     NORMAL
     //TODO list more colors here
 };
 
-class ConsoleColor
+class ConsoleStringAttributes
 { // TODO
+private:
+    ConsoleColor m_Color;
+    /**
+     * The other attributes.
+     *
+     * This may be bold, underlined and so on. Stored curses compatible.
+     */
+    char m_Attributes;
 };
 
 /**
@@ -61,15 +69,7 @@ private:
      * Holds the color which is used for drawing without explicit color
      * argument.
      */
-    ConsoleColor m_CurrentColor;
-    /**
-     * Holds the x component of the current position in the console.
-     */
-    ConsoleIdxType m_X;
-    /**
-     * Holds the y component of the current position in the console.
-     */
-    ConsoleIdxType m_Y;
+    ConsoleStringAttributes m_CurrentAttributes;
 
     /**
      * The thread object.
@@ -97,6 +97,10 @@ private:
      */
     static boost::signals2::mutex s_KbThreadMutex;
 
+    /**
+     * If this is set to true, it's a signal to the keyboard thread to
+     * terminate peacefully.
+     */
     static bool s_ThreadTerminator;
 public:
     /**
@@ -115,7 +119,7 @@ public:
     DeleteInstance();
 
     /**
-     * Sets the color.
+     * Sets the current color.
      *
      * If you write characters without specifying a color, this color will be
      * taken.
@@ -123,40 +127,73 @@ public:
      * @param color The color.
      */
     inline void
-    SetColor(ConsoleColor const color)
-    { m_CurrentColor = color; }
+    SetColor(ConsoleStringAttributes const attr)
+    { m_CurrentAttributes = attr; }
 
+    /**
+     * Sets the current position.
+     *
+     * If you write characters without specifying a position, this position
+     * will be taken and incremented.
+     */
     inline void
     SetPosition(ConsoleIdxType const x, ConsoleIdxType const y)
-    { m_X = x; m_Y = y; }
+    { move(y, x); }
+
+    inline void
+    WriteChar(char const character)
+    { addch(character); }
 
     void
-    WriteChar(char const character);
+    WriteChar(ConsoleStringAttributes const attr, char const character);
+
+    inline void
+    WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
+              char const character)
+    { mvaddch(y, x, character); }
 
     void
-    WriteChar(char const character, ConsoleColor const color);
+    WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
+              ConsoleStringAttributes const attr, char const character);
 
-    void
-    WriteChar(char const character, ConsoleIdxType const x,
-              ConsoleIdxType const y);
+    /**
+     * Writes a string to the current position with the current attributes.
+     *
+     * You can use it printf-like via the variadic template.
+     *
+     * @param str the format string
+     * @param Args the arguments for the format string
+     */
+    template<typename... Types>
+    inline void
+    WriteString(std::string const str, Types... Args)
+    { printw(str.c_str(), Args...); }
 
+    /**
+     * Writes a string to the current position with the given attributes.
+     *
+     * You can use it printf-like via the variadic template.
+     *
+     * @param attr the attributes
+     * @param str the format string
+     * @param Args the arguments for the format string
+     */
+    template<typename... Types>
     void
-    WriteChar(char const character, ConsoleIdxType const x,
-              ConsoleIdxType const y, ConsoleColor const color);
+    WriteString(ConsoleStringAttributes const attr, std::string const str,
+                Types... Args);
 
-    void
-    WriteString(std::string const str);
+    template<typename... Types>
+    inline void
+    WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
+                std::string const str, Types... Args)
+    { mvprintw(y, x, str.c_str(), Args...); }
 
+    template<typename... Types>
     void
-    WriteString(std::string const str, ConsoleColor const color);
-
-    void
-    WriteString(std::string const str, ConsoleIdxType const x,
-                ConsoleIdxType const y);
-
-    void
-    WriteString(std::string const str, ConsoleIdxType const x,
-                ConsoleIdxType const y, ConsoleColor const color);
+    WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
+                ConsoleStringAttributes const attr, std::string const str,
+                Types... Args);
 
     void
     Clear() const;
