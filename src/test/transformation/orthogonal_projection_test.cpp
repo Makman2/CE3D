@@ -85,7 +85,6 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     BOOST_TEST_MESSAGE("Testing 3x3 orthogonal projection matrix...");
     // Second matrix test.
 
-    std::vector<CE3D::Vector> span;
     span1.resize(4, false);
     span1[0] = 1;
     span1[1] = 1;
