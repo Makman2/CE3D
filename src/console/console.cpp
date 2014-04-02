@@ -48,8 +48,6 @@ void Console::KeyboardThread()
 }
 
 Console::Console()
-: m_X(0)
-, m_Y(0)
 {
     // initialize curses
     m_Screen = initscr();
@@ -106,12 +104,6 @@ void Console::Flush() const
 void Console::Clear() const
 {
     clear();
-}
-
-void Console::SetPosition(unsigned char x, unsigned char y)
-{
-    m_X = x;
-    m_Y = y;
 }
 
 }

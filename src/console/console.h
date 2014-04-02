@@ -62,14 +62,6 @@ private:
      * argument.
      */
     ConsoleColor m_CurrentColor;
-    /**
-     * Holds the x component of the current position in the console.
-     */
-    ConsoleIdxType m_X;
-    /**
-     * Holds the y component of the current position in the console.
-     */
-    ConsoleIdxType m_Y;
 
     /**
      * The thread object.
@@ -136,38 +128,47 @@ public:
      * If you write characters without specifying a position, this position
      * will be taken and incremented.
      */
-    void
-    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y);
+    inline void
+    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y)
+    { move(y, x); }
 
     inline void
     WriteChar(char const character)
     { addch(character); }
 
     void
-    WriteChar(char const character, ConsoleColor const color);
-
-    void
-    WriteChar(char const character, ConsoleIdxType const x,
-              ConsoleIdxType const y);
-
-    void
-    WriteChar(char const character, ConsoleIdxType const x,
-              ConsoleIdxType const y, ConsoleColor const color);
+    WriteChar(ConsoleColor const color, char const character);
 
     inline void
-    WriteString(std::string const str)
-    { printw(str.c_str()); }
+    WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
+              char const character)
+    { mvaddch(y, x, character); }
 
     void
-    WriteString(std::string const str, ConsoleColor const color);
+    WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
+              ConsoleColor const color, char const character);
 
-    void
-    WriteString(std::string const str, ConsoleIdxType const x,
-                ConsoleIdxType const y);
+    template<typename... Types>
+    inline void
+    WriteString(std::string const str, Types... Args)
+    { printw(str.c_str(), Args...); }
 
+    template<typename... Types>
     void
-    WriteString(std::string const str, ConsoleIdxType const x,
-                ConsoleIdxType const y, ConsoleColor const color);
+    WriteString(ConsoleColor const color, std::string const str,
+                Types... Args);
+
+    template<typename... Types>
+    inline void
+    WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
+                std::string const str, Types... Args)
+    { mvprintw(y, x, str.c_str(), Args...); }
+
+    template<typename... Types>
+    void
+    WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
+                ConsoleColor const color, std::string const str,
+                Types... Args);
 
     void
     Clear() const;
