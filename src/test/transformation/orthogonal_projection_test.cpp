@@ -11,6 +11,7 @@
 #include "util/CE3D_matrix.h"
 #include "test/transformation/transformation_test.h"
 #include "transformation/orthogonal_projection.h"
+#include "transformation/orthogonal_depth_projection.h"
 
 namespace CE3D
 {
@@ -30,11 +31,23 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionConstruction)
     BOOST_REQUIRE_NO_THROW(delete TestUnit);
 }
 
+BOOST_AUTO_TEST_CASE(TestOrthogonalDepthProjectionConstruction)
+{
+    CE3D::Transformation::OrthogonalProjection *TestUnit;
+    BOOST_REQUIRE_NO_THROW(TestUnit = 
+        new CE3D::Transformation::OrthogonalDepthProjection());
+    BOOST_REQUIRE_NO_THROW(delete TestUnit);
+}
+
 /**
- * Tests the construction and destruction of OrthogonalProjection.
+ * Tests the matrix generation of OrthogonalProjection.
  */
 BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
 {
+    // First matrix test.
+
+    BOOST_TEST_MESSAGE("Testing 3x3 orthogonal projection matrix...");
+    
     CE3D::Transformation::OrthogonalProjection TestUnit;
 
     std::vector<CE3D::Vector> span;
@@ -47,10 +60,16 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     span2[1] = 0.0f;
     span2[2] = 1.0f;
 
+    BOOST_TEST_MESSAGE("Spans: " << span1 << " ## " << span2);
+
     span.push_back(span1);
     span.push_back(span2);
 
+    BOOST_TEST_MESSAGE("Setting projection vectors...");
+
     TestUnit.SetProjectionVectors(span);
+
+    BOOST_TEST_MESSAGE("Testing matrix...");
 
     CE3D::Matrix Comparison =
         boost::numeric::ublas::matrix<ModelDataType>(2, 3);
@@ -62,6 +81,62 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     Comparison(1, 2) = 1.0f;
 
     RequireMatrixEquality(Comparison, TestUnit.GetMatrix());
+
+    span.clear();
+
+    BOOST_TEST_MESSAGE("Testing 3x3 orthogonal projection matrix...");
+    // Second matrix test.
+
+    std::vector<CE3D::Vector> span;
+    span1.resize(4, false);
+    span1[0] = 1;
+    span1[1] = 1;
+    span1[2] = 1;
+    span1[3] = 1;
+
+    span2.resize(4, false);
+    span2[0] = 2;
+    span2[1] = 2;
+    span2[2] = 3;
+    span2[3] = 3;
+
+    CE3D::Vector span3(4);
+    span3[0] = 3;
+    span3[1] = 3;
+    span3[2] = 4;
+    span3[3] = 2;
+
+    BOOST_TEST_MESSAGE("Spans: " << span1 << " ## " << span2 << " ## " << span3);
+    
+    span.push_back(span1);
+    span.push_back(span2);
+    span.push_back(span3);
+
+    BOOST_TEST_MESSAGE("Setting projection vectors...");
+
+    TestUnit.SetProjectionVectors(span);
+    
+    BOOST_TEST_MESSAGE("Testing matrix...");
+
+    Comparison.resize(3, 4);
+    Comparison(0, 0) = 1.5f;
+    Comparison(0, 1) = 1.5f;
+    Comparison(0, 2) = -2.5f;
+    Comparison(0, 3) = 0.5f;
+    Comparison(1, 0) = -0.5f;
+    Comparison(1, 1) = -0.5f;
+    Comparison(1, 2) = 0.5f;
+    Comparison(1, 3) = 0.5f;
+    Comparison(2, 0) = 0.0f;
+    Comparison(2, 1) = 0.0f;
+    Comparison(2, 2) = 0.5f;
+    Comparison(2, 3) = -0.5f;
+
+    RequireMatrixEquality(Comparison, TestUnit.GetMatrix());
+
+    
+    //BOOST_TEST_MESSAGE("Testing depth projection matrix...");
+
 
 }
 
