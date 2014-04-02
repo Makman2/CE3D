@@ -108,4 +108,10 @@ void Console::Clear() const
     clear();
 }
 
+void Console::SetPosition(unsigned char x, unsigned char y)
+{
+    m_X = x;
+    m_Y = y;
+}
+
 }

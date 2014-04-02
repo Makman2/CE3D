@@ -97,6 +97,10 @@ private:
      */
     static boost::signals2::mutex s_KbThreadMutex;
 
+    /**
+     * If this is set to true, it's a signal to the keyboard thread to
+     * terminate peacefully.
+     */
     static bool s_ThreadTerminator;
 public:
     /**
@@ -115,7 +119,7 @@ public:
     DeleteInstance();
 
     /**
-     * Sets the color.
+     * Sets the current color.
      *
      * If you write characters without specifying a color, this color will be
      * taken.
@@ -126,12 +130,18 @@ public:
     SetColor(ConsoleColor const color)
     { m_CurrentColor = color; }
 
-    inline void
-    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y)
-    { m_X = x; m_Y = y; }
-
+    /**
+     * Sets the current position.
+     *
+     * If you write characters without specifying a position, this position
+     * will be taken and incremented.
+     */
     void
-    WriteChar(char const character);
+    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y);
+
+    inline void
+    WriteChar(char const character)
+    { addch(character); }
 
     void
     WriteChar(char const character, ConsoleColor const color);
@@ -144,8 +154,9 @@ public:
     WriteChar(char const character, ConsoleIdxType const x,
               ConsoleIdxType const y, ConsoleColor const color);
 
-    void
-    WriteString(std::string const str);
+    inline void
+    WriteString(std::string const str)
+    { printw(str.c_str()); }
 
     void
     WriteString(std::string const str, ConsoleColor const color);
