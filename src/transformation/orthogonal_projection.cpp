@@ -10,7 +10,7 @@ namespace CE3D
 namespace Transformation
 {
 
-void OrthogonalProjection::UpdateMatrix()
+void OrthogonalProjection::UpdateMatrix() const
 {
     // For the math behind this function, see: doc/Orthogonal Projection Matrix.pdf
     // P = (A^T A)^-1 A^T

@@ -13,7 +13,7 @@ Transformation::Transformation()
 , m_needUpdate(false)
 {}
 
-Matrix const& Transformation::GetMatrix()
+Matrix const& Transformation::GetMatrix() const
 {
     if (m_needUpdate)
     {

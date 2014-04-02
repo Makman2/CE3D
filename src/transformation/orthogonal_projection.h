@@ -34,7 +34,7 @@ protected:
      * Updates the matrix.
      */
     virtual void
-    UpdateMatrix() override;
+    UpdateMatrix() const override;
 
 public:
 

@@ -7,7 +7,7 @@ namespace CE3D
 namespace Transformation
 {
 
-void Translation::UpdateMatrix()
+void Translation::UpdateMatrix() const
 {
     m_Matrix.resize(
         m_TranslationVector.size() + 1, m_TranslationVector.size() + 1);

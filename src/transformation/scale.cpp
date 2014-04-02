@@ -6,7 +6,7 @@ namespace CE3D
 {
 namespace Transformation
 {
-    void Scale::UpdateMatrix()
+    void Scale::UpdateMatrix() const
     {
         m_Matrix.resize(m_Scale.size(), m_Scale.size());
 

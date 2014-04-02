@@ -31,7 +31,7 @@ namespace Transformation
         m_needUpdate = true;
     }
 
-    void Rotation::UpdateMatrix()
+    void Rotation::UpdateMatrix() const
     {
         // Orthonormalize planar vectors.
         Vector normvec1 = (m_Planar1 / boost::numeric::ublas::norm_2(m_Planar1));

@@ -8,7 +8,7 @@ namespace CE3D
 namespace Transformation
 {
 
-void OrthogonalDepthProjection::UpdateMatrix()
+void OrthogonalDepthProjection::UpdateMatrix() const
 {
     OrthogonalProjection::UpdateMatrix();
 
