@@ -15,12 +15,21 @@
 namespace CE3D
 {
 
-using ConsoleIdxType = uint8_t;
+using ConsoleIdxType = std::uint8_t;
 
-using ConsoleColor = enum ConsoleColorEnum
+/**
+ * Maps the CURSES colors to our namespace.
+ */
+enum class ConsoleColor : std::uint8_t
 {
-    NORMAL
-    //TODO list more colors here
+    BLACK   = COLOR_BLACK,  //!< BLACK
+    BLUE    = COLOR_BLUE,   //!< BLUE
+    CYAN    = COLOR_CYAN,   //!< CYAN
+    GREEN   = COLOR_GREEN,  //!< GREEN
+    MAGENTA = COLOR_MAGENTA,//!< MAGENTA
+    RED     = COLOR_RED,    //!< RED
+    WHITE   = COLOR_WHITE,  //!< WHITE
+    YELLOW  = COLOR_YELLOW  //!< YELLOW
 };
 
 class ConsoleStringAttributes
@@ -102,6 +111,11 @@ private:
      * terminate peacefully.
      */
     static bool s_ThreadTerminator;
+
+    /**
+     * True if terminal supports colors.
+     */
+    bool m_HasColors;
 public:
     /**
      * Returns an instance.
@@ -129,6 +143,15 @@ public:
     inline void
     SetColor(ConsoleStringAttributes const attr)
     { m_CurrentAttributes = attr; }
+
+    /**
+     * Determines if the console supports colorized output.
+     *
+     * @return true if console supports colorized output.
+     */
+    inline bool
+    HasColors() const
+    { return m_HasColors; }
 
     /**
      * Sets the current position.

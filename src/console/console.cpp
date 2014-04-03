@@ -44,7 +44,6 @@ void Console::KeyboardThread()
         s_KbThreadMutex.lock();
     }
     s_KbThreadMutex.unlock();
-
 }
 
 Console::Console()
@@ -66,6 +65,8 @@ Console::Console()
 
     s_ThreadTerminator = false;
     m_KeyboardThread = new boost::thread(Console::KeyboardThread);
+
+    m_HasColors = has_colors();
 }
 
 Console::~Console()
