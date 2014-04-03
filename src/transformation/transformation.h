@@ -16,11 +16,22 @@ class Transformation
 protected:
     /// The matrix that represents the transformation.
     mutable Matrix m_Matrix;
-    /// Determines whether the matrix was modified and needs to be updated.
-    mutable bool m_needUpdate;
+    /**
+     * Determines whether the matrix was modified and needs to be updated.
+     *
+     * Set this to true if you set information that implicitly changes the
+     * matrix so you can recalculate it lazy.
+     */
+    mutable bool m_NeedUpdate;
 
+    /**
+     * Updates the matrix.
+     *
+     * This function is invoked by GetMatrix if m_NeedUpdate is true. It is
+     * used to calculate implicit information (the matrix) lazy because it is
+     * rarely needed for some transformations.
+     */
     virtual void UpdateMatrix() const = 0;
-
 public:
     /**
      * Returns the matrix that represents the linear transformation.

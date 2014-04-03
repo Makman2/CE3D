@@ -10,25 +10,25 @@ namespace Transformation
     void Rotation::SetPlanar1(Vector const& value)
     {
         m_Planar1 = value;
-        m_needUpdate = true;
+        m_NeedUpdate = true;
     }
     
     void Rotation::SetPlanar2(Vector const& value)
     {
         m_Planar2 = value;
-        m_needUpdate = true;
+        m_NeedUpdate = true;
     }
 
     void Rotation::SetOffset(Vector const& value)
     {
         m_Offset = value;
-        m_needUpdate = true;
+        m_NeedUpdate = true;
     }
 
     void Rotation::SetAngle(float value)
     {
         m_Angle = value;
-        m_needUpdate = true;
+        m_NeedUpdate = true;
     }
 
     void Rotation::UpdateMatrix() const

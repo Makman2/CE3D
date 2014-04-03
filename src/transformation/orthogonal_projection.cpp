@@ -48,7 +48,7 @@ void OrthogonalProjection::SetProjectionVectors(std::vector<Vector> const& vecto
     
     m_ProjectionVectors = vectors;
     
-    m_needUpdate = true;
+    m_NeedUpdate = true;
 }
 
 void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
@@ -103,7 +103,7 @@ void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
         }
     }
 
-    m_needUpdate = true;
+    m_NeedUpdate = true;
 }
 
 }
