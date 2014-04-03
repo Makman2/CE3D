@@ -11,41 +11,12 @@
 #include <boost/signals2/mutex.hpp>
 
 #include "util/functor.h"
+#include "console/console_string_attributes.h"
 
 namespace CE3D
 {
-int i = COLORS;
 
 using ConsoleIdxType = std::uint8_t;
-
-/**
- * Maps the CURSES colors to our namespace.
- */
-enum ConsoleColor
-{
-    BLACK,
-    BLUE,
-    CYAN,
-    GREEN,
-    MAGENTA,
-    RED,
-    WHITE,
-    YELLOW,
-    LAST
-};
-
-class ConsoleStringAttributes
-{ // TODO
-private:
-    std::uint8_t m_ColorPairId;
-
-    /**
-     * The other attributes.
-     *
-     * This may be bold, underlined and so on. Stored curses compatible.
-     */
-    char m_Attributes;
-};
 
 /**
  * This is basically a curses wrapper for C++.
@@ -124,9 +95,6 @@ private:
      * Initializes all
      */
     void InitColorPairs();
-    static inline std::uint8_t constexpr
-    ColorPairIndex(ConsoleColor Foreground, ConsoleColor Background)
-    { return 1 + (Background * ConsoleColor::LAST) + Foreground; }
 public:
     /**
      * Returns an instance.

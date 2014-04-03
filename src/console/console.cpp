@@ -67,6 +67,8 @@ Console::Console()
     m_KeyboardThread = new boost::thread(Console::KeyboardThread);
 
     m_HasColors = has_colors();
+
+    InitColorPairs();
 }
 
 Console::~Console()
@@ -113,8 +115,10 @@ void Console::InitColorPairs()
     {
         for (std::uint8_t j = 0; j< ConsoleColor::LAST; ++j)
         {
-            init_pair(ColorPairIndex(static_cast<ConsoleColor>(i),
-                                     static_cast<ConsoleColor>(j)), i, j);
+            init_pair(ConsoleStringAttributes::ColorPairIndex(
+                          static_cast<ConsoleColor>(i),
+                          static_cast<ConsoleColor>(j)),
+                      i, j);
         }
     }
 }
