@@ -1,9 +1,4 @@
-/*
- * ConsoleStringAttributes.cpp
- *
- *  Created on: Apr 3, 2014
- *      Author: lasse
- */
+// This file is part of CE3D. License: GPL3
 
 #include "console/console_string_attributes.h"
 

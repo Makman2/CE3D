@@ -1,9 +1,4 @@
-/*
- * ConsoleStringAttributes.h
- *
- *  Created on: Apr 3, 2014
- *      Author: lasse
- */
+// This file is part of CE3D. License: GPL3
 
 #ifndef CE3D_CONSOLE_CONSOLE_STRING_ATTRIBUTES_H
 #define CE3D_CONSOLE_CONSOLE_STRING_ATTRIBUTES_H
