@@ -10,6 +10,8 @@ function(AddCE3DTest target)
         CE3D
         )
 
+    cotire(${target})
+
     add_test(${target} ${target})
 
     add_custom_command(TARGET ${target}

@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 
+set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/../cmake")
+include(cotire)
+
 set(CMAKE_COLOR_MAKEFILE ON)
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
@@ -64,6 +67,8 @@ target_link_libraries(CE3D
     ${Boost_SYSTEM_LIBRARY}
     ${CURSES_LIBRARY}
     )
+
+cotire(CE3D)
 
 # TODO condition
 add_subdirectory("test")
