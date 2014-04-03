@@ -30,9 +30,7 @@ private:
     
 protected:
 
-    /**
-     * Updates the matrix.
-     */
+    // inherited documentation comment
     virtual void
     UpdateMatrix() const override;
 
