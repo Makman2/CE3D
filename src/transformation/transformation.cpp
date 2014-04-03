@@ -10,15 +10,15 @@ namespace Transformation
 
 Transformation::Transformation()
 : m_Matrix()
-, m_needUpdate(false)
+, m_NeedUpdate(false)
 {}
 
 Matrix const& Transformation::GetMatrix() const
 {
-    if (m_needUpdate)
+    if (m_NeedUpdate)
     {
         UpdateMatrix();
-        m_needUpdate = false;
+        m_NeedUpdate = false;
     }
 
     return m_Matrix;

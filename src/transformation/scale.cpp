@@ -26,7 +26,7 @@ namespace Transformation
     {
         m_Scale = scale;
         
-        m_needUpdate = true;
+        m_NeedUpdate = true;
     }
 
 }

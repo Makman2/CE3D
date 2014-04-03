@@ -21,7 +21,7 @@ class Translation : public Transformation
 private:
 
     Vector m_TranslationVector;
-    
+
 protected:
 
     /**

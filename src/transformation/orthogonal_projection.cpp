@@ -18,7 +18,7 @@ void OrthogonalProjection::UpdateMatrix() const
     // Concatenate vectors together.
     m_Matrix = boost::numeric::ublas::concat_vectors(m_ProjectionVectors);
         
-    Matrix transposed = boost::numeric::ublas::trans(m_Matrix);
+    Matrix transposed(boost::numeric::ublas::trans(m_Matrix));
     Matrix matxprod(transposed.size1(), m_Matrix.size2());
     Matrix inverted(transposed.size1(), m_Matrix.size2());
 
@@ -48,7 +48,7 @@ void OrthogonalProjection::SetProjectionVectors(std::vector<Vector> const& vecto
     
     m_ProjectionVectors = vectors;
     
-    m_needUpdate = true;
+    m_NeedUpdate = true;
 }
 
 void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
@@ -103,7 +103,7 @@ void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
         }
     }
 
-    m_needUpdate = true;
+    m_NeedUpdate = true;
 }
 
 }
