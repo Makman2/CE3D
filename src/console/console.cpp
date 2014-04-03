@@ -107,4 +107,16 @@ void Console::Clear() const
     clear();
 }
 
+void Console::InitColorPairs()
+{
+    for (std::uint8_t i = 0; i < ConsoleColor::LAST; ++i)
+    {
+        for (std::uint8_t j = 0; j< ConsoleColor::LAST; ++j)
+        {
+            init_pair(ColorPairIndex(static_cast<ConsoleColor>(i),
+                                     static_cast<ConsoleColor>(j)), i, j);
+        }
+    }
+}
+
 }

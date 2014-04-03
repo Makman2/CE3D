@@ -14,28 +14,31 @@
 
 namespace CE3D
 {
+int i = COLORS;
 
 using ConsoleIdxType = std::uint8_t;
 
 /**
  * Maps the CURSES colors to our namespace.
  */
-enum class ConsoleColor : std::uint8_t
+enum ConsoleColor
 {
-    BLACK   = COLOR_BLACK,  //!< BLACK
-    BLUE    = COLOR_BLUE,   //!< BLUE
-    CYAN    = COLOR_CYAN,   //!< CYAN
-    GREEN   = COLOR_GREEN,  //!< GREEN
-    MAGENTA = COLOR_MAGENTA,//!< MAGENTA
-    RED     = COLOR_RED,    //!< RED
-    WHITE   = COLOR_WHITE,  //!< WHITE
-    YELLOW  = COLOR_YELLOW  //!< YELLOW
+    BLACK,
+    BLUE,
+    CYAN,
+    GREEN,
+    MAGENTA,
+    RED,
+    WHITE,
+    YELLOW,
+    LAST
 };
 
 class ConsoleStringAttributes
 { // TODO
 private:
-    ConsoleColor m_Color;
+    std::uint8_t m_ColorPairId;
+
     /**
      * The other attributes.
      *
@@ -116,6 +119,14 @@ private:
      * True if terminal supports colors.
      */
     bool m_HasColors;
+
+    /**
+     * Initializes all
+     */
+    void InitColorPairs();
+    static inline std::uint8_t constexpr
+    ColorPairIndex(ConsoleColor Foreground, ConsoleColor Background)
+    { return 1 + (Background * ConsoleColor::LAST) + Foreground; }
 public:
     /**
      * Returns an instance.
