@@ -20,7 +20,7 @@ private:
     /**
      * Holds the world where the camera lives.
      */
-    World const* m_World;
+    std::weak_ptr<World const> m_World;
 public:
     // FIXME Maybe replace the description with a better one.
     /**
@@ -37,7 +37,7 @@ public:
     virtual
     ~Camera();
 
-    inline World const*
+    inline std::weak_ptr<World const>
     GetWorld() const
     { return m_World; }
 
@@ -47,7 +47,7 @@ public:
      * @param copy The world.
      */
     inline void
-    SetWorld(World const* copy)
+    SetWorld(std::weak_ptr<World const> const copy)
     { m_World = copy; }
 };
 
