@@ -22,12 +22,15 @@ private:
      */
     std::weak_ptr<World const> m_World;
 public:
-    // FIXME Maybe replace the description with a better one.
     /**
      * Paints the world onto a surface world.
      *
-     * The paint() function transforms all models with a projection matrix and stores
-     * the transformed vertices into a new world needed for render.
+     * The camera projects any model to a plane. The resulting vectors are to
+     * be three-dimensional where the last component shall hold the distance to
+     * the plane. This information is only used by the renderer to determine
+     * what line is above another. There will be no transformations applied
+     * after a world is transformed by the camera. The transformations applied
+     * by a camera may be arbitrary.
      *
      * @return The projection-transformed world.
      */
