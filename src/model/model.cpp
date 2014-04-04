@@ -13,9 +13,11 @@ namespace CE3D
     void Model::Transform(Transformation::Transformation const& transformation)
     {
         Matrix matrix = transformation.GetMatrix();
+        Vector temp(matrix.size1());
         for (auto it : GetVectors())
         {
-            boost::numeric::ublas::axpy_prod(matrix, it, it, true);
+            boost::numeric::ublas::axpy_prod(matrix, it, temp, true);
+            it = temp;
         }	
     }
 
