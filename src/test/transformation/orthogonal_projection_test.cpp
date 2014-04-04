@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     Comparison(2, 2) = 0.5f;
     Comparison(2, 3) = -0.5f;
 
-    RequireMatrixEquality(Comparison, TestUnit.GetMatrix());
+    RequireMatrixEquality(Comparison, TestUnit.GetMatrix(), 0.00001);
 
     
     //BOOST_TEST_MESSAGE("Testing depth projection matrix...");
