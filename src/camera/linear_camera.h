@@ -6,13 +6,23 @@
 #include "util/stdinc.h"
 
 #include "camera/camera.h"
+#include "transformation/transformation.h"
 
 namespace CE3D {
 
 class LinearCamera : Camera {
+private:
+    /**
+     * A list of transformations applied sequentially on Paint().
+     */
+    std::vector<std::shared_ptr<Transformation::Transformation const>>
+        m_TransformationStack;
 public:
     LinearCamera();
     virtual ~LinearCamera();
+
+    virtual std::unique_ptr<World>
+    Paint() const override;
 };
 
 } /* namespace CE3D */

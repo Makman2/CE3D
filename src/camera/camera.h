@@ -34,8 +34,8 @@ public:
      *
      * @return The projection-transformed world.
      */
-    virtual World
-    Paint() = 0;
+    virtual std::unique_ptr<World>
+    Paint() const = 0;
 
     virtual
     ~Camera();
