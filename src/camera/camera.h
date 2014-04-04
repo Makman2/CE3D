@@ -16,11 +16,11 @@ namespace CE3D
  */
 class Camera
 {
-private:
+protected:
     /**
      * Holds the world where the camera lives.
      */
-    std::weak_ptr<World const> m_World;
+    std::shared_ptr<World const> m_World;
 public:
     /**
      * Paints the world onto a surface world.
@@ -38,9 +38,9 @@ public:
     Paint() const = 0;
 
     virtual
-    ~Camera();
+    ~Camera() {};
 
-    inline std::weak_ptr<World const>
+    inline std::shared_ptr<World const>
     GetWorld() const
     { return m_World; }
 
@@ -50,7 +50,7 @@ public:
      * @param copy The world.
      */
     inline void
-    SetWorld(std::weak_ptr<World const> const copy)
+    SetWorld(std::shared_ptr<World const> const copy)
     { m_World = copy; }
 };
 

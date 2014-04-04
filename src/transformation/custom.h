@@ -18,6 +18,8 @@ namespace Transformation
  */
 class Custom : public Transformation
 {
+private:
+    void UpdateMatrix() const {}
 public:
 
     /**
