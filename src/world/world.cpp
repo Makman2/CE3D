@@ -9,7 +9,7 @@ void World::Transform(Transformation::Transformation const& transformation)
 {
     for (auto it : GetModels())
     {
-        it.Transform(transformation);
+        it->Transform(transformation);
     }
 }
 
@@ -17,7 +17,7 @@ void World::Translate(Transformation::Translation const& translation)
 {
     for (auto it : GetModels())
     {
-        it.Translate(translation);
+        it->Translate(translation);
     }
 }
 
@@ -25,7 +25,7 @@ void World::Scale(const ModelDataType factor)
 {
     for (auto it : GetModels())
     {
-        it.Scale(factor);
+        it->Scale(factor);
     }
 }
 
@@ -34,7 +34,7 @@ void World::Scale(Transformation::Scale const& scale)
 
     for (auto it : GetModels())
     {
-        it.Scale(scale);
+        it->Scale(scale);
     }
 }
 
@@ -42,7 +42,7 @@ void World::Scale(Transformation::Scale const& scale)
     {
         for (auto it : GetModels())
         {
-            it.Rotate(rotation);
+            it->Rotate(rotation);
         }
     }
 }

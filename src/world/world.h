@@ -5,8 +5,6 @@
 
 #include "util/stdinc.h"
 
-#include <boost/ptr_container/ptr_list.hpp>
-
 #include "transformation/itransformable.h"
 #include "model/model.h"
 #include "util/CE3D_matrix.h"
@@ -20,14 +18,6 @@ namespace CE3D
 class World : public Transformation::ITransformable
 {
 public:
-    /**
-     * The transformations that are applied on render.
-     *
-     * @return The list of transformation-matrices.
-     */
-    boost::container::vector<Matrix>
-    Transformations();
-
     // Inherited documentation comment
     virtual void
     Transform(Transformation::Transformation const& matrix);
@@ -51,20 +41,22 @@ public:
     /**
      * Returns a list of all models in the world.
      */
-    virtual inline boost::ptr_list<Model> const&
+    virtual inline std::vector<std::shared_ptr<Model>> const&
     GetModels() const
     { return m_Models; }
 
-    virtual inline boost::ptr_list<Transformation::Transformation*> const&
+    virtual inline std::vector<std::shared_ptr<
+                                   Transformation::Transformation>> const&
     GetTransformations() const
     { return m_Transformations; }
 
     virtual inline void
-    AddModel(Model* const model)
-    { m_Models.push_front(model); }
+    AddModel(std::shared_ptr<Model> Model)
+    { m_Models.push_back(Model); }
 private:
-    boost::ptr_list<Model> m_Models;
-    boost::ptr_list<Transformation::Transformation*> m_Transformations;
+    std::vector<std::shared_ptr<Model>> m_Models;
+    std::vector<std::shared_ptr<Transformation::Transformation>>
+        m_Transformations;
 };
 
 }
