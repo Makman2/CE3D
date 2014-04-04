@@ -21,9 +21,14 @@ class Translation : public Transformation
 private:
 
     Vector m_TranslationVector;
-    
-    void
-    UpdateMatrix();
+
+protected:
+
+    /**
+     * Updates the matrix.
+     */
+    virtual void
+    UpdateMatrix() const override;
 
 public:
 
@@ -52,7 +57,7 @@ public:
     void SetTranslation(Vector const& direction, ModelDataType const length);
 
     inline Translation() {};
-    inline virtual ~Translation() {};
+    inline virtual ~Translation() override {};
 };
 
 }

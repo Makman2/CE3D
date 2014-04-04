@@ -13,10 +13,20 @@ namespace Transformation
 {
 
 /**
- * A data type representing a transformation.
+ * An abstract class that is the base class of any transformation that fits
+ * into a matrix.
  *
- * Internally this is a transformation matrix. There are derivatives of this
- * object that contain more abstract information about transformations.
+ * A transformation can usually be used to transform a set of vectors (e.g.
+ * representing a model) through a matrix. An ITransformable object can be
+ * transformed with any derived object.
+ *
+ * However if your derivative is a simple transformation (e.g. a translation)
+ * you probably want to calculate the matrix lazy only if its needed and
+ * provide more abstract, processing-friendlier information (in this case the
+ * translation vector) to a transformable object.
+ *
+ * If a transformable object does not support your transformation in an
+ * abstract way it will fall back to the transformation matrix.
  */
 class Transformation
 {
@@ -24,22 +34,39 @@ protected:
     /**
      * The matrix that represents the transformation.
      *
-     * This is mutable since derivated objects may update the matrix lazy on
-     * the GetMatrix invocation which is const.
+     * This is mutable since it is implicit information which is lazy filled in
+     * a const function if needed.
      */
     mutable Matrix m_Matrix;
 
+    /**
+     * Determines whether the matrix was modified and needs to be updated.
+     *
+     * Set this to true if you set information that implicitly changes the
+     * matrix so you can recalculate it lazy.
+     */
+    mutable bool m_NeedUpdate;
+
+    /**
+     * Updates the matrix.
+     *
+     * This function is invoked by GetMatrix if m_NeedUpdate is true. It is
+     * used to calculate implicit information (the matrix) lazy because it is
+     * rarely needed for some transformations.
+     */
+    virtual void UpdateMatrix() const = 0;
 public:
     /**
      * Returns the matrix that represents the linear transformation.
      *
      * @return The matrix.
      */
-    Matrix const&
-    GetMatrix() const
-    { return m_Matrix; }
+    virtual Matrix const&
+    GetMatrix() const;
 
-    virtual
+    Transformation();
+
+    inline virtual
     ~Transformation() {};
 };
 

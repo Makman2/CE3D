@@ -7,7 +7,7 @@ namespace CE3D
 namespace Transformation
 {
 
-void Translation::UpdateMatrix()
+void Translation::UpdateMatrix() const
 {
     m_Matrix.resize(
         m_TranslationVector.size() + 1, m_TranslationVector.size() + 1);
@@ -35,7 +35,8 @@ void Translation::UpdateMatrix()
 void Translation::SetTranslation(Vector const& shift)
 {
     m_TranslationVector = shift;
-    UpdateMatrix();
+
+    m_NeedUpdate = true;
 }
 
 void Translation::SetTranslation(Vector const& direction, ModelDataType const length)
@@ -43,7 +44,7 @@ void Translation::SetTranslation(Vector const& direction, ModelDataType const le
     ModelDataType norm = boost::numeric::ublas::norm_2(direction);
     m_TranslationVector = (direction / norm) * length;
 
-    UpdateMatrix();
+    m_NeedUpdate = true;
 }
 
 }
