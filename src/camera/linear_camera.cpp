@@ -10,4 +10,7 @@ LinearCamera::LinearCamera()
 LinearCamera::~LinearCamera()
 { }
 
+std::unique_ptr<World> LinearCamera::Paint() const
+{}
+
 } /* namespace CE3D */
