@@ -11,29 +11,12 @@
 #include <boost/signals2/mutex.hpp>
 
 #include "util/functor.h"
+#include "console/console_string_attributes.h"
 
 namespace CE3D
 {
 
-using ConsoleIdxType = uint8_t;
-
-using ConsoleColor = enum ConsoleColorEnum
-{
-    NORMAL
-    //TODO list more colors here
-};
-
-class ConsoleStringAttributes
-{ // TODO
-private:
-    ConsoleColor m_Color;
-    /**
-     * The other attributes.
-     *
-     * This may be bold, underlined and so on. Stored curses compatible.
-     */
-    char m_Attributes;
-};
+using ConsoleIdxType = std::uint8_t;
 
 /**
  * This is basically a curses wrapper for C++.
@@ -102,6 +85,16 @@ private:
      * terminate peacefully.
      */
     static bool s_ThreadTerminator;
+
+    /**
+     * True if terminal supports colors.
+     */
+    bool m_HasColors;
+
+    /**
+     * Initializes all
+     */
+    void InitColorPairs();
 public:
     /**
      * Returns an instance.
@@ -129,6 +122,15 @@ public:
     inline void
     SetColor(ConsoleStringAttributes const attr)
     { m_CurrentAttributes = attr; }
+
+    /**
+     * Determines if the console supports colorized output.
+     *
+     * @return true if console supports colorized output.
+     */
+    inline bool
+    HasColors() const
+    { return m_HasColors; }
 
     /**
      * Sets the current position.
