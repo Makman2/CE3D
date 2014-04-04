@@ -26,8 +26,17 @@ private:
     mutable std::uint8_t m_NeededUpdates;
     mutable std::uint8_t m_AppendedTransformations;
 
+    /**
+     * Updates the transformation matrix if needed.
+     */
     void UpdateTransformation() const;
+    /**
+     * Recalculates the whole transformation matrix.
+     */
     void RecalculateMatrix() const;
+    /**
+     * Appends new transformation matrices.
+     */
     void AppendMatrices() const;
 public:
     inline
@@ -35,6 +44,13 @@ public:
     inline virtual
     ~LinearCamera() {};
 
+    /**
+     * Applies all transformations on the transformation stack and returns the
+     * newly created world.
+     *
+     * @return a unique_ptr to the new world - the caller is responsible for
+     *         tidying up!
+     */
     virtual std::unique_ptr<World>
     Paint() const override;
 };
