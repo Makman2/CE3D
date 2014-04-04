@@ -8,6 +8,9 @@
 namespace CE3D {
 namespace Testing {
 
+/**
+ * Provides tearUp and tearDown mechanism for boost unit tests.
+ */
 class TestEnvironment
 {
 private:

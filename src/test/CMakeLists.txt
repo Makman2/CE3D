@@ -6,7 +6,6 @@ function(AddCE3DTest target)
 
     target_link_libraries(${target}
         ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
-        ${CURSES_LIBRARY}
         TestEnvironment
         CE3D
         )
@@ -17,13 +16,12 @@ function(AddCE3DTest target)
         POST_BUILD
         COMMAND ${target}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Running ${target}" VERBATIM
+        COMMENT "Running ${target}..." VERBATIM
         )
 endfunction()
 
 add_library(TestEnvironment SHARED TestEnvironment)
 target_link_libraries(TestEnvironment
-    ${CURSES_LIBRARY}
     CE3D
     )
 

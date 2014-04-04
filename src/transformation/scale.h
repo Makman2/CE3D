@@ -31,11 +31,10 @@ protected:
     UpdateMatrix() const override;
 
 public:
-
     /**
      * Sets the scale-vector.
      *
-     * @param value: The scale-vector to set.
+     * @param scale: The scale-vector to set.
      */
     void
     SetScale(Vector const& scale);

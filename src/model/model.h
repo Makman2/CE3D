@@ -61,47 +61,30 @@ public:
     inline void
     SetName(std::string const value)
     { m_Name = value; }
- 
-    /**
-     * Transforms all vertices in the model.
-     *
-     * @param matrix: The transformation to transform with.
-     */
+
+    // Inherited documentation comment
     virtual void
     Transform(Transformation::Transformation const& matrix) override;
-   
-    /**
-     * Translates all vertices in the model.
-     *
-     * @param translation: The translate transformation to apply.
-     */
+
+    // Inherited documentation comment
     virtual void
     Translate(Transformation::Translation const& translation) override;
 
-    /**
-     * Scales all vertices in the model.
-     *
-     * @param factor: The factor to scale with.
-     */
+    // Inherited documentation comment
     virtual void
     Scale(const ModelDataType factor) override;
 
-    /**
-     * Scales all vertices in the model.
-     *
-     * @param scale: The transformation that describes the scale.
-     */
+    // Inherited documentation comment
     virtual void
     Scale(Transformation::Scale const& scale) override;
 
-    /**
-     * Rotates all vertices in the model.
-     *
-     * @param rotation: The rotation transformation to apply.
-     */
+    // Inherited documentation comment
     virtual void
     Rotate(Transformation::Rotation const& rotation) override;
 
+    /**
+     * Returns a list of all vectors of this model.
+     */
     inline boost::container::vector<Vector> const&
     GetVectors() const
     { return m_Vectors; }
