@@ -18,14 +18,14 @@ namespace Testing
 BOOST_FIXTURE_TEST_SUITE(Console, TestEnvironment)
 
 /**
- * Tests the construction and destruction of Translation.
+ * Tests the construction and destruction of Console.
  */
 BOOST_AUTO_TEST_CASE(TestConsoleConstruction)
 {
-    //CE3D::Console* inst = CE3D::Console::GetInstance();
-    // it shall return the same instance on every invokation
-    //BOOST_REQUIRE(inst == CE3D::Console::GetInstance());
-    //BOOST_REQUIRE(inst != nullptr);
+    CE3D::Console *inst = CE3D::Console::GetInstance();
+    BOOST_REQUIRE(inst != nullptr);
+    BOOST_REQUIRE(inst == CE3D::Console::GetInstance());
+    CE3D::Console::DeleteInstance();
 }
 
 BOOST_AUTO_TEST_SUITE_END()

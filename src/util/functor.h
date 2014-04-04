@@ -5,6 +5,9 @@
 
 namespace CE3D {
 
+/**
+ * Anything that has operator() with any parameters.
+ */
 template<typename... Types>
 class Functor {
 public:

@@ -28,49 +28,29 @@ public:
     boost::container::vector<Matrix>
     Transformations();
 
-    /**
-     * Transforms all models in the world.
-     *
-     * @param matrix: The matrix to transform with.
-     */
+    // Inherited documentation comment
     virtual void
     Transform(Transformation::Transformation const& matrix);
 
-    /**
-     * Translates all models in the world.
-     *
-     * @param translation: The vector that describes the translation.
-     */
+    // Inherited documentation comment
     virtual void
     Translate(Transformation::Translation const& translation);
 
-    /**
-     * Scales all models in the world.
-     *
-     * @param factor: The factor to scale with.
-     */
+    // Inherited documentation comment
     virtual void
     Scale(ModelDataType const factor);
 
-    /**
-     * Scales all models in the world.
-     *
-     * @param scale: The vector that describes the scale.
-     */
+    // Inherited documentation comment
     virtual void
     Scale(Transformation::Scale const& scale);
 
-    /**
-     * Rotates all models in the world.
-     *
-     * @param planar1: The first vector of the rotation plane.
-     * @param planar2: The second vector of the rotation plane.
-     * @param offset: The offset of the rotation axis.
-     * @param angle: The rotation angle.
-     */
+    // Inherited documentation comment
     virtual void
     Rotate(Transformation::Rotation const& rotation);
 
+    /**
+     * Returns a list of all models in the world.
+     */
     virtual inline boost::ptr_list<Model> const&
     GetModels() const
     { return m_Models; }
