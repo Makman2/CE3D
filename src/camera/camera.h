@@ -16,28 +16,31 @@ namespace CE3D
  */
 class Camera
 {
-private:
+protected:
     /**
      * Holds the world where the camera lives.
      */
-    World const* m_World;
+    std::shared_ptr<World const> m_World;
 public:
-    // FIXME Maybe replace the description with a better one.
     /**
      * Paints the world onto a surface world.
      *
-     * The paint() function transforms all models with a projection matrix and stores
-     * the transformed vertices into a new world needed for render.
+     * The camera projects any model to a plane. The resulting vectors are to
+     * be three-dimensional where the last component shall hold the distance to
+     * the plane. This information is only used by the renderer to determine
+     * what line is above another. There will be no transformations applied
+     * after a world is transformed by the camera. The transformations applied
+     * by a camera may be arbitrary.
      *
      * @return The projection-transformed world.
      */
-    virtual World
-    Paint() = 0;
+    virtual std::unique_ptr<World>
+    Paint() const = 0;
 
     virtual
-    ~Camera();
+    ~Camera() {};
 
-    inline World const*
+    inline std::shared_ptr<World const>
     GetWorld() const
     { return m_World; }
 
@@ -47,7 +50,7 @@ public:
      * @param copy The world.
      */
     inline void
-    SetWorld(World const* copy)
+    SetWorld(std::shared_ptr<World const> const copy)
     { m_World = copy; }
 };
 
