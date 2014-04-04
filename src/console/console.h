@@ -117,7 +117,7 @@ public:
      * If you write characters without specifying a color, this color will be
      * taken.
      *
-     * @param color The color.
+     * @param attr The attributes.
      */
     inline void
     SetColor(ConsoleStringAttributes const attr)
