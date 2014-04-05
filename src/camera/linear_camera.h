@@ -13,6 +13,9 @@
 
 namespace CE3D {
 
+/**
+ * This is a camera that applies an arbitrary set of transformations on render.
+ */
 class LinearCamera : Camera {
 private:
     /**
@@ -21,19 +24,32 @@ private:
     std::vector<std::shared_ptr<Transformation::Transformation const>>
         m_TransformationStack;
 
+    /**
+     * The product of all matrices on the transformation stack.
+     */
     mutable Transformation::Custom m_TransformationMatrix;
 
+    /**
+     * Contains the number of matrices on the transformation stack that are
+     * new or deleted.
+     */
     mutable std::uint8_t m_NeededUpdates;
+    /**
+     * Contains the number of matrices on the transformation stack that are
+     * appended.
+     */
     mutable std::uint8_t m_AppendedTransformations;
 
     /**
      * Updates the transformation matrix if needed.
      */
     void UpdateTransformation() const;
+
     /**
      * Recalculates the whole transformation matrix.
      */
     void RecalculateMatrix() const;
+
     /**
      * Appends new transformation matrices.
      */
