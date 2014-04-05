@@ -24,16 +24,15 @@ using ConsoleIdxType = std::uint8_t;
 class Console
 {
 private:
-    /**
-     * This is a singleton.
-     */
     Console();
-
     Console(Console const& rhs);
 
     virtual
     ~Console();
 
+    /**
+     * The one and only instance of Console.
+     */
     static Console* s_Instance;
 
     /**
@@ -142,18 +141,44 @@ public:
     SetPosition(ConsoleIdxType const x, ConsoleIdxType const y)
     { move(y, x); }
 
+    /**
+     * Writes a character to the console.
+     *
+     * @param character The character.
+     */
     inline void
     WriteChar(char const character)
     { addch(character); }
 
+    /**
+     * Writes a character to the console.
+     *
+     * @param attr The attributes
+     * @param character The character
+     */
     void
     WriteChar(ConsoleStringAttributes const attr, char const character);
 
+    /**
+     * Writes a character to the console.
+     *
+     * @param x The row
+     * @param y The column
+     * @param character The character
+     */
     inline void
     WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
               char const character)
     { mvaddch(y, x, character); }
 
+    /**
+     * Writes a character to the console.
+     *
+     * @param x The row
+     * @param y The column
+     * @param attr The attributes
+     * @param character The character
+     */
     void
     WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
               ConsoleStringAttributes const attr, char const character);
@@ -185,28 +210,64 @@ public:
     WriteString(ConsoleStringAttributes const attr, std::string const str,
                 Types... Args);
 
+    /**
+     * Writes a string to the current position with the given attributes.
+     *
+     * You can use it printf-like via the variadic template.
+     *
+     * @param x the row
+     * @param y the column
+     * @param str the format string
+     * @param Args the arguments for the format string
+     */
     template<typename... Types>
     inline void
     WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
                 std::string const str, Types... Args)
     { mvprintw(y, x, str.c_str(), Args...); }
 
+    /**
+     * Writes a string to the current position with the given attributes.
+     *
+     * You can use it printf-like via the variadic template.
+     *
+     * @param x the row
+     * @param y the column
+     * @param attr the attributes
+     * @param str the format string
+     * @param Args the arguments for the format string
+     */
     template<typename... Types>
     void
     WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
                 ConsoleStringAttributes const attr, std::string const str,
                 Types... Args);
 
+    /**
+     * Clears the console.
+     */
     void
     Clear() const;
 
+    /**
+     * Flushes every change to the console.
+     */
     void
     Flush() const;
 
+    /**
+     * Gets the height of the console.
+     * @return The height.
+     */
     inline ConsoleIdxType const&
     GetHeight() const
     { return m_Height; }
 
+    /**
+     * Gets the width of the console.
+     *
+     * @return The width.
+     */
     inline ConsoleIdxType const&
     GetWidth() const
     { return m_Width; }

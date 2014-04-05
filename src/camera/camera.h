@@ -40,6 +40,11 @@ public:
     virtual
     ~Camera() {};
 
+    /**
+     * Gets the world where this camera lives.
+     *
+     * @return A shared ptr to the world.
+     */
     inline std::shared_ptr<World const>
     GetWorld() const
     { return m_World; }
