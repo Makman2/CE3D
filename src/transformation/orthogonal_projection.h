@@ -28,8 +28,11 @@ private:
 
     std::vector<Vector> m_ProjectionVectors;
     
-    void
-    UpdateMatrix();
+protected:
+
+    // inherited documentation comment
+    virtual void
+    UpdateMatrix() const override;
 
 public:
 

@@ -18,8 +18,17 @@ namespace Transformation
  */
 class Custom : public Transformation
 {
+private:
+    void UpdateMatrix() const {}
 public:
 
+    /**
+     * Multiplies the matrix of the transformation into the own matrix.
+     *
+     * @param Trafo The transformation to append.
+     */
+    void
+    AppendTransformation(Transformation const& Trafo);
     /**
      * Sets the transformation matrix.
      *
