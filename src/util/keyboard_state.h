@@ -49,7 +49,7 @@ private:
      *
      * @param CursesInput the input from curses.
      */
-    void SetState(char CursesInput);
+    void SetState(__attribute__((unused))char CursesInput) {}
 
     /**
      * The console may set the state.
