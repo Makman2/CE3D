@@ -20,7 +20,7 @@ public:
     operator()(Types... Args) = 0;
 
     virtual
-    ~Functor();
+    ~Functor() {}
 };
 
 }

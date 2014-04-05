@@ -69,7 +69,7 @@ private:
     /**
      * The callback function which is called if a keyboard event occurs.
      */
-    static Functor<>* s_Callback;
+    static std::shared_ptr<Functor<>> s_Callback;
 
     /**
      * If the thread holds the lock of this mutex, it's doing something
@@ -109,6 +109,9 @@ public:
      */
     static void
     DeleteInstance();
+
+    void SetCallback(std::shared_ptr<Functor<>> const Callback)
+    { s_Callback = Callback; }
 
     /**
      * Sets the current color.
