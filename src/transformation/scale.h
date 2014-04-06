@@ -31,6 +31,16 @@ protected:
     UpdateMatrix() const override;
 
 public:
+    Scale();
+    /**
+     * Instantiates a new object.
+     *
+     * @param scale: The scaling vector.
+     */
+    Scale(Vector const& scale);
+    inline virtual
+    ~Scale() {}
+
     /**
      * Sets the scale-vector.
      *

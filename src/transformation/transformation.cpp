@@ -10,7 +10,7 @@ namespace Transformation
 
 Transformation::Transformation()
 : m_Matrix()
-, m_NeedUpdate(false)
+, m_NeedUpdate(true)
 {}
 
 Matrix const& Transformation::GetMatrix() const

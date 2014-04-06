@@ -18,9 +18,20 @@ namespace Transformation
  */
 class Custom : public Transformation
 {
-private:
-    void UpdateMatrix() const {}
+protected:
+    void
+    UpdateMatrix() const override
+    {}
+
 public:
+    /**
+     * Instantiates a new object.
+     *
+     * @param matrix: The matrix to initialize the class with.
+     */
+    Custom(Matrix const& matrix);
+    inline virtual
+    ~Custom() {};
 
     /**
      * Multiplies the matrix of the transformation into the own matrix.

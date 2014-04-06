@@ -56,6 +56,10 @@ protected:
      */
     virtual void UpdateMatrix() const = 0;
 public:
+    Transformation();
+    inline virtual
+    ~Transformation() {};
+    
     /**
      * Returns the matrix that represents the linear transformation.
      *
@@ -64,10 +68,6 @@ public:
     virtual Matrix const&
     GetMatrix() const;
 
-    Transformation();
-
-    inline virtual
-    ~Transformation() {};
 };
 
 

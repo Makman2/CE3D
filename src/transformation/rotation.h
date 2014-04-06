@@ -22,7 +22,6 @@ private:
 
     Vector m_Planar1;
     Vector m_Planar2;
-    Vector m_Offset;
     float m_Angle;
 
 protected:
@@ -32,6 +31,19 @@ protected:
     UpdateMatrix() const override;
 
 public:
+    Rotation();
+    /**
+     * Instantiates a new object.
+     *
+     * @param planar1: The first rotation plane vector.
+     * @param planar2: The second rotation plane vector.
+     * @param angle: The rotation angle.
+     */
+    Rotation(Vector const& planar1, Vector const& planar2, float angle);
+    inline virtual
+    ~Rotation() {}
+
+
     /**
      * Returns the first vector that describes the rotation plane.
      *
@@ -49,15 +61,6 @@ public:
     inline Vector const&
     GetPlanar2() const
     { return m_Planar2; }
-
-    /**
-     * Returns the offset of the rotation plane.
-     *
-     * @return The plane offset.
-     */
-    inline Vector const&
-    GetOffset() const
-    { return m_Offset; }
 
     /**
      * Returns the rotation angle.
@@ -89,14 +92,6 @@ public:
      */
     void
     SetPlanar2(Vector const& value);
-
-    /**
-     * Sets the offset of the rotation.
-     *
-     * @param value: The offset-vector to set.
-     */
-    void
-    SetOffset(Vector const& value);
 
     /**
      * Sets the rotation angle.

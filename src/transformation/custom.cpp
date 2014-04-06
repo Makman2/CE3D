@@ -9,6 +9,11 @@ namespace CE3D
 namespace Transformation
 {
 
+Custom::Custom(Matrix const& matrix)
+{
+    m_Matrix = matrix;
+}
+
 void Custom::AppendTransformation(Transformation const& Trafo)
 {
     Matrix const& TrafoMatrix = Trafo.GetMatrix();

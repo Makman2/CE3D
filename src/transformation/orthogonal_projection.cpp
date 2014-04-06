@@ -10,6 +10,21 @@ namespace CE3D
 namespace Transformation
 {
 
+OrthogonalProjection::OrthogonalProjection()
+: m_ProjectionVectors()
+{}
+
+OrthogonalProjection::OrthogonalProjection(
+    std::vector<Vector> const& projection_vectors)
+: m_ProjectionVectors(projection_vectors)
+{}
+
+OrthogonalProjection::OrthogonalProjection(Vector const& direction)
+: m_ProjectionVectors()
+{
+    SetProjectionVectors(direction);
+}
+
 void OrthogonalProjection::UpdateMatrix() const
 {
     // For the math behind this function, see: doc/Orthogonal Projection Matrix.pdf
