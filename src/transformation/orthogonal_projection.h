@@ -35,6 +35,22 @@ protected:
     UpdateMatrix() const override;
 
 public:
+    OrthogonalProjection();
+    /**
+     * Instantiates a new object.
+     *
+     * @param projection_vectors: The projection vectors of the subspace to project
+     * on.
+     */
+    OrthogonalProjection(std::vector<Vector> const& projection_vectors);
+    /**
+     * Instantiates a new object.
+     *
+     * @param direction: The direction of the subspace hyperplane.
+     */
+    OrthogonalProjection(Vector const& direction);
+    inline virtual
+    ~OrthogonalProjection() {}
 
     /**
      * Returns the projection vectors.

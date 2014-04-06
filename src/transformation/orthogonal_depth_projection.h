@@ -18,12 +18,16 @@ namespace Transformation
 class OrthogonalDepthProjection : public OrthogonalProjection
 {
 protected:
-
+    
     /**
      * Updates the matrix.
      */
     virtual void
     UpdateMatrix() const override;
+
+public:
+    inline virtual
+    ~OrthogonalDepthProjection() {}
 };
 
 }
