@@ -7,10 +7,10 @@
 namespace CE3D
 {
 
-Console*               Console::s_Instance = nullptr;
-Functor<>*             Console::s_Callback = nullptr;
-boost::signals2::mutex Console::s_KbThreadMutex;
-bool                   Console::s_ThreadTerminator;
+Console*                   Console::s_Instance = nullptr;
+std::shared_ptr<Functor<>> Console::s_Callback(nullptr);
+boost::signals2::mutex     Console::s_KbThreadMutex;
+bool                       Console::s_ThreadTerminator;
 
 void Console::KeyboardThread()
 {

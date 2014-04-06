@@ -14,7 +14,13 @@ namespace Testing {
 class TestEnvironment
 {
 private:
+    /**
+     * The ID of this test.
+     */
     std::uint8_t m_TestID;
+    /**
+     * The ID of the last constructed test.
+     */
     static std::uint8_t s_TestID;
 public:
     TestEnvironment();

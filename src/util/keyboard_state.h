@@ -28,24 +28,58 @@ private:
     KeyboardState();
     KeyboardState(KeyboardState const& rhs);
 
+    /**
+     * Contains the pressed modifier keys.
+     */
     ModifierKeys m_Modifiers;
+    /**
+     * Contains the pressed keys.
+     */
     Sign m_Content;
-    char m_CursesInput;
 
+    /**
+     * The one and only instance.
+     */
     static KeyboardState* s_Instance;
 
-    void SetState(char CursesInput)
-    { m_CursesInput = CursesInput; }
+    /**
+     * This changes the keyboard state.
+     *
+     * This is meant to be changed only by the friend class Console.
+     *
+     * @param CursesInput the input from curses.
+     */
+    void SetState(__attribute__((unused))char CursesInput) {}
 
+    /**
+     * The console may set the state.
+     */
     friend Console;
 public:
+    /**
+     * Returns the same instance on every invocation.
+     *
+     * If there is no instance it will be created.
+     *
+     * @return the instance.
+     */
     static KeyboardState*
     GetInstance();
 
+    /**
+     * Getter.
+     *
+     * @return the pressed modifier keys.
+     */
     inline ModifierKeys const&
     GetModifiers() const
     { return m_Modifiers; }
 
+    /**
+     * Getter.
+     *
+     * @return The pressed keys.
+     */
     inline Sign const&
     GetContent() const
     { return m_Content; }

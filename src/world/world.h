@@ -41,12 +41,12 @@ public:
     /**
      * Returns a list of all models in the world.
      */
-    virtual inline std::vector<std::shared_ptr<Model>> const&
+    virtual inline std::vector<std::shared_ptr<Model> > const&
     GetModels() const
     { return m_Models; }
 
     virtual inline std::vector<std::shared_ptr<
-                                   Transformation::Transformation>> const&
+                                   Transformation::Transformation> > const&
     GetTransformations() const
     { return m_Transformations; }
 
@@ -54,8 +54,8 @@ public:
     AddModel(std::shared_ptr<Model> Model)
     { m_Models.push_back(Model); }
 private:
-    std::vector<std::shared_ptr<Model>> m_Models;
-    std::vector<std::shared_ptr<Transformation::Transformation>>
+    std::vector<std::shared_ptr<Model> > m_Models;
+    std::vector<std::shared_ptr<Transformation::Transformation> >
         m_Transformations;
 };
 
