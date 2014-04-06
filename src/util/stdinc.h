@@ -4,8 +4,6 @@
 #define CE3D_UTIL_STDINC_H
 
 #include <cstdint>
-#include <bits/shared_ptr.h>
-#include <bits/unique_ptr.h>
 #include "CE3D_config.h"
 
 namespace CE3D
