@@ -24,6 +24,7 @@ protected:
     {}
 
 public:
+    Custom();
     /**
      * Instantiates a new object.
      *
