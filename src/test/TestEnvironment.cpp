@@ -15,13 +15,15 @@ TestEnvironment::TestEnvironment()
     m_TestID = ++s_TestID;
     std::cout << "[START:" << std::setw(3)
               << static_cast<unsigned int>(m_TestID) << "]" << std::flush;
+    m_Timer.restart();
 }
 
 TestEnvironment::~TestEnvironment()
 {
+    double Elapsed = m_Timer.elapsed();
     std::cout << " FINISHED ("
               << static_cast<unsigned int>(m_TestID)
-              << ")" << std::endl;
+              << ", " << std::setw(6) << Elapsed*1000000 <<"us)" << std::endl;
 }
 
 } /* namespace Testing */
