@@ -24,7 +24,6 @@ enum ConsoleColor
     YELLOW,
     LAST
 };
-
 class ConsoleStringAttributes {
 private:
     /**
@@ -32,17 +31,25 @@ private:
      *
      * It is responsibility of Console to use the ID appropriately.
      */
-    std::uint8_t m_ColorPairId;
+    std::uint16_t m_ColorPairId;
 
     /**
      * The other attributes.
      *
      * This may be bold, underlined and so on. Stored curses compatible.
      */
-    char m_Attributes;
+    std::uint16_t m_Attributes;
 public:
-    ConsoleStringAttributes();
-    virtual ~ConsoleStringAttributes();
+    inline
+    ConsoleStringAttributes() {};
+    inline virtual
+    ~ConsoleStringAttributes() {};
+
+    /**
+     * Returns a representation that is recognized by curses' attron/off.
+     */
+    std::uint16_t GetCursesRepresentation() const
+    { return m_Attributes | COLOR_PAIR(m_ColorPairId); }
 
     /**
      * Sets the color.
