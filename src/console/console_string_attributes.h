@@ -40,13 +40,15 @@ private:
      */
     std::uint16_t m_Attributes;
 public:
-    ConsoleStringAttributes();
-    virtual ~ConsoleStringAttributes();
+    inline
+    ConsoleStringAttributes() {};
+    inline virtual
+    ~ConsoleStringAttributes() {};
 
     /**
      * Returns a representation that is recognized by curses' attron/off.
      */
-    std::uint8_t GetCursesRepresentation() const
+    std::uint16_t GetCursesRepresentation() const
     { return m_Attributes | COLOR_PAIR(m_ColorPairId); }
 
     /**

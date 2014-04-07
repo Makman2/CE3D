@@ -4,10 +4,6 @@
 
 namespace CE3D {
 
-ConsoleStringAttributes::ConsoleStringAttributes()
-{ }
 
-ConsoleStringAttributes::~ConsoleStringAttributes()
-{ }
 
 } /* namespace CE3D */
