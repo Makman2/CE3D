@@ -5,6 +5,8 @@
 
 #include "util/stdinc.h"
 
+#include "boost/timer.hpp"
+
 namespace CE3D {
 namespace Testing {
 
@@ -22,6 +24,11 @@ private:
      * The ID of the last constructed test.
      */
     static std::uint8_t s_TestID;
+
+    /**
+     * Measures the testing time.
+     */
+    boost::timer m_Timer;
 public:
     TestEnvironment();
     virtual ~TestEnvironment();
