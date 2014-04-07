@@ -44,32 +44,27 @@ BOOST_AUTO_TEST_CASE(TestCustomMatrixConstruction)
 
 BOOST_AUTO_TEST_CASE(TestCustomGetSet)
 {
-    CE3D::Transformation::Custom *TestUnit;
-    TestUnit = new CE3D::Transformation::Custom();
+    CE3D::Transformation::Custom TestUnit;
 
 
     CE3D::Matrix TestMatrix =
         boost::numeric::ublas::identity_matrix<CE3D::ModelDataType>(4,4);
     TestMatrix(2,3) = 4;
-    TestUnit->SetMatrix(TestMatrix);
-    RequireMatrixEquality(TestMatrix, TestUnit->GetMatrix());
-    delete TestUnit;
+    TestUnit.SetMatrix(TestMatrix);
+    RequireMatrixEquality(TestMatrix, TestUnit.GetMatrix());
 }
 
 BOOST_AUTO_TEST_CASE(TestCustomAppend)
 {
-    CE3D::Transformation::Custom *TestUnit;
-    TestUnit = new CE3D::Transformation::Custom();
+    CE3D::Transformation::Custom TestUnit;
 
     CE3D::Matrix TestMatrix =
         boost::numeric::ublas::identity_matrix<CE3D::ModelDataType>(4,4);
 
-    TestUnit->SetMatrix(TestMatrix);
-    TestUnit->AppendTransformation(*TestUnit);
+    TestUnit.SetMatrix(TestMatrix);
+    TestUnit.AppendTransformation(TestUnit);
 
-    RequireMatrixEquality(TestMatrix, TestUnit->GetMatrix());
-
-    delete TestUnit;
+    RequireMatrixEquality(TestMatrix, TestUnit.GetMatrix());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
