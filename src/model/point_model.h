@@ -16,6 +16,9 @@ namespace CE3D
 class PointModel : public Model
 {
 public:
+    ModelType
+    GetModelType() const
+    { return POINT; }
 private:
 };
 

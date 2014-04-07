@@ -16,6 +16,9 @@ namespace CE3D
 class TriangleModel : public Model
 {
 public:
+    ModelType
+    GetModelType() const
+    { return TRIANGLE; }
 private:
 };
 

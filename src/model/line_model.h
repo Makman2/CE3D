@@ -16,6 +16,9 @@ namespace CE3D
 class LineModel : public Model
 {
 public:
+    ModelType
+    GetModelType() const
+    { return LINE; }
 private:
 };
 

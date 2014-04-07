@@ -10,27 +10,27 @@ namespace CE3D
 {
 
 
-    void Model::Transform(Transformation::Transformation const& transformation)
+void Model::Transform(Transformation::Transformation const& transformation)
+{
+    Matrix matrix = transformation.GetMatrix();
+    Vector temp(matrix.size1());
+    for (auto it : GetVectors())
     {
-        Matrix matrix = transformation.GetMatrix();
-        Vector temp(matrix.size1());
-        for (auto it : GetVectors())
-        {
-            boost::numeric::ublas::axpy_prod(matrix, it, temp, true);
-            it = temp;
-        }	
+        boost::numeric::ublas::axpy_prod(matrix, it, temp, true);
+        it = temp;
     }
+}
 
-    void Model::Translate(Transformation::Translation const& translation)
+void Model::Translate(Transformation::Translation const& translation)
+{
+    Vector translationvec = translation.GetTranslation();
+    // It's more performant to directly add the vertices together instead of
+    // calling the Transform() function and creating a matrix for it.
+    for (auto it : GetVectors())
     {
-        Vector translationvec = translation.GetTranslation();
-        // It's more performant to directly add the vertices together instead of
-        // calling the Transform() function and creating a matrix for it.
-        for (auto it : GetVectors())
-        {
-            it += translationvec;
-        }
+        it += translationvec;
     }
+}
 
 void Model::Scale(const ModelDataType factor)
 {

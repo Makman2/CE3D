@@ -46,6 +46,8 @@ std::unique_ptr<World> LinearCamera::Paint() const
 
     UpdateTransformation();
 
+    TransformedWorld->Transform(m_TransformationMatrix);
+
     return std::move(TransformedWorld);
 }
 
