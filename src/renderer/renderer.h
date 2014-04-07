@@ -16,16 +16,16 @@ namespace CE3D
 class Renderer
 {
 public:
-	/**
-	 * Renders the view of the given camera.
-	 *
-	 * @param camera: The camera-view to render.
-	 */
-	virtual void
-	Render(Camera camera) = 0;
+    /**
+     * Renders the view of the given camera.
+     *
+     * @param camera: The view to render.
+     */
+    virtual void
+    Render(Camera const& camera) const = 0;
 
-	virtual
-	~Renderer();
+    virtual
+    ~Renderer() {}
 };
 
 }
