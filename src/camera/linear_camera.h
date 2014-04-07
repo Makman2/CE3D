@@ -21,7 +21,7 @@ private:
     /**
      * A list of transformations applied sequentially on Paint().
      */
-    std::vector<std::shared_ptr<Transformation::Transformation const>>
+    std::vector<std::shared_ptr<Transformation::Transformation const> >
         m_TransformationStack;
 
     /**
@@ -54,6 +54,8 @@ private:
      * Appends new transformation matrices.
      */
     void AppendMatrices() const;
+
+
 public:
     inline
     LinearCamera() {};
