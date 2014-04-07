@@ -1,2 +1,2 @@
 To build the library, just run
-    make CE3D
+  make release
