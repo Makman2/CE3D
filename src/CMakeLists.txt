@@ -65,8 +65,9 @@ target_link_libraries(CE3D
     ${CURSES_LIBRARY}
     )
 
-# TODO condition
+if (TESTS_ENABLED)
 add_subdirectory("test")
+endif (TESTS_ENABLED)
 
 # Documentation
 find_package(Doxygen)

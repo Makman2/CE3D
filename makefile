@@ -9,7 +9,7 @@ CE3D_MAKE_FLAGS		= --no-print-directory -j4
 CE3D_CLEAN_TARGET	= clean
 
 CMAKE := $(shell which cmake)
-CMAKE_DEBUG_FLAGS = -DCMAKE_BUILD_TYPE=Debug
+CMAKE_DEBUG_FLAGS = -DCMAKE_BUILD_TYPE=Debug -DTESTS_ENABLED=true
 CMAKE_RELEASE_FLAGS = -DCMAKE_BUILD_TYPE=Release
 
 ifeq ($(CMAKE),)
