@@ -7,7 +7,7 @@ namespace CE3D
 
 void World::Transform(Transformation::Transformation const& transformation)
 {
-    for (auto it : GetModels())
+    for (auto& it : GetModels())
     {
         it->Transform(transformation);
     }
@@ -15,7 +15,7 @@ void World::Transform(Transformation::Transformation const& transformation)
 
 void World::Translate(Transformation::Translation const& translation)
 {
-    for (auto it : GetModels())
+    for (auto& it : GetModels())
     {
         it->Translate(translation);
     }
@@ -23,7 +23,7 @@ void World::Translate(Transformation::Translation const& translation)
 
 void World::Scale(const ModelDataType factor)
 {
-    for (auto it : GetModels())
+    for (auto& it : GetModels())
     {
         it->Scale(factor);
     }
@@ -32,17 +32,18 @@ void World::Scale(const ModelDataType factor)
 void World::Scale(Transformation::Scale const& scale)
 {
 
-    for (auto it : GetModels())
+    for (auto& it : GetModels())
     {
         it->Scale(scale);
     }
 }
 
-    void World::Rotate(Transformation::Rotation const& rotation)
+void World::Rotate(Transformation::Rotation const& rotation)
+{
+    for (auto& it : GetModels())
     {
-        for (auto it : GetModels())
-        {
-            it->Rotate(rotation);
-        }
+        it->Rotate(rotation);
     }
+}
+
 }
