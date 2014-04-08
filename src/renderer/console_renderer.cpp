@@ -14,18 +14,7 @@ void ConsoleRenderer::Render(const Camera& camera) const
     {
         if (it->IsVisible())
         {
-            switch (it->GetModelType())
-            {
-            case POINT:
-                break;
-            case LINE:
-                break;
-            case TRIANGLE:
-                break;
-            case UNKNOWN:
-            default:
-                break;
-            }
+            break;
         }
     }
 }

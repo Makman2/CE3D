@@ -15,14 +15,6 @@
 namespace CE3D
 {
 
-enum ModelType
-{
-    POINT,
-    LINE,
-    TRIANGLE,
-    UNKNOWN
-};
-
 /**
  * TODO
  */
@@ -33,11 +25,6 @@ private:
     bool m_Visible;
     std::string m_Name;
 public:
-    /**
-     * Returns the modeltype.
-     */
-    virtual ModelType
-    GetModelType() const = 0;
 
     /**
      * Gets the visibility of the model.
