@@ -21,8 +21,17 @@ namespace CE3D
 class Model : public Transformation::ITransformable
 {
 private:
+    /**
+     * All vectors used for this model.
+     */
     boost::container::vector<Vector> m_Vectors;
+    /**
+     * True if the model is visible.
+     */
     bool m_Visible;
+    /**
+     * A not necessarily unique name.
+     */
     std::string m_Name;
 public:
 
