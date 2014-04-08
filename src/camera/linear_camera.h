@@ -16,7 +16,8 @@ namespace CE3D {
 /**
  * This is a camera that applies an arbitrary set of transformations on render.
  */
-class LinearCamera : Camera {
+template <typename t_Material>
+class LinearCamera : Camera<t_Material> {
 private:
     /**
      * A list of transformations applied sequentially on Paint().
@@ -74,5 +75,7 @@ public:
 };
 
 } /* namespace CE3D */
+
+#include "linear_camera_code.h"
 
 #endif /* CE3D_CAMERA_LINEAR_CAMERA_H */

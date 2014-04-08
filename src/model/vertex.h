@@ -5,27 +5,30 @@
 
 #include "util/stdinc.h"
 
+#include <boost/container/vector.hpp>
+
 namespace CE3D
 {
 
 using VertexIndexType = std::uint16_t;
 
-template <std::uint8_t n, typename Material>
+template <typename t_Material>
 class Vertex
 {
 private:
     /**
      * Contains the material information.
      */
-    Material m_Property;
+    t_Material m_Property;
 
     /**
-     * Contains the vectors that represent the edges of the polygon.
+     * Contains the indexes of the vectors that represent the edges of the
+     * polygon.
      */
-    VertexIndexType m_Vectors[n];
+    boost::container::vector<VertexIndexType> m_Vectors;
 public:
     inline void
-    SetMaterial(Material const& Input)
+    SetMaterial(t_Material const& Input)
     { m_Property = Input; }
 };
 

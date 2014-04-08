@@ -5,9 +5,11 @@
 
 #include "renderer/renderer.h"
 
+#include "renderer/console_material.h"
+
 namespace CE3D {
 
-class ConsoleRenderer: public Renderer {
+class ConsoleRenderer: public Renderer<ConsoleMaterial> {
 public:
     inline
     ConsoleRenderer() {}
@@ -15,7 +17,7 @@ public:
     ~ConsoleRenderer() {}
 
     virtual void
-    Render(Camera const& camera) const override;
+    Render(Camera<ConsoleMaterial> const& camera) const override;
 };
 
 } /* namespace CE3D */

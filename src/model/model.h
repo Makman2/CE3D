@@ -18,6 +18,7 @@ namespace CE3D
 /**
  * TODO
  */
+template <typename Material>
 class Model : public Transformation::ITransformable
 {
 private:
@@ -25,6 +26,7 @@ private:
      * All vectors used for this model.
      */
     boost::container::vector<Vector> m_Vectors;
+    boost::container::vector<Vertex<Material> > m_Vertices;
     /**
      * True if the model is visible.
      */
@@ -101,5 +103,7 @@ public:
 };
 
 }
+
+#include "model/model_code.h"
 
 #endif /* CE3D_MODEL_MODEL_H */

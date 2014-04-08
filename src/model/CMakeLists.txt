@@ -1,5 +1,5 @@
 list(APPEND SRC
-    ${CMAKE_CURRENT_LIST_DIR}/model
     ${CMAKE_CURRENT_LIST_DIR}/vertex
+    ${CMAKE_CURRENT_LIST_DIR}/model
     )
 set(SRC "${SRC}" PARENT_SCOPE)

@@ -6,9 +6,9 @@
 
 namespace CE3D {
 
-void ConsoleRenderer::Render(const Camera& camera) const
+void ConsoleRenderer::Render(const Camera<ConsoleMaterial>& camera) const
 {
-    std::unique_ptr<World> World(camera.Paint());
+    std::unique_ptr<World<ConsoleMaterial> > World(camera.Paint());
 
     for (auto& it : World->GetModels())
     {

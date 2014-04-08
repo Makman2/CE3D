@@ -1,5 +1,8 @@
 // This file is part of CE3D. License: GPL3
 
+#ifndef CE3D_MODEL_MODEL_CODE_H
+#define CE3D_MODEL_MODEL_CODE_H
+
 #include "model/model.h"
 
 #include <boost/numeric/ublas/operation_blocked.hpp>
@@ -9,8 +12,8 @@
 namespace CE3D
 {
 
-
-void Model::Transform(Transformation::Transformation const& transformation)
+template <typename t_Material>
+void Model<t_Material>::Transform(Transformation::Transformation const& transformation)
 {
     Matrix matrix = transformation.GetMatrix();
     Vector temp(matrix.size1());
@@ -21,7 +24,8 @@ void Model::Transform(Transformation::Transformation const& transformation)
     }
 }
 
-void Model::Translate(Transformation::Translation const& translation)
+template <typename t_Material>
+void Model<t_Material>::Translate(Transformation::Translation const& translation)
 {
     Vector translationvec = translation.GetTranslation();
     // It's more performant to directly add the vertices together instead of
@@ -32,7 +36,8 @@ void Model::Translate(Transformation::Translation const& translation)
     }
 }
 
-void Model::Scale(const ModelDataType factor)
+template <typename t_Material>
+void Model<t_Material>::Scale(const ModelDataType factor)
 {
     // And again it's more performant not to use matrices.
     for (auto it : GetVectors())
@@ -41,8 +46,8 @@ void Model::Scale(const ModelDataType factor)
     }
 }
 
-
-void Model::Scale(Transformation::Scale const& scale)
+template <typename t_Material>
+void Model<t_Material>::Scale(Transformation::Scale const& scale)
 {
     Vector scalevec = scale.GetScale();
     for (auto it : GetVectors())
@@ -51,9 +56,12 @@ void Model::Scale(Transformation::Scale const& scale)
     }
 }
 
-void Model::Rotate(Transformation::Rotation const& rotation)
+template <typename t_Material>
+void Model<t_Material>::Rotate(Transformation::Rotation const& rotation)
 {
     this->Transform(rotation);
 }
 
 }
+
+#endif /* CE3D_MODEL_MODEL_CODE_H */
