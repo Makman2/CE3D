@@ -12,17 +12,20 @@ void ConsoleRenderer::Render(const Camera& camera) const
 
     for (auto& it : World->GetModels())
     {
-        switch (it->GetModelType())
+        if (it->IsVisible())
         {
-        case POINT:
-            break;
-        case LINE:
-            break;
-        case TRIANGLE:
-            break;
-        case UNKNOWN:
-        default:
-            break;
+            switch (it->GetModelType())
+            {
+            case POINT:
+                break;
+            case LINE:
+                break;
+            case TRIANGLE:
+                break;
+            case UNKNOWN:
+            default:
+                break;
+            }
         }
     }
 }
