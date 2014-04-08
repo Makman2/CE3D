@@ -10,6 +10,7 @@
 
 #include "util/CE3D_vector.h"
 #include "transformation/itransformable.h"
+#include "model/vertex.h"
 
 namespace CE3D
 {
