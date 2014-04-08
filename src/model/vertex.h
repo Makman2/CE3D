@@ -27,6 +27,11 @@ private:
      */
     boost::container::vector<VertexIndexType> m_Vectors;
 public:
+    /**
+     * Sets the material.
+     *
+     * @param Input Your material information.
+     */
     inline void
     SetMaterial(t_Material const& Input)
     { m_Property = Input; }
