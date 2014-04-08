@@ -1,6 +1,6 @@
 // This file is part of CE3D. License: GPL3
 
-#include "model.h"
+#include "model/model.h"
 
 #include <boost/numeric/ublas/operation_blocked.hpp>
 #include <boost/numeric/ublas/operation.hpp>
