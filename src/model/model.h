@@ -10,33 +10,32 @@
 
 #include "util/CE3D_vector.h"
 #include "transformation/itransformable.h"
+#include "model/vertex.h"
 
 namespace CE3D
 {
 
-enum ModelType
-{
-    POINT,
-    LINE,
-    TRIANGLE,
-    UNKNOWN
-};
-
 /**
  * TODO
  */
+template <typename t_Material>
 class Model : public Transformation::ITransformable
 {
 private:
+    /**
+     * All vectors used for this model.
+     */
     boost::container::vector<Vector> m_Vectors;
+    boost::container::vector<Vertex<t_Material> > m_Vertices;
+    /**
+     * True if the model is visible.
+     */
     bool m_Visible;
+    /**
+     * A not necessarily unique name.
+     */
     std::string m_Name;
 public:
-    /**
-     * Returns the modeltype.
-     */
-    virtual ModelType
-    GetModelType() const = 0;
 
     /**
      * Gets the visibility of the model.
@@ -104,5 +103,7 @@ public:
 };
 
 }
+
+#include "model/model_code.h"
 
 #endif /* CE3D_MODEL_MODEL_H */
