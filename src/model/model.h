@@ -100,6 +100,10 @@ public:
     GetVectors() const
     { return m_Vectors; }
 
+    inline boost::container::vector<Vertex<t_Material> >&
+    GetVertices()
+    { return m_Vertices; }
+
 };
 
 }

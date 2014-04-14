@@ -10,6 +10,9 @@
 namespace CE3D {
 
 class ConsoleRenderer: public Renderer<ConsoleMaterial> {
+private:
+    void
+    RenderModel(Model<ConsoleMaterial> Mod) const;
 public:
     inline
     ConsoleRenderer() {}

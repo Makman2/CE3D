@@ -2,6 +2,8 @@
 
 #include "renderer/console_renderer.h"
 
+#include <stdexcept>
+
 #include "world/world.h"
 
 namespace CE3D {
@@ -14,7 +16,24 @@ void ConsoleRenderer::Render(const Camera<ConsoleMaterial>& camera) const
     {
         if (it->IsVisible())
         {
-            break;
+            RenderModel(*it);
+        }
+    }
+}
+
+
+void ConsoleRenderer::RenderModel(Model<ConsoleMaterial> Mod) const
+{
+    for (auto& Vertex : Mod.GetVertices())
+    {
+        auto& Vectors = Vertex.GetVectors();
+        switch (Vectors.size())
+        {
+        case 1:
+        case 2:
+        case 3:
+        default:
+            throw std::length_error("Unsupported vector count.");
         }
     }
 }

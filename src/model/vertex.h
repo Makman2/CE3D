@@ -10,7 +10,7 @@
 namespace CE3D
 {
 
-using VertexIndexType = std::uint16_t;
+using VertexIndexType = std::uint32_t;
 
 template <typename t_Material>
 class Vertex
@@ -35,6 +35,10 @@ public:
     inline void
     SetMaterial(t_Material const& Input)
     { m_Property = Input; }
+
+    inline boost::container::vector<VertexIndexType>&
+    GetVectors()
+    { return m_Vectors; }
 };
 
 }
