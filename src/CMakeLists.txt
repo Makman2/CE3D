@@ -12,6 +12,10 @@ set(CE3D_VERSION_MAJOR 0)
 set(CE3D_VERSION_MINOR 0)
 set(CE3D_VERSION_MICRO 1)
 
+if ( WIN32 )
+  set( Boost_USE_STATIC_LIBS ON )
+endif()
+
 find_package(Boost COMPONENTS unit_test_framework thread system REQUIRED)
 find_package(Curses REQUIRED)
 
@@ -70,8 +74,9 @@ target_link_libraries(CE3D
 
 cotire(CE3D)
 
-# TODO condition
+if (TESTS_ENABLED)
 add_subdirectory("test")
+endif (TESTS_ENABLED)
 
 # Documentation
 find_package(Doxygen)

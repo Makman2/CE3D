@@ -123,4 +123,28 @@ void Console::InitColorPairs()
     }
 }
 
+void Console::WriteChar(ConsoleStringAttributes const attr,
+                        char const character)
+{
+    attroff(m_CurrentAttributes.GetCursesRepresentation());
+    attron(attr.GetCursesRepresentation());
+
+    addch(character);
+
+    attroff(attr.GetCursesRepresentation());
+    attron(m_CurrentAttributes.GetCursesRepresentation());
+}
+
+void Console::WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
+               ConsoleStringAttributes const attr, char const character)
+{
+    attroff(m_CurrentAttributes.GetCursesRepresentation());
+    attron(attr.GetCursesRepresentation());
+
+    mvaddch(y, x, character);
+
+    attroff(attr.GetCursesRepresentation());
+    attron(m_CurrentAttributes.GetCursesRepresentation());
+}
+
 }

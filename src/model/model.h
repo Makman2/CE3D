@@ -10,6 +10,7 @@
 
 #include "util/CE3D_vector.h"
 #include "transformation/itransformable.h"
+#include "model/vertex.h"
 
 namespace CE3D
 {
@@ -17,15 +18,25 @@ namespace CE3D
 /**
  * TODO
  */
+template <typename t_Material>
 class Model : public Transformation::ITransformable
 {
 private:
+    /**
+     * All vectors used for this model.
+     */
     boost::container::vector<Vector> m_Vectors;
+    boost::container::vector<Vertex<t_Material> > m_Vertices;
+    /**
+     * True if the model is visible.
+     */
     bool m_Visible;
+    /**
+     * A not necessarily unique name.
+     */
     std::string m_Name;
-
-
 public:
+
     /**
      * Gets the visibility of the model.
      *
@@ -89,8 +100,14 @@ public:
     GetVectors() const
     { return m_Vectors; }
 
+    inline boost::container::vector<Vertex<t_Material> >&
+    GetVertices()
+    { return m_Vertices; }
+
 };
 
 }
+
+#include "model/model_code.h"
 
 #endif /* CE3D_MODEL_MODEL_H */

@@ -114,7 +114,7 @@ public:
     { s_Callback = Callback; }
 
     /**
-     * Sets the current color.
+     * Sets the current attributes.
      *
      * If you write characters without specifying a color, this color will be
      * taken.
@@ -122,7 +122,7 @@ public:
      * @param attr The attributes.
      */
     inline void
-    SetColor(ConsoleStringAttributes const attr)
+    SetAttributes(ConsoleStringAttributes const attr)
     { m_CurrentAttributes = attr; }
 
     /**
@@ -277,5 +277,7 @@ public:
 };
 
 }
+
+#include "console/console_code.h"
 
 #endif /* CE3D_CONSOLE_CONSOLE_H */

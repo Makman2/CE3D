@@ -14,13 +14,14 @@ namespace CE3D
  * A camera is defined through position, direction and the world it's looking
  * at.
  */
+template <typename t_Material>
 class Camera
 {
 protected:
     /**
      * Holds the world where the camera lives.
      */
-    std::shared_ptr<World const> m_World;
+    std::shared_ptr<World<t_Material> const> m_World;
 public:
     /**
      * Paints the world onto a surface world.
@@ -34,7 +35,7 @@ public:
      *
      * @return The projection-transformed world.
      */
-    virtual std::unique_ptr<World>
+    virtual std::unique_ptr<World<t_Material> >
     Paint() const = 0;
 
     virtual
@@ -45,7 +46,7 @@ public:
      *
      * @return A shared ptr to the world.
      */
-    inline std::shared_ptr<World const>
+    inline std::shared_ptr<World<t_Material>  const>
     GetWorld() const
     { return m_World; }
 
@@ -55,7 +56,7 @@ public:
      * @param copy The world.
      */
     inline void
-    SetWorld(std::shared_ptr<World const> const copy)
+    SetWorld(std::shared_ptr<World<t_Material> const> const copy)
     { m_World = copy; }
 };
 

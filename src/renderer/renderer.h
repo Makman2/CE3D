@@ -13,19 +13,20 @@ namespace CE3D
 /**
  * Represents a renderer that can render the view of a camera.
  */
+template <typename t_Material>
 class Renderer
 {
 public:
-	/**
-	 * Renders the view of the given camera.
-	 *
-	 * @param camera: The camera-view to render.
-	 */
-	virtual void
-	Render(Camera camera) = 0;
+    /**
+     * Renders the view of the given camera.
+     *
+     * @param camera: The view to render.
+     */
+    virtual void
+    Render(Camera<t_Material> const& camera) const = 0;
 
-	virtual
-	~Renderer();
+    virtual
+    ~Renderer() {}
 };
 
 }

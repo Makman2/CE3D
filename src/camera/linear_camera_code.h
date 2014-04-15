@@ -1,17 +1,22 @@
 // This file is part of CE3D. License: GPL3
 
+#ifndef CE3D_CAMERA_LINEAR_CAMERA_CODE_H
+#define CE3D_CAMERA_LINEAR_CAMERA_CODE_H
+
 #include "camera/linear_camera.h"
 
 namespace CE3D {
 
-void LinearCamera::RecalculateMatrix() const
+template <typename t_Material>
+void LinearCamera<t_Material>::RecalculateMatrix() const
 {
     m_AppendedTransformations = m_TransformationStack.size()-1;
     m_TransformationMatrix.SetMatrix(m_TransformationStack[0]->GetMatrix());
     AppendMatrices();
 }
 
-void LinearCamera::AppendMatrices() const
+template <typename t_Material>
+void LinearCamera<t_Material>::AppendMatrices() const
 {
     for (std::uint8_t it = m_TransformationStack.size()
                          - m_AppendedTransformations;
@@ -22,7 +27,8 @@ void LinearCamera::AppendMatrices() const
     }
 }
 
-void LinearCamera::UpdateTransformation() const
+template <typename t_Material>
+void LinearCamera<t_Material>::UpdateTransformation() const
 {
     if (m_NeededUpdates > 0)
     {
@@ -40,13 +46,18 @@ void LinearCamera::UpdateTransformation() const
     }
 }
 
-std::unique_ptr<World> LinearCamera::Paint() const
+template <typename t_Material>
+std::unique_ptr<World<t_Material> > LinearCamera<t_Material>::Paint() const
 {
-    std::unique_ptr<World> TransformedWorld(new World());
+    std::unique_ptr<World<t_Material> > TransformedWorld(new World());
 
     UpdateTransformation();
+
+    TransformedWorld->Transform(m_TransformationMatrix);
 
     return std::move(TransformedWorld);
 }
 
 } /* namespace CE3D */
+
+#endif /* CE3D_CAMERA_LINEAR_CAMERA_CODE_H */

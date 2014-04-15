@@ -16,12 +16,13 @@ namespace CE3D {
 /**
  * This is a camera that applies an arbitrary set of transformations on render.
  */
-class LinearCamera : Camera {
+template <typename t_Material>
+class LinearCamera : Camera<t_Material> {
 private:
     /**
      * A list of transformations applied sequentially on Paint().
      */
-    std::vector<std::shared_ptr<Transformation::Transformation const>>
+    std::vector<std::shared_ptr<Transformation::Transformation const> >
         m_TransformationStack;
 
     /**
@@ -54,6 +55,8 @@ private:
      * Appends new transformation matrices.
      */
     void AppendMatrices() const;
+
+
 public:
     inline
     LinearCamera() {};
@@ -72,5 +75,7 @@ public:
 };
 
 } /* namespace CE3D */
+
+#include "linear_camera_code.h"
 
 #endif /* CE3D_CAMERA_LINEAR_CAMERA_H */
