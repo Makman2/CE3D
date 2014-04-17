@@ -5,7 +5,7 @@
 
 #include "renderer/renderer.h"
 
-#include "renderer/console_material.h"
+#include "renderer/console/console_material.h"
 
 namespace CE3D {
 

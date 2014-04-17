@@ -3,9 +3,13 @@
 #ifndef CE3D_RENDERER_CONSOLE_MATERIAL_H
 #define CE3D_RENDERER_CONSOLE_MATERIAL_H
 
+#include "console/console_string_attributes.h"
+
 namespace CE3D {
 
 class ConsoleMaterial {
+private:
+    ConsoleColor m_Color;
 public:
     inline
     ConsoleMaterial() {}
