@@ -20,6 +20,8 @@ using ConsoleIdxType = std::uint8_t;
 
 /**
  * This is basically a curses wrapper for C++.
+ *
+ * It aims to be easy to use and thread safe.
  */
 class Console
 {
@@ -78,6 +80,12 @@ private:
      * We have to kill it since getch is a blocking invocation.
      */
     static boost::signals2::mutex s_KbThreadMutex;
+
+    /**
+     * This mutex is to ensure that not more than one instance is created out
+     * of multiple threads.
+     */
+    static boost::signals2::mutex s_CreationMutex;
 
     /**
      * If this is set to true, it's a signal to the keyboard thread to

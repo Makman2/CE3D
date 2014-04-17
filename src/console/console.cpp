@@ -10,6 +10,7 @@ namespace CE3D
 Console*                   Console::s_Instance = nullptr;
 std::shared_ptr<Functor<>> Console::s_Callback(nullptr);
 boost::signals2::mutex     Console::s_KbThreadMutex;
+boost::signals2::mutex     Console::s_CreationMutex;
 bool                       Console::s_ThreadTerminator;
 
 void Console::KeyboardThread()
@@ -83,20 +84,24 @@ Console::~Console()
 
 Console* Console::GetInstance()
 {
+    s_CreationMutex.lock();
     if (s_Instance == nullptr)
     {
         s_Instance = new Console();
     }
+    s_CreationMutex.unlock();
     return s_Instance;
 }
 
 void Console::DeleteInstance()
 {
+    s_CreationMutex.lock();
     if (s_Instance != nullptr)
     {
         delete s_Instance;
         s_Instance = nullptr;
     }
+    s_CreationMutex.unlock();
 }
 
 void Console::Flush() const
