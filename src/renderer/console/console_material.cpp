@@ -5,4 +5,8 @@
 namespace CE3D
 {
 
+ConsoleMaterial::ConsoleMaterial()
+: m_Color(ConsoleColor::BLACK)
+{}
+
 } /* namespace CE3D */

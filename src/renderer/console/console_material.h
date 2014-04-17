@@ -11,8 +11,7 @@ class ConsoleMaterial {
 private:
     ConsoleColor m_Color;
 public:
-    inline
-    ConsoleMaterial() {}
+    ConsoleMaterial();
     inline virtual
     ~ConsoleMaterial() {}
 };
