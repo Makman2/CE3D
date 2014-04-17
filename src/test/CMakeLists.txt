@@ -28,3 +28,5 @@ target_link_libraries(TestEnvironment
 add_subdirectory("transformation")
 add_subdirectory("console")
 add_subdirectory("util")
+add_subdirectory("model")
+add_subdirectory("renderer")
