@@ -79,8 +79,19 @@ private:
     /**
      * This mutex is to ensure that not more than one instance is created out
      * of multiple threads.
+     *
+     * @attention When locking draw mutex and creation mutex, the creation
+     * mutex must be locked first in every case to avoid infinite waiting.
      */
     static boost::signals2::mutex s_CreationMutex;
+    /**
+     * Ensure that only one instance writes at a time since curses is not
+     * necessarily threadsafe.
+     *
+     * @attention When locking draw mutex and creation mutex, the creation
+     * mutex must be locked first in every case to avoid infinite waiting.
+     */
+    static boost::signals2::mutex s_DrawMutex;
     /**
      * If this is set to true, it's a signal to the keyboard thread to
      * terminate peacefully.
@@ -122,9 +133,8 @@ public:
      *
      * @param attr The attributes.
      */
-    inline void
-    SetAttributes(ConsoleStringAttributes const attr)
-    { m_CurrentAttributes = attr; }
+    void
+    SetAttributes(ConsoleStringAttributes const attr);
 
     /**
      * Determines if the console supports colorized output.
@@ -141,18 +151,16 @@ public:
      * If you write characters without specifying a position, this position
      * will be taken and incremented.
      */
-    inline void
-    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y)
-    { move(y, x); }
+    void
+    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y);
 
     /**
      * Writes a character to the console.
      *
      * @param character The character.
      */
-    inline void
-    WriteChar(char const character)
-    { addch(character); }
+    void
+    WriteChar(char const character);
 
     /**
      * Writes a character to the console.
@@ -170,10 +178,9 @@ public:
      * @param y The column
      * @param character The character
      */
-    inline void
+    void
     WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
-              char const character)
-    { mvaddch(y, x, character); }
+              char const character);
 
     /**
      * Writes a character to the console.
@@ -196,9 +203,8 @@ public:
      * @param Args the arguments for the format string
      */
     template<typename... Types>
-    inline void
-    WriteString(std::string const str, Types... Args)
-    { printw(str.c_str(), Args...); }
+    void
+    WriteString(std::string const str, Types... Args);
 
     /**
      * Writes a string to the current position with the given attributes.
@@ -225,10 +231,9 @@ public:
      * @param Args the arguments for the format string
      */
     template<typename... Types>
-    inline void
+    void
     WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
-                std::string const str, Types... Args)
-    { mvprintw(y, x, str.c_str(), Args...); }
+                std::string const str, Types... Args);
 
     /**
      * Writes a string to the current position with the given attributes.

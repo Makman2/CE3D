@@ -11,10 +11,13 @@ Console*                   Console::s_Instance = nullptr;
 std::shared_ptr<Functor<>> Console::s_Callback(nullptr);
 boost::signals2::mutex     Console::s_KbThreadMutex;
 boost::signals2::mutex     Console::s_CreationMutex;
+boost::signals2::mutex     Console::s_DrawMutex;
 bool                       Console::s_ThreadTerminator;
 
 void Console::KeyboardThread()
 {
+    // ATTENTION: dont dare to lock another mutex here since they may lock out
+    // each other!
     char c;
 
     halfdelay(1);
@@ -80,6 +83,7 @@ Console::~Console()
     m_KeyboardThread->join();
     delete m_KeyboardThread;
     endwin();
+
 }
 
 Console* Console::GetInstance()
@@ -96,11 +100,13 @@ Console* Console::GetInstance()
 void Console::DeleteInstance()
 {
     s_CreationMutex.lock();
+    s_DrawMutex.try_lock();
     if (s_Instance != nullptr)
     {
         delete s_Instance;
         s_Instance = nullptr;
     }
+    s_DrawMutex.unlock();
     s_CreationMutex.unlock();
 }
 
@@ -116,6 +122,7 @@ void Console::Clear() const
 
 void Console::InitColorPairs()
 {
+    s_DrawMutex.lock();
     for (std::uint8_t i = 0; i < ConsoleColor::LAST; ++i)
     {
         for (std::uint8_t j = 0; j< ConsoleColor::LAST; ++j)
@@ -126,11 +133,13 @@ void Console::InitColorPairs()
                       i, j);
         }
     }
+    s_DrawMutex.unlock();
 }
 
 void Console::WriteChar(ConsoleStringAttributes const attr,
                         char const character)
 {
+    s_DrawMutex.lock();
     attroff(m_CurrentAttributes.GetCursesRepresentation());
     attron(attr.GetCursesRepresentation());
 
@@ -138,11 +147,13 @@ void Console::WriteChar(ConsoleStringAttributes const attr,
 
     attroff(attr.GetCursesRepresentation());
     attron(m_CurrentAttributes.GetCursesRepresentation());
+    s_DrawMutex.unlock();
 }
 
 void Console::WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
                ConsoleStringAttributes const attr, char const character)
 {
+    s_DrawMutex.lock();
     attroff(m_CurrentAttributes.GetCursesRepresentation());
     attron(attr.GetCursesRepresentation());
 
@@ -150,6 +161,36 @@ void Console::WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
 
     attroff(attr.GetCursesRepresentation());
     attron(m_CurrentAttributes.GetCursesRepresentation());
+    s_DrawMutex.unlock();
+}
+
+void Console::WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
+                        char const character)
+{
+    s_DrawMutex.lock();
+    mvaddch(y, x, character);
+    s_DrawMutex.unlock();
+}
+
+void Console::WriteChar(char const character)
+{
+    s_DrawMutex.lock();
+    addch(character);
+    s_DrawMutex.unlock();
+}
+
+void Console::SetPosition(ConsoleIdxType const x, ConsoleIdxType const y)
+{
+    s_DrawMutex.lock();
+    move(y, x);
+    s_DrawMutex.unlock();
+}
+
+void Console::SetAttributes(ConsoleStringAttributes const attr)
+{
+    s_DrawMutex.lock();
+    m_CurrentAttributes = attr;
+    s_DrawMutex.unlock();
 }
 
 }

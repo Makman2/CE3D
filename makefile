@@ -5,7 +5,7 @@
 CE3D_DEBUG_BUILD_DIR	= build/CE3D_debug
 CE3D_RELEASE_BUILD_DIR	= build/CE3D_release
 CE3D_SRC_FROM_BUILD	= ../../src
-CE3D_MAKE_FLAGS		= --no-print-directory -j4
+CE3D_MAKE_FLAGS		= --no-print-directory -j8
 CE3D_CLEAN_TARGET	= clean
 
 CMAKE := $(shell which cmake)
