@@ -36,7 +36,6 @@ private:
      * The one and only instance of Console.
      */
     static Console* s_Instance;
-
     /**
      * Holds the height of the console.
      */
@@ -54,7 +53,6 @@ private:
      * argument.
      */
     ConsoleStringAttributes m_CurrentAttributes;
-
     /**
      * The thread object.
      */
@@ -67,12 +65,10 @@ private:
      * This function has to be static to be executed as a thread.
      */
     static void KeyboardThread();
-
     /**
      * The callback function which is called if a keyboard event occurs.
      */
     static std::shared_ptr<Functor<>> s_Callback;
-
     /**
      * If the thread holds the lock of this mutex, it's doing something
      * important; if not we can kill it.
@@ -80,13 +76,11 @@ private:
      * We have to kill it since getch is a blocking invocation.
      */
     static boost::signals2::mutex s_KbThreadMutex;
-
     /**
      * This mutex is to ensure that not more than one instance is created out
      * of multiple threads.
      */
     static boost::signals2::mutex s_CreationMutex;
-
     /**
      * If this is set to true, it's a signal to the keyboard thread to
      * terminate peacefully.
@@ -97,7 +91,6 @@ private:
      * True if terminal supports colors.
      */
     bool m_HasColors;
-
     /**
      * Initializes all
      */
