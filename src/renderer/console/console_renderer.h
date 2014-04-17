@@ -3,6 +3,8 @@
 #ifndef CE3D_RENDERER_CONSOLE_CONSOLE_RENDERER_H
 #define CE3D_RENDERER_CONSOLE_CONSOLE_RENDERER_H
 
+#include "util/stdinc.h"
+
 #include "renderer/renderer.h"
 
 #include "renderer/console/console_material.h"

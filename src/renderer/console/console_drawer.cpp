@@ -4,4 +4,7 @@
 
 namespace CE3D {
 
+ConsoleDrawer::ConsoleDrawer()
+{}
+
 } /* namespace CE3D */
