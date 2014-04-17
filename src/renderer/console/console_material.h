@@ -9,9 +9,21 @@ namespace CE3D {
 
 class ConsoleMaterial {
 private:
+    /**
+     * The color of this material.
+     */
     ConsoleColor m_Color;
 public:
+    /**
+     * Initializes a black material.
+     */
     ConsoleMaterial();
+    /**
+     * Custom constructor.
+     *
+     * @param InitialColor The color for the material.
+     */
+    ConsoleMaterial(ConsoleColor InitialColor);
     inline virtual
     ~ConsoleMaterial() {}
 };

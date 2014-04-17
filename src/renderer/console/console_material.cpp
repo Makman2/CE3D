@@ -9,4 +9,8 @@ ConsoleMaterial::ConsoleMaterial()
 : m_Color(ConsoleColor::BLACK)
 {}
 
+ConsoleMaterial::ConsoleMaterial(ConsoleColor InitialColor)
+: m_Color(InitialColor)
+{}
+
 } /* namespace CE3D */
