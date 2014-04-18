@@ -14,12 +14,11 @@ namespace CE3D {
 
 class ConsoleRenderer: public Renderer<ConsoleMaterial> {
 private:
-    ConsoleDrawer m_Drawer;
     /**
-     * Renders a whole model to the console.
-     *
-     * @param Mod The model to render.
+     * Helper to draw the things to the real console.
      */
+    ConsoleDrawer m_Drawer;
+    // Inherited documentation comment
     void
     RenderModel(Model<ConsoleMaterial> Mod) const override;
 public:

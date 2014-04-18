@@ -17,6 +17,11 @@ template <typename t_Material>
 class Renderer
 {
 private:
+    /**
+     * Renders a whole model to the console.
+     *
+     * @param Mod The model to render.
+     */
     virtual void
     RenderModel(Model<t_Material> Mod) const = 0;
 public:
