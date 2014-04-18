@@ -14,9 +14,13 @@ void Renderer<t_Material>::Render(const Camera<t_Material>& camera) const
 
     for (auto& it : World->GetModels())
     {
-        if (it->IsVisible())
+        if (!it->IsVisible())
         {
-            RenderModel(*it);
+            continue;
+        }
+        for (auto& Vertex : it->GetVertices())
+        {
+            RenderVertex(Vertex, *it);
         }
     }
 }

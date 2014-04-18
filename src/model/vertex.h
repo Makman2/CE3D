@@ -36,8 +36,12 @@ public:
     SetMaterial(t_Material const& Input)
     { m_Property = Input; }
 
-    inline boost::container::vector<VertexIndexType>&
-    GetVectors()
+    inline t_Material
+    GetMaterial() const
+    { return m_Property; }
+
+    inline boost::container::vector<VertexIndexType> const&
+    GetVectors() const
     { return m_Vectors; }
 };
 

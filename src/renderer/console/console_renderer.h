@@ -20,7 +20,8 @@ private:
     ConsoleDrawer m_Drawer;
     // Inherited documentation comment
     void
-    RenderModel(Model<ConsoleMaterial> Mod) const override;
+    RenderVertex(Vertex<ConsoleMaterial> const& Vert,
+                 Model<ConsoleMaterial> const& Mod) const override;
 public:
     inline
     ConsoleRenderer() {}

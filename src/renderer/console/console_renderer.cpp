@@ -8,19 +8,19 @@
 
 namespace CE3D {
 
-void ConsoleRenderer::RenderModel(Model<ConsoleMaterial> Mod) const
+void ConsoleRenderer::RenderVertex(Vertex<ConsoleMaterial> const& Vert,
+           __attribute__((unused)) Model<ConsoleMaterial> const& Mod) const
 {
-    for (auto& Vertex : Mod.GetVertices())
+
+    auto& Vectors = Vert.GetVectors();
+
+    switch (Vectors.size())
     {
-        auto& Vectors = Vertex.GetVectors();
-        switch (Vectors.size())
-        {
-        case 1:
-        case 2:
-        case 3:
-        default:
-            throw std::length_error("Unsupported vector count.");
-        }
+    case 1:
+    case 2:
+    case 3:
+    default:
+        throw std::length_error("Unsupported vector count.");
     }
 }
 

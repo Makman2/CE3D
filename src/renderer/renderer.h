@@ -18,12 +18,14 @@ class Renderer
 {
 private:
     /**
-     * Renders a whole model to the console.
+     * Renders a vertex to the console.
      *
-     * @param Mod The model to render.
+     * @param Vert The vertex to render.
+     * @param Mod The model containing the vertex.
      */
     virtual void
-    RenderModel(Model<t_Material> Mod) const = 0;
+    RenderVertex(Vertex<t_Material> const& Vert,
+                 Model<t_Material>  const& Mod) const = 0;
 public:
     /**
      * Renders the view of the given camera.
