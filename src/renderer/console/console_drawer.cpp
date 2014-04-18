@@ -8,4 +8,9 @@ ConsoleDrawer::ConsoleDrawer()
 : m_Console()
 { }
 
+void ConsoleDrawer::DrawPoint(__attribute__((unused))Vector const& Point) const
+{
+    // UNIMPLEMENTED - for now!
+}
+
 } /* namespace CE3D */

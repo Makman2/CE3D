@@ -12,13 +12,18 @@ void ConsoleRenderer::RenderVertex(Vertex<ConsoleMaterial> const& Vert,
            __attribute__((unused)) Model<ConsoleMaterial> const& Mod) const
 {
 
-    auto& Vectors = Vert.GetVectors();
+    auto& VectorIndices = Vert.GetVectors();
+    auto& Vectors = Mod.GetVectors();
 
-    switch (Vectors.size())
+    switch (VectorIndices.size())
     {
     case 1:
+        m_Drawer.DrawPoint(Vectors[VectorIndices[0]]);
+        break;
     case 2:
+        break;
     case 3:
+        break;
     default:
         throw std::length_error("Unsupported vector count.");
     }

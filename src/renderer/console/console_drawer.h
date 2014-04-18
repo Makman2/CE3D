@@ -30,7 +30,7 @@ public:
      *
      * @param Point The point
      */
-    void DrawPoint(Vector const& Point);
+    void DrawPoint(Vector const& Point) const;
 };
 
 } /* namespace CE3D */
