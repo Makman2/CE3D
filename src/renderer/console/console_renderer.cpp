@@ -18,7 +18,7 @@ void ConsoleRenderer::RenderVertex(Vertex<ConsoleMaterial> const& Vert,
     switch (VectorIndices.size())
     {
     case 1:
-        m_Drawer.DrawPoint(Vectors[VectorIndices[0]]);
+        m_Drawer.DrawPoint(Vectors[VectorIndices[0]], Vert.GetMaterial());
         break;
     case 2:
         break;

@@ -6,6 +6,7 @@
 #include "util/stdinc.h"
 
 #include "console/console.h"
+#include "renderer/console/console_material.h"
 #include "util/CE3D_vector.h"
 
 namespace CE3D {
@@ -18,6 +19,8 @@ class ConsoleDrawer
 {
 private:
     Console m_Console;
+    ConsoleIdxType m_Width;
+    ConsoleIdxType m_Height;
 public:
     /**
      * Default constructor.
@@ -30,7 +33,7 @@ public:
      *
      * @param Point The point
      */
-    void DrawPoint(Vector const& Point) const;
+    void DrawPoint(Vector const& Point, ConsoleMaterial const& Material) const;
 };
 
 } /* namespace CE3D */
