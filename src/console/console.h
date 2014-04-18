@@ -10,7 +10,6 @@
 #include <boost/thread.hpp>
 #include <boost/signals2/mutex.hpp>
 
-#include "util/functor.h"
 #include "console/console_string_attributes.h"
 
 namespace CE3D

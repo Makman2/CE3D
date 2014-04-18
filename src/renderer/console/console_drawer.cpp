@@ -5,6 +5,7 @@
 namespace CE3D {
 
 ConsoleDrawer::ConsoleDrawer()
-{}
+: m_Console()
+{ }
 
 } /* namespace CE3D */

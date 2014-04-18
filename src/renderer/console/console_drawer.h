@@ -12,6 +12,7 @@ namespace CE3D {
 class ConsoleDrawer
 {
 private:
+    Console m_Console;
 public:
     /**
      * Default constructor.

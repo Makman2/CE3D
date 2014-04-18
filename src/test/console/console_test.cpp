@@ -9,7 +9,6 @@
 #include "util/stdinc.h"
 
 #include "console/console.h"
-#include "util/functor.h"
 
 namespace CE3D
 {
