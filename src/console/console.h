@@ -22,41 +22,36 @@ using ConsoleIdxType = std::uint8_t;
  * This is basically a curses wrapper for C++.
  *
  * It aims to be easy to use and thread safe.
+ *
+ * Every instance may set its own attributes while the position is global.
  */
 class Console
 {
 private:
-    Console();
-    Console(Console const& rhs);
-
-    virtual
-    ~Console();
-
-    /**
-     * The one and only instance of Console.
-     */
-    static Console* s_Instance;
-    /**
-     * Holds the height of the console.
-     */
-    ConsoleIdxType m_Height;
-    /**
-     * Holds the width of the console.
-     */
-    ConsoleIdxType m_Width;
-    /**
-     * Holds the curses "object".
-     */
-    WINDOW* m_Screen;
     /**
      * Holds the color which is used for drawing without explicit color
      * argument.
+     *
+     * Every instance may hold its own attributes.
      */
     ConsoleStringAttributes m_CurrentAttributes;
+    static std::uint16_t s_InstanceCount;
+    /**
+     * Holds the height of the console.
+     */
+    static ConsoleIdxType s_Height;
+    /**
+     * Holds the width of the console.
+     */
+    static ConsoleIdxType s_Width;
+    /**
+     * Holds the curses "object".
+     */
+    static WINDOW *s_Screen;
     /**
      * The thread object.
      */
-    boost::thread *m_KeyboardThread;
+    static boost::thread *s_KeyboardThread;
 
     /**
      * The keyboard thread function that translates the blocking getch of
@@ -93,37 +88,31 @@ private:
      */
     static boost::signals2::mutex s_DrawMutex;
     /**
+     * Ensure that only one thread at a time sets the callback since write may
+     * be non-atmoic.
+     */
+    static boost::signals2::mutex s_ThreadSetMutex;
+    /**
      * If this is set to true, it's a signal to the keyboard thread to
      * terminate peacefully.
      */
     static bool s_ThreadTerminator;
-
     /**
      * True if terminal supports colors.
      */
-    bool m_HasColors;
+    static bool s_HasColors;
     /**
      * Initializes all
      */
-    void InitColorPairs();
+    static void InitColorPairs();
 public:
-    /**
-     * Returns an instance.
-     *
-     * If there is no instance yet it will be created, a curses session will
-     * be started.
-     */
-    static Console*
-    GetInstance();
+    Console();
 
-    /**
-     * Deletes the instance and returns to normal console mode.
-     */
-    static void
-    DeleteInstance();
+    virtual
+    ~Console();
 
     void SetCallback(std::shared_ptr<Functor<>> const Callback)
-    { s_Callback = Callback; }
+    { s_Callback = Callback; }//TODO mutex
 
     /**
      * Sets the current attributes.
@@ -143,7 +132,7 @@ public:
      */
     inline bool
     HasColors() const
-    { return m_HasColors; }
+    { return s_HasColors; }
 
     /**
      * Sets the current position.
@@ -268,18 +257,18 @@ public:
      * Gets the height of the console.
      * @return The height.
      */
-    inline ConsoleIdxType const&
+    inline ConsoleIdxType
     GetHeight() const
-    { return m_Height; }
+    { return s_Height; }
 
     /**
      * Gets the width of the console.
      *
      * @return The width.
      */
-    inline ConsoleIdxType const&
+    inline ConsoleIdxType
     GetWidth() const
-    { return m_Width; }
+    { return s_Width; }
 };
 
 }
