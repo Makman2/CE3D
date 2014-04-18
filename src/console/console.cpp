@@ -112,12 +112,16 @@ void Console::DeleteInstance()
 
 void Console::Flush() const
 {
+    s_DrawMutex.lock();
     refresh();
+    s_DrawMutex.unlock();
 }
 
 void Console::Clear() const
 {
+    s_DrawMutex.lock();
     clear();
+    s_DrawMutex.unlock();
 }
 
 void Console::InitColorPairs()
