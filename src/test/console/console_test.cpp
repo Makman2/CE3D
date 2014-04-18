@@ -23,9 +23,28 @@ BOOST_FIXTURE_TEST_SUITE(Console, TestEnvironment)
  */
 BOOST_AUTO_TEST_CASE(TestConsoleConstruction)
 {
+    // also tests the internal reference counting
+    CE3D::Console console1, console2, console3;
+}
+
+BOOST_AUTO_TEST_CASE(TestConsoleCallback)
+{
     CE3D::Console console;
-    // ensure that the construction is not optimized away
-    console.WriteString("Hello world!");
+    bool called = false;
+
+    console.Clear();
+
+    console.SetCallback(
+                [&]()
+                {
+                    called = true;
+                    console.WriteString("Callback invoked!");
+                }
+            );
+
+    ungetch('c');
+
+    while(!called);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

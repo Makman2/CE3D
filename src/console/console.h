@@ -63,7 +63,7 @@ private:
     /**
      * The callback function which is called if a keyboard event occurs.
      */
-    static std::shared_ptr<Functor<>> s_Callback;
+    static std::function<void()> s_Callback;
     /**
      * If the thread holds the lock of this mutex, it's doing something
      * important; if not we can kill it.
@@ -111,7 +111,7 @@ public:
     virtual
     ~Console();
 
-    void SetCallback(std::shared_ptr<Functor<>> const Callback)
+    void SetCallback(std::function<void()> const Callback)
     { s_Callback = Callback; }//TODO mutex
 
     /**
@@ -249,6 +249,9 @@ public:
 
     /**
      * Flushes every change to the console.
+     *
+     * Be aware that the changes are probably applied every tenth second
+     * dependent on the platform. It is recommended to invoke flush anyway.
      */
     void
     Flush() const;

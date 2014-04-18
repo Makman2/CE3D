@@ -7,7 +7,7 @@
 namespace CE3D
 {
 
-std::shared_ptr<Functor<> > Console::s_Callback(nullptr);
+std::function<void()>       Console::s_Callback(nullptr);
 boost::signals2::mutex      Console::s_KbThreadMutex;
 boost::signals2::mutex      Console::s_CreationMutex;
 boost::signals2::mutex      Console::s_DrawMutex;
@@ -39,11 +39,11 @@ void Console::KeyboardThread()
         {
             KbState->SetState(c);
 
-            if (s_Callback != nullptr)
+            if (s_Callback)
             {
                 try
                 {
-                    (*s_Callback)();
+                    s_Callback();
                 }
                 catch (...)
                 {
