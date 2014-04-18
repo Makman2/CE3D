@@ -77,6 +77,8 @@ Console::Console()
 
 Console::~Console()
 {
+    s_CreationMutex.lock();
+    s_DrawMutex.lock();
     s_KbThreadMutex.lock();
     s_ThreadTerminator = true;
     s_KbThreadMutex.unlock();
@@ -84,6 +86,8 @@ Console::~Console()
     delete m_KeyboardThread;
     endwin();
 
+    s_DrawMutex.unlock();
+    s_CreationMutex.unlock();
 }
 
 Console* Console::GetInstance()
@@ -99,15 +103,11 @@ Console* Console::GetInstance()
 
 void Console::DeleteInstance()
 {
-    s_CreationMutex.lock();
-    s_DrawMutex.try_lock();
     if (s_Instance != nullptr)
     {
         delete s_Instance;
         s_Instance = nullptr;
     }
-    s_DrawMutex.unlock();
-    s_CreationMutex.unlock();
 }
 
 void Console::Flush() const

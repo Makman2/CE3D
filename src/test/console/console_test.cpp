@@ -37,6 +37,7 @@ BOOST_AUTO_TEST_CASE(TestConsoleConstruction)
     BOOST_REQUIRE(inst != nullptr);
     BOOST_REQUIRE(inst == CE3D::Console::GetInstance());
     CE3D::Console::DeleteInstance();
+    CE3D::Console::DeleteInstance(); // shouldn't do anything
 }
 
 BOOST_AUTO_TEST_CASE(TestKeyboardCallback)
