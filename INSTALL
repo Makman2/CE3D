@@ -1,2 +1,34 @@
-To build the library, just run
-  make release
+Installation Notes
+
+Linux
+
+1.  Install CMake
+2.  Install boost libraries
+3.  Make sure you have a C++0x compatible compiler (gcc will probably do) and
+    GNU Make
+5.  Clone this
+6.  Type
+        make release
+
+Windows
+
+1.  Download and install CMake
+2.  Install a compiler of your choice.
+3.  Download the boost C++ libraries.
+4.  Extract boost into the CMake directory.
+5.  Build boost. (To do this go to the boost directory, run "bootstrap.bat" and
+    after that (like displayed) b2.exe. For more details see the boost
+    documentation.)
+6.  Install pdcurses. (###Detailed information for this step will follow.###)
+7.  Download or clone the CE3D-repository.
+8.  Switch to the CE3D directory, create a new folder named "build" and switch
+    into it.
+9.  Now run:
+        cmake ..\src\
+
+10. The compiled files can be found in the build directory.
+    includes:   \build\include
+    libs:       \build\lib
+
+11. Done!
+
