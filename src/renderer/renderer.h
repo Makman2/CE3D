@@ -16,6 +16,9 @@ namespace CE3D
 template <typename t_Material>
 class Renderer
 {
+private:
+    virtual void
+    RenderModel(Model<t_Material> Mod) const = 0;
 public:
     /**
      * Renders the view of the given camera.
@@ -23,12 +26,14 @@ public:
      * @param camera: The view to render.
      */
     virtual void
-    Render(Camera<t_Material> const& camera) const = 0;
+    Render(Camera<t_Material> const& camera) const;
 
     virtual
     ~Renderer() {}
 };
 
 }
+
+#include "renderer/renderer_code.h"
 
 #endif /* CE3D_RENDERER_RENDERER_H */

@@ -8,21 +8,25 @@
 #include "renderer/renderer.h"
 
 #include "renderer/console/console_material.h"
+#include "renderer/console/console_drawer.h"
 
 namespace CE3D {
 
 class ConsoleRenderer: public Renderer<ConsoleMaterial> {
 private:
+    ConsoleDrawer m_Drawer;
+    /**
+     * Renders a whole model to the console.
+     *
+     * @param Mod The model to render.
+     */
     void
-    RenderModel(Model<ConsoleMaterial> Mod) const;
+    RenderModel(Model<ConsoleMaterial> Mod) const override;
 public:
     inline
     ConsoleRenderer() {}
     inline virtual
     ~ConsoleRenderer() {}
-
-    virtual void
-    Render(Camera<ConsoleMaterial> const& camera) const override;
 };
 
 } /* namespace CE3D */

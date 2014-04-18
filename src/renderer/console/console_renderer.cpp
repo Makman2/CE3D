@@ -8,20 +8,6 @@
 
 namespace CE3D {
 
-void ConsoleRenderer::Render(const Camera<ConsoleMaterial>& camera) const
-{
-    std::unique_ptr<World<ConsoleMaterial> > World(camera.Paint());
-
-    for (auto& it : World->GetModels())
-    {
-        if (it->IsVisible())
-        {
-            RenderModel(*it);
-        }
-    }
-}
-
-
 void ConsoleRenderer::RenderModel(Model<ConsoleMaterial> Mod) const
 {
     for (auto& Vertex : Mod.GetVertices())
