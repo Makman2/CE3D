@@ -21,6 +21,10 @@ private:
     Console m_Console;
     ConsoleIdxType m_Width;
     ConsoleIdxType m_Height;
+    std::vector<ModelDataType> m_ZBuffer;
+    inline ConsoleIdxType
+    CalculateIndex(ConsoleIdxType const x, ConsoleIdxType const y) const
+    { return m_Width*x + y; }
 public:
     /**
      * Default constructor.

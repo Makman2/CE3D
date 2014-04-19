@@ -2,19 +2,42 @@
 
 #include "renderer/console/console_drawer.h"
 
+#include <stdexcept>
+
 namespace CE3D {
 
 ConsoleDrawer::ConsoleDrawer()
 : m_Console()
+, m_ZBuffer()
 {
-    m_Height = m_Console.GetHeight();
+    // TODO initialize z buffer
     m_Width = m_Console.GetWidth();
+    m_Height = m_Console.GetHeight();
 }
 
-void ConsoleDrawer::DrawPoint(__attribute__((unused))Vector const& Point,
+void ConsoleDrawer::DrawPoint(Vector const& Point,
        __attribute__((unused))ConsoleMaterial const& Material) const
 {
-    // UNIMPLEMENTED - for now!
+    if (Point.size() < 3)
+    {
+        throw std::invalid_argument(
+                "Vector must have at least three components.");
+    }
+
+    if (Point[0] >= m_Width || Point[1] >= m_Height)
+    {
+        return;
+    }
+
+    ConsoleIdxType x, y;
+    x = static_cast<ConsoleIdxType>(Point[0]);
+    y = static_cast<ConsoleIdxType>(Point[1]);
+    if (m_ZBuffer[CalculateIndex(x, y)] > Point[2])
+    {
+        return;
+    }
+
+    // TODO draw point here
 }
 
 } /* namespace CE3D */
