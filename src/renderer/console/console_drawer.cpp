@@ -8,11 +8,11 @@ namespace CE3D {
 
 ConsoleDrawer::ConsoleDrawer()
 : m_Console()
-, m_ZBuffer()
+, m_ZBuffer(0, -1.0/0.0)
 {
-    // TODO initialize z buffer
     m_Width = m_Console.GetWidth();
     m_Height = m_Console.GetHeight();
+    m_ZBuffer.resize(m_Width*m_Height, -1.0/0.0);
 }
 
 void ConsoleDrawer::DrawPoint(Vector const& Point,
@@ -37,7 +37,9 @@ void ConsoleDrawer::DrawPoint(Vector const& Point,
         return;
     }
 
-    // TODO draw point here
+    ConsoleStringAttributes Attr;
+    Attr.SetColor(Material.GetColor(), ConsoleColor::WHITE);
+    m_Console.WriteChar(x, y, '.');
 }
 
 } /* namespace CE3D */

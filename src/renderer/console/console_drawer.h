@@ -18,7 +18,7 @@ namespace CE3D {
 class ConsoleDrawer
 {
 private:
-    Console m_Console;
+    mutable Console m_Console;
     ConsoleIdxType m_Width;
     ConsoleIdxType m_Height;
     std::vector<ModelDataType> m_ZBuffer;

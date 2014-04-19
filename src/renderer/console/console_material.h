@@ -28,6 +28,9 @@ public:
     ConsoleMaterial(ConsoleColor InitialColor);
     inline virtual
     ~ConsoleMaterial() {}
+    ConsoleColor
+    GetColor() const
+    { return m_Color; }
 };
 
 } /* namespace CE3D */
