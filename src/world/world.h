@@ -62,4 +62,6 @@ private:
 
 }
 
+#include "world/world_code.h"
+
 #endif /* CE3D_WORLD_WORLD_H */
