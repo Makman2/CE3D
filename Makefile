@@ -12,7 +12,7 @@ CE3D_CLEAN_TARGET	= clean
 CMAKE := $(shell which cmake)
 CMAKE_DEBUG_FLAGS = -DCMAKE_BUILD_TYPE=Debug -DTESTS_ENABLED=true
 CMAKE_RELEASE_FLAGS = -DCMAKE_BUILD_TYPE=Release
-CMAKE_CODEBLOCKS_FLAGS = -G "CodeBlocks - Unix Makefiles"
+CMAKE_CODEBLOCKS_FLAGS = -G "CodeBlocks - Unix Makefiles" -DTESTS_ENABLED=true
 
 ifeq ($(CMAKE),)
 $(error ERROR. Missing dependency: cmake)
