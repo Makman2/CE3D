@@ -13,6 +13,14 @@ namespace CE3D
 {
 
 template <typename t_Material>
+Model<t_Material>::Model()
+: m_Vectors()
+, m_Vertices()
+, m_Visible(true)
+, m_Name("")
+{ }
+
+template <typename t_Material>
 void Model<t_Material>::Transform(Transformation::Transformation const& transformation)
 {
     Matrix matrix = transformation.GetMatrix();

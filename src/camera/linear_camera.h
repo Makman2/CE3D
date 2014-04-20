@@ -17,7 +17,7 @@ namespace CE3D {
  * This is a camera that applies an arbitrary set of transformations on render.
  */
 template <typename t_Material>
-class LinearCamera : Camera<t_Material> {
+class LinearCamera : public Camera<t_Material> {
 private:
     /**
      * A list of transformations applied sequentially on Paint().
@@ -70,7 +70,7 @@ public:
      * @return a unique_ptr to the new world - the caller is responsible for
      *         tidying up!
      */
-    virtual std::unique_ptr<World>
+    virtual std::unique_ptr<World<t_Material> >
     Paint() const override;
 };
 

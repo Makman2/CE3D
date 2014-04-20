@@ -43,6 +43,9 @@ public:
     inline boost::container::vector<VertexIndexType> const&
     GetVectors() const
     { return m_Vectors; }
+    inline boost::container::vector<VertexIndexType>&
+    GetVectors()
+    { return m_Vectors; }
 };
 
 }

@@ -38,17 +38,20 @@ private:
      *
      * This may be bold, underlined and so on. Stored curses compatible.
      */
-    std::uint16_t m_Attributes;
+    std::uint32_t m_Attributes;
 public:
     inline
-    ConsoleStringAttributes() {};
+    ConsoleStringAttributes()
+    : m_ColorPairId(0)
+    , m_Attributes(0)
+    {};
     inline virtual
     ~ConsoleStringAttributes() {};
 
     /**
      * Returns a representation that is recognized by curses' attron/off.
      */
-    std::uint16_t GetCursesRepresentation() const
+    std::uint32_t GetCursesRepresentation() const
     { return m_Attributes | COLOR_PAIR(m_ColorPairId); }
 
     /**

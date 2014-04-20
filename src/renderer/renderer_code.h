@@ -5,6 +5,8 @@
 
 #include "renderer/renderer.h"
 
+#include "console/console.h"
+
 namespace CE3D {
 
 template <typename t_Material>

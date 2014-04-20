@@ -11,7 +11,6 @@ namespace CE3D {
 void ConsoleRenderer::RenderVertex(Vertex<ConsoleMaterial> const& Vert,
            __attribute__((unused)) Model<ConsoleMaterial> const& Mod) const
 {
-
     auto& VectorIndices = Vert.GetVectors();
     auto& Vectors = Mod.GetVectors();
 
