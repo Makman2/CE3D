@@ -8,7 +8,6 @@ namespace CE3D
 {
 
 std::function<void()>       Console::s_Callback(nullptr);
-boost::signals2::mutex      Console::s_KbThreadMutex;
 boost::signals2::mutex      Console::s_CreationMutex;
 boost::signals2::mutex      Console::s_DrawMutex;
 bool                        Console::s_ThreadTerminator;
@@ -29,10 +28,9 @@ void Console::KeyboardThread()
     halfdelay(1);
 
     KeyboardState *KbState = KeyboardState::GetInstance();
-    s_KbThreadMutex.lock();
+    // This is just a reading access so we can avoid using a mutex here
     while (!s_ThreadTerminator)
     {
-        s_KbThreadMutex.unlock();
         c = getch();
 
         if (c != ERR)
@@ -51,9 +49,7 @@ void Console::KeyboardThread()
                 }
             }
         }
-        s_KbThreadMutex.lock();
     }
-    s_KbThreadMutex.unlock();
 }
 
 Console::Console()
@@ -94,9 +90,7 @@ Console::~Console()
 
     if(--s_InstanceCount == 0)
     {
-        s_KbThreadMutex.lock();
         s_ThreadTerminator = true;
-        s_KbThreadMutex.unlock();
         s_KeyboardThread->join();
         delete s_KeyboardThread;
         endwin();
