@@ -18,7 +18,7 @@ namespace Testing
 BOOST_FIXTURE_TEST_SUITE(ConsoleRenderer, TestEnvironment)
 
 /**
- * Tests the construction and destruction of Console.
+ * Tests the construction and destruction of ConsoleRenderer.
  */
 BOOST_AUTO_TEST_CASE(TestConsoleRendererConstruction)
 {

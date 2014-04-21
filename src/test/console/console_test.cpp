@@ -19,13 +19,17 @@ BOOST_FIXTURE_TEST_SUITE(Console, TestEnvironment)
 
 /**
  * Tests the construction and destruction of Console.
+ *
+ * This also tests reference counting.
  */
 BOOST_AUTO_TEST_CASE(TestConsoleConstruction)
 {
-    // also tests the internal reference counting
     CE3D::Console console1, console2, console3;
 }
 
+/**
+ * Tests the callback mechanism for the console.
+ */
 BOOST_AUTO_TEST_CASE(TestConsoleCallback)
 {
     CE3D::Console console;

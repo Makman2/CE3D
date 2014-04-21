@@ -9,6 +9,7 @@
 
 #include "renderer/console/console_material.h"
 #include "renderer/console/console_drawer.h"
+#include "console/console.h"
 
 namespace CE3D {
 
@@ -18,6 +19,19 @@ private:
      * Helper to draw the things to the real console.
      */
     ConsoleDrawer m_Drawer;
+    /**
+     * Console for clearing and refreshing.
+     */
+    Console m_Console;
+
+    // Inherited documentation comment
+    virtual inline void
+    ClearBuffer() const
+    { m_Console.Clear(); }
+    // Inherited documentation comment
+    virtual inline void
+    FlushBuffer() const
+    { m_Console.Flush(); }
     // Inherited documentation comment
     void
     RenderVertex(Vertex<ConsoleMaterial> const& Vert,
