@@ -28,9 +28,22 @@ public:
     ConsoleMaterial(ConsoleColor InitialColor);
     inline virtual
     ~ConsoleMaterial() {}
+    /**
+     * Getter.
+     *
+     * @return The foreground color.
+     */
     ConsoleColor
     GetColor() const
     { return m_Color; }
+    /**
+     * Setter for the foreground color of the vertex.
+     *
+     * @param ForegroundColor The color.
+     */
+    void
+    SetColor(ConsoleColor ForegroundColor)
+    { m_Color = ForegroundColor; }
 };
 
 } /* namespace CE3D */
