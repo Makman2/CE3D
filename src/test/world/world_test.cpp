@@ -26,6 +26,16 @@ BOOST_AUTO_TEST_CASE(TestWorldConstruction)
     CE3D::World<CE3D::ConsoleMaterial> TestWorld;
 }
 
+/**
+ * Tests getters and setters for the world.
+ */
+BOOST_AUTO_TEST_CASE(TestWorldGetSet)
+{
+    CE3D::World<CE3D::ConsoleMaterial> TestWorld;
+
+    BOOST_REQUIRE_EQUAL(TestWorld.GetModels().size(), 0);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }
