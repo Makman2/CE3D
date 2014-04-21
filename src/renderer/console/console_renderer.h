@@ -13,6 +13,9 @@
 
 namespace CE3D {
 
+/**
+ * A renderer for the curses console.
+ */
 class ConsoleRenderer: public Renderer<ConsoleMaterial> {
 private:
     /**

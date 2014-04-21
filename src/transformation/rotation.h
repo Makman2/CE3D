@@ -19,13 +19,20 @@ namespace Transformation
 class Rotation : public Transformation
 {
 private:
-
+    /**
+     * One vector describing the rotation plane.
+     */
     Vector m_Planar1;
+    /**
+     * Another vector describing the rotation plane.
+     */
     Vector m_Planar2;
+    /**
+     * The rotation angle.
+     */
     float m_Angle;
 
 protected:
-
     // Inherited documentation comment
     virtual void
     UpdateMatrix() const override;
@@ -97,7 +104,7 @@ public:
      * Sets the rotation angle.
      *
      * @param value: The rotation angle.
-     */  
+     */
     void
     SetAngle(float value);
 

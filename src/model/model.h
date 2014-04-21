@@ -26,6 +26,9 @@ private:
      * All vectors used for this model.
      */
     boost::container::vector<Vector> m_Vectors;
+    /**
+     * The vertices.
+     */
     boost::container::vector<Vertex<t_Material> > m_Vertices;
     /**
      * True if the model is visible.
@@ -95,20 +98,38 @@ public:
     Rotate(Transformation::Rotation const& rotation) override;
 
     /**
-     * Returns a list of all vectors of this model.
+     * Getter (const).
+     *
+     * @return a list of all vectors of this model (const)
      */
     inline boost::container::vector<Vector> const&
     GetVectors() const
     { return m_Vectors; }
     /**
-     * Returns a list of all vectors of this model.
+     * Getter.
+     *
+     * @return a list of all vectors of this model
      */
     inline boost::container::vector<Vector>&
     GetVectors()
     { return m_Vectors; }
 
+    /**
+     * Getter.
+     *
+     * @return a list of all vertices in this model
+     */
     inline boost::container::vector<Vertex<t_Material> >&
     GetVertices()
+    { return m_Vertices; }
+
+    /**
+     * Getter (const).
+     *
+     * @return a list of all vertices in this model (const)
+     */
+    inline boost::container::vector<Vertex<t_Material> > const&
+    GetVertices() const
     { return m_Vertices; }
 
 };

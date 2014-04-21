@@ -24,6 +24,10 @@ enum ConsoleColor
     YELLOW,
     LAST
 };
+
+/**
+ * Attributes for specifying how a string/character is drawn to the console.
+ */
 class ConsoleStringAttributes {
 private:
     /**
@@ -50,6 +54,8 @@ public:
 
     /**
      * Returns a representation that is recognized by curses' attron/off.
+     *
+     * @return curses representation for the attributes hold by this object
      */
     std::uint32_t GetCursesRepresentation() const
     { return m_Attributes | COLOR_PAIR(m_ColorPairId); }
@@ -64,6 +70,11 @@ public:
     SetColor(ConsoleColor const Foreground, ConsoleColor const Background)
     { m_ColorPairId = ColorPairIndex(Foreground, Background); }
 
+    /**
+     * Sets the color.
+     *
+     * @param ColorPairId a color pair id (retrievable by ColorPairIndex)
+     */
     inline void
     SetColor(std::uint8_t const ColorPairId)
     { m_ColorPairId = ColorPairId; }

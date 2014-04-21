@@ -34,6 +34,11 @@ private:
      * Every instance may hold its own attributes.
      */
     ConsoleStringAttributes m_CurrentAttributes;
+    /**
+     * Holds the number of instances. This is used for reference-count based
+     * construction/destruction for all the static things like the console
+     * itself.
+     */
     static std::uint16_t s_InstanceCount;
     /**
      * Holds the height of the console.
@@ -103,6 +108,11 @@ public:
     virtual
     ~Console();
 
+    /**
+     * Sets the callback that is called if a key is pressed.
+     *
+     * @param Callback the callback (e.g. a lambda)
+     */
     void SetCallback(std::function<void()> const Callback)
     { s_Callback = Callback; }//TODO mutex
 
@@ -131,6 +141,9 @@ public:
      *
      * If you write characters without specifying a position, this position
      * will be taken and incremented.
+     *
+     * @param x the column in the console
+     * @param y the line
      */
     void
     SetPosition(ConsoleIdxType const x, ConsoleIdxType const y);

@@ -41,15 +41,25 @@ public:
 
     /**
      * Returns a list of all models in the world.
+     *
+     * @return the list (constant)
      */
     virtual inline std::vector<std::shared_ptr<Model<t_Material> > > const&
     GetModels() const
     { return m_Models; }
 
+    /**
+     * Adds a model to the list.
+     *
+     * @param Model a shared_ptr to the Model to add.
+     */
     virtual inline void
     AddModel(std::shared_ptr<Model<t_Material> > Model)
     { m_Models.push_back(Model); }
 private:
+    /**
+     * Every model in this world.
+     */
     std::vector<std::shared_ptr<Model<t_Material> > > m_Models;
 };
 
