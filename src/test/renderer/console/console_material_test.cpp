@@ -25,6 +25,19 @@ BOOST_AUTO_TEST_CASE(TestConsoleMaterialConstruction)
     CE3D::ConsoleMaterial mat;
 }
 
+/**
+ * Tests getter and setter for ConsoleMaterial.
+ */
+BOOST_AUTO_TEST_CASE(TestConsoleMaterialGetSet)
+{
+    CE3D::ConsoleMaterial mat(ConsoleColor::CYAN);
+    BOOST_REQUIRE_EQUAL(mat.GetColor(), ConsoleColor::CYAN);
+    mat.SetColor(ConsoleColor::BLACK);
+    BOOST_REQUIRE_EQUAL(mat.GetColor(), ConsoleColor::BLACK);
+    // let's check again - the getter shall not change the object
+    BOOST_REQUIRE_EQUAL(mat.GetColor(), ConsoleColor::BLACK);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }
