@@ -1,11 +1,13 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef CE3D_RENDERER_CONSOLE_RENDERER_H
-#define CE3D_RENDERER_CONSOLE_RENDERER_H
+#ifndef CE3D_RENDERER_CONSOLE_CONSOLE_RENDERER_H
+#define CE3D_RENDERER_CONSOLE_CONSOLE_RENDERER_H
+
+#include "util/stdinc.h"
 
 #include "renderer/renderer.h"
 
-#include "renderer/console_material.h"
+#include "renderer/console/console_material.h"
 
 namespace CE3D {
 
@@ -25,4 +27,4 @@ public:
 
 } /* namespace CE3D */
 
-#endif /* CE3D_RENDERER_CONSOLE_RENDERER_H */
+#endif /* CE3D_RENDERER_CONSOLE_CONSOLE_RENDERER_H */

@@ -7,13 +7,23 @@
 namespace CE3D
 {
 
-Console*                   Console::s_Instance = nullptr;
-std::shared_ptr<Functor<>> Console::s_Callback(nullptr);
-boost::signals2::mutex     Console::s_KbThreadMutex;
-bool                       Console::s_ThreadTerminator;
+std::function<void()>       Console::s_Callback(nullptr);
+boost::signals2::mutex      Console::s_KbThreadMutex;
+boost::signals2::mutex      Console::s_CreationMutex;
+boost::signals2::mutex      Console::s_DrawMutex;
+bool                        Console::s_ThreadTerminator;
+bool                        Console::s_HasColors;
+ConsoleIdxType              Console::s_Height;
+ConsoleIdxType              Console::s_Width;
+WINDOW                     *Console::s_Screen;
+std::uint16_t               Console::s_InstanceCount;
+boost::thread              *Console::s_KeyboardThread;
+
 
 void Console::KeyboardThread()
 {
+    // ATTENTION: dont dare to lock another mutex here since they may lock out
+    // each other!
     char c;
 
     halfdelay(1);
@@ -29,11 +39,11 @@ void Console::KeyboardThread()
         {
             KbState->SetState(c);
 
-            if (s_Callback != nullptr)
+            if (s_Callback)
             {
                 try
                 {
-                    (*s_Callback)();
+                    s_Callback();
                 }
                 catch (...)
                 {
@@ -48,65 +58,65 @@ void Console::KeyboardThread()
 
 Console::Console()
 {
-    // initialize curses
-    m_Screen = initscr();
+    s_CreationMutex.lock();
 
-    // pass all keys to the program, dont allow ^C interrupt
-    raw();
+    if (s_InstanceCount++ == 0)
+    {
+        // initialize curses
+        s_Screen = initscr();
 
-    // allow reading more keys! :)
-    keypad(stdscr, TRUE);
+        // pass all keys to the program, dont allow ^C interrupt
+        raw();
 
-    // turn of auto echoing
-    noecho();
+        // allow reading more keys! :)
+        keypad(stdscr, TRUE);
 
-    // get terminal height/width
-    getmaxyx(m_Screen, m_Height, m_Width);
+        // turn of auto echoing
+        noecho();
 
-    s_ThreadTerminator = false;
-    m_KeyboardThread = new boost::thread(Console::KeyboardThread);
+        s_ThreadTerminator = false;
+        s_KeyboardThread = new boost::thread(Console::KeyboardThread);
 
-    m_HasColors = has_colors();
+        // get terminal height/width
+        getmaxyx(s_Screen, s_Height, s_Width);
 
-    InitColorPairs();
+        s_HasColors = has_colors();
+
+        InitColorPairs();
+    }
+
+    s_CreationMutex.unlock();
 }
 
 Console::~Console()
 {
-    s_KbThreadMutex.lock();
-    s_ThreadTerminator = true;
-    s_KbThreadMutex.unlock();
-    m_KeyboardThread->join();
-    delete m_KeyboardThread;
-    endwin();
-}
+    s_CreationMutex.lock();
 
-Console* Console::GetInstance()
-{
-    if (s_Instance == nullptr)
+    if(--s_InstanceCount == 0)
     {
-        s_Instance = new Console();
+        s_KbThreadMutex.lock();
+        s_ThreadTerminator = true;
+        s_KbThreadMutex.unlock();
+        s_KeyboardThread->join();
+        delete s_KeyboardThread;
+        endwin();
     }
-    return s_Instance;
-}
 
-void Console::DeleteInstance()
-{
-    if (s_Instance != nullptr)
-    {
-        delete s_Instance;
-        s_Instance = nullptr;
-    }
+    s_CreationMutex.unlock();
 }
 
 void Console::Flush() const
 {
+    s_DrawMutex.lock();
     refresh();
+    s_DrawMutex.unlock();
 }
 
 void Console::Clear() const
 {
+    s_DrawMutex.lock();
     clear();
+    s_DrawMutex.unlock();
 }
 
 void Console::InitColorPairs()
@@ -126,6 +136,7 @@ void Console::InitColorPairs()
 void Console::WriteChar(ConsoleStringAttributes const attr,
                         char const character)
 {
+    s_DrawMutex.lock();
     attroff(m_CurrentAttributes.GetCursesRepresentation());
     attron(attr.GetCursesRepresentation());
 
@@ -133,11 +144,13 @@ void Console::WriteChar(ConsoleStringAttributes const attr,
 
     attroff(attr.GetCursesRepresentation());
     attron(m_CurrentAttributes.GetCursesRepresentation());
+    s_DrawMutex.unlock();
 }
 
 void Console::WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
                ConsoleStringAttributes const attr, char const character)
 {
+    s_DrawMutex.lock();
     attroff(m_CurrentAttributes.GetCursesRepresentation());
     attron(attr.GetCursesRepresentation());
 
@@ -145,6 +158,36 @@ void Console::WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
 
     attroff(attr.GetCursesRepresentation());
     attron(m_CurrentAttributes.GetCursesRepresentation());
+    s_DrawMutex.unlock();
+}
+
+void Console::WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
+                        char const character)
+{
+    s_DrawMutex.lock();
+    mvaddch(y, x, character);
+    s_DrawMutex.unlock();
+}
+
+void Console::WriteChar(char const character)
+{
+    s_DrawMutex.lock();
+    addch(character);
+    s_DrawMutex.unlock();
+}
+
+void Console::SetPosition(ConsoleIdxType const x, ConsoleIdxType const y)
+{
+    s_DrawMutex.lock();
+    move(y, x);
+    s_DrawMutex.unlock();
+}
+
+void Console::SetAttributes(ConsoleStringAttributes const attr)
+{
+    s_DrawMutex.lock();
+    m_CurrentAttributes = attr;
+    s_DrawMutex.unlock();
 }
 
 }

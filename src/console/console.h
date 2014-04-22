@@ -20,43 +20,38 @@ using ConsoleIdxType = std::uint8_t;
 
 /**
  * This is basically a curses wrapper for C++.
+ *
+ * It aims to be easy to use and thread safe.
+ *
+ * Every instance may set its own attributes while the position is global.
  */
 class Console
 {
 private:
-    Console();
-    Console(Console const& rhs);
-
-    virtual
-    ~Console();
-
-    /**
-     * The one and only instance of Console.
-     */
-    static Console* s_Instance;
-
-    /**
-     * Holds the height of the console.
-     */
-    ConsoleIdxType m_Height;
-    /**
-     * Holds the width of the console.
-     */
-    ConsoleIdxType m_Width;
-    /**
-     * Holds the curses "object".
-     */
-    WINDOW* m_Screen;
     /**
      * Holds the color which is used for drawing without explicit color
      * argument.
+     *
+     * Every instance may hold its own attributes.
      */
     ConsoleStringAttributes m_CurrentAttributes;
-
+    static std::uint16_t s_InstanceCount;
+    /**
+     * Holds the height of the console.
+     */
+    static ConsoleIdxType s_Height;
+    /**
+     * Holds the width of the console.
+     */
+    static ConsoleIdxType s_Width;
+    /**
+     * Holds the curses "object".
+     */
+    static WINDOW *s_Screen;
     /**
      * The thread object.
      */
-    boost::thread *m_KeyboardThread;
+    static boost::thread *s_KeyboardThread;
 
     /**
      * The keyboard thread function that translates the blocking getch of
@@ -65,12 +60,10 @@ private:
      * This function has to be static to be executed as a thread.
      */
     static void KeyboardThread();
-
     /**
      * The callback function which is called if a keyboard event occurs.
      */
-    static std::shared_ptr<Functor<>> s_Callback;
-
+    static std::function<void()> s_Callback;
     /**
      * If the thread holds the lock of this mutex, it's doing something
      * important; if not we can kill it.
@@ -78,40 +71,48 @@ private:
      * We have to kill it since getch is a blocking invocation.
      */
     static boost::signals2::mutex s_KbThreadMutex;
-
+    /**
+     * This mutex is to ensure that not more than one instance is created out
+     * of multiple threads.
+     *
+     * @attention When locking draw mutex and creation mutex, the creation
+     * mutex must be locked first in every case to avoid infinite waiting.
+     */
+    static boost::signals2::mutex s_CreationMutex;
+    /**
+     * Ensure that only one instance writes at a time since curses is not
+     * necessarily threadsafe.
+     *
+     * @attention When locking draw mutex and creation mutex, the creation
+     * mutex must be locked first in every case to avoid infinite waiting.
+     */
+    static boost::signals2::mutex s_DrawMutex;
+    /**
+     * Ensure that only one thread at a time sets the callback since write may
+     * be non-atmoic.
+     */
+    static boost::signals2::mutex s_ThreadSetMutex;
     /**
      * If this is set to true, it's a signal to the keyboard thread to
      * terminate peacefully.
      */
     static bool s_ThreadTerminator;
-
     /**
      * True if terminal supports colors.
      */
-    bool m_HasColors;
-
+    static bool s_HasColors;
     /**
      * Initializes all
      */
-    void InitColorPairs();
+    static void InitColorPairs();
 public:
-    /**
-     * Returns an instance.
-     *
-     * If there is no instance yet it will be created, a curses session will
-     * be started.
-     */
-    static Console*
-    GetInstance();
+    Console();
 
-    /**
-     * Deletes the instance and returns to normal console mode.
-     */
-    static void
-    DeleteInstance();
+    virtual
+    ~Console();
 
-    void SetCallback(std::shared_ptr<Functor<>> const Callback)
-    { s_Callback = Callback; }
+    void SetCallback(std::function<void()> const Callback)
+    { s_Callback = Callback; }//TODO mutex
 
     /**
      * Sets the current attributes.
@@ -121,9 +122,8 @@ public:
      *
      * @param attr The attributes.
      */
-    inline void
-    SetAttributes(ConsoleStringAttributes const attr)
-    { m_CurrentAttributes = attr; }
+    void
+    SetAttributes(ConsoleStringAttributes const attr);
 
     /**
      * Determines if the console supports colorized output.
@@ -132,7 +132,7 @@ public:
      */
     inline bool
     HasColors() const
-    { return m_HasColors; }
+    { return s_HasColors; }
 
     /**
      * Sets the current position.
@@ -140,18 +140,16 @@ public:
      * If you write characters without specifying a position, this position
      * will be taken and incremented.
      */
-    inline void
-    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y)
-    { move(y, x); }
+    void
+    SetPosition(ConsoleIdxType const x, ConsoleIdxType const y);
 
     /**
      * Writes a character to the console.
      *
      * @param character The character.
      */
-    inline void
-    WriteChar(char const character)
-    { addch(character); }
+    void
+    WriteChar(char const character);
 
     /**
      * Writes a character to the console.
@@ -169,10 +167,9 @@ public:
      * @param y The column
      * @param character The character
      */
-    inline void
+    void
     WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
-              char const character)
-    { mvaddch(y, x, character); }
+              char const character);
 
     /**
      * Writes a character to the console.
@@ -195,9 +192,8 @@ public:
      * @param Args the arguments for the format string
      */
     template<typename... Types>
-    inline void
-    WriteString(std::string const str, Types... Args)
-    { printw(str.c_str(), Args...); }
+    void
+    WriteString(std::string const str, Types... Args);
 
     /**
      * Writes a string to the current position with the given attributes.
@@ -224,10 +220,9 @@ public:
      * @param Args the arguments for the format string
      */
     template<typename... Types>
-    inline void
+    void
     WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
-                std::string const str, Types... Args)
-    { mvprintw(y, x, str.c_str(), Args...); }
+                std::string const str, Types... Args);
 
     /**
      * Writes a string to the current position with the given attributes.
@@ -254,6 +249,9 @@ public:
 
     /**
      * Flushes every change to the console.
+     *
+     * Be aware that the changes are probably applied every tenth second
+     * dependent on the platform. It is recommended to invoke flush anyway.
      */
     void
     Flush() const;
@@ -262,18 +260,18 @@ public:
      * Gets the height of the console.
      * @return The height.
      */
-    inline ConsoleIdxType const&
+    inline ConsoleIdxType
     GetHeight() const
-    { return m_Height; }
+    { return s_Height; }
 
     /**
      * Gets the width of the console.
      *
      * @return The width.
      */
-    inline ConsoleIdxType const&
+    inline ConsoleIdxType
     GetWidth() const
-    { return m_Width; }
+    { return s_Width; }
 };
 
 }

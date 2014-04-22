@@ -12,6 +12,7 @@ template<typename... Types>
 void Console::WriteString(ConsoleStringAttributes const attr,
                           std::string const str, Types... Args)
 {
+    s_DrawMutex.lock();
     attroff(m_CurrentAttributes.GetCursesRepresentation());
     attron(attr.GetCursesRepresentation());
 
@@ -19,6 +20,7 @@ void Console::WriteString(ConsoleStringAttributes const attr,
 
     attroff(attr.GetCursesRepresentation());
     attron(m_CurrentAttributes.GetCursesRepresentation());
+    s_DrawMutex.unlock();
 }
 
 template<typename... Types>
@@ -26,6 +28,7 @@ void Console::WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
                  ConsoleStringAttributes const attr, std::string const str,
                  Types... Args)
 {
+    s_DrawMutex.lock();
     attroff(m_CurrentAttributes.GetCursesRepresentation());
     attron(attr.GetCursesRepresentation());
 
@@ -33,6 +36,24 @@ void Console::WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
 
     attroff(attr.GetCursesRepresentation());
     attron(m_CurrentAttributes.GetCursesRepresentation());
+    s_DrawMutex.unlock();
+}
+
+template<typename... Types>
+void Console::WriteString(std::string const str, Types... Args)
+{
+    s_DrawMutex.lock();
+    printw(str.c_str(), Args...);
+    s_DrawMutex.unlock();
+}
+
+template<typename... Types>
+void Console::WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
+                          std::string const str, Types... Args)
+{
+    s_DrawMutex.lock();
+    mvprintw(y, x, str.c_str(), Args...);
+    s_DrawMutex.unlock();
 }
 
 }
