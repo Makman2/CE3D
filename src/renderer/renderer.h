@@ -16,6 +16,16 @@ namespace CE3D
 template <typename t_Material>
 class Renderer
 {
+private:
+    /**
+     * Renders a vertex to the console.
+     *
+     * @param Vert The vertex to render.
+     * @param Mod The model containing the vertex.
+     */
+    virtual void
+    RenderVertex(Vertex<t_Material> const& Vert,
+                 Model<t_Material>  const& Mod) const = 0;
 public:
     /**
      * Renders the view of the given camera.
@@ -23,12 +33,14 @@ public:
      * @param camera: The view to render.
      */
     virtual void
-    Render(Camera<t_Material> const& camera) const = 0;
+    Render(Camera<t_Material> const& camera) const;
 
     virtual
     ~Renderer() {}
 };
 
 }
+
+#include "renderer/renderer_code.h"
 
 #endif /* CE3D_RENDERER_RENDERER_H */
