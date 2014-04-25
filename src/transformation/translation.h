@@ -19,11 +19,12 @@ namespace Transformation
 class Translation : public Transformation
 {
 private:
-
+    /**
+     * The vector describing the translation.
+     */
     Vector m_TranslationVector;
 
 protected:
-
     /**
      * Updates the matrix.
      */
@@ -31,7 +32,6 @@ protected:
     UpdateMatrix() const override;
 
 public:
-
     /**
      * Returns the translation-vector.
      *

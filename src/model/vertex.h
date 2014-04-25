@@ -12,6 +12,13 @@ namespace CE3D
 
 using VertexIndexType = std::uint32_t;
 
+/**
+ * A "thing" out of which a model is made.
+ *
+ * A vertex is typically a point, a line or a triangle. It holds also some
+ * other properties via the template t_Material. (May contain transparency,
+ * color and all these things.)
+ */
 template <typename t_Material>
 class Vertex
 {
@@ -36,13 +43,29 @@ public:
     SetMaterial(t_Material const& Input)
     { m_Property = Input; }
 
+    /**
+     * Getter.
+     *
+     * @return the material.
+     */
     inline t_Material
     GetMaterial() const
     { return m_Property; }
 
+    /**
+     * Getter (const).
+     *
+     * @return the vectors of this vertex (const)
+     */
     inline boost::container::vector<VertexIndexType> const&
     GetVectors() const
     { return m_Vectors; }
+
+    /**
+     * Getter.
+     *
+     * @return the vectors of this vertex
+     */
     inline boost::container::vector<VertexIndexType>&
     GetVectors()
     { return m_Vectors; }

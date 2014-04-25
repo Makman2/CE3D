@@ -9,6 +9,9 @@
 
 namespace CE3D {
 
+/**
+ * A material for the curses console.
+ */
 class ConsoleMaterial {
 private:
     /**

@@ -19,7 +19,11 @@ namespace Transformation
 class Scale : public Transformation
 {
 private:
-    
+    /**
+     * A vector describing the scale.
+     *
+     * It contains the scale factor for the n-th dimension in the n-th row.
+     */
     Vector m_Scale;
 
 protected:
