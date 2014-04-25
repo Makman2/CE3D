@@ -16,7 +16,7 @@ void Console::WriteString(ConsoleStringAttributes const attr,
     attroff(m_CurrentAttributes.GetCursesRepresentation());
     attron(attr.GetCursesRepresentation());
 
-    printw(str, Args...);
+    printw(str.c_str(), Args...);
 
     attroff(attr.GetCursesRepresentation());
     attron(m_CurrentAttributes.GetCursesRepresentation());
@@ -32,7 +32,7 @@ void Console::WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
     attroff(m_CurrentAttributes.GetCursesRepresentation());
     attron(attr.GetCursesRepresentation());
 
-    mvrintw(y, x, str, Args...);
+    mvrintw(y, x, str.c_str(), Args...);
 
     attroff(attr.GetCursesRepresentation());
     attron(m_CurrentAttributes.GetCursesRepresentation());

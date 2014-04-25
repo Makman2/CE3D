@@ -36,6 +36,7 @@ private:
      */
     std::string m_Name;
 public:
+    Model();
 
     /**
      * Gets the visibility of the model.
@@ -98,6 +99,12 @@ public:
      */
     inline boost::container::vector<Vector> const&
     GetVectors() const
+    { return m_Vectors; }
+    /**
+     * Returns a list of all vectors of this model.
+     */
+    inline boost::container::vector<Vector>&
+    GetVectors()
     { return m_Vectors; }
 
     inline boost::container::vector<Vertex<t_Material> >&

@@ -5,11 +5,15 @@
 
 #include "renderer/renderer.h"
 
+#include "console/console.h"
+
 namespace CE3D {
 
 template <typename t_Material>
 void Renderer<t_Material>::Render(const Camera<t_Material>& camera) const
 {
+    ClearBuffer();
+
     typename std::unique_ptr<World<t_Material> > World(camera.Paint());
 
     for (auto& it : World->GetModels())
@@ -23,6 +27,8 @@ void Renderer<t_Material>::Render(const Camera<t_Material>& camera) const
             RenderVertex(Vertex, *it);
         }
     }
+
+    FlushBuffer();
 }
 
 } /* namespace CE3D */

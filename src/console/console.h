@@ -64,13 +64,6 @@ private:
      */
     static std::function<void()> s_Callback;
     /**
-     * If the thread holds the lock of this mutex, it's doing something
-     * important; if not we can kill it.
-     *
-     * We have to kill it since getch is a blocking invocation.
-     */
-    static boost::signals2::mutex s_KbThreadMutex;
-    /**
      * This mutex is to ensure that not more than one instance is created out
      * of multiple threads.
      *

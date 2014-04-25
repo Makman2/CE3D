@@ -46,20 +46,15 @@ public:
     GetModels() const
     { return m_Models; }
 
-    virtual inline std::vector<std::shared_ptr<
-                                   Transformation::Transformation> > const&
-    GetTransformations() const
-    { return m_Transformations; }
-
     virtual inline void
     AddModel(std::shared_ptr<Model<t_Material> > Model)
     { m_Models.push_back(Model); }
 private:
     std::vector<std::shared_ptr<Model<t_Material> > > m_Models;
-    std::vector<std::shared_ptr<Transformation::Transformation> >
-        m_Transformations;
 };
 
 }
+
+#include "world/world_code.h"
 
 #endif /* CE3D_WORLD_WORLD_H */

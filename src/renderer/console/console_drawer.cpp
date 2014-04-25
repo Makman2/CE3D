@@ -16,7 +16,7 @@ ConsoleDrawer::ConsoleDrawer()
 }
 
 void ConsoleDrawer::DrawPoint(Vector const& Point,
-       __attribute__((unused))ConsoleMaterial const& Material) const
+                              __attribute__((unused))ConsoleMaterial const& Material) const
 {
     if (Point.size() < 3)
     {
@@ -38,8 +38,8 @@ void ConsoleDrawer::DrawPoint(Vector const& Point,
     }
 
     ConsoleStringAttributes Attr;
-    Attr.SetColor(Material.GetColor(), ConsoleColor::WHITE);
-    m_Console.WriteChar(x, y, '.');
+    Attr.SetColor(ConsoleColor::GREEN, ConsoleColor::WHITE);
+    m_Console.WriteChar(x, y, Attr, '.');
 }
 
 } /* namespace CE3D */

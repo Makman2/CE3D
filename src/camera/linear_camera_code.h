@@ -49,11 +49,15 @@ void LinearCamera<t_Material>::UpdateTransformation() const
 template <typename t_Material>
 std::unique_ptr<World<t_Material> > LinearCamera<t_Material>::Paint() const
 {
-    std::unique_ptr<World<t_Material> > TransformedWorld(new World());
+    std::unique_ptr<World<t_Material> >
+    TransformedWorld(new World<t_Material>(*(this->GetWorld())));
 
-    UpdateTransformation();
+    if (m_TransformationStack.size() > 0)
+    {
+        UpdateTransformation();
 
-    TransformedWorld->Transform(m_TransformationMatrix);
+        TransformedWorld->Transform(m_TransformationMatrix);
+    }
 
     return std::move(TransformedWorld);
 }
