@@ -8,5 +8,6 @@ list(APPEND SRC
     ${CMAKE_CURRENT_LIST_DIR}/orthogonal_projection
     ${CMAKE_CURRENT_LIST_DIR}/orthogonal_depth_projection
     ${CMAKE_CURRENT_LIST_DIR}/perspective_projection
+    ${CMAKE_CURRENT_LIST_DIR}/transformation_chain
     )
 set(SRC "${SRC}" PARENT_SCOPE)

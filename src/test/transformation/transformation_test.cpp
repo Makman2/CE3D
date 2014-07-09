@@ -1,10 +1,9 @@
 // This file is part of CE3D. License: GPL3
 
-#include "util/stdinc.h"
-
 #include "test/transformation/transformation_test.h"
-#include "transformation/transformation.h"
+
 #include <boost/test/unit_test.hpp>
+#include <stdlib.h>
 
 void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b)
 {
@@ -50,4 +49,17 @@ void RequireVectorEquality(CE3D::Vector const a, CE3D::Vector const b,
     {
         BOOST_REQUIRE_SMALL(std::abs(a[i] - b[i]), tolerance);
     }
+}
+
+CE3D::Matrix RandomMatrix
+    (CE3D::Matrix::size_type m, CE3D::Matrix::size_type n, unsigned int seed)
+{
+    CE3D::Matrix mat(m, n);
+    srand(seed);
+
+    for (CE3D::Matrix::size_type x = 0; x < mat.size1(); x++)
+        for (CE3D::Matrix::size_type y = 0; y < mat.size2(); y++)
+            mat(x, y) = rand();
+        
+    return mat;
 }
