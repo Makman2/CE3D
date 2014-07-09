@@ -8,10 +8,11 @@
 
 #include "util/stdinc.h"
 
-#include "util/CE3D_matrix.h"
 #include "test/transformation/transformation_test.h"
+
 #include "transformation/orthogonal_projection.h"
 #include "transformation/orthogonal_depth_projection.h"
+
 
 namespace CE3D
 {

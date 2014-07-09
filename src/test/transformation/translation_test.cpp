@@ -8,16 +8,16 @@
 
 #include "util/stdinc.h"
 
-#include "util/CE3D_matrix.h"
-#include "test/transformation/transformation_test.h"
 #include "transformation/translation.h"
+
+#include "test/transformation/transformation_test.h"
 
 namespace CE3D
 {
 namespace Testing
 {
 
-BOOST_FIXTURE_TEST_SUITE(Transformation, TestEnvironment)
+BOOST_FIXTURE_TEST_SUITE(Translation, TestEnvironment)
 
 /**
  * Tests the construction and destruction of Translation.

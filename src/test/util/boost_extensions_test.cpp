@@ -24,7 +24,8 @@ BOOST_FIXTURE_TEST_SUITE(Util, TestEnvironment)
  */
 BOOST_AUTO_TEST_CASE(TestInverseCalculation)
 {
-    CE3D::Matrix identity = boost::numeric::ublas::identity_matrix<ModelDataType>(4, 4);
+    CE3D::Matrix identity =
+        boost::numeric::ublas::identity_matrix<ModelDataType>(4, 4);
     CE3D::Matrix inversion(4,4);
 
     boost::numeric::ublas::invert(identity, inversion);

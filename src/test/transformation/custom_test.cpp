@@ -9,7 +9,6 @@
 #include "util/stdinc.h"
 
 #include "transformation/custom.h"
-#include "util/CE3D_matrix.h"
 #include "test/transformation/transformation_test.h"
 
 namespace CE3D
