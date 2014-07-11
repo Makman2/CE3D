@@ -11,7 +11,7 @@
 //      IMPORTANT: MAKE SURE EVERY RETURNED ITERATOR IS A CONST_ITERATOR!!!
 
 // ENHANCE Implement intelligent multiplication with a vector without multiplying
-//         the whole matrix chain.
+//         the whole matrix chain out.
 
 // TODO Implement Exchange(index1, index2)
 
@@ -49,15 +49,23 @@ namespace Transformation
 
     void TransformationChain::UpdateMatrix() const
     {
-        std::vector<std::unique_ptr<Transformation> >::const_iterator nextit;
-        for (auto it = m_TransformationList.cbegin();
-            it != std::prev(m_TransformationList.cend()); it = nextit)
+        if (IsEmpty())
+            throw std::length_error("TransformationChain is empty.");
+        
+        auto it = Begin();
+        m_Matrix = it->GetMatrix();
+        it++;
+
+        Matrix cache;
+        while (it != End())
         {
-            nextit = it;
-            nextit++;
+            m_Matrix.swap(cache);
+            m_Matrix.resize(cache.size1(), it->GetMatrix().size2(), false);
 
             boost::numeric::ublas::axpy_prod
-                (it->get()->GetMatrix(), nextit->get()->GetMatrix(), m_Matrix, true);
+                (cache, it->GetMatrix(), m_Matrix, true);
+
+            it++;
         }
     }
     
@@ -162,6 +170,11 @@ namespace Transformation
     TransformationChain::size_type TransformationChain::Size() const
     {
         return m_TransformationList.size();
+    }
+
+    bool TransformationChain::IsEmpty() const
+    {
+        return Size() == 0;
     }
 }
 }

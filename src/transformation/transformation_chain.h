@@ -303,7 +303,14 @@ public:
      */
     size_type
     Size() const;
-    
+
+    /**
+     * Returns whether the number of matrices in transformation chain is zero.
+     *
+     * @return true if empty, false if not.
+     */
+    bool
+    IsEmpty() const;
 
     /**
      * Returns the matrix that represents the complete linear transformation.
