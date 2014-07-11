@@ -6,14 +6,10 @@
 #include <boost/numeric/ublas/operation.hpp>
 #include <utility>
 
-// List of todo's, delete when finished:
 // TODO Implement TransformationChain
-//      IMPORTANT: MAKE SURE EVERY RETURNED ITERATOR IS A CONST_ITERATOR!!!
 
 // ENHANCE Implement intelligent multiplication with a vector without multiplying
 //         the whole matrix chain out.
-
-// TODO Implement Exchange(index1, index2)
 
 // TODO Implement the lazy-update mechanism
 //  - First efficiency level: stack frames that indicate what part of the matrix was
