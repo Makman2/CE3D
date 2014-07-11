@@ -261,6 +261,25 @@ public:
     void Swap(TransformationChain& chain);
 
     /**
+     * Exchanges the positions of the transformations at the given indices.
+     *
+     * @param index1 The first index.
+     * @param index2 The second index.
+     */
+    void
+    Exchange(size_type index1, size_type index2);
+
+    /**
+     * Exchanges the positions of the transformations at the given iterator
+     * positions.
+     *
+     * @param it1 The first iterator position.
+     * @param index2 The second iterator position.
+     */
+    void
+    Exchange(const_iterator it1, const_iterator it2);
+
+    /**
      * Returns the transformation at the given index.
      *
      * @param index The index of the transformation.

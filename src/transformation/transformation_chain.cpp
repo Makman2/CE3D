@@ -145,6 +145,22 @@ namespace Transformation
         std::swap(m_TransformationList, chain.m_TransformationList);
     }
 
+    void TransformationChain::Exchange(TransformationChain::size_type index1,
+    TransformationChain::size_type index2)
+    {
+        m_TransformationList[index1].swap(m_TransformationList[index2]);   
+    }
+
+    void TransformationChain::Exchange(TransformationChain::const_iterator it1,
+    TransformationChain::const_iterator it2)
+    {
+        auto itm1 = m_TransformationList.begin();
+        itm1 += std::distance(Begin(), it1);
+        auto itm2 = m_TransformationList.begin();
+        itm2 += std::distance(Begin(), it2);
+        itm1->swap(*itm2);
+    }
+
     Transformation const& TransformationChain::At
     (TransformationChain::size_type index) const
     {

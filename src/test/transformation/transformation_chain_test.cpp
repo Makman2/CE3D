@@ -100,6 +100,17 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     chain.Swap(newchain);
     BOOST_REQUIRE_EQUAL(newchain.Size(), matrices.size());
     BOOST_REQUIRE_EQUAL(chain.Size(), 0);
+
+    // Test Exchange()
+    chain.Swap(newchain);
+    chain.Exchange(0, 2);
+    RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[2]);
+    RequireMatrixEquality(chain.At(2).GetMatrix(), matrices[0]);
+
+    chain.Exchange(chain.Begin(), chain.Begin() + 1);
+    RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[1]);
+    RequireMatrixEquality(chain.At(1).GetMatrix(), matrices[2]);
+
 }
 
 /**
