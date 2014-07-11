@@ -8,33 +8,23 @@
 
 namespace CE3D {
 
-void ConsoleRenderer::Render(const Camera<ConsoleMaterial>& camera) const
+void ConsoleRenderer::RenderVertex(Vertex<ConsoleMaterial> const& Vert,
+           __attribute__((unused)) Model<ConsoleMaterial> const& Mod) const
 {
-    std::unique_ptr<World<ConsoleMaterial> > World(camera.Paint());
+    auto& VectorIndices = Vert.GetVectors();
+    auto& Vectors = Mod.GetVectors();
 
-    for (auto& it : World->GetModels())
+    switch (VectorIndices.size())
     {
-        if (it->IsVisible())
-        {
-            RenderModel(*it);
-        }
-    }
-}
-
-
-void ConsoleRenderer::RenderModel(Model<ConsoleMaterial> Mod) const
-{
-    for (auto& Vertex : Mod.GetVertices())
-    {
-        auto& Vectors = Vertex.GetVectors();
-        switch (Vectors.size())
-        {
-        case 1:
-        case 2:
-        case 3:
-        default:
-            throw std::length_error("Unsupported vector count.");
-        }
+    case 1:
+        m_Drawer.DrawPoint(Vectors[VectorIndices[0]], Vert.GetMaterial());
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    default:
+        throw std::length_error("Unsupported vector count.");
     }
 }
 

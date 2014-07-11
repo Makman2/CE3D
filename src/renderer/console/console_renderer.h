@@ -8,21 +8,42 @@
 #include "renderer/renderer.h"
 
 #include "renderer/console/console_material.h"
+#include "renderer/console/console_drawer.h"
+#include "console/console.h"
 
 namespace CE3D {
 
+/**
+ * A renderer for the curses console.
+ */
 class ConsoleRenderer: public Renderer<ConsoleMaterial> {
 private:
+    /**
+     * Helper to draw the things to the real console.
+     */
+    ConsoleDrawer m_Drawer;
+    /**
+     * Console for clearing and refreshing.
+     */
+    Console m_Console;
+
+    // Inherited documentation comment
+    virtual inline void
+    ClearBuffer() const
+    { m_Console.Clear(); }
+    // Inherited documentation comment
+    virtual inline void
+    FlushBuffer() const
+    { m_Console.Flush(); }
+    // Inherited documentation comment
     void
-    RenderModel(Model<ConsoleMaterial> Mod) const;
+    RenderVertex(Vertex<ConsoleMaterial> const& Vert,
+                 Model<ConsoleMaterial> const& Mod) const override;
 public:
     inline
     ConsoleRenderer() {}
     inline virtual
     ~ConsoleRenderer() {}
-
-    virtual void
-    Render(Camera<ConsoleMaterial> const& camera) const override;
 };
 
 } /* namespace CE3D */

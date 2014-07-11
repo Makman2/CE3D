@@ -17,7 +17,7 @@ namespace CE3D
 namespace Transformation
 {
 
-    
+
 
 /**
  * A transformation that describes an orthogonal projection.
@@ -25,11 +25,12 @@ namespace Transformation
 class OrthogonalProjection : public Transformation
 {
 private:
-
+    /**
+     * The vectors describing the projection.
+     */
     std::vector<Vector> m_ProjectionVectors;
-    
-protected:
 
+protected:
     // inherited documentation comment
     virtual void
     UpdateMatrix() const override;

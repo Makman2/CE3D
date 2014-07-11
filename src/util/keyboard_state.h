@@ -26,6 +26,11 @@ class Console;
 class KeyboardState {
 private:
     KeyboardState();
+    /**
+     * Inhibit default public copy constructor.
+     *
+     * @param rhs the copy
+     */
     KeyboardState(KeyboardState const& rhs);
 
     /**
