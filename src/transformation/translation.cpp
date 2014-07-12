@@ -7,6 +7,10 @@ namespace CE3D
 namespace Transformation
 {
 
+Translation::Translation()
+: m_TranslationVector()
+{}
+
 void Translation::UpdateMatrix() const
 {
     m_Matrix.resize(
