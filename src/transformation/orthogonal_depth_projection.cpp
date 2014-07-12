@@ -10,6 +10,7 @@ namespace Transformation
 
 void OrthogonalDepthProjection::UpdateMatrix() const
 {
+    // FIXME this function is far too long and needs to be split up.
     OrthogonalProjection::UpdateMatrix();
 
     // Append matrix row for depth/distance calculation.
