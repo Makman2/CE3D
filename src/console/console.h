@@ -173,8 +173,9 @@ public:
      * @param character The character
      */
     void
-    WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
-              char const character);
+    WriteChar(ConsoleIdxType const x,
+              ConsoleIdxType const y,
+              char           const character);
 
     /**
      * Writes a character to the console.
@@ -185,8 +186,10 @@ public:
      * @param character The character
      */
     void
-    WriteChar(ConsoleIdxType const x, ConsoleIdxType const y,
-              ConsoleStringAttributes const attr, char const character);
+    WriteChar(ConsoleIdxType          const x,
+              ConsoleIdxType          const y,
+              ConsoleStringAttributes const attr,
+              char                    const character);
 
     /**
      * Writes a string to the current position with the current attributes.
@@ -211,8 +214,9 @@ public:
      */
     template<typename... Types>
     void
-    WriteString(ConsoleStringAttributes const attr, std::string const str,
-                Types... Args);
+    WriteString(ConsoleStringAttributes const attr,
+                std::string             const str,
+                Types...                      Args);
 
     /**
      * Writes a string to the current position with the given attributes.
@@ -226,8 +230,10 @@ public:
      */
     template<typename... Types>
     void
-    WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
-                std::string const str, Types... Args);
+    WriteString(ConsoleIdxType const x,
+                ConsoleIdxType const y,
+                std::string    const str,
+                Types...             Args);
 
     /**
      * Writes a string to the current position with the given attributes.
@@ -242,9 +248,11 @@ public:
      */
     template<typename... Types>
     void
-    WriteString(ConsoleIdxType const x, ConsoleIdxType const y,
-                ConsoleStringAttributes const attr, std::string const str,
-                Types... Args);
+    WriteString(ConsoleIdxType          const x,
+                ConsoleIdxType          const y,
+                ConsoleStringAttributes const attr,
+                std::string             const str,
+                Types...                      Args);
 
     /**
      * Clears the console.
