@@ -37,7 +37,6 @@ namespace Transformation
         if (m_NeedUpdate)
         {
             UpdateMatrix();
-            m_NeedUpdate = false;
         }
 
         return m_Matrix;
@@ -46,7 +45,9 @@ namespace Transformation
     void TransformationChain::UpdateMatrix() const
     {
         if (IsEmpty())
+        {
             throw std::length_error("TransformationChain is empty.");
+        }
 
         auto it = Begin();
         m_Matrix = it->GetMatrix();
@@ -63,6 +64,8 @@ namespace Transformation
 
             it++;
         }
+
+        m_NeedUpdate = false;
     }
 
 
