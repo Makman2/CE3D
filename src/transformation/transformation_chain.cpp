@@ -47,7 +47,7 @@ namespace Transformation
     {
         if (IsEmpty())
             throw std::length_error("TransformationChain is empty.");
-        
+
         auto it = Begin();
         m_Matrix = it->GetMatrix();
         it++;
@@ -64,20 +64,20 @@ namespace Transformation
             it++;
         }
     }
-    
-    
+
+
     TransformationChain::const_iterator
     TransformationChain::Begin() const
     {
         return const_iterator(m_TransformationList.cbegin());
     }
 
-    TransformationChain::const_iterator TransformationChain::Middle
-    (TransformationChain::size_type index) const
+    TransformationChain::const_iterator
+    TransformationChain::Middle(TransformationChain::size_type index) const
     {
         if (index >= Size())
             throw std::out_of_range("Index out of bounds.");
-        
+
         const_iterator it(m_TransformationList.cbegin());
         it += index;
 
@@ -97,12 +97,11 @@ namespace Transformation
     }
 
     TransformationChain::const_reverse_iterator
-    TransformationChain::RMiddle
-    (TransformationChain::size_type index) const
+    TransformationChain::RMiddle(TransformationChain::size_type index) const
     {
         if (index >= Size())
             throw std::out_of_range("Index out of bounds.");
-        
+
         const_reverse_iterator it(m_TransformationList.crbegin());
         it += index;
 
@@ -144,11 +143,11 @@ namespace Transformation
     void TransformationChain::Exchange(TransformationChain::size_type index1,
     TransformationChain::size_type index2)
     {
-        m_TransformationList[index1].swap(m_TransformationList[index2]);   
+        m_TransformationList[index1].swap(m_TransformationList[index2]);
     }
 
     void TransformationChain::Exchange(TransformationChain::const_iterator it1,
-    TransformationChain::const_iterator it2)
+                                       TransformationChain::const_iterator it2)
     {
         auto itm1 = m_TransformationList.begin();
         itm1 += std::distance(Begin(), it1);

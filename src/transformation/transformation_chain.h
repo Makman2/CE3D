@@ -58,17 +58,17 @@ protected:
     void UpdateMatrix() const;
 
 public:
-   
+
     /**
      * The size type the transformation chain uses for the transformation list.
      */
     typedef std::vector<std::unique_ptr<Transformation> >::size_type size_type;
-    
+
     /**
      * The transformation chain const_iterator class. Exposes const access to it's
      * matrices.
      */
-    typedef dereference_iterator<std::vector<std::unique_ptr<Transformation> 
+    typedef dereference_iterator<std::vector<std::unique_ptr<Transformation>
     >::const_iterator> const_iterator;
 
     /**
@@ -81,7 +81,7 @@ public:
     TransformationChain();
     inline virtual
     ~TransformationChain() {}
-    
+
     /**
      * Returns a const_iterator pointing at first transformation in the chain.
      *
@@ -89,7 +89,7 @@ public:
      */
     const_iterator
     Begin() const;
-    
+
     /**
      * Returns a const_iterator pointing at the transformation at the specified
      * index.
@@ -116,7 +116,7 @@ public:
      */
     const_reverse_iterator
     RBegin() const;
-    
+
     /**
      * Returns a const_reverse_iterator pointing at the transformation at the
      * specified index relative to the end.
@@ -149,6 +149,7 @@ public:
             std::unique_ptr<Transformation>(new TransformationType(transformation)));
         m_NeedUpdate = true;
     }
+
     /**
      * Adds a new transformation at the bottom of the chain.
      *
@@ -161,6 +162,7 @@ public:
     {
         Insert(transformation, Begin());
     }
+
     /**
      * Inserts a new transformation into the chain at the specified position.
      *
@@ -175,6 +177,7 @@ public:
     {
         return Insert(transformation, Middle(index));
     }
+
     /**
      * Inserts a new transformation into the chain at the specified position.
      *
@@ -207,7 +210,7 @@ public:
     Replace(TransformationType const& transformation, size_type index)
     {
         m_NeedUpdate = true;
-        m_TransformationList[index] = 
+        m_TransformationList[index] =
             std::unique_ptr<Transformation>(new TransformationType(transformation));
     }
 
@@ -298,7 +301,7 @@ public:
      */
     Transformation const&
     operator [](size_type index) const;
-    
+
     /**
      * Accesses the first transformation of the chain.
      *
@@ -306,7 +309,7 @@ public:
      */
     Transformation const&
     Front() const;
-    
+
     /**
      * Accesses the last transformation of the chain.
      *
@@ -314,7 +317,7 @@ public:
      */
     Transformation const&
     Back() const;
-    
+
     /**
      * Returns the number of matrices in the transformation chain.
      *
