@@ -3,8 +3,6 @@
 #ifndef CE3D_TEST_TRANSFORMATION_TRANSFORMATION_TEST_H
 #define CE3D_TEST_TRANSFORMATION_TRANSFORMATION_TEST_H
 
-#include "util/stdinc.h"
-
 #include "util/CE3D_matrix.h"
 #include "util/CE3D_vector.h"
 
@@ -28,5 +26,12 @@ void RequireVectorEquality(CE3D::Vector const, CE3D::Vector const);
  * Invokes BOOST_REQUIRE_SMALL for each vector element.
  */
 void RequireVectorEquality(CE3D::Vector const, CE3D::Vector const, float tolerance);
+
+/**
+ * Creates a matrix with randomized values.
+ */
+CE3D::Matrix RandomMatrix
+    (CE3D::Matrix::size_type m, CE3D::Matrix::size_type n, unsigned int seed);
+
 
 #endif /* CE3D_TEST_TRANSFORMATION_TRANSFORMATION_TEST_H */
