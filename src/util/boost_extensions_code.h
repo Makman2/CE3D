@@ -47,11 +47,13 @@ concat_vectors(vector<T> const * const vectors, size_t count)
     for (size_t i = 1; i < count; i++)
     {
         if (vectors[i - 1].size() != vectors[i].size())
-            throw std::invalid_argument("Vectors doesn't have the same length.");
+            throw std::invalid_argument
+                ("Vectors doesn't have the same length.");
     }
 
     matrix<T> M((*vectors).size(), count);
-    for (typename matrix<T>::size_type column = 0; column < M.size2(); column++)
+    for (typename matrix<T>::size_type column = 0; column < M.size2();
+         column++)
     {
         for (typename matrix<T>::size_type row = 0; row < M.size1(); row++)
         {
@@ -70,11 +72,13 @@ concat_vectors(std::vector<vector<T>> const& vectors)
     for (typename std::vector<T>::size_type i = 1; i < vectors.size(); i++)
     {
         if (vectors.at(i - 1).size() != vectors.at(i).size())
-            throw std::invalid_argument("Vectors doesn't have the same length.");
+            throw std::invalid_argument
+                ("Vectors doesn't have the same length.");
     }
     
     matrix<T> M(vectors.at(0).size(), vectors.size());
-    for (typename matrix<T>::size_type column = 0; column < M.size2(); column++)
+    for (typename matrix<T>::size_type column = 0; column < M.size2();
+         column++)
     {
         for (typename matrix<T>::size_type row = 0; row < M.size1(); row++)
         {

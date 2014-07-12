@@ -26,7 +26,8 @@ invert(matrix<T> const& input, matrix<T>& inverse);
 /**
  * Concats vectors together to a matrix.
  *
- * @param vectors: An array that contains the vectors that should be concatenated.
+ * @param vectors: An array that contains the vectors that should be
+ * concatenated.
  * @param count: The number of elements in the array.
  * @return The concatenated matrix.
  */

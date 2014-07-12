@@ -36,7 +36,8 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     CE3D::Transformation::TransformationChain chain;
     // Test PushBack() and Back()
     for (auto elem : matrices)
-        BOOST_REQUIRE_NO_THROW(chain.PushBack(CE3D::Transformation::Custom(elem)));
+        BOOST_REQUIRE_NO_THROW(chain.PushBack(
+            CE3D::Transformation::Custom(elem)));
     
     RequireMatrixEquality(chain.Back().GetMatrix(), matrices[3]);
 
@@ -69,8 +70,8 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     RequireMatrixEquality(chain[1].GetMatrix(), matrices[1]);
 
     // Test Erase()
-    //  The call to the index-version automatically invokes the iterator-version,
-    //  So both overloaded functions are tested.
+    //  The call to the index-version automatically invokes the
+    //  iterator-version, so both overloaded functions are tested.
     chain.Erase(2);
     BOOST_REQUIRE_EQUAL(chain.Size(), 3);
     RequireMatrixEquality(chain.At(2).GetMatrix(), matrices[3]);

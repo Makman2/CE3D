@@ -21,7 +21,8 @@ Model<t_Material>::Model()
 { }
 
 template <typename t_Material>
-void Model<t_Material>::Transform(Transformation::Transformation const& transformation)
+void Model<t_Material>::Transform
+(Transformation::Transformation const& transformation)
 {
     Matrix matrix = transformation.GetMatrix();
     Vector temp(matrix.size1());
@@ -33,7 +34,8 @@ void Model<t_Material>::Transform(Transformation::Transformation const& transfor
 }
 
 template <typename t_Material>
-void Model<t_Material>::Translate(Transformation::Translation const& translation)
+void Model<t_Material>::Translate
+(Transformation::Translation const& translation)
 {
     Vector translationvec = translation.GetTranslation();
     // It's more performant to directly add the vertices together instead of

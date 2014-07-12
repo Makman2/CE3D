@@ -8,18 +8,18 @@
 
 // TODO Implement TransformationChain
 
-// ENHANCE Implement intelligent multiplication with a vector without multiplying
-//         the whole matrix chain out.
+// ENHANCE Implement intelligent multiplication with a vector without
+//         multiplying the whole matrix chain out.
 
 // TODO Implement the lazy-update mechanism
-//  - First efficiency level: stack frames that indicate what part of the matrix was
-//    already calculated. See stack frame structure in the private section of the
-//    class.
-//  - Second efficiency level: inversion of matrices. If only one matrix was removed
-//    at the top or beginning (not in the middle), it can be cost-saving for small
-//    matrices to invert them. A value has to be calculated to determine whether it's
-//    more useful to invert a matrix or just to multiply the whole matrix chain
-//    again.
+//  - First efficiency level: stack frames that indicate what part of the
+//    matrix was already calculated. See stack frame structure in the private
+//    section of the class.
+//  - Second efficiency level: inversion of matrices. If only one matrix was
+//    removed at the top or beginning (not in the middle), it can be
+//    cost-saving for small matrices to invert them. A value has to be
+//    calculated to determine whether it's more useful to invert a matrix or
+//    just to multiply the whole matrix chain again.
 
 namespace CE3D
 {
@@ -31,7 +31,7 @@ namespace Transformation
     , m_NeedUpdate(false)
     , m_TransformationList()
     {}
-
+ 
     Matrix const& TransformationChain::GetMatrix() const
     {
         if (m_NeedUpdate)

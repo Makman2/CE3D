@@ -40,8 +40,8 @@ public:
     /**
      * Instantiates a new object.
      *
-     * @param projection_vectors: The projection vectors of the subspace to project
-     * on.
+     * @param projection_vectors: The projection vectors of the subspace to
+     * project on.
      */
     OrthogonalProjection(std::vector<Vector> const& projection_vectors);
     /**
@@ -74,7 +74,8 @@ public:
      * Sets the projection vectors of the n-1 subspace orthogonal to the given
      * direction.
      *
-     * @param direction: The direction in which the projection plane is orientated.
+     * @param direction: The direction in which the projection plane is
+     * orientated.
      */
     void
     SetProjectionVectors(Vector const& direction);

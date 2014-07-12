@@ -9,7 +9,8 @@ namespace CE3D
 {
 
 template <typename t_Material>
-void World<t_Material>::Transform(Transformation::Transformation const& transformation)
+void World<t_Material>::Transform
+(Transformation::Transformation const& transformation)
 {
     for (auto& it : GetModels())
     {
@@ -18,7 +19,8 @@ void World<t_Material>::Transform(Transformation::Transformation const& transfor
 }
 
 template <typename t_Material>
-void World<t_Material>::Translate(Transformation::Translation const& translation)
+void World<t_Material>::Translate
+(Transformation::Translation const& translation)
 {
     for (auto& it : GetModels())
     {
