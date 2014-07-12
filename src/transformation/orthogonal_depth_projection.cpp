@@ -10,10 +10,11 @@ namespace Transformation
 
 void OrthogonalDepthProjection::UpdateMatrix() const
 {
+    // FIXME this function is far too long and needs to be split up.
     OrthogonalProjection::UpdateMatrix();
 
     // Append matrix row for depth/distance calculation.
-    
+
     // Constructing orthogonalized vectors.
 
     auto vecref = GetProjectionVectors();
@@ -32,12 +33,15 @@ void OrthogonalDepthProjection::UpdateMatrix() const
     }
 
     // Setup the new array.
-    std::vector<Vector> newbase = std::vector<Vector>(dimension - vecref.size());
+    std::vector<Vector> newbase = std::vector<Vector>(dimension -
+                                                      vecref.size());
     std::size_t remain = 0;
 
     // Orthogonalize them.
     for (std::size_t i = 0; i < dimension; i++)
     {
+        // TODO put i - remain into a meaningful local variable.
+        // No need to recalculate it every time.
         newbase[i - remain] = orthovecs[i];
 
         for (std::size_t n = 0; n < i - remain; n++)
@@ -50,11 +54,11 @@ void OrthogonalDepthProjection::UpdateMatrix() const
                 remain++;
                 continue;
             }
-                
+
             Vector projvec =
                 (boost::numeric::ublas::inner_prod(vecref[n],
                 vecref[i]) / inprod) * vecref[n];
-            
+
             newbase[i - remain] -= projvec;
         }
 
@@ -68,14 +72,14 @@ void OrthogonalDepthProjection::UpdateMatrix() const
     Matrix B(A.size1(), matrixref.size2());
     boost::numeric::ublas::axpy_prod(A, matrixref, B);
     B = boost::numeric::ublas::identity_matrix<ModelDataType>(B.size1()) - B;
-    
+
     Matrix C = boost::numeric::ublas::concat_vectors(newbase);
     A.resize(C.size1(), C.size2(), false);
     boost::numeric::ublas::invert(C, A);
 
     C.resize(A.size1(), B.size2());
     boost::numeric::ublas::axpy_prod(A, B, C);
-    
+
     // Now compute Es * ... and assign directly.
     matrixref.resize(matrixref.size1() + 1, matrixref.size2(), true);
     auto lastrow = matrixref.size1() - 1;

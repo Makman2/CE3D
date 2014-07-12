@@ -38,7 +38,7 @@ private:
     // Inherited documentation comment
     void
     RenderVertex(Vertex<ConsoleMaterial> const& Vert,
-                 Model<ConsoleMaterial> const& Mod) const override;
+                 Model<ConsoleMaterial>  const& Mod) const override;
 public:
     inline
     ConsoleRenderer() {}

@@ -15,8 +15,8 @@ ConsoleDrawer::ConsoleDrawer()
     m_ZBuffer.resize(m_Width*m_Height, -1.0/0.0);
 }
 
-void ConsoleDrawer::DrawPoint(Vector const& Point,
-                              __attribute__((unused))ConsoleMaterial const& Material) const
+void ConsoleDrawer::DrawPoint(Vector          const& Point,
+      __attribute__((unused)) ConsoleMaterial const& Material) const
 {
     if (Point.size() < 3)
     {
