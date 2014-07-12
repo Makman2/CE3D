@@ -14,6 +14,8 @@ namespace Transformation
 
 /**
  * A transformation that describes an orthogonal projection.
+ * This transformation also handles the depth calculation of the mapped
+ * vectors with an extra-row in the matrix.
  */
 class OrthogonalDepthProjection : public OrthogonalProjection
 {
