@@ -13,7 +13,7 @@
 #include "model/model.h"
 #include "model/vertex.h"
 #include "world/world.h"
-#include "camera/linear_camera.h"
+#include "camera/manual_camera.h"
 #include "util/CE3D_vector.h"
 
 namespace CE3D
@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(TestConsoleRenderer)
     TestWorld->AddModel(TestModel);
 
     // Create camera
-    CE3D::LinearCamera<ConsoleMaterial> TestCamera;
+    CE3D::ManualCamera<ConsoleMaterial> TestCamera;
     TestCamera.SetWorld(TestWorld);
 
     // Render it

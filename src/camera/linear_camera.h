@@ -25,6 +25,15 @@ private:
      */
     Transformation::TransformationChain m_TransformationChain;
 
+protected:
+    /**
+     * Returns a chain of transformations applied sequentially on Paint().
+     *
+     * @returns The transformation chain.
+     */
+    Transformation::TransformationChain&
+    GetTransformationChain();
+
 public:
     /**
      * The type of material used for the camera.
@@ -32,20 +41,19 @@ public:
     using material_type = MaterialType;
     
     LinearCamera();
+    
     virtual
     ~LinearCamera();
-
-    Transformation::TransformationChain& GetTransformationChain();
 
     /**
      * Applies all transformations on the transformation stack and returns the
      * newly created world.
      *
      * @return a unique_ptr to the new world - the caller is responsible for
-     *         tidying up!
+     * tidying up!
      */
-    virtual std::unique_ptr<World<MaterialType> >
-    Paint() const override;
+    std::unique_ptr<World<MaterialType> >
+    Paint() const final override;
 };
 
 } /* namespace CE3D */

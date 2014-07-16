@@ -17,14 +17,15 @@ LinearCamera<MaterialType>::~LinearCamera()
 {}
 
 template <typename MaterialType>
-Transformation::TransformationChain& LinearCamera<MaterialType>
-    ::GetTransformationChain()
+Transformation::TransformationChain&
+LinearCamera<MaterialType>::GetTransformationChain()
 {
     return m_TransformationChain;
 }
     
 template <typename MaterialType>
-std::unique_ptr<World<MaterialType> > LinearCamera<MaterialType>::Paint() const
+std::unique_ptr<World<MaterialType> >
+LinearCamera<MaterialType>::Paint() const
 {
     std::unique_ptr<World<MaterialType> >
     TransformedWorld(new World<MaterialType>(*(this->GetWorld())));
