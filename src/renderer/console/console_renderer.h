@@ -28,11 +28,11 @@ private:
     Console m_Console;
 
     // Inherited documentation comment
-    virtual inline void
+    virtual void
     ClearBuffer() const
     { m_Console.Clear(); }
     // Inherited documentation comment
-    virtual inline void
+    virtual void
     FlushBuffer() const
     { m_Console.Flush(); }
     // Inherited documentation comment
@@ -40,9 +40,9 @@ private:
     RenderVertex(Vertex<ConsoleMaterial> const& Vert,
                  Model<ConsoleMaterial>  const& Mod) const override;
 public:
-    inline
+    
     ConsoleRenderer() {}
-    inline virtual
+    virtual
     ~ConsoleRenderer() {}
 };
 

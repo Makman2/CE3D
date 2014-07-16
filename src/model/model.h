@@ -46,7 +46,7 @@ public:
      *
      * @return The visibility state. true if visible, false if not.
      */
-    inline bool
+    bool
     IsVisible() const
     { return m_Visible; }
 
@@ -55,7 +55,7 @@ public:
      *
      * @param value: The visibility state. true if visible, false if not.
      */
-    inline void
+    void
     SetVisibility(bool const value)
     { m_Visible = value; }
 
@@ -64,7 +64,7 @@ public:
      *
      * @return The name.
      */
-    inline std::string
+    std::string
     GetName() const
     { return m_Name; }
 
@@ -73,7 +73,7 @@ public:
      *
      * @param value: The name to set.
      */
-    inline void
+    void
     SetName(std::string const value)
     { m_Name = value; }
 
@@ -102,7 +102,7 @@ public:
      *
      * @return a list of all vectors of this model (const)
      */
-    inline boost::container::vector<Vector> const&
+    boost::container::vector<Vector> const&
     GetVectors() const
     { return m_Vectors; }
     /**
@@ -110,7 +110,7 @@ public:
      *
      * @return a list of all vectors of this model
      */
-    inline boost::container::vector<Vector>&
+    boost::container::vector<Vector>&
     GetVectors()
     { return m_Vectors; }
 
@@ -119,7 +119,7 @@ public:
      *
      * @return a list of all vertices in this model
      */
-    inline boost::container::vector<Vertex<t_Material> >&
+    boost::container::vector<Vertex<t_Material> >&
     GetVertices()
     { return m_Vertices; }
 
@@ -128,7 +128,7 @@ public:
      *
      * @return a list of all vertices in this model (const)
      */
-    inline boost::container::vector<Vertex<t_Material> > const&
+    boost::container::vector<Vertex<t_Material> > const&
     GetVertices() const
     { return m_Vertices; }
 

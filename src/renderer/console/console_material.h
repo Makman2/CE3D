@@ -29,7 +29,7 @@ public:
      * @param InitialColor The color for the material.
      */
     ConsoleMaterial(ConsoleColor InitialColor);
-    inline virtual
+    virtual
     ~ConsoleMaterial() {}
     /**
      * Getter.

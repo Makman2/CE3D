@@ -85,7 +85,7 @@ public:
     ::const_reverse_iterator>;
 
     TransformationChain();
-    inline virtual
+    virtual
     ~TransformationChain() {}
 
     /**

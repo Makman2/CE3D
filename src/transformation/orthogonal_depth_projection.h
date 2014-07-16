@@ -28,7 +28,7 @@ protected:
     UpdateMatrix() const override;
 
 public:
-    inline virtual
+    virtual
     ~OrthogonalDepthProjection() {}
 };
 

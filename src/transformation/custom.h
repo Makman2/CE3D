@@ -31,7 +31,7 @@ public:
      * @param matrix: The matrix to initialize the class with.
      */
     Custom(Matrix const& matrix);
-    inline virtual
+    virtual
     ~Custom() {};
 
     /**
@@ -46,7 +46,7 @@ public:
      *
      * @param value: The new matrix.
      */
-    inline void
+    void
     SetMatrix(Matrix const& value)
     { m_Matrix = value; }
 };

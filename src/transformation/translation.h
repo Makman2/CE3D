@@ -32,15 +32,15 @@ protected:
     UpdateMatrix() const override;
 
 public:
-    inline Translation();
-    inline virtual ~Translation() override {};
+    Translation();
+    virtual ~Translation() override {};
 
     /**
      * Returns the translation-vector.
      *
      * @return The translation-vector.
      */
-    inline Vector const&
+    Vector const&
     GetTranslation() const
     { return m_TranslationVector; }
 

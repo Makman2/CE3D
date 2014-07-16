@@ -44,12 +44,12 @@ private:
      */
     std::uint32_t m_Attributes;
 public:
-    inline
+    
     ConsoleStringAttributes()
     : m_ColorPairId(0)
     , m_Attributes(0)
     {};
-    inline virtual
+    virtual
     ~ConsoleStringAttributes() {};
 
     /**
@@ -66,7 +66,7 @@ public:
      * @param Foreground foreground color
      * @param Background background color
      */
-    inline void
+    void
     SetColor(ConsoleColor const Foreground, ConsoleColor const Background)
     { m_ColorPairId = ColorPairIndex(Foreground, Background); }
 
@@ -75,7 +75,7 @@ public:
      *
      * @param ColorPairId a color pair id (retrievable by ColorPairIndex)
      */
-    inline void
+    void
     SetColor(std::uint8_t const ColorPairId)
     { m_ColorPairId = ColorPairId; }
 
@@ -86,7 +86,7 @@ public:
      * @param Background background color
      * @return the id
      */
-    static inline std::uint8_t constexpr
+    static std::uint8_t constexpr
     ColorPairIndex(ConsoleColor const Foreground,
                    ConsoleColor const Background)
     { return 1 + (Background * ConsoleColor::LAST) + Foreground; }

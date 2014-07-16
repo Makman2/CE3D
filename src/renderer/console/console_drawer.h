@@ -44,7 +44,7 @@ private:
      * @param y line
      * @return the index
      */
-    inline ConsoleIdxType
+    ConsoleIdxType
     CalculateIndex(ConsoleIdxType const x, ConsoleIdxType const y) const
     { return m_Width*x + y; }
 public:

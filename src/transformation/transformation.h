@@ -57,7 +57,7 @@ protected:
     virtual void UpdateMatrix() const = 0;
 public:
     Transformation();
-    inline virtual
+    virtual
     ~Transformation() {};
     
     /**
