@@ -23,25 +23,9 @@ namespace Transformation
  * The evaluation with a vector is performed top-down, so the resulting matrix
  * calculation is bottom-up.
  */
-class TransformationChain
+class TransformationChain : public Transformation
 {
 private:
-    /**
-     * The matrix that represents the transformations when sequentially
-     * applied.
-     *
-     * This is mutable since it is implicit information which is lazy filled in
-     * a const function if needed.
-     */
-    mutable Matrix m_Matrix;
-
-    /**
-     * Determines whether the matrix was modified and needs to be updated.
-     *
-     * Set this to true if you set information that implicitly changes the
-     * matrix so you can recalculate it lazy.
-     */
-    mutable bool m_NeedUpdate;
 
     /**
      * The list that contains the transformations.
@@ -50,14 +34,8 @@ private:
 
 protected:
 
-    /**
-     * Updates the matrix.
-     *
-     * This function is invoked by GetMatrix if m_NeedUpdate is true. It is
-     * used to calculate implicit information (the matrix) lazy because it is
-     * rarely needed for some transformations.
-     */
-    void UpdateMatrix() const;
+    virtual void
+    UpdateMatrix() const override;
 
 public:
 
@@ -86,7 +64,6 @@ public:
 
     TransformationChain();
     virtual
-    ~TransformationChain() {}
 
     /**
      * Returns a const_iterator pointing at first transformation in the chain.
@@ -358,7 +335,7 @@ public:
      * function serves undefined behaviour.
      */
     virtual Matrix const&
-    GetMatrix() const;
+    GetMatrix() const override;
 
 };
 
