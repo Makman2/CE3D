@@ -2,6 +2,7 @@
 
 SRCS	= main.cpp
 GPP	= g++
+GPPFLAGS= -std=c++11
 TARGET	= cube
 LIBS	= -lCE3D
 
@@ -17,7 +18,7 @@ build: $(TARGET)
 
 $(TARGET):
 	@echo "Building cube..."
-	@$(GPP) $(SRCS) -o $(TARGET) $(LIBS)
+	@$(GPP) $(SRCS) -o $(TARGET) $(LIBS) $(GPPFLAGS)
 	@echo "Done."
 
 clean:
@@ -27,5 +28,6 @@ clean:
 
 run: build
 	@echo "Running cube..."
-	@./cube
+	@#Fixme this is Unix/linux dependent
+	@LD_LIBRARY_PATH=/usr/local/lib ./cube
 	@echo "Done."
