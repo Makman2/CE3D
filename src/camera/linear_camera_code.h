@@ -32,8 +32,7 @@ LinearCamera<MaterialType>::Paint() const
 
     if (!m_TransformationChain.IsEmpty())
     {
-        TransformedWorld->Transform(
-            Transformation::Custom(m_TransformationChain.GetMatrix()));
+        TransformedWorld->Transform(m_TransformationChain);
     }
 
     return std::move(TransformedWorld);

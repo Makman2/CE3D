@@ -27,9 +27,7 @@ namespace Transformation
 {
 
     TransformationChain::TransformationChain()
-    : m_Matrix()
-    , m_NeedUpdate(false)
-    , m_TransformationList()
+    : m_TransformationList()
     {}
  
     Matrix const& TransformationChain::GetMatrix() const
