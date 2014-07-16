@@ -69,6 +69,8 @@ target_link_libraries(CE3D
     ${CURSES_LIBRARY}
     )
 
+install(TARGETS CE3D LIBRARY DESTINATION lib)
+
 if (TESTS_ENABLED)
 add_subdirectory("test")
 endif (TESTS_ENABLED)
