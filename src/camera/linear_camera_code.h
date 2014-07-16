@@ -7,56 +7,32 @@
 
 namespace CE3D {
 
-template <typename t_Material>
-void LinearCamera<t_Material>::RecalculateMatrix() const
+template <typename MaterialType>
+LinearCamera<MaterialType>::LinearCamera()
+: m_TransformationChain()
+{}
+
+template <typename MaterialType>
+LinearCamera<MaterialType>::~LinearCamera()
+{}
+
+template <typename MaterialType>
+Transformation::TransformationChain& LinearCamera<MaterialType>
+    ::GetTransformationChain()
 {
-    m_AppendedTransformations = m_TransformationStack.size()-1;
-    m_TransformationMatrix.SetMatrix(m_TransformationStack[0]->GetMatrix());
-    AppendMatrices();
+    return m_TransformationChain;
 }
-
-template <typename t_Material>
-void LinearCamera<t_Material>::AppendMatrices() const
+    
+template <typename MaterialType>
+std::unique_ptr<World<MaterialType> > LinearCamera<MaterialType>::Paint() const
 {
-    for (std::uint8_t it = m_TransformationStack.size()
-                         - m_AppendedTransformations;
-         it < m_TransformationStack.size(); ++it)
+    std::unique_ptr<World<MaterialType> >
+    TransformedWorld(new World<MaterialType>(*(this->GetWorld())));
+
+    if (!m_TransformationChain.IsEmpty())
     {
-        m_TransformationMatrix.AppendTransformation(
-            *(m_TransformationStack[it]));
-    }
-}
-
-template <typename t_Material>
-void LinearCamera<t_Material>::UpdateTransformation() const
-{
-    if (m_NeededUpdates > 0)
-    {
-        if (m_NeededUpdates == m_AppendedTransformations)
-        {
-            AppendMatrices();
-        }
-        else
-        {
-            RecalculateMatrix();
-        }
-
-        m_NeededUpdates = 0;
-        m_AppendedTransformations = 0;
-    }
-}
-
-template <typename t_Material>
-std::unique_ptr<World<t_Material> > LinearCamera<t_Material>::Paint() const
-{
-    std::unique_ptr<World<t_Material> >
-    TransformedWorld(new World<t_Material>(*(this->GetWorld())));
-
-    if (m_TransformationStack.size() > 0)
-    {
-        UpdateTransformation();
-
-        TransformedWorld->Transform(m_TransformationMatrix);
+        TransformedWorld->Transform(
+            Transformation::Custom(m_TransformationChain.GetMatrix()));
     }
 
     return std::move(TransformedWorld);
