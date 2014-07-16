@@ -3,7 +3,7 @@
 #ifndef CE3D_WORLD_WORLD_CODE_H
 #define CE3D_WORLD_WORLD_CODE_H
 
-#include "world/world.h"
+#include "CE3D/world/world.h"
 
 namespace CE3D
 {

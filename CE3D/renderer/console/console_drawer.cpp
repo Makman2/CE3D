@@ -1,6 +1,6 @@
 // This file is part of CE3D. License: GPL3
 
-#include "renderer/console/console_drawer.h"
+#include "CE3D/renderer/console/console_drawer.h"
 
 #include <stdexcept>
 

@@ -3,12 +3,12 @@
 #ifndef CE3D_TRANSFORMATION_ITRANSFORMABLE_H
 #define CE3D_TRANSFORMATION_ITRANSFORMABLE_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "transformation/transformation.h"
-#include "transformation/translation.h"
-#include "transformation/scale.h"
-#include "transformation/rotation.h"
+#include "CE3D/transformation/transformation.h"
+#include "CE3D/transformation/translation.h"
+#include "CE3D/transformation/scale.h"
+#include "CE3D/transformation/rotation.h"
 
 namespace CE3D
 {

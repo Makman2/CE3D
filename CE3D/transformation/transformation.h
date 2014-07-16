@@ -3,9 +3,9 @@
 #ifndef CE3D_TRANSFORMATION_TRANSFORMATION_H
 #define CE3D_TRANSFORMATION_TRANSFORMATION_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "util/CE3D_matrix.h"
+#include "CE3D/util/CE3D_matrix.h"
 
 namespace CE3D
 {

@@ -3,7 +3,7 @@
 #ifndef CE3D_CAMERA_MANUAL_CAMERA_CODE_H
 #define CE3D_CAMERA_MANUAL_CAMERA_CODE_H
 
-#include "camera/manual_camera.h"
+#include "manual_camera.h"
 
 namespace CE3D {
 

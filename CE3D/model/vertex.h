@@ -3,7 +3,7 @@
 #ifndef CE3D_MODEL_VERTEX_H
 #define CE3D_MODEL_VERTEX_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
 #include <boost/container/vector.hpp>
 
@@ -73,6 +73,6 @@ public:
 
 }
 
-#include "model/vertex_code.h"
+#include "CE3D/model/vertex_code.h"
 
 #endif /* CE3D_MODEL_VERTEX_H */

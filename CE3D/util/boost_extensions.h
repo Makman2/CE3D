@@ -49,6 +49,6 @@ concat_vectors(std::vector<vector<T>> const& vectors);
 }
 }
 
-#include "util/boost_extensions_code.h"
+#include "CE3D/util/boost_extensions_code.h"
 
 #endif /* CE3D_UTIL_BOOST_EXTENSIONS_H */

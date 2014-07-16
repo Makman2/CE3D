@@ -1,16 +1,16 @@
 // This file is part of CE3D. License: GPL3
 
-#include "test/TestEnvironment.h"
+#include "CE3D/test/TestEnvironment.h"
 
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE BoostExtensions
 #include <boost/test/unit_test.hpp>
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "util/CE3D_matrix.h"
-#include "test/transformation/transformation_test.h"
-#include "util/boost_extensions.h"
+#include "CE3D/util/CE3D_matrix.h"
+#include "CE3D/test/transformation/transformation_test.h"
+#include "CE3D/util/boost_extensions.h"
 
 namespace CE3D
 {

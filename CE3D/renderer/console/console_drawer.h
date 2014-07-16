@@ -3,11 +3,11 @@
 #ifndef CE3D_RENDERER_CONSOLE_CONSOLE_DRAWER_H
 #define CE3D_RENDERER_CONSOLE_CONSOLE_DRAWER_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "console/console.h"
-#include "renderer/console/console_material.h"
-#include "util/CE3D_vector.h"
+#include "CE3D/console/console.h"
+#include "CE3D/renderer/console/console_material.h"
+#include "CE3D/util/CE3D_vector.h"
 
 namespace CE3D {
 

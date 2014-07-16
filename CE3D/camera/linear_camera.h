@@ -3,14 +3,14 @@
 #ifndef CE3D_CAMERA_LINEAR_CAMERA_H
 #define CE3D_CAMERA_LINEAR_CAMERA_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "util/CE3D_matrix.h"
-#include "camera/camera.h"
-#include "transformation/transformation.h"
-#include "transformation/custom.h"
-#include "world/world.h"
-#include "transformation/transformation_chain.h"
+#include "CE3D/util/CE3D_matrix.h"
+#include "CE3D/camera/camera.h"
+#include "CE3D/transformation/transformation.h"
+#include "CE3D/transformation/custom.h"
+#include "CE3D/world/world.h"
+#include "CE3D/transformation/transformation_chain.h"
 
 namespace CE3D {
 

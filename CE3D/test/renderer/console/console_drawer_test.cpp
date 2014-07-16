@@ -1,14 +1,14 @@
 // This file is part of CE3D. License: GPL3
 
-#include "test/TestEnvironment.h"
+#include "CE3D/test/TestEnvironment.h"
 
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE Console
 #include <boost/test/unit_test.hpp>
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "renderer/console/console_drawer.h"
+#include "CE3D/renderer/console/console_drawer.h"
 
 namespace CE3D
 {

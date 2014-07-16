@@ -7,10 +7,10 @@
 #include <boost/numeric/ublas/vector.hpp>
 #include <vector>
 
-#include "util/CE3D_vector.h"
-#include "util/CE3D_matrix.h"
+#include "CE3D/util/CE3D_vector.h"
+#include "CE3D/util/CE3D_matrix.h"
 
-#include "transformation/transformation.h"
+#include "CE3D/transformation/transformation.h"
 
 namespace CE3D
 {

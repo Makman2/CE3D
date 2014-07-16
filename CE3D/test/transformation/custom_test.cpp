@@ -1,15 +1,15 @@
 // This file is part of CE3D. License: GPL3
 
-#include "test/TestEnvironment.h"
+#include "CE3D/test/TestEnvironment.h"
 
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE OrthogonalProjection
 #include <boost/test/unit_test.hpp>
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "transformation/custom.h"
-#include "test/transformation/transformation_test.h"
+#include "CE3D/transformation/custom.h"
+#include "CE3D/test/transformation/transformation_test.h"
 
 namespace CE3D
 {

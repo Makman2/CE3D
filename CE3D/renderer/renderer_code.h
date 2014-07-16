@@ -3,9 +3,9 @@
 #ifndef CE3D_RENDERER_RENDERER_CODE_H
 #define CE3D_RENDERER_RENDERER_CODE_H
 
-#include "renderer/renderer.h"
+#include "CE3D/renderer/renderer.h"
 
-#include "console/console.h"
+#include "CE3D/console/console.h"
 
 namespace CE3D {
 

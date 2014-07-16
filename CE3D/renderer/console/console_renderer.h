@@ -3,13 +3,13 @@
 #ifndef CE3D_RENDERER_CONSOLE_CONSOLE_RENDERER_H
 #define CE3D_RENDERER_CONSOLE_CONSOLE_RENDERER_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "renderer/renderer.h"
+#include "CE3D/renderer/renderer.h"
 
-#include "renderer/console/console_material.h"
-#include "renderer/console/console_drawer.h"
-#include "console/console.h"
+#include "CE3D/renderer/console/console_material.h"
+#include "CE3D/renderer/console/console_drawer.h"
+#include "CE3D/console/console.h"
 
 namespace CE3D {
 

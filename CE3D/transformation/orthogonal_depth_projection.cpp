@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#include "transformation/orthogonal_depth_projection.h"
-#include "util/boost_extensions.h"
+#include "CE3D/transformation/orthogonal_depth_projection.h"
+#include "CE3D/util/boost_extensions.h"
 
 namespace CE3D
 {

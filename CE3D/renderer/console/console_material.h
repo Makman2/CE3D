@@ -3,9 +3,9 @@
 #ifndef CE3D_RENDERER_CONSOLE_CONSOLE_MATERIAL_H
 #define CE3D_RENDERER_CONSOLE_CONSOLE_MATERIAL_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "console/console_string_attributes.h"
+#include "CE3D/console/console_string_attributes.h"
 
 namespace CE3D {
 

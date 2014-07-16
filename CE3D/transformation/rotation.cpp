@@ -1,6 +1,6 @@
 // This file is part of CE3D. License: GPL3
 
-#include "transformation/rotation.h"
+#include "CE3D/transformation/rotation.h"
 
 namespace CE3D
 {

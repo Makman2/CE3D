@@ -3,14 +3,14 @@
 #ifndef CE3D_CONSOLE_CONSOLE_H
 #define CE3D_CONSOLE_CONSOLE_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
 #include <curses.h>
 #include <string>
 #include <boost/thread.hpp>
 #include <boost/signals2/mutex.hpp>
 
-#include "console/console_string_attributes.h"
+#include "CE3D/console/console_string_attributes.h"
 
 namespace CE3D
 {
@@ -289,6 +289,6 @@ public:
 
 }
 
-#include "console/console_code.h"
+#include "CE3D/console/console_code.h"
 
 #endif /* CE3D_CONSOLE_CONSOLE_H */

@@ -1,10 +1,10 @@
 // This file is part of CE3D. License: GPL3
 
-#include "renderer/console/console_renderer.h"
+#include "CE3D/renderer/console/console_renderer.h"
 
 #include <stdexcept>
 
-#include "world/world.h"
+#include "CE3D/world/world.h"
 
 namespace CE3D {
 

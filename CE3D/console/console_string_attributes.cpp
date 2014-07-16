@@ -1,6 +1,6 @@
 // This file is part of CE3D. License: GPL3
 
-#include "console/console_string_attributes.h"
+#include "CE3D/console/console_string_attributes.h"
 
 namespace CE3D {
 

@@ -3,9 +3,9 @@
 #ifndef CE3D_RENDERER_RENDERER_H
 #define CE3D_RENDERER_RENDERER_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "camera/camera.h"
+#include "CE3D/camera/camera.h"
 
 namespace CE3D
 {
@@ -55,6 +55,6 @@ public:
 
 }
 
-#include "renderer/renderer_code.h"
+#include "CE3D/renderer/renderer_code.h"
 
 #endif /* CE3D_RENDERER_RENDERER_H */

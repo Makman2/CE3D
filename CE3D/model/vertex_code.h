@@ -3,7 +3,7 @@
 #ifndef CE3D_MODEL_VERTEX_CODE_H
 #define CE3D_MODEL_VERTEX_CODE_H
 
-#include "model/vertex.h"
+#include "CE3D/model/vertex.h"
 
 namespace CE3D
 {

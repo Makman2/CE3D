@@ -4,7 +4,7 @@
 #define CE3D_UTIL_STDINC_C_H
 
 #include <stdint.h>
-#include "CE3D_config.h"
+#include "CE3D/CE3D_config.h"
 
 /**
  * A boolean type for C.

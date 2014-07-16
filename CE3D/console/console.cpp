@@ -1,8 +1,8 @@
 // This file is part of CE3D. License: GPL3
 
-#include "console/console.h"
+#include "CE3D/console/console.h"
 
-#include "util/keyboard_state.h"
+#include "CE3D/util/keyboard_state.h"
 
 namespace CE3D
 {

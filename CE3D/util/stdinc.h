@@ -4,7 +4,7 @@
 #define CE3D_UTIL_STDINC_H
 
 #include <cstdint>
-#include "CE3D_config.h"
+#include "CE3D/CE3D_config.h"
 
 namespace CE3D
 {

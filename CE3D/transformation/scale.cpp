@@ -1,6 +1,6 @@
 // This file is part of CE3D. License: GPL3
 
-#include "transformation/scale.h"
+#include "CE3D/transformation/scale.h"
 
 namespace CE3D
 {

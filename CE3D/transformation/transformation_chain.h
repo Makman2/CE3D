@@ -5,11 +5,11 @@
 
 #include <vector>
 
-#include "util/stdinc.h"
-#include "util/CE3D_matrix.h"
+#include "CE3D/util/stdinc.h"
+#include "CE3D/util/CE3D_matrix.h"
 
-#include "transformation/transformation.h"
-#include "util/dereference_iterator.h"
+#include "CE3D/transformation/transformation.h"
+#include "CE3D/util/dereference_iterator.h"
 
 namespace CE3D
 {

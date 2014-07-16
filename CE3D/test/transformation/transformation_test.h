@@ -3,8 +3,8 @@
 #ifndef CE3D_TEST_TRANSFORMATION_TRANSFORMATION_TEST_H
 #define CE3D_TEST_TRANSFORMATION_TRANSFORMATION_TEST_H
 
-#include "util/CE3D_matrix.h"
-#include "util/CE3D_vector.h"
+#include "CE3D/util/CE3D_matrix.h"
+#include "CE3D/util/CE3D_vector.h"
 
 /**
  * Invokes BOOST_REQUIRE_EQUAL for each matrix element.

@@ -35,11 +35,10 @@ execute_process(
 
 configure_file(
     "${PROJECT_SOURCE_DIR}/CE3D_config.h.in"
-    "${PROJECT_BINARY_DIR}/CE3D_config.h"
+    "${PROJECT_SOURCE_DIR}/CE3D_config.h"
     )
 
-include_directories("${PROJECT_SOURCE_DIR}")
-include_directories("${PROJECT_BINARY_DIR}")
+include_directories("${PROJECT_SOURCE_DIR}/..")
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR
     "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")

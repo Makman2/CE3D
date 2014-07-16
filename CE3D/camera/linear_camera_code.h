@@ -3,7 +3,7 @@
 #ifndef CE3D_CAMERA_LINEAR_CAMERA_CODE_H
 #define CE3D_CAMERA_LINEAR_CAMERA_CODE_H
 
-#include "camera/linear_camera.h"
+#include "linear_camera.h"
 
 namespace CE3D {
 

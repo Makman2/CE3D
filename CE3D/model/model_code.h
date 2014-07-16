@@ -3,7 +3,7 @@
 #ifndef CE3D_MODEL_MODEL_CODE_H
 #define CE3D_MODEL_MODEL_CODE_H
 
-#include "model/model.h"
+#include "CE3D/model/model.h"
 
 #include <boost/numeric/ublas/operation_blocked.hpp>
 #include <boost/numeric/ublas/operation.hpp>

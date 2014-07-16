@@ -3,7 +3,7 @@
 #ifndef CE3D_TEST_TESTENVIRONMENT_H
 #define CE3D_TEST_TESTENVIRONMENT_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
 #include "boost/timer.hpp"
 

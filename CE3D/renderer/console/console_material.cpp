@@ -1,6 +1,6 @@
 // This file is part of CE3D. License: GPL3
 
-#include "renderer/console/console_material.h"
+#include "CE3D/renderer/console/console_material.h"
 
 namespace CE3D
 {

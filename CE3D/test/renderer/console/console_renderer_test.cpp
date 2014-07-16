@@ -1,20 +1,20 @@
 // This file is part of CE3D. License: GPL3
 
-#include "test/TestEnvironment.h"
+#include "CE3D/test/TestEnvironment.h"
 
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE Console
 #include <boost/test/unit_test.hpp>
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "renderer/console/console_renderer.h"
-#include "renderer/console/console_material.h"
-#include "model/model.h"
-#include "model/vertex.h"
-#include "world/world.h"
-#include "camera/manual_camera.h"
-#include "util/CE3D_vector.h"
+#include "CE3D/renderer/console/console_renderer.h"
+#include "CE3D/renderer/console/console_material.h"
+#include "CE3D/model/model.h"
+#include "CE3D/model/vertex.h"
+#include "CE3D/world/world.h"
+#include "CE3D/camera/manual_camera.h"
+#include "CE3D/util/CE3D_vector.h"
 
 namespace CE3D
 {

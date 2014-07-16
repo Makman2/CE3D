@@ -3,14 +3,14 @@
 #ifndef CE3D_MODEL_MODEL_H
 #define CE3D_MODEL_MODEL_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
 #include <string>
 #include <boost/container/vector.hpp>
 
-#include "util/CE3D_vector.h"
-#include "transformation/itransformable.h"
-#include "model/vertex.h"
+#include "CE3D/util/CE3D_vector.h"
+#include "CE3D/transformation/itransformable.h"
+#include "CE3D/model/vertex.h"
 
 namespace CE3D
 {
@@ -136,6 +136,6 @@ public:
 
 }
 
-#include "model/model_code.h"
+#include "CE3D/model/model_code.h"
 
 #endif /* CE3D_MODEL_MODEL_H */

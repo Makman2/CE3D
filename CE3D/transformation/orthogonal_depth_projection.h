@@ -3,7 +3,7 @@
 #ifndef CE3D_TRANSFORMATION_ORTHOGONAL_DEPTH_PROJECTION_H
 #define CE3D_TRANSFORMATION_ORTHOGONAL_DEPTH_PROJECTION_H
 
-#include "transformation/orthogonal_projection.h"
+#include "CE3D/transformation/orthogonal_projection.h"
 
 namespace CE3D
 {

@@ -3,7 +3,7 @@
 #ifndef CE3D_UTIL_CE3D_MATRIX_H
 #define CE3D_UTIL_CE3D_MATRIX_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 #include <boost/numeric/ublas/matrix.hpp>
 
 namespace CE3D

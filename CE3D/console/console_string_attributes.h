@@ -3,7 +3,7 @@
 #ifndef CE3D_CONSOLE_CONSOLE_STRING_ATTRIBUTES_H
 #define CE3D_CONSOLE_CONSOLE_STRING_ATTRIBUTES_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
 #include <curses.h>
 

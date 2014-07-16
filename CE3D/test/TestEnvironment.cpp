@@ -1,6 +1,6 @@
 // This file is part of CE3D. License: GPL3
 
-#include "test/TestEnvironment.h"
+#include "CE3D/test/TestEnvironment.h"
 
 #include <iostream>
 #include <iomanip>

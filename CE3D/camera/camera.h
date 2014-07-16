@@ -3,9 +3,9 @@
 #ifndef CE3D_CAMERA_CAMERA_H
 #define CE3D_CAMERA_CAMERA_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "world/world.h"
+#include "CE3D/world/world.h"
 
 namespace CE3D
 {

@@ -3,7 +3,7 @@
 #ifndef CE3D_CONSOLE_CONSOLE_CODE_H
 #define CE3D_CONSOLE_CONSOLE_CODE_H
 
-#include "console/console.h"
+#include "CE3D/console/console.h"
 
 namespace CE3D
 {

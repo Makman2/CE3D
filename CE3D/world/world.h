@@ -3,11 +3,11 @@
 #ifndef CE3D_WORLD_WORLD_H
 #define CE3D_WORLD_WORLD_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "transformation/itransformable.h"
-#include "model/model.h"
-#include "util/CE3D_matrix.h"
+#include "CE3D/transformation/itransformable.h"
+#include "CE3D/model/model.h"
+#include "CE3D/util/CE3D_matrix.h"
 
 namespace CE3D
 {
@@ -65,6 +65,6 @@ private:
 
 }
 
-#include "world/world_code.h"
+#include "CE3D/world/world_code.h"
 
 #endif /* CE3D_WORLD_WORLD_H */

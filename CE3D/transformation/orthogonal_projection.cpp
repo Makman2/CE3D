@@ -2,8 +2,8 @@
 
 #include <boost/numeric/ublas/operation.hpp>
 
-#include "transformation/orthogonal_projection.h"
-#include "util/boost_extensions.h"
+#include "CE3D/transformation/orthogonal_projection.h"
+#include "CE3D/util/boost_extensions.h"
 
 namespace CE3D
 {

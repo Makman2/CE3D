@@ -3,10 +3,10 @@
 #ifndef CE3D_TRANSFORMATION_ROTATION_H
 #define CE3D_TRANSFORMATION_ROTATION_H
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
-#include "util/CE3D_vector.h"
-#include "transformation/transformation.h"
+#include "CE3D/util/CE3D_vector.h"
+#include "CE3D/transformation/transformation.h"
 
 namespace CE3D
 {

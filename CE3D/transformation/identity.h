@@ -3,7 +3,7 @@
 #ifndef CE3D_TRANSFORMATION_IDENTITY_H
 #define CE3D_TRANSFORMATION_IDENTITY_H
 
-#include "transformation/transformation.h"
+#include "CE3D/transformation/transformation.h"
 
 namespace CE3D
 {

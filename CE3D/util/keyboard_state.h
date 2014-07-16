@@ -5,7 +5,7 @@
 
 #include <curses.h>
 
-#include "util/stdinc.h"
+#include "CE3D/util/stdinc.h"
 
 namespace CE3D {
 
