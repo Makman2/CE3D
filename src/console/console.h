@@ -132,7 +132,7 @@ public:
      *
      * @return true if console supports colorized output.
      */
-    inline bool
+    bool
     HasColors() const
     { return s_HasColors; }
 
@@ -273,7 +273,7 @@ public:
      * Gets the height of the console.
      * @return The height.
      */
-    inline ConsoleIdxType
+    ConsoleIdxType
     GetHeight() const
     { return s_Height; }
 
@@ -282,7 +282,7 @@ public:
      *
      * @return The width.
      */
-    inline ConsoleIdxType
+    ConsoleIdxType
     GetWidth() const
     { return s_Width; }
 };

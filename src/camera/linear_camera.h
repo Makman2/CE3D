@@ -58,9 +58,9 @@ private:
 
 
 public:
-    inline
+    
     LinearCamera() {};
-    inline virtual
+    virtual
     ~LinearCamera() {};
 
     /**

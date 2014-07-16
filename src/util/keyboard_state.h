@@ -76,7 +76,7 @@ public:
      *
      * @return the pressed modifier keys.
      */
-    inline ModifierKeys const&
+    ModifierKeys const&
     GetModifiers() const
     { return m_Modifiers; }
 
@@ -85,7 +85,7 @@ public:
      *
      * @return The pressed keys.
      */
-    inline Sign const&
+    Sign const&
     GetContent() const
     { return m_Content; }
 };

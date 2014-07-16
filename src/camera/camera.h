@@ -46,7 +46,7 @@ public:
      *
      * @return A shared ptr to the world.
      */
-    inline std::shared_ptr<World<t_Material>  const>
+    std::shared_ptr<World<t_Material>  const>
     GetWorld() const
     { return m_World; }
 
@@ -55,7 +55,7 @@ public:
      *
      * @param copy The world.
      */
-    inline void
+    void
     SetWorld(std::shared_ptr<World<t_Material> const> const copy)
     { m_World = copy; }
 };

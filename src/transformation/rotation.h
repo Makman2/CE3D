@@ -47,7 +47,7 @@ public:
      * @param angle: The rotation angle.
      */
     Rotation(Vector const& planar1, Vector const& planar2, float angle);
-    inline virtual
+    virtual
     ~Rotation() {}
 
 
@@ -56,7 +56,7 @@ public:
      *
      * @return The planar vector.
      */
-    inline Vector const&
+    Vector const&
     GetPlanar1() const
     { return m_Planar1; }
 
@@ -65,7 +65,7 @@ public:
      *
      * @return The planar vector.
      */
-    inline Vector const&
+    Vector const&
     GetPlanar2() const
     { return m_Planar2; }
 
@@ -74,7 +74,7 @@ public:
      *
      * @return The angle.
      */
-    inline float
+    float
     GetAngle() const
     { return m_Angle; }
 

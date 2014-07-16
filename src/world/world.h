@@ -44,7 +44,7 @@ public:
      *
      * @return the list (constant)
      */
-    virtual inline std::vector<std::shared_ptr<Model<t_Material> > > const&
+    virtual std::vector<std::shared_ptr<Model<t_Material> > > const&
     GetModels() const
     { return m_Models; }
 
@@ -53,7 +53,7 @@ public:
      *
      * @param Model a shared_ptr to the Model to add.
      */
-    virtual inline void
+    virtual void
     AddModel(std::shared_ptr<Model<t_Material> > Model)
     { m_Models.push_back(Model); }
 private:

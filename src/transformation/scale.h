@@ -42,7 +42,7 @@ public:
      * @param scale: The scaling vector.
      */
     Scale(Vector const& scale);
-    inline virtual
+    virtual
     ~Scale() {}
 
     /**
@@ -58,7 +58,7 @@ public:
      *
      * @return The scale-vector.
      */
-    inline Vector const&
+    Vector const&
     GetScale() const
     { return m_Scale; }
 };

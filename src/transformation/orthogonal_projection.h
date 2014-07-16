@@ -50,7 +50,7 @@ public:
      * @param direction: The direction of the subspace hyperplane.
      */
     OrthogonalProjection(Vector const& direction);
-    inline virtual
+    virtual
     ~OrthogonalProjection() {}
 
     /**
@@ -58,7 +58,7 @@ public:
      *
      * @return The projection vectors array.
      */
-    inline std::vector<Vector> const&
+    std::vector<Vector> const&
     GetProjectionVectors() const
     { return m_ProjectionVectors; }
 

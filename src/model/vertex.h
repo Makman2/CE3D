@@ -39,7 +39,7 @@ public:
      *
      * @param Input Your material information.
      */
-    inline void
+    void
     SetMaterial(t_Material const& Input)
     { m_Property = Input; }
 
@@ -48,7 +48,7 @@ public:
      *
      * @return the material.
      */
-    inline t_Material
+    t_Material
     GetMaterial() const
     { return m_Property; }
 
@@ -57,7 +57,7 @@ public:
      *
      * @return the vectors of this vertex (const)
      */
-    inline boost::container::vector<VertexIndexType> const&
+    boost::container::vector<VertexIndexType> const&
     GetVectors() const
     { return m_Vectors; }
 
@@ -66,7 +66,7 @@ public:
      *
      * @return the vectors of this vertex
      */
-    inline boost::container::vector<VertexIndexType>&
+    boost::container::vector<VertexIndexType>&
     GetVectors()
     { return m_Vectors; }
 };
