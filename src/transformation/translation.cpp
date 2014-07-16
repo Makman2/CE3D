@@ -15,6 +15,9 @@ Translation::Translation(Vector const& translation)
 : m_TranslationVector(translation)
 {}
 
+Translation::~Translation()
+{}
+
 Vector const& Translation::GetTranslation() const
 {
     return m_TranslationVector;
