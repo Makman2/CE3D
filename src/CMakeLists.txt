@@ -71,6 +71,10 @@ target_link_libraries(CE3D
 
 install(TARGETS CE3D LIBRARY DESTINATION lib)
 
+install(DIRECTORY              ${CMAKE_CURRENT_LIST_DIR}/
+        DESTINATION            include/CE3D
+        FILES_MATCHING PATTERN "*.h")
+
 if (TESTS_ENABLED)
 add_subdirectory("test")
 endif (TESTS_ENABLED)
