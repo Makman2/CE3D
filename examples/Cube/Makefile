@@ -28,5 +28,6 @@ clean:
 
 run: build
 	@echo "Running cube..."
-	@./cube
+	@#Fixme this is Unix/linux dependent
+	@LD_LIBRARY_PATH=/usr/local/lib ./cube
 	@echo "Done."
