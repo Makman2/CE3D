@@ -89,9 +89,8 @@ public:
     }
 
     friend dereference_iterator
-    operator +
-    (typename iterator_type::difference_type lhs,
-     dereference_iterator const& rhs)
+    operator +(typename iterator_type::difference_type lhs,
+               dereference_iterator const&             rhs)
     {
         return rhs + lhs;
     }
