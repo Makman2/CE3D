@@ -63,7 +63,8 @@ void OrthogonalDepthProjection::UpdateMatrix() const
         }
 
         // Normalize.
-        newbase[i - remain] /= boost::numeric::ublas::norm_2(newbase[i - remain]);
+        newbase[i - remain] /= boost::numeric::ublas::norm_2(
+            newbase[i - remain]);
     }
 
     // Calculate matrix row. (Es * N^-1 * (E - A(A^T*A)^-1*A^T))

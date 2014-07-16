@@ -32,6 +32,9 @@ protected:
     UpdateMatrix() const override;
 
 public:
+    inline Translation();
+    inline virtual ~Translation() override {};
+
     /**
      * Returns the translation-vector.
      *
@@ -56,8 +59,6 @@ public:
      */
     void SetTranslation(Vector const& direction, ModelDataType const length);
 
-    inline Translation() {};
-    inline virtual ~Translation() override {};
 };
 
 }

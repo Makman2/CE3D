@@ -27,7 +27,8 @@ OrthogonalProjection::OrthogonalProjection(Vector const& direction)
 
 void OrthogonalProjection::UpdateMatrix() const
 {
-    // For the math behind this function, see: doc/Orthogonal Projection Matrix.pdf
+    // For the math behind this function,
+    // see: doc/Orthogonal Projection Matrix.pdf
     // P = (A^T A)^-1 A^T
 
     // Concatenate vectors together.
@@ -51,7 +52,8 @@ void OrthogonalProjection::UpdateMatrix() const
     boost::numeric::ublas::axpy_prod(inverted, transposed, m_Matrix);
 }
 
-void OrthogonalProjection::SetProjectionVectors(std::vector<Vector> const& vectors)
+void OrthogonalProjection::SetProjectionVectors
+(std::vector<Vector> const& vectors)
 {
     // Check range equality of vectors.
     for (std::size_t i = 1; i < m_ProjectionVectors.size(); i++)
@@ -93,8 +95,10 @@ void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
         m_ProjectionVectors[i - remain] = orthovecs[i];
 
         Vector projvec = 
-            (boost::numeric::ublas::inner_prod(direction, m_ProjectionVectors[i]) /
-            (boost::numeric::ublas::inner_prod(direction, direction))) * direction;
+            (boost::numeric::ublas::inner_prod
+                (direction, m_ProjectionVectors[i]) /
+            (boost::numeric::ublas::inner_prod(direction, direction)))
+                * direction;
         
         m_ProjectionVectors[i]  -= projvec;
         

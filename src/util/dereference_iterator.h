@@ -6,11 +6,12 @@
 #include <iterator>
 
 /**
- * An adapter for iterators with types that are dereferencable. The iterator behaves
- * like the base iterator but retrieves the held type of the iterator value type.
+ * An adapter for iterators with types that are dereferencable. The iterator
+ * behaves like the base iterator but retrieves the held type of the iterator
+ * value type.
  *
- * @tparam IteratorType The base type of the iterator to create the adapter from.
- * Must be tagged with std::random_access_iterator_tag.
+ * @tparam IteratorType The base type of the iterator to create the adapter
+ * from. Must be tagged with std::random_access_iterator_tag.
  */
 template <typename IteratorType>
 class dereference_iterator
@@ -19,7 +20,7 @@ class dereference_iterator
   typename IteratorType::difference_type>
 {
 public:
-    typedef IteratorType iterator_type;
+    using iterator_type = IteratorType;
 
 private:
     iterator_type m_base_iterator;
@@ -88,8 +89,8 @@ public:
     }
 
     friend dereference_iterator
-    operator +
-    (typename iterator_type::difference_type lhs, dereference_iterator const& rhs)
+    operator +(typename iterator_type::difference_type lhs,
+               dereference_iterator const&             rhs)
     {
         return rhs + lhs;
     }

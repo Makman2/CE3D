@@ -17,7 +17,8 @@ namespace Transformation
 {
 
 /**
- * Manages a list of transformations that should be applied on a transformation.
+ * Manages a list of transformations that should be applied on a
+ * transformation.
  *
  * The evaluation with a vector is performed top-down, so the resulting matrix
  * calculation is bottom-up.
@@ -26,7 +27,8 @@ class TransformationChain
 {
 private:
     /**
-     * The matrix that represents the transformations when sequentially applied.
+     * The matrix that represents the transformations when sequentially
+     * applied.
      *
      * This is mutable since it is implicit information which is lazy filled in
      * a const function if needed.
@@ -62,21 +64,25 @@ public:
     /**
      * The size type the transformation chain uses for the transformation list.
      */
-    typedef std::vector<std::unique_ptr<Transformation> >::size_type size_type;
+    using size_type = std::vector<std::unique_ptr<Transformation> >::size_type;
 
     /**
-     * The transformation chain const_iterator class. Exposes const access to it's
+     * The transformation chain const_iterator class. Exposes const access to
+     * it's
      * matrices.
      */
-    typedef dereference_iterator<std::vector<std::unique_ptr<Transformation>
-    >::const_iterator> const_iterator;
+    using const_iterator =
+    dereference_iterator<std::vector<std::unique_ptr<Transformation> >
+    ::const_iterator>;
 
     /**
-     * The transformation chain const_reverse_iterator class. Exposes const access to
+     * The transformation chain const_reverse_iterator class. Exposes const
+     * access to
      * it's matrices.
      */
-    typedef dereference_iterator<std::vector<std::unique_ptr<Transformation>
-    >::const_reverse_iterator> const_reverse_iterator;
+    using const_reverse_iterator =
+    dereference_iterator<std::vector<std::unique_ptr<Transformation> >
+    ::const_reverse_iterator>;
 
     TransformationChain();
     inline virtual
@@ -109,8 +115,8 @@ public:
     End() const;
 
     /**
-     * Returns a const_reverse_iterator pointing at the first transformation in the
-     * chain.
+     * Returns a const_reverse_iterator pointing at the first transformation in
+     * the chain.
      *
      * @returns The iterator.
      */
@@ -121,14 +127,16 @@ public:
      * Returns a const_reverse_iterator pointing at the transformation at the
      * specified index relative to the end.
      *
-     * @param index The index relative to the end where the transformation lies.
+     * @param index The index relative to the end where the transformation
+     * lies.
      * @returns The iterator.
      */
     const_reverse_iterator
     RMiddle(size_type index) const;
 
     /**
-     * Returns a const_reverse_iterator pointing at last transformation in the chain.
+     * Returns a const_reverse_iterator pointing at last transformation in the
+     * chain.
      *
      * @returns The iterator.
      */
@@ -138,7 +146,8 @@ public:
     /**
      * Pushes back a new transformation onto the top of the chain.
      *
-     * @tparam TransformationType The type of transformation the function is passed.
+     * @tparam TransformationType The type of transformation the function is
+     * passed.
      * @param transformation The transformation to push.
      */
     template <typename TransformationType>
@@ -146,14 +155,16 @@ public:
     PushBack(TransformationType const& transformation)
     {
         m_TransformationList.push_back(
-            std::unique_ptr<Transformation>(new TransformationType(transformation)));
+            std::unique_ptr<Transformation>(
+            new TransformationType(transformation)));
         m_NeedUpdate = true;
     }
 
     /**
      * Adds a new transformation at the bottom of the chain.
      *
-     * @tparam TransformationType The type of transformation the function is passed.
+     * @tparam TransformationType The type of transformation the function is
+     * passed.
      * @param transformation The transformation to add.
      */
     template <typename TransformationType>
@@ -166,7 +177,8 @@ public:
     /**
      * Inserts a new transformation into the chain at the specified position.
      *
-     * @tparam TransformationType The type of transformation the function is passed.
+     * @tparam TransformationType The type of transformation the function is
+     * passed.
      * @param transformation The transformation to add.
      * @param index The position where to insert. If index equals the size of
      * the chain, the function behaves like PushBack.
@@ -181,7 +193,8 @@ public:
     /**
      * Inserts a new transformation into the chain at the specified position.
      *
-     * @tparam TransformationType The type of transformation the function is passed.
+     * @tparam TransformationType The type of transformation the function is
+     * passed.
      * @param transformation The transformation to add.
      * @param it The iterator that indicates the position where to insert.
      * @returns An const_iterator pointing at the new inserted element.
@@ -201,7 +214,8 @@ public:
     /**
      * Replaces the transformation at the specified index with the given one.
      *
-     * @tparam TransformationType The type of transformation the function is passed.
+     * @tparam TransformationType The type of transformation the function is
+     * passed.
      * @param transformation The transformation to replace with.
      * @param index The index where to replace.
      */
@@ -211,13 +225,15 @@ public:
     {
         m_NeedUpdate = true;
         m_TransformationList[index] =
-            std::unique_ptr<Transformation>(new TransformationType(transformation));
+            std::unique_ptr<Transformation>(
+            new TransformationType(transformation));
     }
 
     /**
      * Replaces the transformation at the specified index with the given one.
      *
-     * @tparam TransformationType The type of transformation the function is passed.
+     * @tparam TransformationType The type of transformation the function is
+     * passed.
      * @param transformation The transformation to replace with.
      * @param it The iterator that indicates the position where to replace.
      * @returns The const_iterator pointing at the new transformation.
@@ -244,7 +260,8 @@ public:
     /**
      * Deletes the transformation at the specified position.
      *
-     * @param it The iterator that indicates the position of the transformation to
+     * @param it The iterator that indicates the position of the transformation
+     * to
      * delete.
      */
     void
