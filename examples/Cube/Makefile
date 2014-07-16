@@ -3,6 +3,7 @@
 SRCS	= main.cpp
 GPP	= g++
 TARGET	= cube
+LIBS	= -lCE3D
 
 default: help
 
@@ -16,7 +17,7 @@ build: $(TARGET)
 
 $(TARGET):
 	@echo "Building cube..."
-	@$(GPP) $(SRCS) -o $(TARGET)
+	@$(GPP) $(SRCS) -o $(TARGET) $(LIBS)
 	@echo "Done."
 
 clean:
