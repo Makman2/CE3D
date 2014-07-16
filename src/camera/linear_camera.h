@@ -10,68 +10,50 @@
 #include "transformation/transformation.h"
 #include "transformation/custom.h"
 #include "world/world.h"
+#include "transformation/transformation_chain.h"
 
 namespace CE3D {
 
 /**
  * This is a camera that applies an arbitrary set of transformations on render.
  */
-template <typename t_Material>
-class LinearCamera : public Camera<t_Material> {
+template <typename MaterialType>
+class LinearCamera : public Camera<MaterialType> {
 private:
     /**
-     * A list of transformations applied sequentially on Paint().
+     * A chain of transformations applied sequentially on Paint().
      */
-    std::vector<std::shared_ptr<Transformation::Transformation const> >
-        m_TransformationStack;
+    Transformation::TransformationChain m_TransformationChain;
 
+protected:
     /**
-     * The product of all matrices on the transformation stack.
+     * Returns a chain of transformations applied sequentially on Paint().
+     *
+     * @returns The transformation chain.
      */
-    mutable Transformation::Custom m_TransformationMatrix;
-
-    /**
-     * Contains the number of matrices on the transformation stack that are
-     * new or deleted.
-     */
-    mutable std::uint8_t m_NeededUpdates;
-    /**
-     * Contains the number of matrices on the transformation stack that are
-     * appended.
-     */
-    mutable std::uint8_t m_AppendedTransformations;
-
-    /**
-     * Updates the transformation matrix if needed.
-     */
-    void UpdateTransformation() const;
-
-    /**
-     * Recalculates the whole transformation matrix.
-     */
-    void RecalculateMatrix() const;
-
-    /**
-     * Appends new transformation matrices.
-     */
-    void AppendMatrices() const;
-
+    Transformation::TransformationChain&
+    GetTransformationChain();
 
 public:
+    /**
+     * The type of material used for the camera.
+     */
+    using material_type = MaterialType;
     
-    LinearCamera() {};
+    LinearCamera();
+    
     virtual
-    ~LinearCamera() {};
+    ~LinearCamera();
 
     /**
      * Applies all transformations on the transformation stack and returns the
      * newly created world.
      *
      * @return a unique_ptr to the new world - the caller is responsible for
-     *         tidying up!
+     * tidying up!
      */
-    virtual std::unique_ptr<World<t_Material> >
-    Paint() const override;
+    std::unique_ptr<World<MaterialType> >
+    Paint() const final override;
 };
 
 } /* namespace CE3D */
