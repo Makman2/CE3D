@@ -1,0 +1,20 @@
+language: cpp
+
+compiler:
+  - clang
+  - gcc
+
+notifications:
+  recipients:
+    - lasse.schuirmann@gmail.com
+    - mak95@arcor.de
+  email:
+    on_failure: always
+    on_success: always
+
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install libboost-all-dev
+	
+script: make debug
+
