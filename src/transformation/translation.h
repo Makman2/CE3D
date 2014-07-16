@@ -33,7 +33,12 @@ protected:
 
 public:
     Translation();
-    virtual ~Translation() override {};
+    /**
+     * @param translation The translation vector to initialize the
+     * transformation with.
+     */
+    Translation(Vector const& translation);
+    virtual ~Translation() override;
 
     /**
      * Returns the translation-vector.
@@ -41,8 +46,7 @@ public:
      * @return The translation-vector.
      */
     Vector const&
-    GetTranslation() const
-    { return m_TranslationVector; }
+    GetTranslation() const;
 
     /**
      * Sets the translation-vector.

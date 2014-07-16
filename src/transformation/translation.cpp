@@ -11,6 +11,15 @@ Translation::Translation()
 : m_TranslationVector()
 {}
 
+Translation::Translation(Vector const& translation)
+: m_TranslationVector(translation)
+{}
+
+Vector const& Translation::GetTranslation() const
+{
+    return m_TranslationVector;
+}
+
 void Translation::UpdateMatrix() const
 {
     m_Matrix.resize(
