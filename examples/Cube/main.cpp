@@ -21,7 +21,7 @@ int main(void)
 
     // Create vertex
     CE3D::Vertex<CE3D::ConsoleMaterial> TestVertex;
-    // THIS DOESNT WORK YET
+    // COLOR DOESNT WORK YET
     CE3D::ConsoleMaterial Mat(CE3D::ConsoleColor::RED);
     TestVertex.SetMaterial(Mat);
     TestVertex.GetVectors().push_back(0);
