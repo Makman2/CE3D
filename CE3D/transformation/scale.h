@@ -39,7 +39,8 @@ public:
     /**
      * Instantiates a new object.
      *
-     * @param scale: The scaling vector.
+     * @param scale: The scaling vector containing the scale factor for the
+     * n-th dimension in the n-th row.
      */
     Scale(Vector const& scale);
     virtual
@@ -48,7 +49,8 @@ public:
     /**
      * Sets the scale-vector.
      *
-     * @param scale: The scale-vector to set.
+     * @param scale: The scaling vector containing the scale factor for the
+     * n-th dimension in the n-th row.
      */
     void
     SetScale(Vector const& scale);
@@ -56,7 +58,8 @@ public:
     /**
      * Returns the scale vector.
      *
-     * @return The scale-vector.
+     * @return The scaling vector containing the scale factor for the
+     * n-th dimension in the n-th row.
      */
     Vector const&
     GetScale() const
