@@ -112,6 +112,20 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[1]);
     RequireMatrixEquality(chain.At(1).GetMatrix(), matrices[2]);
 
+    // Test Emplace(), EmplaceBack() and EmplaceFront()
+    //  EmplaceFront() automatically invokes Emplace().
+    chain.Clear();
+
+    chain.EmplaceBack<CE3D::Transformation::Custom>(matrices[0]);
+    RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[0]);
+    
+    chain.EmplaceFront<CE3D::Transformation::Custom>(matrices[1]);
+    RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[1]);
+    
+    chain.Emplace<CE3D::Transformation::Custom>
+        (chain.Begin() + 1, matrices[2]);
+    RequireMatrixEquality(chain.At(1).GetMatrix(), matrices[2]);
+
 }
 
 /**

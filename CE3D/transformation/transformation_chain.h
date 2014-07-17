@@ -131,10 +131,7 @@ public:
     void
     PushBack(TransformationType const& transformation)
     {
-        m_TransformationList.push_back(
-            std::unique_ptr<Transformation>(
-            new TransformationType(transformation)));
-        m_NeedUpdate = true;
+        EmplaceBack<TransformationType>(transformation);
     }
 
     /**
@@ -149,6 +146,69 @@ public:
     PushFront(TransformationType const& transformation)
     {
         Insert(transformation, Begin());
+    }
+
+    /**
+     * Constructs and inserts transformation at the bottom of the chain.
+     *
+     * @tparam TransformationType The type of transformation the function is
+     * passed. You must give this template argument excplicitly so
+     * EmplaceFront() knows what transformation is used where to call the
+     * constructor.
+     * @tparam Args The variadic template arguments. Determined automatically
+     * from the function call parameters.
+     */
+    template <typename TransformationType, typename... Args>
+    void
+    EmplaceFront(Args&&... args)
+    {
+        Emplace<TransformationType>(Begin(), args...);
+    }
+
+    /**
+     * Constructs and inserts transformation at the top of the chain.
+     *
+     * @tparam TransformationType The type of transformation the function is
+     * passed. You must give this template argument excplicitly so
+     * EmplaceBack() knows what transformation is used where to call the
+     * constructor.
+     * @tparam Args The variadic template arguments. Determined automatically
+     * from the function call parameters.
+     */
+    template <typename TransformationType, typename... Args>
+    void
+    EmplaceBack(Args&&... args)
+    {
+        m_TransformationList.push_back(
+            std::unique_ptr<Transformation>(
+            new TransformationType(args...)));
+        m_NeedUpdate = true;
+    }
+
+    /**
+     * Constructs and inserts transformation into the chain at the specified
+     * position.
+     *
+     * @param it The const_iterator that indicates the position where to
+     * construct and insert.
+     * @tparam TransformationType The type of transformation the function is
+     * passed. You must give this template argument excplicitly so
+     * Emplace() knows what transformation is used where to call the
+     * constructor.
+     * @tparam Args The variadic template arguments. Determined automatically
+     * from the function call parameters.
+     * @returns A const_iterator pointing at the new inserted element.
+     */
+    template <typename TransformationType, typename... Args>
+    const_iterator
+    Emplace(const_iterator it, Args&&... args)
+    {
+        auto itm = m_TransformationList.begin();
+        std::advance(itm, std::distance(Begin(), it));
+        m_NeedUpdate = true;
+        return const_iterator(m_TransformationList.insert(
+            itm, std::unique_ptr<Transformation>
+            (new TransformationType(args...))));
     }
 
     /**
@@ -180,12 +240,7 @@ public:
     const_iterator
     Insert(TransformationType const& transformation, const_iterator it)
     {
-        auto itm = m_TransformationList.begin();
-        std::advance(itm, std::distance(Begin(), it));
-        m_NeedUpdate = true;
-        return const_iterator(m_TransformationList.insert(
-            itm, std::unique_ptr<Transformation>
-            (new TransformationType(transformation))));
+        return Emplace<TransformationType>(it, transformation);
     }
 
     /**
