@@ -341,6 +341,23 @@ public:
     At(size_type index) const;
 
     /**
+     * Returns the transformation at the given index and casts it to the
+     * given type of transformation.
+     * Note: The conversion is unsafe, so you have to ensure that the cast is
+     * valid.
+     *
+     * @tparam TransformationType The transformation type to convert to.
+     * @param index The index of the transformation.
+     * @returns The transformation at index.
+     */
+    template <typename TransformationType>
+    TransformationType const&
+    At(size_type index) const
+    {
+        return static_cast<TransformationType const&>(At(index));
+    }
+
+    /**
      * Returns the transformation at the given index.
      *
      * This operator invokes At().
