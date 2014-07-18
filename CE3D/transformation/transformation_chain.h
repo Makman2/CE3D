@@ -129,10 +129,7 @@ public:
      */
     template <typename TransformationType>
     void
-    PushBack(TransformationType const& transformation)
-    {
-        EmplaceBack<TransformationType>(transformation);
-    }
+    PushBack(TransformationType const& transformation);
 
     /**
      * Adds a new transformation at the bottom of the chain.
@@ -143,10 +140,7 @@ public:
      */
     template <typename TransformationType>
     void
-    PushFront(TransformationType const& transformation)
-    {
-        Insert(transformation, Begin());
-    }
+    PushFront(TransformationType const& transformation);
 
     /**
      * Constructs and inserts transformation at the bottom of the chain.
@@ -160,10 +154,7 @@ public:
      */
     template <typename TransformationType, typename... Args>
     void
-    EmplaceFront(Args&&... args)
-    {
-        Emplace<TransformationType>(Begin(), args...);
-    }
+    EmplaceFront(Args&&... args);
 
     /**
      * Constructs and inserts transformation at the top of the chain.
@@ -177,13 +168,7 @@ public:
      */
     template <typename TransformationType, typename... Args>
     void
-    EmplaceBack(Args&&... args)
-    {
-        m_TransformationList.push_back(
-            std::unique_ptr<Transformation>(
-            new TransformationType(args...)));
-        m_NeedUpdate = true;
-    }
+    EmplaceBack(Args&&... args);
 
     /**
      * Constructs and inserts transformation into the chain at the specified
@@ -201,15 +186,7 @@ public:
      */
     template <typename TransformationType, typename... Args>
     const_iterator
-    Emplace(const_iterator it, Args&&... args)
-    {
-        auto itm = m_TransformationList.begin();
-        std::advance(itm, std::distance(Begin(), it));
-        m_NeedUpdate = true;
-        return const_iterator(m_TransformationList.insert(
-            itm, std::unique_ptr<Transformation>
-            (new TransformationType(args...))));
-    }
+    Emplace(const_iterator it, Args&&... args);
 
     /**
      * Inserts a new transformation into the chain at the specified position.
@@ -222,10 +199,7 @@ public:
      */
     template <typename TransformationType>
     const_iterator
-    Insert(TransformationType const& transformation, size_type index)
-    {
-        return Insert(transformation, Middle(index));
-    }
+    Insert(TransformationType const& transformation, size_type index);
 
     /**
      * Inserts a new transformation into the chain at the specified position.
@@ -238,10 +212,7 @@ public:
      */
     template <typename TransformationType>
     const_iterator
-    Insert(TransformationType const& transformation, const_iterator it)
-    {
-        return Emplace<TransformationType>(it, transformation);
-    }
+    Insert(TransformationType const& transformation, const_iterator it);
 
     /**
      * Replaces the transformation at the specified index with the given one.
@@ -253,13 +224,7 @@ public:
      */
     template <typename TransformationType>
     void
-    Replace(TransformationType const& transformation, size_type index)
-    {
-        m_NeedUpdate = true;
-        m_TransformationList[index] =
-            std::unique_ptr<Transformation>(
-            new TransformationType(transformation));
-    }
+    Replace(TransformationType const& transformation, size_type index);
 
     /**
      * Replaces the transformation at the specified index with the given one.
@@ -272,14 +237,7 @@ public:
      */
     template <typename TransformationType>
     void
-    Replace(TransformationType const& transformation,  const_iterator it)
-    {
-        auto itm = m_TransformationList.begin();
-        std::advance(itm, std::distance(Begin(), it));
-        m_NeedUpdate = true;
-        *itm = std::unique_ptr<Transformation>
-            (new TransformationType(transformation));
-    }
+    Replace(TransformationType const& transformation, const_iterator it);
 
     /**
      * Deletes the transformation at the specified position.
@@ -352,10 +310,7 @@ public:
      */
     template <typename TransformationType>
     TransformationType const&
-    At(size_type index) const
-    {
-        return static_cast<TransformationType const&>(At(index));
-    }
+    At(size_type index) const;
 
     /**
      * Returns the transformation at the given index.
@@ -412,7 +367,10 @@ public:
 };
 
 
+
 }
 }
+
+#include "transformation_chain_code.h"
 
 #endif /* CE3D_TRANSFORMATION_TRANSFORMATION_CHAIN_H */
