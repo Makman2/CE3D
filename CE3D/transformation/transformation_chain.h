@@ -299,6 +299,15 @@ public:
     At(size_type index) const;
 
     /**
+     * Returns the transformation from the given iterator.
+     *
+     * @param it The const_iterator that points at the transformation.
+     * @returns The transformation at the given iterator.
+     */
+    Transformation const&
+    At(const_iterator it) const;
+
+    /**
      * Returns the transformation at the given index and casts it to the
      * given type of transformation.
      * Note: The conversion is unsafe, so you have to ensure that the cast is
@@ -311,6 +320,20 @@ public:
     template <typename TransformationType>
     TransformationType const&
     At(size_type index) const;
+
+    /**
+     * Returns the transformation from the given iterator and casts it to the
+     * given type of transformation.
+     * Note: The conversion is unsafe, so you have to ensure that the cast is
+     * valid.
+     *
+     * @tparam TransformationType The transformation type to convert to.
+     * @param it The const_iterator that points at the transformation.
+     * @returns The transformation at the given iterator.
+     */
+    template <typename TransformationType>
+    TransformationType const&
+    At(const_iterator it) const;
 
     /**
      * Returns the transformation at the given index.

@@ -88,6 +88,13 @@ TransformationType const& TransformationChain::At(size_type index) const
     return static_cast<TransformationType const&>(At(index));
 }
 
+template <typename TransformationType>
+TransformationType const& TransformationChain::At(const_iterator it) const
+{
+    return static_cast<TransformationType const&>(At(it));
+}
+
+
 }
 }
 

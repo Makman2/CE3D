@@ -69,9 +69,15 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     RequireMatrixEquality(chain.At(2).GetMatrix(), matrices[2]);
     RequireMatrixEquality(chain[1].GetMatrix(), matrices[1]);
 
-    CE3D::Transformation::Custom custom =
-        chain.At<CE3D::Transformation::Custom>(2);
-    RequireMatrixEquality(custom.GetMatrix(), matrices[2]);
+    RequireMatrixEquality
+        (chain.At<CE3D::Transformation::Custom>(2).GetMatrix(), matrices[2]);
+
+    RequireMatrixEquality
+        (chain.At(chain.Begin() + 1).GetMatrix(), matrices[1]);
+
+    RequireMatrixEquality
+        (chain.At<CE3D::Transformation::Custom>(chain.Begin() + 2).GetMatrix(),
+         matrices[2]);
 
     // Test Erase()
     //  The call to the index-version automatically invokes the
