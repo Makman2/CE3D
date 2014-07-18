@@ -94,6 +94,17 @@ TransformationType const& TransformationChain::At(const_iterator it) const
     return static_cast<TransformationType const&>(At(it));
 }
 
+template <typename TransformationType>
+TransformationType const& TransformationChain::Front() const
+{
+    return static_cast<TransformationType const&>(Front());
+}
+
+template <typename TransformationType>
+TransformationType const& TransformationChain::Back() const
+{
+    return static_cast<TransformationType const&>(Back());
+}
 
 }
 }

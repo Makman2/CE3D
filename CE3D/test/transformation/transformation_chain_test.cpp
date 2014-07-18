@@ -40,6 +40,8 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
             CE3D::Transformation::Custom(elem)));
     
     RequireMatrixEquality(chain.Back().GetMatrix(), matrices[3]);
+    RequireMatrixEquality
+        (chain.Back<CE3D::Transformation::Custom>().GetMatrix(), matrices[3]);
 
     // Test Size().
     BOOST_REQUIRE_EQUAL(chain.Size(), matrices.size());
@@ -89,6 +91,8 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     // Test PushFront() and Front()
     chain.PushFront(CE3D::Transformation::Custom(matrices[1]));
     RequireMatrixEquality(chain.Front().GetMatrix(), matrices[1]);
+    RequireMatrixEquality
+        (chain.Front<CE3D::Transformation::Custom>().GetMatrix(), matrices[1]);
 
     // Test Insert()
     //  Again the iterator-version is called when using index-version.

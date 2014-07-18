@@ -355,11 +355,37 @@ public:
     Front() const;
 
     /**
+     * Accesses and casts the first transformation of the chain to the
+     * specified template transformation type.
+     * Note: The conversion is unsafe, so you have to ensure that the cast ist
+     * valid.
+     *
+     * @tparam TransformationType The transformation type to convert to.
+     * @returns The transformation at the beginning of the chain.
+     */
+    template <typename TransformationType>
+    TransformationType const&
+    Front() const;
+
+    /**
      * Accesses the last transformation of the chain.
      *
      * @returns The transformation at the end of the chain.
      */
     Transformation const&
+    Back() const;
+
+    /**
+     * Accesses and casts the last transformation of the chain to the
+     * specified template transformation type.
+     * Note: The conversion is unsafe, so you have to ensure that the cast ist
+     * valid.
+     *
+     * @tparam TransformationType The transformation type to convert to.
+     * @returns The transformation at the end of the chain.
+     */
+    template <typename TransformationType>
+    TransformationType const&
     Back() const;
 
     /**
