@@ -24,6 +24,13 @@ LinearCamera<MaterialType>::GetTransformationChain()
 }
     
 template <typename MaterialType>
+Transformation::TransformationChain const&
+LinearCamera<MaterialType>::GetTransformationChain() const
+{
+    return m_TransformationChain;
+}
+
+template <typename MaterialType>
 std::unique_ptr<World<MaterialType> >
 LinearCamera<MaterialType>::Paint() const
 {
