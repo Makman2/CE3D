@@ -24,11 +24,6 @@ private:
 
 public:
     /**
-     * Constructs an OrthographicCamera with uninitialized position and
-     * look-at vectors.
-     */
-    OrthographicCamera();
-    /**
      * Constructs an OrthographicCamera from given position and
      * look-at vectors.
      *

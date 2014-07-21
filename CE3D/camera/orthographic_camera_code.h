@@ -12,16 +12,6 @@ namespace CE3D
 {
 
 template <typename MaterialType>
-OrthographicCamera<MaterialType>::OrthographicCamera()
-: m_RealPosition()
-, m_LookAt()
-{
-    auto& chain = LinearCamera<MaterialType>::GetTransformationChain();
-    chain.template EmplaceBack<Transformation::OrthogonalDepthProjection>();
-    chain.template EmplaceBack<Transformation::Translation>();
-}
-
-template <typename MaterialType>
 OrthographicCamera<MaterialType>::OrthographicCamera(Vector const& lookAt,
                                                      Vector const& position)
 : m_RealPosition(position)
