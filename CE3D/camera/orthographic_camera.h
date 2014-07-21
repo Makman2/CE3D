@@ -12,8 +12,8 @@ namespace CE3D
 {
 
 /**
- * A camera is defined through position, direction and the world it's looking
- * at.
+ * A camera for orthographic view. Uses parallel projection for projecting
+ * vectors onto it's sensor.
  */
 template <typename MaterialType>
 class OrthographicCamera : public LinearCamera<MaterialType>
