@@ -23,8 +23,15 @@ private:
     Vector m_LookAt;
 
 public:
+    /**
+     * Constructs an OrthographicCamera with uninitialized position and
+     * look-at vectors.
+     */
     OrthographicCamera();
     /**
+     * Constructs an OrthographicCamera from given position and
+     * look-at vectors.
+     *
      * @param lookAt: The vector the camera looks at.
      * @param position: The position of the camera.
      */
