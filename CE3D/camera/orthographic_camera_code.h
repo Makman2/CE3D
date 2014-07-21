@@ -22,8 +22,8 @@ OrthographicCamera<MaterialType>::OrthographicCamera()
 }
 
 template <typename MaterialType>
-OrthographicCamera<MaterialType>::OrthographicCamera
-    (Vector const& lookAt, Vector const& position)
+OrthographicCamera<MaterialType>::OrthographicCamera(Vector const& lookAt,
+                                                     Vector const& position)
 : m_RealPosition(position)
 , m_LookAt(lookAt)
 {
@@ -34,13 +34,15 @@ OrthographicCamera<MaterialType>::OrthographicCamera
 }
 
 template <typename MaterialType>
-Vector const& OrthographicCamera<MaterialType>::GetPosition() const
+Vector const&
+OrthographicCamera<MaterialType>::GetPosition() const
 {
     return m_RealPosition;
 }
 
 template <typename MaterialType>
-void OrthographicCamera<MaterialType>::SetPosition(Vector const& value)
+void
+OrthographicCamera<MaterialType>::SetPosition(Vector const& value)
 {
     m_RealPosition = value;
     LinearCamera<MaterialType>::GetTransformationChain().Replace(
@@ -48,13 +50,15 @@ void OrthographicCamera<MaterialType>::SetPosition(Vector const& value)
 }
 
 template <typename MaterialType>
-Vector const& OrthographicCamera<MaterialType>::GetLookAt() const
+Vector const&
+OrthographicCamera<MaterialType>::GetLookAt() const
 {
     return m_LookAt;
 }
 
 template <typename MaterialType>
-void OrthographicCamera<MaterialType>::SetLookAt(Vector const& value)
+void
+OrthographicCamera<MaterialType>::SetLookAt(Vector const& value)
 {
     LinearCamera<MaterialType>::GetTransformationChain().Replace(
         Transformation::OrthogonalDepthProjection(value), 0);
