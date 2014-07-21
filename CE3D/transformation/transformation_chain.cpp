@@ -163,6 +163,12 @@ namespace Transformation
         return *(m_TransformationList[index].get());
     }
 
+    Transformation const& TransformationChain::At
+    (TransformationChain::const_iterator it) const
+    {
+        return *it;
+    }
+
     Transformation const& TransformationChain::operator []
     (TransformationChain::size_type index) const
     {

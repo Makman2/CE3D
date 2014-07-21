@@ -1,7 +1,7 @@
 // This file is part of CE3D. License: GPL3
 
-#ifndef CE3D_TRANSFORMATION_CHAIN_H
-#define CE3D_TRANSFORMATION_CHAIN_H
+#ifndef CE3D_TRANSFORMATION_TRANSFORMATION_CHAIN_H
+#define CE3D_TRANSFORMATION_TRANSFORMATION_CHAIN_H
 
 #include <vector>
 
@@ -129,13 +129,7 @@ public:
      */
     template <typename TransformationType>
     void
-    PushBack(TransformationType const& transformation)
-    {
-        m_TransformationList.push_back(
-            std::unique_ptr<Transformation>(
-            new TransformationType(transformation)));
-        m_NeedUpdate = true;
-    }
+    PushBack(TransformationType const& transformation);
 
     /**
      * Adds a new transformation at the bottom of the chain.
@@ -146,10 +140,56 @@ public:
      */
     template <typename TransformationType>
     void
-    PushFront(TransformationType const& transformation)
-    {
-        Insert(transformation, Begin());
-    }
+    PushFront(TransformationType const& transformation);
+
+    /**
+     * Constructs and inserts transformation at the bottom of the chain.
+     *
+     * @tparam TransformationType The type of transformation the function is
+     * passed. You must give this template argument excplicitly so
+     * EmplaceFront() knows what transformation is used where to call the
+     * constructor.
+     * @tparam Args The variadic template arguments that are passed to the
+     * constructor of TransformationType. Determined automatically from the
+     * function call parameters.
+     */
+    template <typename TransformationType, typename... Args>
+    void
+    EmplaceFront(Args&&... args);
+
+    /**
+     * Constructs and inserts transformation at the top of the chain.
+     *
+     * @tparam TransformationType The type of transformation the function is
+     * passed. You must give this template argument excplicitly so
+     * EmplaceBack() knows what transformation is used where to call the
+     * constructor.
+     * @tparam Args The variadic template arguments that are passed to the
+     * constructor of TransformationType. Determined automatically from the
+     * function call parameters.
+     */
+    template <typename TransformationType, typename... Args>
+    void
+    EmplaceBack(Args&&... args);
+
+    /**
+     * Constructs and inserts transformation into the chain at the specified
+     * position.
+     *
+     * @param it The const_iterator that indicates the position where to
+     * construct and insert.
+     * @tparam TransformationType The type of transformation the function is
+     * passed. You must give this template argument excplicitly so
+     * Emplace() knows what transformation is used where to call the
+     * constructor.
+     * @tparam Args The variadic template arguments that are passed to the
+     * constructor of TransformationType. Determined automatically from the
+     * function call parameters.
+     * @returns A const_iterator pointing at the new inserted element.
+     */
+    template <typename TransformationType, typename... Args>
+    const_iterator
+    Emplace(const_iterator it, Args&&... args);
 
     /**
      * Inserts a new transformation into the chain at the specified position.
@@ -162,10 +202,7 @@ public:
      */
     template <typename TransformationType>
     const_iterator
-    Insert(TransformationType const& transformation, size_type index)
-    {
-        return Insert(transformation, Middle(index));
-    }
+    Insert(TransformationType const& transformation, size_type index);
 
     /**
      * Inserts a new transformation into the chain at the specified position.
@@ -178,15 +215,7 @@ public:
      */
     template <typename TransformationType>
     const_iterator
-    Insert(TransformationType const& transformation, const_iterator it)
-    {
-        auto itm = m_TransformationList.begin();
-        std::advance(itm, std::distance(Begin(), it));
-        m_NeedUpdate = true;
-        return const_iterator(m_TransformationList.insert(
-            itm, std::unique_ptr<Transformation>
-            (new TransformationType(transformation))));
-    }
+    Insert(TransformationType const& transformation, const_iterator it);
 
     /**
      * Replaces the transformation at the specified index with the given one.
@@ -198,13 +227,7 @@ public:
      */
     template <typename TransformationType>
     void
-    Replace(TransformationType const& transformation, size_type index)
-    {
-        m_NeedUpdate = true;
-        m_TransformationList[index] =
-            std::unique_ptr<Transformation>(
-            new TransformationType(transformation));
-    }
+    Replace(TransformationType const& transformation, size_type index);
 
     /**
      * Replaces the transformation at the specified index with the given one.
@@ -217,14 +240,7 @@ public:
      */
     template <typename TransformationType>
     void
-    Replace(TransformationType const& transformation,  const_iterator it)
-    {
-        auto itm = m_TransformationList.begin();
-        std::advance(itm, std::distance(Begin(), it));
-        m_NeedUpdate = true;
-        *itm = std::unique_ptr<Transformation>
-            (new TransformationType(transformation));
-    }
+    Replace(TransformationType const& transformation, const_iterator it);
 
     /**
      * Deletes the transformation at the specified position.
@@ -286,6 +302,43 @@ public:
     At(size_type index) const;
 
     /**
+     * Returns the transformation from the given iterator.
+     *
+     * @param it The const_iterator that points at the transformation.
+     * @returns The transformation at the given iterator.
+     */
+    Transformation const&
+    At(const_iterator it) const;
+
+    /**
+     * Returns the transformation at the given index and casts it to the
+     * given type of transformation.
+     * Note: The conversion is unsafe, so you have to ensure that the cast is
+     * valid.
+     *
+     * @tparam TransformationType The transformation type to convert to.
+     * @param index The index of the transformation.
+     * @returns The transformation at index.
+     */
+    template <typename TransformationType>
+    TransformationType const&
+    At(size_type index) const;
+
+    /**
+     * Returns the transformation from the given iterator and casts it to the
+     * given type of transformation.
+     * Note: The conversion is unsafe, so you have to ensure that the cast is
+     * valid.
+     *
+     * @tparam TransformationType The transformation type to convert to.
+     * @param it The const_iterator that points at the transformation.
+     * @returns The transformation at the given iterator.
+     */
+    template <typename TransformationType>
+    TransformationType const&
+    At(const_iterator it) const;
+
+    /**
      * Returns the transformation at the given index.
      *
      * This operator invokes At().
@@ -305,11 +358,37 @@ public:
     Front() const;
 
     /**
+     * Accesses and casts the first transformation of the chain to the
+     * specified template transformation type.
+     * Note: The conversion is unsafe, so you have to ensure that the cast ist
+     * valid.
+     *
+     * @tparam TransformationType The transformation type to convert to.
+     * @returns The transformation at the beginning of the chain.
+     */
+    template <typename TransformationType>
+    TransformationType const&
+    Front() const;
+
+    /**
      * Accesses the last transformation of the chain.
      *
      * @returns The transformation at the end of the chain.
      */
     Transformation const&
+    Back() const;
+
+    /**
+     * Accesses and casts the last transformation of the chain to the
+     * specified template transformation type.
+     * Note: The conversion is unsafe, so you have to ensure that the cast ist
+     * valid.
+     *
+     * @tparam TransformationType The transformation type to convert to.
+     * @returns The transformation at the end of the chain.
+     */
+    template <typename TransformationType>
+    TransformationType const&
     Back() const;
 
     /**
@@ -340,7 +419,10 @@ public:
 };
 
 
+
 }
 }
 
-#endif /* CE3D_TRANSFORMATION_CHAIN_H */
+#include "transformation_chain_code.h"
+
+#endif /* CE3D_TRANSFORMATION_TRANSFORMATION_CHAIN_H */

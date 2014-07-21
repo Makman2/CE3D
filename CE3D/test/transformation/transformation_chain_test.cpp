@@ -40,6 +40,8 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
             CE3D::Transformation::Custom(elem)));
     
     RequireMatrixEquality(chain.Back().GetMatrix(), matrices[3]);
+    RequireMatrixEquality
+        (chain.Back<CE3D::Transformation::Custom>().GetMatrix(), matrices[3]);
 
     // Test Size().
     BOOST_REQUIRE_EQUAL(chain.Size(), matrices.size());
@@ -64,10 +66,20 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     BOOST_REQUIRE_THROW(chain.Middle(1111), std::out_of_range);
     BOOST_REQUIRE_THROW(chain.RMiddle(1111), std::out_of_range);
 
-    // Test At() and []-operator
+    // Test At() (includes the unsafe conversion function) and []-operator
     RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[0]);
     RequireMatrixEquality(chain.At(2).GetMatrix(), matrices[2]);
     RequireMatrixEquality(chain[1].GetMatrix(), matrices[1]);
+
+    RequireMatrixEquality
+        (chain.At<CE3D::Transformation::Custom>(2).GetMatrix(), matrices[2]);
+
+    RequireMatrixEquality
+        (chain.At(chain.Begin() + 1).GetMatrix(), matrices[1]);
+
+    RequireMatrixEquality
+        (chain.At<CE3D::Transformation::Custom>(chain.Begin() + 2).GetMatrix(),
+         matrices[2]);
 
     // Test Erase()
     //  The call to the index-version automatically invokes the
@@ -79,6 +91,8 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     // Test PushFront() and Front()
     chain.PushFront(CE3D::Transformation::Custom(matrices[1]));
     RequireMatrixEquality(chain.Front().GetMatrix(), matrices[1]);
+    RequireMatrixEquality
+        (chain.Front<CE3D::Transformation::Custom>().GetMatrix(), matrices[1]);
 
     // Test Insert()
     //  Again the iterator-version is called when using index-version.
@@ -110,6 +124,20 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
 
     chain.Exchange(chain.Begin(), chain.Begin() + 1);
     RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[1]);
+    RequireMatrixEquality(chain.At(1).GetMatrix(), matrices[2]);
+
+    // Test Emplace(), EmplaceBack() and EmplaceFront()
+    //  EmplaceFront() automatically invokes Emplace().
+    chain.Clear();
+
+    chain.EmplaceBack<CE3D::Transformation::Custom>(matrices[0]);
+    RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[0]);
+    
+    chain.EmplaceFront<CE3D::Transformation::Custom>(matrices[1]);
+    RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[1]);
+    
+    chain.Emplace<CE3D::Transformation::Custom>
+        (chain.Begin() + 1, matrices[2]);
     RequireMatrixEquality(chain.At(1).GetMatrix(), matrices[2]);
 
 }
