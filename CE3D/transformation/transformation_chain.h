@@ -149,8 +149,9 @@ public:
      * passed. You must give this template argument excplicitly so
      * EmplaceFront() knows what transformation is used where to call the
      * constructor.
-     * @tparam Args The variadic template arguments. Determined automatically
-     * from the function call parameters.
+     * @tparam Args The variadic template arguments that are passed to the
+     * constructor of TransformationType. Determined automatically from the
+     * function call parameters.
      */
     template <typename TransformationType, typename... Args>
     void
@@ -163,8 +164,9 @@ public:
      * passed. You must give this template argument excplicitly so
      * EmplaceBack() knows what transformation is used where to call the
      * constructor.
-     * @tparam Args The variadic template arguments. Determined automatically
-     * from the function call parameters.
+     * @tparam Args The variadic template arguments that are passed to the
+     * constructor of TransformationType. Determined automatically from the
+     * function call parameters.
      */
     template <typename TransformationType, typename... Args>
     void
@@ -180,8 +182,9 @@ public:
      * passed. You must give this template argument excplicitly so
      * Emplace() knows what transformation is used where to call the
      * constructor.
-     * @tparam Args The variadic template arguments. Determined automatically
-     * from the function call parameters.
+     * @tparam Args The variadic template arguments that are passed to the
+     * constructor of TransformationType. Determined automatically from the
+     * function call parameters.
      * @returns A const_iterator pointing at the new inserted element.
      */
     template <typename TransformationType, typename... Args>
