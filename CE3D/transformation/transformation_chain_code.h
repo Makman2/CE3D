@@ -9,25 +9,29 @@ namespace Transformation
 {
 
 template <typename TransformationType>
-void TransformationChain::PushBack(TransformationType const& transformation)
+void
+TransformationChain::PushBack(TransformationType const& transformation)
 {
     EmplaceBack<TransformationType>(transformation);
 }
 
 template <typename TransformationType>
-void TransformationChain::PushFront(TransformationType const& transformation)
+void
+TransformationChain::PushFront(TransformationType const& transformation)
 {
     Insert(transformation, Begin());
 }
 
 template <typename TransformationType, typename... Args>
-void TransformationChain::EmplaceFront(Args&&... args)
+void
+TransformationChain::EmplaceFront(Args&&... args)
 {
     Emplace<TransformationType>(Begin(), args...);
 }
 
 template <typename TransformationType, typename... Args>
-void TransformationChain::EmplaceBack(Args&&... args)
+void
+TransformationChain::EmplaceBack(Args&&... args)
 {
     m_TransformationList.push_back(
         std::unique_ptr<Transformation>(
@@ -36,8 +40,8 @@ void TransformationChain::EmplaceBack(Args&&... args)
 }
 
 template <typename TransformationType, typename... Args>
-TransformationChain::const_iterator TransformationChain::Emplace
-(const_iterator it, Args&&... args)
+TransformationChain::const_iterator
+TransformationChain::Emplace (const_iterator it, Args&&... args)
 {
     auto itm = m_TransformationList.begin();
     std::advance(itm, std::distance(Begin(), it));
@@ -48,22 +52,25 @@ TransformationChain::const_iterator TransformationChain::Emplace
 }
 
 template <typename TransformationType>
-TransformationChain::const_iterator TransformationChain::Insert
-(TransformationType const& transformation, size_type index)
+TransformationChain::const_iterator
+TransformationChain::Insert (TransformationType const& transformation,
+                             size_type                 index)
 {
     return Insert(transformation, Middle(index));
 }
 
 template <typename TransformationType>
-TransformationChain::const_iterator TransformationChain::Insert
-(TransformationType const& transformation, const_iterator it)
+TransformationChain::const_iterator
+TransformationChain::Insert(TransformationType const& transformation,
+                            const_iterator            it)
 {
     return Emplace<TransformationType>(it, transformation);
 }
 
 template <typename TransformationType>
-void TransformationChain::Replace
-(TransformationType const& transformation, size_type index)
+void
+TransformationChain::Replace(TransformationType const& transformation,
+                             size_type                 index)
 {
     m_NeedUpdate = true;
     m_TransformationList[index] =
@@ -72,8 +79,9 @@ void TransformationChain::Replace
 }
 
 template <typename TransformationType>
-void TransformationChain::Replace(TransformationType const& transformation, 
-const_iterator it)
+void
+TransformationChain::Replace(TransformationType const& transformation, 
+                             const_iterator            it)
 {
     auto itm = m_TransformationList.begin();
     std::advance(itm, std::distance(Begin(), it));
@@ -83,25 +91,29 @@ const_iterator it)
 }
 
 template <typename TransformationType>
-TransformationType const& TransformationChain::At(size_type index) const
+TransformationType const&
+TransformationChain::At(size_type index) const
 {
     return static_cast<TransformationType const&>(At(index));
 }
 
 template <typename TransformationType>
-TransformationType const& TransformationChain::At(const_iterator it) const
+TransformationType const&
+TransformationChain::At(const_iterator it) const
 {
     return static_cast<TransformationType const&>(At(it));
 }
 
 template <typename TransformationType>
-TransformationType const& TransformationChain::Front() const
+TransformationType const&
+TransformationChain::Front() const
 {
     return static_cast<TransformationType const&>(Front());
 }
 
 template <typename TransformationType>
-TransformationType const& TransformationChain::Back() const
+TransformationType const&
+TransformationChain::Back() const
 {
     return static_cast<TransformationType const&>(Back());
 }
