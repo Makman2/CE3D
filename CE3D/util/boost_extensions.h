@@ -3,6 +3,9 @@
 #ifndef CE3D_UTIL_BOOST_EXTENSIONS_H
 #define CE3D_UTIL_BOOST_EXTENSIONS_H
 
+#include <type_traits>
+#include <array>
+
 namespace boost
 {
 namespace numeric
@@ -44,6 +47,38 @@ concat_vectors(vector<T> const * const vectors, size_t count);
 template<typename T>
 matrix<T>
 concat_vectors(std::vector<vector<T>> const& vectors);
+
+/**
+ * Performs the orthogonalization method of Gram-Schmidt.
+ *
+ * @tparam ListType The list type the vectors are stored in. The vectors in
+ * ListType must derive from vector, so ListType::value_type and the first
+ * template argument of vector must equal.
+ * @param input The input vectors that should be orthogonalized.
+ * @returns A ListType with orthogonalized vectors.
+ */
+template<typename ListType>
+typename std::enable_if<std::is_base_of<
+    vector<typename ListType::value_type::value_type>,
+    typename ListType::value_type>::value,
+    ListType>::type
+orthogonalize(ListType const& input);
+
+/**
+ * Performs the orthogonalization method of Gram-Schmidt.
+ *
+ * @tparam T The vector type used. Must derive from vector.
+ * @tparam count The number of vectors in the array.
+ * @param input The input vectors that should be orthogonalized stored in
+ * std::array.
+ * @returns An std::array with the same size as input filled with the
+ * orthogonalized vectors.
+ */
+template<typename V, size_t count>
+typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
+    V>::value,
+    std::array<V, count>>::type
+orthogonalize(std::array<V, count> const& input);
 
 }
 }

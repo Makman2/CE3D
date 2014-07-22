@@ -7,6 +7,7 @@
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/lu.hpp>
 #include <boost/numeric/ublas/io.hpp>
+#include <utility>
 
 namespace boost
 {
@@ -87,6 +88,88 @@ concat_vectors(std::vector<vector<T>> const& vectors)
     }
 
     return M;
+}
+
+template<typename ListType>
+typename std::enable_if<std::is_base_of<
+    vector<typename ListType::value_type::value_type>,
+    typename ListType::value_type>::value,
+    ListType>::type
+orthogonalize(ListType const& input)
+{
+    // Contains the orthogonalized vectors.
+    ListType orthogonalized;
+    // The with-calculated squared-orthonormal vectors. With this extra list a
+    // permament recalculation of the scalar and vector multiplication is not
+    // needed anymore. This overheads in double memory consumption but the
+    // boost is much greater.
+    std::vector<typename ListType::value_type> orthonormalized_sqr;
+    orthonormalized_sqr.reserve(input.size());
+
+    // If iteratable list supports reserve (like std::vector), we can save
+    // memory reserves when calling push_back.
+    if (std::is_function<decltype(declval<ListType>().reserve(
+        declval<typename ListType::size_type>()))
+        (typename ListType::size_type)>::value)
+        orthogonalized.reserve(input.size());
+
+    typename ListType::value_type currentvec;
+    
+    for (auto vec : input)
+    {
+        currentvec = vec;
+
+        auto onb_it = orthonormalized_sqr.begin();
+        for (auto ortho : orthogonalized)
+        {
+            auto ip = inner_prod(currentvec, ortho);
+            if (ip != 0)
+                currentvec -= ip * (*onb_it);
+            
+            onb_it++;
+        }
+
+        orthogonalized.push_back(currentvec);
+        orthonormalized_sqr.push_back(
+            currentvec / inner_prod(currentvec, currentvec));
+    }
+
+    return orthogonalized;
+}
+
+template<typename V, size_t count>
+typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
+    V>::value,
+    std::array<V, count>>::type
+orthogonalize(std::array<V, count> const& input)
+{
+    // Contains the orthogonalized vectors.
+    std::array<V, count> orthogonalized;
+    // The with-calculated squared-orthonormal vectors. With this extra list a
+    // permament recalculation of the scalar and vector multiplication is not
+    // needed anymore. This overheads in double memory consumption but the
+    // boost is much greater.
+    std::vector<V> orthonormalized_sqr;
+    orthonormalized_sqr.reserve(count);
+
+    V currentvec;
+
+    for (size_t i = 0; i < count; i++)
+    {
+        currentvec = input[i];
+        for (size_t n = 0; n < i; n++)
+        {
+            auto ip = inner_prod(currentvec, orthogonalized[n]);
+            if (ip != 0)
+                currentvec -= ip * orthonormalized_sqr[n];
+        }
+
+        orthogonalized[i] = currentvec;
+        orthonormalized_sqr.push_back(
+            currentvec / inner_prod(currentvec, currentvec));
+    }
+
+    return orthogonalized;
 }
 
 }
