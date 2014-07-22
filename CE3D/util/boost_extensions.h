@@ -66,8 +66,8 @@ normalize(V& vec);
  * Performs the orthogonalization method of Gram-Schmidt.
  *
  * @tparam ListType The list type the vectors are stored in. The vectors in
- * ListType must derive from vector, so ListType::value_type and the first
- * template argument of vector must equal.
+ * ListType must derive from boost::numeric::ublas::vector, so
+ * ListType::value_type and the first template argument of vector must equal.
  * @param input The input vectors that should be orthogonalized.
  * @returns A ListType with orthogonalized vectors.
  */
@@ -81,7 +81,8 @@ orthogonalize(ListType const& input);
 /**
  * Performs the orthogonalization method of Gram-Schmidt.
  *
- * @tparam V The vector type used. Must derive from vector.
+ * @tparam V The vector type used. Must derive from
+ * boost::numeric::ublas::vector.
  * @tparam count The number of vectors in the array.
  * @param input The input vectors that should be orthogonalized stored in
  * std::array.
@@ -98,10 +99,10 @@ orthogonalize(std::array<V, count> const& input);
  * Performs the orthonormalization method of Gram-Schmidt.
  *
  * @tparam ListType The list type the vectors are stored in. The vectors in
- * ListType must derive from vector, so ListType::value_type and the first
- * template argument of vector must equal.
- * @param input The input vectors that should be orthogonalized.
- * @returns A ListType with orthogonalized vectors.
+ * ListType must derive from boost::numeric::ublas::vector, so
+ * ListType::value_type and the first template argument of vector must equal.
+ * @param input The input vectors that should be orthonormalized.
+ * @returns A ListType with orthonormalized vectors.
  */
 template<typename ListType>
 typename std::enable_if<std::is_base_of<
@@ -113,12 +114,13 @@ orthonormalize(ListType const& input);
 /**
  * Performs the orthonormalization method of Gram-Schmidt.
  *
- * @tparam V The vector type used. Must derive from vector.
+ * @tparam V The vector type used. Must derive from
+ * boost::numeric::ublas::vector.
  * @tparam count The number of vectors in the array.
- * @param input The input vectors that should be orthogonalized stored in
+ * @param input The input vectors that should be orthonormalized stored in
  * std::array.
  * @returns An std::array with the same size as input filled with the
- * orthogonalized vectors.
+ * orthonormalized vectors.
  */
 template<typename V, size_t count>
 typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
