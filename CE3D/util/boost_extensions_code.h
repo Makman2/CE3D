@@ -90,6 +90,17 @@ concat_vectors(std::vector<vector<T>> const& vectors)
     return M;
 }
 
+template<typename V>
+typename std::enable_if<std::is_base_of<vector<typename V::value_type,
+    typename V::array_type>, V>::value,
+    void>::type
+normalize(V& vec)
+{
+    auto n2 = norm_2(vec);
+    if (n2 != 0)
+        vec /= n2;
+}
+
 template<typename ListType>
 typename std::enable_if<std::is_base_of<
     vector<typename ListType::value_type::value_type>,
@@ -170,6 +181,67 @@ orthogonalize(std::array<V, count> const& input)
     }
 
     return orthogonalized;
+}
+
+template<typename ListType>
+typename std::enable_if<std::is_base_of<
+    vector<typename ListType::value_type::value_type>,
+    typename ListType::value_type>::value,
+    ListType>::type
+orthonormalize(ListType const& input)
+{
+    // Contains the orthonormalized vectors.
+    ListType orthonormalized;
+
+    // If iteratable list supports reserve (like std::vector), we can save
+    // memory reserves when calling push_back.
+    if (std::is_function<decltype(declval<ListType>().reserve(
+        declval<typename ListType::size_type>()))
+        (typename ListType::size_type)>::value)
+        orthonormalized.reserve(input.size());
+
+    typename ListType::value_type currentvec;
+    
+    for (auto vec : input)
+    {
+        currentvec = vec;
+
+        for (auto ortho : orthonormalized)
+        {
+            currentvec -= inner_prod(currentvec, ortho) * ortho;
+        }
+        
+        normalize(currentvec);
+        orthonormalized.push_back(currentvec);
+    }
+
+    return orthonormalized;
+}
+
+template<typename V, size_t count>
+typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
+    V>::value,
+    std::array<V, count>>::type
+orthonormalize(std::array<V, count> const& input)
+{
+    // Contains the orthogonalized vectors.
+    std::array<V, count> orthonormalized;
+
+    V currentvec;
+
+    for (size_t i = 0; i < count; i++)
+    {
+        currentvec = input[i];
+        for (size_t n = 0; n < i; n++)
+        {
+            currentvec -= inner_prod(currentvec, orthonormalized[n]) * 
+                orthonormalized[n];
+        }
+
+        orthonormalized[i] = currentvec;
+    }
+
+    return orthonormalized;
 }
 
 }
