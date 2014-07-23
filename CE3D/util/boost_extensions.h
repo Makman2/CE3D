@@ -28,6 +28,7 @@ invert(matrix<T> const& input, matrix<T>& inverse);
 
 /**
  * Concats vectors together to a matrix.
+ * If count is 0, an empty matrix is returned.
  *
  * @param vectors: An array that contains the vectors that should be
  * concatenated.
@@ -40,6 +41,8 @@ concat_vectors(vector<T> const * const vectors, size_t count);
 
 /**
  * Concats vectors together to a matrix.
+ * If the number of vectors in parameter vectors is 0, an empty matrix is
+ * returned.
  *
  * @param vectors: The std::vector list that contains the vectors to concat.
  * @return The concatenated matrix.

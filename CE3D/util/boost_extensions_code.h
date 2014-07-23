@@ -44,6 +44,9 @@ template<typename T>
 matrix<T>
 concat_vectors(vector<T> const * const vectors, size_t count)
 {
+    if (count == 0)
+        return matrix<T>();
+
     // Check bounds.
     for (size_t i = 1; i < count; i++)
     {
@@ -69,6 +72,9 @@ template<typename T>
 matrix<T>
 concat_vectors(std::vector<vector<T>> const& vectors)
 {
+    if (vectors.size() == 0)
+        return matrix<T>();
+
     // Check bounds.
     for (typename std::vector<T>::size_type i = 1; i < vectors.size(); i++)
     {
