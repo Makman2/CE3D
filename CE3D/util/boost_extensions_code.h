@@ -238,6 +238,7 @@ orthonormalize(std::array<V, count> const& input)
                 orthonormalized[n];
         }
 
+        normalize(currentvec);
         orthonormalized[i] = currentvec;
     }
 

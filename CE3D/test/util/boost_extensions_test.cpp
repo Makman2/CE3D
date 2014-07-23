@@ -104,14 +104,23 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalize)
     tmp(3) = 1;
     base.push_back(tmp);
 
+    // Copy base for test of array version.
+    std::array<CE3D::Vector, 4> basearray;
+    for (std::array<CE3D::Vector, 4>::size_type i = 0; i < basearray.size();
+         i++)
+        basearray[i] = base[i];
+
     auto testvec = boost::numeric::ublas::orthogonalize(base);
-    
+    auto testvecarr = boost::numeric::ublas::orthogonalize(basearray);
+
     // The vectors should be equal because they are already orthogonal to each
     // other.
     BOOST_REQUIRE_EQUAL(base.size(), testvec.size());
-    for(std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
+    BOOST_REQUIRE_EQUAL(base.size(), testvecarr.size());
+    for (std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
     {
         RequireVectorEquality(base[i], testvec[i]);
+        RequireVectorEquality(base[i], testvecarr[i]);
     }
 
     // Test 2: Some specific example.
@@ -135,7 +144,6 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalize)
     tmp2(2) = 0;
     base.push_back(tmp2);
 
-    testvec = boost::numeric::ublas::orthogonalize(base);
 
     std::vector<CE3D::Vector> compare;
     compare.push_back(base[0]);
@@ -143,19 +151,27 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalize)
     tmp2(1) = 0;
     tmp2(2) = 1;
     compare.push_back(tmp2);
-    tmp2(0) = 0;
-    tmp2(1) = 0;
-    tmp2(2) = 0;
-    compare.push_back(tmp2);
+    compare.push_back(boost::numeric::ublas::zero_vector<ModelDataType>(3));
     tmp2(0) = 0;
     tmp2(1) = 3;
     tmp2(2) = 0;
     compare.push_back(tmp2);
 
+    // Copy base for test of array version.
+    std::array<CE3D::Vector, 4> basearray2;
+    for (std::array<CE3D::Vector, 4>::size_type i = 0; i < basearray.size();
+         i++)
+        basearray2[i] = base[i];
+    
+    testvec = boost::numeric::ublas::orthogonalize(base);
+    testvecarr = boost::numeric::ublas::orthogonalize(basearray2);
+
     BOOST_REQUIRE_EQUAL(base.size(), testvec.size());
+    BOOST_REQUIRE_EQUAL(base.size(), testvecarr.size());
     for(std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
     {
         RequireVectorEquality(compare[i], testvec[i]);
+        RequireVectorEquality(compare[i], testvecarr[i]);
     }
 }
 
@@ -199,12 +215,21 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(4, 2));
     compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(4, 3));
 
+    // Copy base for test of array version.
+    std::array<CE3D::Vector, 4> basearray;
+    for (std::array<CE3D::Vector, 4>::size_type i = 0; i < basearray.size();
+         i++)
+        basearray[i] = base[i];
+
     auto testvec = boost::numeric::ublas::orthonormalize(base);
-    
+    auto testvecarr = boost::numeric::ublas::orthonormalize(basearray);
+
     BOOST_REQUIRE_EQUAL(base.size(), testvec.size());
-    for(std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
+    BOOST_REQUIRE_EQUAL(base.size(), testvecarr.size());
+    for (std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
     {
         RequireVectorEquality(compare[i], testvec[i]);
+        RequireVectorEquality(compare[i], testvecarr[i]);
     }
 
     // Test 2: Some specific example.
@@ -229,7 +254,14 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     tmp2(2) = 0;
     base.push_back(tmp2);
 
+    // Copy base for test of array version.
+    std::array<CE3D::Vector, 4> basearray2;
+    for (std::array<CE3D::Vector, 4>::size_type i = 0; i < basearray.size();
+         i++)
+        basearray2[i] = base[i];
+
     testvec = boost::numeric::ublas::orthonormalize(base);
+    testvecarr = boost::numeric::ublas::orthonormalize(basearray2);
 
     compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(3, 0));
     compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(3, 2));
@@ -237,9 +269,11 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(3, 1));
 
     BOOST_REQUIRE_EQUAL(base.size(), testvec.size());
+    BOOST_REQUIRE_EQUAL(base.size(), testvecarr.size());
     for(std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
     {
         RequireVectorEquality(compare[i], testvec[i]);
+        RequireVectorEquality(compare[i], testvecarr[i]);
     }
 }
 
