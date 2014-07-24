@@ -107,6 +107,9 @@ normalize(V& vec)
         vec /= n2;
 }
 
+// FIXME Try to merge the orthogonalization-functions into one with support for
+//       lists and std::array to keep maintainability.
+
 template<typename ListType>
 typename std::enable_if<std::is_base_of<
     vector<typename ListType::value_type::value_type>,
@@ -188,6 +191,9 @@ orthogonalize(std::array<V, count> const& input)
 
     return orthogonalized;
 }
+
+// FIXME Try to merge the orthonormalization-functions into one with support
+//       for lists and std::array to keep maintainability.
 
 template<typename ListType>
 typename std::enable_if<std::is_base_of<
