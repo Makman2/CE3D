@@ -28,7 +28,8 @@ BOOST_AUTO_TEST_CASE(TestOrthographicCameraConstruction)
 {
     CE3D::OrthographicCamera<CE3D::ConsoleMaterial> *TestUnit;
     BOOST_REQUIRE_NO_THROW(
-        TestUnit = new CE3D::OrthographicCamera<CE3D::ConsoleMaterial>());
+        TestUnit = new CE3D::OrthographicCamera<CE3D::ConsoleMaterial>
+        (CE3D::Vector(), CE3D::Vector()));
     BOOST_REQUIRE_NO_THROW(delete TestUnit);
 }
 
@@ -37,8 +38,9 @@ BOOST_AUTO_TEST_CASE(TestOrthographicCameraConstruction)
  */
 BOOST_AUTO_TEST_CASE(TestPropertyFunctions)
 {
-    CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam;
-   
+    CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam
+        ((CE3D::Vector()), (CE3D::Vector()));
+
     CE3D::Vector testvector(5);
     testvector(0) = 17;
     testvector(1) = 1;
@@ -67,7 +69,8 @@ BOOST_AUTO_TEST_CASE(TestPropertyFunctions)
  */
 BOOST_AUTO_TEST_CASE(TestMatrix)
 {
-    CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam;
+    CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam
+        ((CE3D::Vector()), (CE3D::Vector()));
 
     std::shared_ptr<CE3D::World<CE3D::ConsoleMaterial>> 
         world(new CE3D::World<CE3D::ConsoleMaterial>());
