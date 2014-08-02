@@ -14,9 +14,10 @@ notifications:
 
 before_install:
     - sudo apt-get update
-    - sudo apt-get install build-essential
     - sudo apt-get install libboost-all-dev
-    - sudo apt-get upgrade gcc g++
+    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+    - sudo apt-get -qq update
+    - sudo apt-get -qq install g++-4.8
 
 script:
     - g++ --version
