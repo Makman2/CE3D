@@ -7,7 +7,7 @@ CE3D_RELEASE_BUILD_DIR	= build/CE3D_release
 CE3D_CODEBLOCKS_PROJ_DIR= build/Codeblocks
 CE3D_ECLIPSE_PROJ_DIR   = build/Eclipse
 CE3D_SRC_FROM_BUILD	= ../../CE3D
-CE3D_MAKE_FLAGS		= --no-print-directory -j8
+CE3D_MAKE_FLAGS		= --no-print-directory #-j8
 CE3D_CLEAN_TARGET	= clean
 CE3D_INSTALL_TARGET	= install
 
