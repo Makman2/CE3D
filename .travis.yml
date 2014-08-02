@@ -16,8 +16,8 @@ before_install:
     - sudo apt-get update
     - sudo apt-get install build-essential
     - sudo apt-get install libboost-all-dev
+    - sudo apt-get upgrade gcc g++
 
 script:
     - g++ --version
-    - g++ --help
     - make debug
