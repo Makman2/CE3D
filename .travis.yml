@@ -18,6 +18,6 @@ before_install:
     - sudo apt-get install libboost-all-dev
 
 script:
-    g++ --version
-    g++ --help
-    make debug
+    - g++ --version
+    - g++ --help
+    - make debug
