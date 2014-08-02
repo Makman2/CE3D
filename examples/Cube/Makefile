@@ -4,7 +4,7 @@ SRCS	= main.cpp
 GPP	= g++
 GPPFLAGS= -std=c++11
 TARGET	= cube
-LIBS	= -lCE3D
+LIBS	= -lCE3D -lboost_system
 
 default: help
 

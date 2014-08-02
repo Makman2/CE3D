@@ -34,6 +34,15 @@ protected:
     Transformation::TransformationChain&
     GetTransformationChain();
 
+    /**
+     * Returns a chain of transformations applied sequentially on Paint().
+     * This version returns a const-type.
+     *
+     * @returns The transformation chain.
+     */
+    Transformation::TransformationChain const&
+    GetTransformationChain() const;
+
 public:
     /**
      * The type of material used for the camera.

@@ -8,6 +8,16 @@ namespace CE3D
 namespace Transformation
 {
 
+OrthogonalDepthProjection::OrthogonalDepthProjection()
+{}
+
+OrthogonalDepthProjection::OrthogonalDepthProjection(Vector lookat)
+: OrthogonalProjection(lookat)
+{}
+
+OrthogonalDepthProjection::~OrthogonalDepthProjection()
+{}
+
 void OrthogonalDepthProjection::UpdateMatrix() const
 {
     // FIXME this function is far too long and needs to be split up.

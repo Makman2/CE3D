@@ -28,8 +28,14 @@ protected:
     UpdateMatrix() const override;
 
 public:
+    OrthogonalDepthProjection();
+    /**
+     * @param lookat The lookat vector to initialize the projection with.
+     */
+    OrthogonalDepthProjection(Vector lookat);
+
     virtual
-    ~OrthogonalDepthProjection() {}
+    ~OrthogonalDepthProjection();
 };
 
 }
