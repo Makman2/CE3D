@@ -15,9 +15,10 @@ notifications:
 before_install:
     - sudo apt-get update
     - sudo apt-get install libboost-all-dev
-    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-    - sudo apt-get -qq update
-    - sudo apt-get -qq install g++-4.8
+    - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+    - sudo apt-get update -qq
+    - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
+    - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
 
 script:
     - g++ --version
