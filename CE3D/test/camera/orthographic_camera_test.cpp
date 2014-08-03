@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
     lookatvector(1) = 6;
     lookatvector(2) = 6;
 
-    CE3D::Transformation::Translation translation(-translationvector);
+    CE3D::Transformation::FinalTranslation translation(-translationvector);
     cam.SetPosition(translationvector);
 
     CE3D::Transformation::OrthogonalDepthProjection projection;
