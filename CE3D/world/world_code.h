@@ -11,7 +11,7 @@ namespace CE3D
 template <typename t_Material>
 void
 World<t_Material>::Transform(
-	Transformation::Transformation const& transformation)
+    Transformation::Transformation const& transformation)
 {
     for (auto& it : GetModels())
     {
@@ -22,7 +22,7 @@ World<t_Material>::Transform(
 template <typename t_Material>
 void
 World<t_Material>::Translate(
-	Transformation::Translation const& translation)
+    Transformation::Translation const& translation)
 {
     for (auto& it : GetModels())
     {
@@ -33,7 +33,7 @@ World<t_Material>::Translate(
 template <typename t_Material>
 void
 World<t_Material>::Scale(
-	const ModelDataType factor)
+    const ModelDataType factor)
 {
     for (auto& it : GetModels())
     {
@@ -44,7 +44,7 @@ World<t_Material>::Scale(
 template <typename t_Material>
 void
 World<t_Material>::Scale(
-	Transformation::Scale const& scale)
+    Transformation::Scale const& scale)
 {
 
     for (auto& it : GetModels())
@@ -55,7 +55,7 @@ World<t_Material>::Scale(
 
 template <typename t_Material>
 void World<t_Material>::Rotate(
-	Transformation::Rotation const& rotation)
+    Transformation::Rotation const& rotation)
 {
     for (auto& it : GetModels())
     {
