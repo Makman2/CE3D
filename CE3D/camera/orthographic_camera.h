@@ -6,7 +6,6 @@
 #include "CE3D/util/stdinc.h"
 
 #include "CE3D/camera/linear_camera.h"
-#include "CE3D/transformation/orthogonal_projection.h"
 
 namespace CE3D
 {
