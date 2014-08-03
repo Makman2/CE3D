@@ -28,7 +28,8 @@ BOOST_AUTO_TEST_CASE(TestOrthographicCameraConstruction)
 {
     CE3D::OrthographicCamera<CE3D::ConsoleMaterial> *TestUnit;
     BOOST_REQUIRE_NO_THROW(
-        TestUnit = new CE3D::OrthographicCamera<CE3D::ConsoleMaterial>());
+        TestUnit = new CE3D::OrthographicCamera<CE3D::ConsoleMaterial>
+        (CE3D::Vector(), CE3D::Vector()));
     BOOST_REQUIRE_NO_THROW(delete TestUnit);
 }
 
@@ -37,8 +38,9 @@ BOOST_AUTO_TEST_CASE(TestOrthographicCameraConstruction)
  */
 BOOST_AUTO_TEST_CASE(TestPropertyFunctions)
 {
-    CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam;
-   
+    CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam
+        ((CE3D::Vector()), (CE3D::Vector()));
+
     CE3D::Vector testvector(5);
     testvector(0) = 17;
     testvector(1) = 1;
@@ -67,7 +69,8 @@ BOOST_AUTO_TEST_CASE(TestPropertyFunctions)
  */
 BOOST_AUTO_TEST_CASE(TestMatrix)
 {
-    CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam;
+    CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam
+        ((CE3D::Vector()), (CE3D::Vector()));
 
     std::shared_ptr<CE3D::World<CE3D::ConsoleMaterial>> 
         world(new CE3D::World<CE3D::ConsoleMaterial>());
@@ -99,16 +102,15 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
 
     cam.SetWorld(world);
 
-    CE3D::Vector translationvector(4);
+    CE3D::Vector translationvector(3);
     translationvector(0) = 1;
     translationvector(1) = 2;
     translationvector(2) = 3;
     
-    CE3D::Vector lookatvector(4);
-    translationvector(0) = 4;
-    translationvector(1) = 6;
-    translationvector(2) = 6;
-    translationvector(3) = 1; // w-component for translation
+    CE3D::Vector lookatvector(3);
+    lookatvector(0) = 4;
+    lookatvector(1) = 6;
+    lookatvector(2) = 6;
 
     CE3D::Transformation::Translation translation(-translationvector);
     cam.SetPosition(translationvector);
@@ -117,7 +119,7 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
     projection.SetProjectionVectors(lookatvector);
     cam.SetLookAt(lookatvector);
 
-    CE3D::Matrix testmatrix(5, 4);
+    CE3D::Matrix testmatrix(3, 4);
     boost::numeric::ublas::axpy_prod(
         projection.GetMatrix(), translation.GetMatrix(), testmatrix, true);
 
@@ -126,7 +128,7 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
 
     for (unsigned int i = 0; i < vectors.size(); i++)
     {
-        CE3D::Vector refvector(4);
+        CE3D::Vector refvector(3);
         boost::numeric::ublas::axpy_prod(
             testmatrix, vectors[i], refvector, true);
         

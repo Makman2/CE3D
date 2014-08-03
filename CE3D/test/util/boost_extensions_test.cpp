@@ -210,10 +210,10 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     tmp(3) = 100;
     base.push_back(tmp);
 
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(4, 0));
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(4, 1));
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(4, 2));
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(4, 3));
+    compare.push_back(CE3D::UnitVector(4, 0));
+    compare.push_back(CE3D::UnitVector(4, 1));
+    compare.push_back(CE3D::UnitVector(4, 2));
+    compare.push_back(CE3D::UnitVector(4, 3));
 
     // Copy base for test of array version.
     std::array<CE3D::Vector, 4> basearray;
