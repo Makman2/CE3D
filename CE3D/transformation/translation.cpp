@@ -26,7 +26,7 @@ Vector const& Translation::GetTranslation() const
 void Translation::UpdateMatrix() const
 {
     m_Matrix.resize(
-        m_TranslationVector.size() + 1, m_TranslationVector.size() + 1);
+        m_TranslationVector.size() + 1, m_TranslationVector.size() + 1, false);
 
     for (Matrix::size_type row = 0; row < m_Matrix.size1(); row++)
     {
