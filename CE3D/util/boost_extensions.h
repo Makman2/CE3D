@@ -5,6 +5,7 @@
 
 #include <type_traits>
 #include <array>
+#include <limits>
 
 namespace boost
 {
@@ -58,12 +59,18 @@ concat_vectors(std::vector<vector<T>> const& vectors);
  *
  * @tparam V A vector type derived from boost::numeric::ublas::vector.
  * @param vec A reference to the vector to normalize.
+ * @param precision The precision. Every absolute value that is smaller than
+ * precision is assumed as zero. So if the given vector is zero, it is not
+ * normalized. Defaults to the expression
+ * std::numeric_limits<V::value_type>().precision().
+ * @returns true if zero, false if not.
  */
 template<typename V>
 typename std::enable_if<std::is_base_of<vector<typename V::value_type,
     typename V::array_type>, V>::value,
     void>::type
-normalize(V& vec);
+normalize(V& vec, typename V::value_type precision =
+                  std::numeric_limits<typename V::value_type>::epsilon());
 
 /**
  * Performs the orthogonalization method of Gram-Schmidt.
@@ -99,7 +106,8 @@ typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
 orthogonalize(std::array<V, count> const& input);
 
 /**
- * Performs the orthonormalization method of Gram-Schmidt.
+ * Performs the orthonormalization method of Gram-Schmidt. Automatically kicks
+ * out zero vectors.
  *
  * @tparam ListType The list type the vectors are stored in. The vectors in
  * ListType must derive from boost::numeric::ublas::vector, so
@@ -130,6 +138,40 @@ typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
     V>::value,
     std::array<V, count>>::type
 orthonormalize(std::array<V, count> const& input);
+
+
+/**
+ * Tests if the given expression is zero.
+ *
+ * @tparam Any type to test if zero. Must support <
+ * @param t The expression to compare with zero.
+ * @param precision The precision. Every absolute value that is smaller than
+ * precision is assumed as zero. Defaults to the expression
+ * std::numeric_limits<V::value_type>().precision().
+ * @returns true if zero, false if not.
+ */
+template<typename T>
+bool
+is_zero(typename std::conditional<std::is_integral<T>::value, T, T const&>
+::type t, T precision = std::numeric_limits<T>::epsilon());
+
+/**
+ * Tests if the given vector is zero.
+ *
+ * @tparam V The vector type to test if zero. Must derive from
+ * boost::numeric::ublas::vector.
+ * @param vec The vector to test if zero.
+ * @param precision The precision. Every absolute value that is smaller than
+ * precision is assumed as zero. Defaults to the expression
+ * std::numeric_limits<V::value_type>().precision().
+ * @returns true if zero, false if not.
+ */
+template<typename V>
+typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
+    V>::value,
+    bool>::type
+is_zero(V vec, typename V::value_type precision =
+               std::numeric_limits<typename V::value_type>::epsilon());
 
 }
 }
