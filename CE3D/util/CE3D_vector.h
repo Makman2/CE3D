@@ -13,6 +13,8 @@ namespace CE3D
  * The vector type used for models etc.
  */
 using Vector = boost::numeric::ublas::vector<ModelDataType>;
+using UnitVector = boost::numeric::ublas::unit_vector<ModelDataType>;
+using ZeroVector = boost::numeric::ublas::zero_vector<ModelDataType>;
 
 }
 

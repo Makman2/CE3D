@@ -13,6 +13,8 @@ namespace CE3D
  * The matrix type used for transformations etc.
  */
 using Matrix = boost::numeric::ublas::matrix<ModelDataType>;
+using IdentityMatrix = boost::numeric::ublas::identity_matrix<ModelDataType>;
+using ZeroMatrix = boost::numeric::ublas::zero_matrix<ModelDataType>;
 
 }
 
