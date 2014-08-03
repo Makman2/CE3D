@@ -55,7 +55,7 @@ void OrthogonalProjection::UpdateMatrix() const
 void OrthogonalProjection::SetProjectionVectors
 (std::vector<Vector> const& vectors)
 {
-    // Check range equality of vectors.
+    // Check size equality of vectors.
     for (std::size_t i = 1; i < m_ProjectionVectors.size(); i++)
     {
         if (m_ProjectionVectors[i - 1].size() != m_ProjectionVectors[i].size())
@@ -70,57 +70,25 @@ void OrthogonalProjection::SetProjectionVectors
 
 void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
 {
-    // Constructing orthogonalized vectors.
+    // Construct orthonormalized vectors.
+    std::vector<Vector> vectors;
+    vectors.push_back(direction);
     
-    Vector* orthovecs = new Vector[direction.size()];
-    // Fill with the standard bases of the R^(n-1).
-    for (std::size_t i = 0; i < direction.size(); i++)
+    // Push back unit vectors for orthonormalization.
+    for (Vector::size_type i = 0; i < direction.size(); i++)
     {
-        for (Vector::size_type n = 0; n < direction.size(); n++)
-        {
-            if (i == n)
-                orthovecs[i](n) = 1.0f;
-            else
-                orthovecs[i](n) = 0.0f;
-        }
+        vectors.push_back(UnitVector(direction.size(), i));
     }
 
-    // Setup the new array.
-    m_ProjectionVectors = std::vector<Vector>(direction.size() - 1);
-    std::size_t remain = 0;
+    m_ProjectionVectors = boost::numeric::ublas::orthonormalize(vectors);
 
-    // Orthogonalize them.
-    for (std::size_t i = 0; i < direction.size(); i++)
-    {
-        m_ProjectionVectors[i - remain] = orthovecs[i];
+    // Delete the first vector because we don't project onto the direction
+    // vector (but only if we have projection vectors left).
+    if (m_ProjectionVectors.size() > 0)
+        m_ProjectionVectors.erase(m_ProjectionVectors.begin());
 
-        Vector projvec = 
-            (boost::numeric::ublas::inner_prod
-                (direction, m_ProjectionVectors[i]) /
-            (boost::numeric::ublas::inner_prod(direction, direction)))
-                * direction;
-        
-        m_ProjectionVectors[i]  -= projvec;
-        
-
-        for (std::size_t n = 0; n < i - remain; n++)
-        {
-            ModelDataType inprod;
-            inprod = boost::numeric::ublas::inner_prod(
-                m_ProjectionVectors[n], m_ProjectionVectors[n]);
-            if (inprod == 0)
-            {
-                remain++;
-                continue;
-            }
-                
-            projvec =
-                (boost::numeric::ublas::inner_prod(m_ProjectionVectors[n],
-                m_ProjectionVectors[i]) / inprod) * m_ProjectionVectors[n];
-            
-            m_ProjectionVectors[i] -= projvec;
-        }
-    }
+    // Filtering out the zero vector is not needed because this function call
+    // automatically filters zero-vectors.
 
     m_NeedUpdate = true;
 }
