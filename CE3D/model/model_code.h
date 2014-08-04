@@ -26,7 +26,7 @@ void Model<t_Material>::Transform
 {
     Matrix matrix = transformation.GetMatrix();
     Vector temp(matrix.size1());
-    for (auto it : GetVectors())
+    for (auto& it : GetVectors())
     {
         boost::numeric::ublas::axpy_prod(matrix, it, temp, true);
         it = temp;
@@ -40,7 +40,7 @@ void Model<t_Material>::Translate
     Vector translationvec = translation.GetTranslation();
     // It's more performant to directly add the vertices together instead of
     // calling the Transform() function and creating a matrix for it.
-    for (auto it : GetVectors())
+    for (auto& it : GetVectors())
     {
         it += translationvec;
     }
@@ -50,7 +50,7 @@ template <typename t_Material>
 void Model<t_Material>::Scale(const ModelDataType factor)
 {
     // And again it's more performant not to use matrices.
-    for (auto it : GetVectors())
+    for (auto& it : GetVectors())
     {
         it *= factor;
     }
@@ -60,7 +60,7 @@ template <typename t_Material>
 void Model<t_Material>::Scale(Transformation::Scale const& scale)
 {
     Vector scalevec = scale.GetScale();
-    for (auto it : GetVectors())
+    for (auto& it : GetVectors())
     {
         it = boost::numeric::ublas::element_prod(it, scalevec);
     }

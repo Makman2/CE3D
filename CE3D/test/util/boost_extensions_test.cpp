@@ -210,10 +210,10 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     tmp(3) = 100;
     base.push_back(tmp);
 
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(4, 0));
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(4, 1));
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(4, 2));
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(4, 3));
+    compare.push_back(CE3D::UnitVector(4, 0));
+    compare.push_back(CE3D::UnitVector(4, 1));
+    compare.push_back(CE3D::UnitVector(4, 2));
+    compare.push_back(CE3D::UnitVector(4, 3));
 
     // Copy base for test of array version.
     std::array<CE3D::Vector, 4> basearray;
@@ -263,18 +263,51 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     testvec = boost::numeric::ublas::orthonormalize(base);
     testvecarr = boost::numeric::ublas::orthonormalize(basearray2);
 
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(3, 0));
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(3, 2));
-    compare.push_back(boost::numeric::ublas::zero_vector<ModelDataType>(3));
-    compare.push_back(boost::numeric::ublas::unit_vector<ModelDataType>(3, 1));
+    compare.push_back(CE3D::UnitVector(3, 0));
+    compare.push_back(CE3D::UnitVector(3, 2));
+    compare.push_back(CE3D::ZeroVector(3));
+    compare.push_back(CE3D::UnitVector(3, 1));
 
-    BOOST_REQUIRE_EQUAL(base.size(), testvec.size());
+    BOOST_REQUIRE_EQUAL(base.size() - 1, testvec.size());
     BOOST_REQUIRE_EQUAL(base.size(), testvecarr.size());
-    for(std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
+
+    RequireVectorEquality(compare[0], testvec[0]);
+    RequireVectorEquality(compare[1], testvec[1]);
+    RequireVectorEquality(compare[3], testvec[2]);
+
+    for(std::array<CE3D::Vector, 4>::size_type i = 0;
+        i < testvecarr.size() - 1; i++)
     {
-        RequireVectorEquality(compare[i], testvec[i]);
         RequireVectorEquality(compare[i], testvecarr[i]);
     }
+}
+
+/**
+ * Tests is_zero function.
+ */
+BOOST_AUTO_TEST_CASE(TestIsZero)
+{
+    CE3D::Vector testvec = boost::numeric::ublas::zero_vector
+        <ModelDataType>(4);
+
+    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec), true);
+
+    testvec(3) = 4;
+
+    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec), false);
+
+    testvec(0) = 0.1f;
+
+    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec), false);
+
+    // Change precision.
+    // With a precision of 5 the test vector should be recognized as zero.
+    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec, 5.0f), true);
+
+    testvec(3) = 0.05f;
+
+    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec, 0.15f), true);
+    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec, 0.05f), false);
 }
 
 // TODO test vector concatenation

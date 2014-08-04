@@ -20,90 +20,58 @@ OrthogonalDepthProjection::~OrthogonalDepthProjection()
 
 void OrthogonalDepthProjection::UpdateMatrix() const
 {
-    // FIXME this function is far too long and needs to be split up.
+    // For the math behind this function, see:
+    // doc/Orthogonal Projection.pdf
+
+    // Update the projection matrix for orthogonal projection. The computed
+    // matrix is stored in m_Matrix.
     OrthogonalProjection::UpdateMatrix();
 
-    // Append matrix row for depth/distance calculation.
+    // Constructing unit vectors for rest orthonormalization.
+    auto vecs = GetProjectionVectors();
+    std::vector<CE3D::Vector>::size_type inputvec_count = vecs.size();
 
-    // Constructing orthogonalized vectors.
+    CE3D::Vector::size_type dimension = vecs[0].size();
+    for (CE3D::Vector::size_type i = 0; i < dimension; i++)
+        vecs.push_back(UnitVector(dimension, i));
 
-    auto vecref = GetProjectionVectors();
-    auto dimension = vecref.at(0).size();
-    Vector* orthovecs = new Vector[dimension];
-    // Fill with the standard bases of the R^(n-1).
-    for (std::size_t i = 0; i < dimension; i++)
-    {
-        for (Vector::size_type n = 0; n < dimension; n++)
-        {
-            if (i == n)
-                orthovecs[i](n) = 1.0f;
-            else
-                orthovecs[i](n) = 0.0f;
-        }
-    }
+    // Orthonormalize the vectors with filtered out zero vectors. Need to
+    // filter out only the first input vectors.
+    auto orthonormalized = boost::numeric::ublas::orthonormalize(vecs);
 
-    // Setup the new array.
-    std::vector<Vector> newbase = std::vector<Vector>(dimension -
-                                                      vecref.size());
-    std::size_t remain = 0;
 
-    // Orthogonalize them.
-    for (std::size_t i = 0; i < dimension; i++)
-    {
-        // TODO put i - remain into a meaningful local variable.
-        // No need to recalculate it every time.
-        newbase[i - remain] = orthovecs[i];
+    // Construct and append the depth calculation matrix row.
+    // T = Sum(n) * M = Sum(n) * (E - P) = Sum(n) * (E - A(A^T A)^-1 A^T
 
-        for (std::size_t n = 0; n < i - remain; n++)
-        {
-            ModelDataType inprod;
-            inprod = boost::numeric::ublas::inner_prod(
-                vecref[n], vecref[n]);
-            if (inprod == 0)
-            {
-                remain++;
-                continue;
-            }
+    // First premultiply the base matrix with A, so we don't get the
+    // coefficients.
 
-            Vector projvec =
-                (boost::numeric::ublas::inner_prod(vecref[n],
-                vecref[i]) / inprod) * vecref[n];
+    Matrix A = boost::numeric::ublas::concat_vectors(GetProjectionVectors());
+    Matrix P(A.size1(), m_Matrix.size2());
+    boost::numeric::ublas::axpy_prod(A, m_Matrix, P, true);
 
-            newbase[i - remain] -= projvec;
-        }
+    // Use P for further calculation.
+    P = IdentityMatrix(P.size1()) - P; // P equals M in the equation.
 
-        // Normalize.
-        newbase[i - remain] /= boost::numeric::ublas::norm_2(
-            newbase[i - remain]);
-    }
+    // Sum up the normal vectors.
+    Vector nsum = ZeroVector(orthonormalized[0].size());
+    for (auto it = orthonormalized.begin() + inputvec_count;
+         it != orthonormalized.end(); it++)
+        nsum += *it;
 
-    // Calculate matrix row. (Es * N^-1 * (E - A(A^T*A)^-1*A^T))
-    Matrix A = boost::numeric::ublas::concat_vectors(vecref);
-    Matrix matrixref = GetMatrix();
-    Matrix B(A.size1(), matrixref.size2());
-    boost::numeric::ublas::axpy_prod(A, matrixref, B);
-    B = boost::numeric::ublas::identity_matrix<ModelDataType>(B.size1()) - B;
+    // At least calculate the last row (that now is transpoed into a vector
+    // because of not matching function signatures if not doing so).
+    Vector lastrow(nsum.size());
+    boost::numeric::ublas::axpy_prod(
+        boost::numeric::ublas::trans(P), nsum, lastrow, true);
 
-    Matrix C = boost::numeric::ublas::concat_vectors(newbase);
-    A.resize(C.size1(), C.size2(), false);
-    boost::numeric::ublas::invert(C, A);
+    // Resize and preserve the calculated array from our base and append our
+    // new row (/transposed column vector).
+    m_Matrix.resize(m_Matrix.size1() + 1, m_Matrix.size2(), true);
+    boost::numeric::ublas::matrix_row<Matrix> subslice(
+        m_Matrix, m_Matrix.size1() - 1);
 
-    C.resize(A.size1(), B.size2());
-    boost::numeric::ublas::axpy_prod(A, B, C);
-
-    // Now compute Es * ... and assign directly.
-    matrixref.resize(matrixref.size1() + 1, matrixref.size2(), true);
-    auto lastrow = matrixref.size1() - 1;
-
-    for (Matrix::size_type column = 0; column < matrixref.size2(); column++)
-    {
-        matrixref(lastrow, column) = 0;
-
-        for (Matrix::size_type row = 0; row < matrixref.size1(); row++)
-        {
-            matrixref(lastrow, column) += C(row, column);
-        }
-    }
+    subslice = lastrow;
 }
 
 

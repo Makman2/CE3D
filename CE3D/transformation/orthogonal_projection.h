@@ -71,7 +71,7 @@ public:
     SetProjectionVectors(std::vector<Vector> const& vectors);
 
     /**
-     * Sets the projection vectors of the n-1 subspace orthogonal to the given
+     * Sets the projection vectors of the n-1 subspace orthonormal to the given
      * direction.
      *
      * @param direction: The direction in which the projection plane is

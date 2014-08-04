@@ -100,11 +100,14 @@ template<typename V>
 typename std::enable_if<std::is_base_of<vector<typename V::value_type,
     typename V::array_type>, V>::value,
     void>::type
-normalize(V& vec)
+normalize(V& vec, typename V::value_type precision =
+                  std::numeric_limits<typename V::value_type>::epsilon())
 {
     auto n2 = norm_2(vec);
-    if (n2 != 0)
+    if (!is_zero<decltype(n2)>(n2, precision))
         vec /= n2;
+    else
+        vec = zero_vector<typename V::value_type>(vec.size());
 }
 
 // FIXME Try to merge the orthogonalization-functions into one with support for
@@ -210,10 +213,15 @@ orthonormalize(ListType const& input)
     if (std::is_function<decltype(declval<ListType>().reserve(
         declval<typename ListType::size_type>()))
         (typename ListType::size_type)>::value)
-        orthonormalized.reserve(input.size());
+        orthonormalized.reserve(input[0].size());
 
     typename ListType::value_type currentvec;
+
+    // The initial precision to use for additive error calculation.
+    const auto prec = std::numeric_limits
+        <typename ListType::value_type::value_type>::epsilon();
     
+    typename ListType::size_type i = 1;
     for (auto vec : input)
     {
         currentvec = vec;
@@ -223,8 +231,11 @@ orthonormalize(ListType const& input)
             currentvec -= inner_prod(currentvec, ortho) * ortho;
         }
         
-        normalize(currentvec);
-        orthonormalized.push_back(currentvec);
+        normalize(currentvec, i * prec);
+        if (!is_zero(currentvec))
+            orthonormalized.push_back(currentvec);
+
+        i++;
     }
 
     return orthonormalized;
@@ -241,6 +252,10 @@ orthonormalize(std::array<V, count> const& input)
 
     V currentvec;
 
+    // The initial precision to use for additive error calculation.
+    const auto prec = std::numeric_limits
+        <typename V::value_type>::epsilon();
+
     for (size_t i = 0; i < count; i++)
     {
         currentvec = input[i];
@@ -250,11 +265,35 @@ orthonormalize(std::array<V, count> const& input)
                 orthonormalized[n];
         }
 
-        normalize(currentvec);
+        normalize(currentvec, (i + 1) * prec);
         orthonormalized[i] = currentvec;
     }
 
     return orthonormalized;
+}
+
+template<typename T>
+bool
+is_zero(typename std::conditional<std::is_integral<T>::value, T, T const&>
+::type t, T precision = std::numeric_limits<T>::epsilon())
+{
+    return fabs(t) < precision;
+}
+
+template<typename V>
+typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
+    V>::value,
+    bool>::type
+is_zero(V vec, typename V::value_type precision =
+               std::numeric_limits<typename V::value_type>::epsilon())
+{
+    for (auto elem : vec)
+    {
+        if (!is_zero<decltype(elem)>(elem, precision))
+            return false;
+    }
+
+    return true;
 }
 
 }

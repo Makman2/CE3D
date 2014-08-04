@@ -6,7 +6,7 @@
 #include "CE3D/camera/orthographic_camera.h"
 
 #include "CE3D/transformation/orthogonal_depth_projection.h"
-#include "CE3D/transformation/translation.h"
+#include "CE3D/transformation/final_translation.h"
 
 namespace CE3D
 {
@@ -20,7 +20,7 @@ OrthographicCamera<MaterialType>::OrthographicCamera(Vector const& lookAt,
     auto& chain = LinearCamera<MaterialType>::GetTransformationChain();
     chain.template EmplaceBack<Transformation::OrthogonalDepthProjection>
         (lookAt);
-    chain.template EmplaceBack<Transformation::Translation>(-position);
+    chain.template EmplaceBack<Transformation::FinalTranslation>(-position);
 }
 
 template <typename MaterialType>
@@ -36,7 +36,7 @@ OrthographicCamera<MaterialType>::SetPosition(Vector const& value)
 {
     m_RealPosition = value;
     LinearCamera<MaterialType>::GetTransformationChain().Replace(
-        Transformation::Translation(-value), 1);
+        Transformation::FinalTranslation(-value), 1);
 }
 
 template <typename MaterialType>
