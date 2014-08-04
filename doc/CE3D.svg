@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+  <title>CE3D Logo</title>
+    <path d="M 1 8 L 1 5 L 14 1 L 14 4" stroke="black" stroke-width="1" fill="none"/>
+    <path d="M 1 10  L 14 6" stroke="black" stroke-width="1" fill="none"/>
+    <path d="M 1 12  L 14 8" stroke="black" stroke-width="1" fill="none"/>  
+    <path d="M 1 14 L 1 17 L 14 13 L 14 10" stroke="black" stroke-width="1" fill="none"/>
+</svg>
