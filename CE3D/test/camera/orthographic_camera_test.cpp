@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(TestPropertyFunctions)
     testvector(2) = 3;
     testvector(3) = 100;
     testvector(4) = 121;
-   
+
     cam.SetLookAt(testvector);
 
     RequireVectorEquality(cam.GetLookAt(), testvector);
@@ -72,11 +72,11 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
     CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam
         ((CE3D::Vector()), (CE3D::Vector()));
 
-    std::shared_ptr<CE3D::World<CE3D::ConsoleMaterial>> 
+    std::shared_ptr<CE3D::World<CE3D::ConsoleMaterial>>
         world(new CE3D::World<CE3D::ConsoleMaterial>());
     std::shared_ptr<CE3D::Model<CE3D::ConsoleMaterial>>
         model(new CE3D::Model<CE3D::ConsoleMaterial>());
-    
+
     std::vector<Vector> vectors;
     CE3D::Vector testvector(4);
     testvector(0) = 1;
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
     testvector(2) = 20;
     testvector(3) = 1;
     vectors.push_back(testvector);
- 
+
     for (auto elem : vectors)
         model->GetVectors().push_back(elem);
 
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
     translationvector(0) = 1;
     translationvector(1) = 2;
     translationvector(2) = 3;
-    
+
     CE3D::Vector lookatvector(3);
     lookatvector(0) = 4;
     lookatvector(1) = 6;
@@ -123,7 +123,6 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
     boost::numeric::ublas::axpy_prod(
         projection.GetMatrix(), translation.GetMatrix(), testmatrix, true);
 
-    
     auto transformed_world = cam.Paint();
 
     for (unsigned int i = 0; i < vectors.size(); i++)
@@ -131,7 +130,7 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
         CE3D::Vector refvector(3);
         boost::numeric::ublas::axpy_prod(
             testmatrix, vectors[i], refvector, true);
-        
+
         RequireVectorEquality(transformed_world->GetModels()[0]->
             GetVectors()[i], refvector);
     }
