@@ -18,6 +18,9 @@ namespace Transformation
  * transformation on your n-dimensional space to translate your first n-1
  * vector components no more translations are possible with the n-1 components,
  * because the new vector room has the dimension n-1.
+ *
+ * This is useful when e.g. using 4-dimensional transformations for a 3-D
+ * space.
  */
 class FinalTranslation : public Translation
 {
