@@ -1,0 +1,430 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[ngerman]{babel}
+
+\newcommand{\rz}[1]{\ensuremath{\mathord{\mathrm{#1}}}}
+\newcommand{\lrangle}[1]{\left\langle #1 \right\rangle}
+
+\begin{document}
+
+\title{Orthogonal projection}
+\author{MAK}
+\date{25.7.2014}
+
+
+\maketitle
+
+
+
+
+
+
+\section{Introduction}
+
+An orthogonal projection is a mathematical function that projects a vector \(\vec{v}\in\mathbb{R}\)
+onto a (hyper-)plane \(X\). So it maps the given vector onto that one, that has the shortest
+distance to it and lies in \(X\).
+
+This article deals with the corresponding projection matrix (for embedding in CE3D).
+
+
+
+
+
+
+\section{The orthogonal projection}
+
+An orthogonal projection has the following characteristics.
+
+	\begin{itemize}
+		\item The projected vector is a linear combination of the base vectors
+		      \(\vec{v}_1,\vec{v}_2,...,\vec{v}_m\) of the projection space \(X\).
+		\item The projected vector minus the original vector to project shall be
+		      perpendicular to the projection space (\(\lrangle{ p(\vec{x})-\vec{x},\vec{v} } =0\)).
+	\end{itemize}
+
+A list follows with definitions for this article:
+
+	\begin{itemize}
+		\item The superior vector room where projection happens: \(V\). The dimension of
+		      this room is defined as \(dim(V)=n\).
+		\item The projection space where is projected into:
+		      \(X=span(\vec{v}_1,\vec{v}_2,...,\vec{v}_m)\). The dimension is defined as
+		      \(dim(X)=m\).
+		\item The projection function: \(p(\vec{x})\).
+		      \(p = \left\{\begin{array}{l}\mathbb{R}^n\to \mathbb{R}^n\\\vec{x}\mapsto
+		      p(\vec{x})\end{array} \right.\)
+	\end{itemize}
+
+
+
+
+
+
+\section{The projection matrix}
+To get the projection matrix we use the attributes from above und give them an generalized
+mathematical form:
+
+	\begin{equation}
+		\begin{array}{l l}
+			\rz{I}  &
+			p(\vec{x}) = \sum_{i=1}^{m}{\mu _i\vec{v_i}}, \quad \mu _i \in \mathbb{R} \\
+			\rz{II} &
+			\lrangle{ p(\vec{x}) - \vec{x}, \vec{v_i} } = 0, \quad \forall i \in \{ w \in
+			  \mathbb{N} | 1 \leq w \leq m \}
+		\end{array}
+	\end{equation}
+
+The first constraint can be inserted into the second one and rewritten into a linear equation
+system:
+
+	\begin{equation}
+		\lrangle{ \sum_{j=1}^{m}{\mu _j\vec{v_j}} - \vec{x}, \vec{v_i} } = 0, \quad \forall
+		i \in \{ w \in \mathbb{N} | 1 \leq w \leq m \}
+	\end{equation}
+
+	\begin{equation}
+		\iff
+		\begin{array}{c c c}
+			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m - \vec{x},
+			  \vec{v}_1 } &
+			= &
+			0 \\
+			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m - \vec{x},
+			  \vec{v}_2 } &
+			= &
+			0 \\
+			\vdots &
+			= &
+			\vdots \\
+			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m - \vec{x},
+			  \vec{v}_m } &
+			= &
+			0
+		\end{array}
+	\end{equation}
+
+Move all constant factors to the right side of the equation:
+
+	\begin{equation}
+		\iff
+		\begin{array}{c c c}
+			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m,
+			  \vec{v}_1 } & = & \lrangle{ \vec{x}, \vec{v}_1 } \\
+			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m,
+			  \vec{v}_2 } & = & \lrangle{ \vec{x}, \vec{v}_2 } \\
+			\vdots & = & \vdots \\
+			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m,
+			  \vec{v}_m } & = & \lrangle{ \vec{x}, \vec{v}_m }
+		\end{array}
+	\end{equation}
+
+Use the distributivity and homogeneity:
+
+	\begin{equation}
+		\iff
+		\begin{array}{c c c}
+			\mu _1 \lrangle{ \vec{v}_1, \vec{v}_1 } + \mu _2 \lrangle{ \vec{v}_2,
+			  \vec{v}_1 } + \cdots + \mu _3 \lrangle{ \vec{v_3}, \vec{v}_1 } &
+			= &
+			\lrangle{ \vec{x}, \vec{v}_1 } \\
+			\mu _1 \lrangle{ \vec{v}_1, \vec{v}_1 } + \mu _2 \lrangle{ \vec{v}_2,
+			  \vec{v}_1 } + \cdots + \mu _3 \lrangle{ \vec{v_3}, \vec{v}_1 } &
+			= &
+			\lrangle{ \vec{x}, \vec{v}_2 } \\
+			\vdots &
+			= &
+			\vdots \\
+			\mu _1 \lrangle{ \vec{v}_1, \vec{v}_1 } + \mu _2 \lrangle{ \vec{v}_2,
+			  \vec{v}_1 } + \cdots + \mu _3 \lrangle{ \vec{v_3}, \vec{v}_1 } &
+			= &
+			\lrangle{ \vec{x}, \vec{v}_m }
+		\end{array}
+	\end{equation}
+
+Represent the linear equation system with a matrix:
+
+	\begin{equation}
+		\iff
+		\begin{pmatrix}
+			\lrangle{ \vec{v}_1, \vec{v}_1 } &
+			\lrangle{ \vec{v}_2, \vec{v}_1 } &
+			\cdots &
+			\lrangle{ \vec{v}_m, \vec{v}_1 } \\
+			\lrangle{ \vec{v}_1, \vec{v}_2 } &
+			\lrangle{ \vec{v}_2, \vec{v}_2 } &
+			\cdots &
+			\lrangle{ \vec{v}_m, \vec{v}_2 } \\
+			\vdots & \vdots & \ddots & \vdots \\
+			\lrangle{ \vec{v}_1, \vec{v}_m } &
+			\lrangle{ \vec{v}_2, \vec{v}_m } &
+			\cdots &
+			\lrangle{ \vec{v}_m, \vec{v}_m }
+		\end{pmatrix}
+		\begin{pmatrix}
+			\mu _1 \\
+			\mu _2 \\
+			\vdots \\
+			\mu _m \\
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			\lrangle{ \vec{v}_1, \vec{x} } \\
+			\lrangle{ \vec{v}_2, \vec{x} } \\
+			\vdots \\
+			\lrangle{ \vec{v}_m, \vec{x} } \\
+		\end{pmatrix}
+	\end{equation}
+
+And we get the Gram matrix.
+Now we must transform the equation so that we get a map in the form
+
+	\begin{equation}
+		P\vec{x}=p(\vec{x})
+	\end{equation}
+
+with \(P\) as our corresponding projection matrix.
+Furthermore we define the Gram matrix and the coefficient vector shorter for simplification:
+
+	\begin{equation}
+		G :=
+		\begin{pmatrix}
+			\lrangle{ \vec{v}_1, \vec{v}_1 } &
+			\lrangle{ \vec{v}_2, \vec{v}_1 } &
+			\cdots &
+			\lrangle{ \vec{v}_m, \vec{v}_1 } \\
+			\lrangle{ \vec{v}_1, \vec{v}_2 } &
+			\lrangle{ \vec{v}_2, \vec{v}_2 } &
+			\cdots &
+			\lrangle{ \vec{v}_m, \vec{v}_2 } \\
+			\vdots & \vdots & \ddots & \vdots \\
+			\lrangle{ \vec{v}_1, \vec{v}_m } &
+			\lrangle{ \vec{v}_2, \vec{v}_m } &
+			\cdots &
+			\lrangle{ \vec{v}_m, \vec{v}_m }
+		\end{pmatrix}
+	\end{equation}
+
+	\begin{equation}
+		\vec{\mu} :=
+		\begin{pmatrix}
+			\mu _1 \\
+			\mu _2 \\
+			\vdots \\
+			\mu _m \\
+		\end{pmatrix}
+	\end{equation}
+
+Our equation system is rearranged after \( \vec{\mu} \) and inserted into the first attribute
+of the orthogonal projection (every projected vector shall be a linear combination of the base of
+the projection space \(X)\):
+
+	\begin{equation}
+		G \vec{\mu} =
+		\begin{pmatrix}
+			\lrangle{ \vec{v}_1, \vec{x} } \\
+			\lrangle{ \vec{v}_2, \vec{x} } \\
+			\vdots \\
+			\lrangle{ \vec{v}_m, \vec{x} } \\
+		\end{pmatrix}
+		\iff G^{-1}
+		\begin{pmatrix}
+			\lrangle{ \vec{v}_1, \vec{x} } \\
+			\lrangle{ \vec{v}_2, \vec{x} } \\
+			\vdots \\
+			\lrangle{ \vec{v}_m, \vec{x} } \\
+		\end{pmatrix} = \vec{\mu}
+	\end{equation}
+
+Before inserting we transform the first constraint into a matrix form:
+
+	\begin{equation}
+		\sum_{i=1}^{m}{\mu _i \vec{v}_i} = p(\vec{x}) = 
+		\lrangle{\vec{\mu},
+		\begin{pmatrix}
+			\vec{v}_1 \\
+			\vec{v}_2 \\
+			\vdots \\
+			\vec{v}_m
+		\end{pmatrix}
+		} =
+		\begin{pmatrix}
+			\vec{v}_1 &&
+			\vec{v}_2 &&
+			\cdots &&
+			\vec{v}_m
+		\end{pmatrix}
+		\vec{\mu}
+	\end{equation}
+
+Again we define for simplification:
+
+	\begin{equation}
+		A :=
+		\begin{pmatrix}
+			\vec{v}_1 &&
+			\vec{v}_2 &&
+			\cdots &&
+			\vec{v}_m
+		\end{pmatrix}
+	\end{equation}
+
+So \(A\) is our matrix that contains the base of our projection plane \(X\).
+
+All left to do is mathematical rearranging to get the desired projection matrix \(P\):
+
+	\begin{equation}
+		p(\vec{x}) = A\vec{\mu} = AG^{-1}
+		\begin{pmatrix}
+			\lrangle{ \vec{v}_1, \vec{x} } \\
+			\lrangle{ \vec{v}_2, \vec{x} } \\
+			\vdots \\
+			\lrangle{ \vec{v}_m, \vec{x} } \\
+			\end{pmatrix}
+		= AG^{-1}
+		\begin{pmatrix}
+			\vec{v}_{1}^{T} \vec{x} \\
+			\vec{v}_{2}^{T} \vec{x} \\
+			\vdots \\
+			\vec{v}_{m}^{T} \vec{x} \\
+		\end{pmatrix}
+		= AG^{-1}A^T x
+	\end{equation}
+
+The Gram matrix is the same as
+
+	\begin{equation}
+		G = A^T A
+	\end{equation}.
+
+At least we get our final projection matrix:
+
+	\begin{equation}
+		p(\vec{x}) = A(A^T A)^{-1} A^T \vec{x}
+	\end{equation}
+
+	\begin{equation}
+		P = A(A^T A)^{-1} A^T
+	\end{equation}
+
+with our base matrix
+
+	\begin{equation}
+		A = \begin{pmatrix} \vec{v}_1 && \vec{v}_2 && \cdots && \vec{v}_m \end{pmatrix}
+	\end{equation}.
+
+
+
+
+
+
+\section{Projection onto the coefficients \(\vec{\mu}\) in projection space}
+
+It's useful for 3D applications to get the coefficients of the projection space base vectors. For
+example to use for a camera implementation that gives you the x- and y-coordinates of the image
+objects on the sensor respectively on the display.
+
+The projection matrix for the coefficients can be fastly obtained with the first projection
+attribute (after the translation into the matrix form):
+
+	\begin{equation}
+		p(\vec{x}) = A \vec{\mu} = A(A^T A)^{-1} A^T \vec{x}
+	\end{equation}
+
+	\begin{equation}
+		\iff \vec{\mu} = (A^T A)^{-1} A^T \vec{x}
+	\end{equation}
+
+So the projection matrix for the coefficients is:
+
+	\begin{equation}
+		P_{\mu} = (A^T A)^{-1} A^T
+	\end{equation}
+
+
+
+
+
+
+\section{Distance between \(p(\vec{x})\) and \(\vec{x}\)}
+
+The distance between the projected vector and the one to project is very important in computer
+graphics applications. To arrange three-dimensional objects on screen right the distances must be
+known. Elsewise the objects are not displayed correct when they interfere with each other.
+Therefore an extra line is appended to the projection matrix that calculates the so-called depth.
+But there is a problem: The euclidean distance between the vectors is a non-linear function! So it
+is not representable with a matrix.
+
+	\begin{equation}
+		||\vec{x} - p(\vec{x})||_2 = \sqrt{\sum_{i=1}^{n}{(x_i - p(\vec{x})_i)^2}}, \quad \vec{x} =
+		\begin{pmatrix}
+			x_1 \\
+			x_2 \\
+			\vdots \\
+			x_n
+		\end{pmatrix}
+	\end{equation}
+
+We need a function that expresses the distance and is linear function. So we use the 1-norm (and
+ignore the component-wise absolute value).
+
+	\begin{equation}
+		||\vec{x} - p(\vec{x})||_1 = \sum_{i=1}^{n}{x_i - p(\vec{x})_i} = \begin{pmatrix} 1 && \cdots && 1 \end{pmatrix} (\vec{x} - p(\vec{x}))
+	\end{equation}
+
+We see: A matrix form for this map exists. So it's suited for our purpose. 
+Note: The 1-norm doesn't give us the real distance but it is a good alternative because the order
+of objects is calculated correctly.
+
+This idea can be heavily improved when we make a base-change into our projection space inclusive
+the rest of vectors orthonormal to it. The vectors left are the degrees of freedom of our depth
+function, so in fact we just need to project our \(\vec{x}\) onto these and get automatically the
+1-norm in our new base. At least the projections must be summed up.
+
+So our depth function \(d_1(\cdot,\cdot)\) is:
+
+	\begin{equation}
+		d_1(\vec{x}, p(\vec{x})) = \sum_{k=1}^{j}{\lrangle{ \vec{n}_k, \vec{x} - p(\vec{x}) }},
+		\quad j = n -m
+	\end{equation}
+
+with \(\vec{n}\) as our base vectors left and orthonormal to projection space \(X\).
+
+We rearrange again to a matrix form:
+
+	\begin{equation}
+		\iff d_1(\vec{x}, p(\vec{x})) = \lrangle{ \vec{x} - p(\vec{x}), \sum_{k=1}^{j}{\vec{n}_k} }
+	\end{equation}
+
+	\begin{equation}
+		\iff d_1(\vec{x}, p(\vec{x})) = (\sum_{k=1}^{j}{\vec{n}_k})^T (\vec{x} - p(\vec{x}))
+	\end{equation}
+
+For the projection function we insert the matrix (with \(E\) as identity matrix):
+
+	\begin{equation}
+		\iff d_1(\vec{x}, p(\vec{x})) = (\sum_{k=1}^{j}{\vec{n}_k})^T (\vec{x} - P\vec{x})
+	\end{equation}
+
+	\begin{equation}
+		\iff d_1(\vec{x}, p(\vec{x})) = (\sum_{k=1}^{j}{\vec{n}_k})^T (E - P) \vec{x}
+	\end{equation}
+
+And we get the depth matrix \(T\) that we can append to our projection matrix \(P\).
+
+	\begin{equation}
+		T = (\sum_{k=1}^{j}{\vec{n}_k})^T (E-P), \quad j = n - m
+	\end{equation}
+
+This projection has an extra advantage: Is \(m = n - 1\), so \(j = 1\), the depth function equals
+the Hesse normal form and retrieves the exact distance (2-norm)!
+Because there is only one orthonormal vector in this case the sum drops out:
+
+	\begin{equation}
+		d_1(\vec{x}, p(\vec{x})) = \vec{n}^T \vec{x} = \lrangle{ \vec{n}, \vec{x} - P\vec{x}} =
+		d_2(\vec{x}, p(\vec{x}))
+	\end{equation}
+
+\end{document}
+
