@@ -13,7 +13,11 @@ namespace Transformation
 {
 
 /**
- * A transformation that describes a translation.
+ * A transformation that describes a translation, but doesn't keep the
+ * transformated vector in it's original space. After applying this
+ * transformation on your n-dimensional space to translate your first n-1
+ * vector components no more translations are possible with the n-1 components,
+ * because the new vector room has the dimension n-1.
  */
 class FinalTranslation : public Translation
 {
