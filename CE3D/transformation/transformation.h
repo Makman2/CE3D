@@ -59,7 +59,7 @@ public:
     Transformation();
     virtual
     ~Transformation() {};
-    
+
     /**
      * Returns the matrix that represents the linear transformation.
      *

@@ -20,7 +20,7 @@ FinalTranslation::~FinalTranslation()
 void FinalTranslation::UpdateMatrix() const
 {
     Translation::UpdateMatrix();
-    
+
     // Delete last line of Translation matrix.
 
     m_Matrix.resize(m_Matrix.size1() - 1, m_Matrix.size2(), true);

@@ -29,7 +29,7 @@ namespace Transformation
     TransformationChain::TransformationChain()
     : m_TransformationList()
     {}
- 
+
     Matrix const& TransformationChain::GetMatrix() const
     {
         if (m_NeedUpdate)

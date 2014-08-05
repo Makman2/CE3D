@@ -58,7 +58,7 @@ public:
         m_base_iterator++;
         return *this;
     }
-    
+
     dereference_iterator
     operator ++(int)
     {
@@ -128,13 +128,13 @@ public:
     {
         return m_base_iterator == rhs.m_base_iterator;
     }
-    
+
     bool
     operator !=(dereference_iterator const& rhs) const
     {
         return m_base_iterator != rhs.m_base_iterator;
     }
-    
+
     bool
     operator <(dereference_iterator const& rhs) const
     {

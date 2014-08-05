@@ -10,7 +10,7 @@ namespace CE3D
 namespace Transformation
 {
 
-    
+
 
 /**
  * A transformation that describes an orthogonal projection.
@@ -20,7 +20,7 @@ namespace Transformation
 class OrthogonalDepthProjection : public OrthogonalProjection
 {
 protected:
-    
+
     /**
      * Updates the matrix.
      */

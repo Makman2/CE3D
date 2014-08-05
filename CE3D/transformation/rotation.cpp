@@ -6,7 +6,7 @@ namespace CE3D
 {
 namespace Transformation
 {
-    
+
 Rotation::Rotation()
 : m_Planar1()
 , m_Planar2()
@@ -42,7 +42,7 @@ void Rotation::UpdateMatrix() const
 {
     // Orthonormalize planar vectors.
     Vector normvec1 = (m_Planar1 / boost::numeric::ublas::norm_2(m_Planar1));
-    
+
     // Project the second planar vector onto the first one.
     Vector normvec2 = m_Planar2 -
         boost::numeric::ublas::inner_prod(m_Planar2, normvec1) * normvec1;
@@ -60,7 +60,7 @@ void Rotation::UpdateMatrix() const
     Matrix w = boost::numeric::ublas::outer_prod(normvec1, normvec2) -
         boost::numeric::ublas::outer_prod(normvec2, normvec1);
 
-    
+
     boost::numeric::ublas::identity_matrix<ModelDataType> E(w.size1());
 
     m_Matrix = (cos(m_Angle) - 1.0f) * v + sin(m_Angle) * w + E;

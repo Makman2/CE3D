@@ -22,7 +22,7 @@ LinearCamera<MaterialType>::GetTransformationChain()
 {
     return m_TransformationChain;
 }
-    
+
 template <typename MaterialType>
 Transformation::TransformationChain const&
 LinearCamera<MaterialType>::GetTransformationChain() const

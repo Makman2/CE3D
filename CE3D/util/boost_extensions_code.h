@@ -82,7 +82,7 @@ concat_vectors(std::vector<vector<T>> const& vectors)
             throw std::invalid_argument
                 ("Vectors doesn't have the same length.");
     }
-    
+
     matrix<T> M(vectors.at(0).size(), vectors.size());
     for (typename matrix<T>::size_type column = 0; column < M.size2();
          column++)
@@ -137,7 +137,7 @@ orthogonalize(ListType const& input)
         orthogonalized.reserve(input.size());
 
     typename ListType::value_type currentvec;
-    
+
     for (auto vec : input)
     {
         currentvec = vec;
@@ -148,7 +148,7 @@ orthogonalize(ListType const& input)
             auto ip = inner_prod(currentvec, ortho);
             if (ip != 0)
                 currentvec -= ip * (*onb_it);
-            
+
             onb_it++;
         }
 
@@ -220,7 +220,7 @@ orthonormalize(ListType const& input)
     // The initial precision to use for additive error calculation.
     const auto prec = std::numeric_limits
         <typename ListType::value_type::value_type>::epsilon();
-    
+
     typename ListType::size_type i = 1;
     for (auto vec : input)
     {
@@ -230,7 +230,7 @@ orthonormalize(ListType const& input)
         {
             currentvec -= inner_prod(currentvec, ortho) * ortho;
         }
-        
+
         normalize(currentvec, i * prec);
         if (!is_zero(currentvec))
             orthonormalized.push_back(currentvec);
@@ -261,7 +261,7 @@ orthonormalize(std::array<V, count> const& input)
         currentvec = input[i];
         for (size_t n = 0; n < i; n++)
         {
-            currentvec -= inner_prod(currentvec, orthonormalized[n]) * 
+            currentvec -= inner_prod(currentvec, orthonormalized[n]) *
                 orthonormalized[n];
         }
 

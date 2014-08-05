@@ -7,7 +7,7 @@
 
 void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b)
 {
-    BOOST_REQUIRE_EQUAL(a.size1(), b.size1()); 
+    BOOST_REQUIRE_EQUAL(a.size1(), b.size1());
     BOOST_REQUIRE_EQUAL(a.size2(), b.size2());
     for (CE3D::ModelIdxType i = 0; i < a.size1(); ++i)
     {
@@ -60,6 +60,6 @@ CE3D::Matrix RandomMatrix
     for (CE3D::Matrix::size_type x = 0; x < mat.size1(); x++)
         for (CE3D::Matrix::size_type y = 0; y < mat.size2(); y++)
             mat(x, y) = rand();
-        
+
     return mat;
 }

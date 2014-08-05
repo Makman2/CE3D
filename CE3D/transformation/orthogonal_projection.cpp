@@ -33,7 +33,7 @@ void OrthogonalProjection::UpdateMatrix() const
 
     // Concatenate vectors together.
     m_Matrix = boost::numeric::ublas::concat_vectors(m_ProjectionVectors);
-        
+
     Matrix transposed(boost::numeric::ublas::trans(m_Matrix));
     Matrix matxprod(transposed.size1(), m_Matrix.size2());
     Matrix inverted(transposed.size1(), m_Matrix.size2());
@@ -62,9 +62,9 @@ void OrthogonalProjection::SetProjectionVectors
             throw std::invalid_argument(
             "The size of the projection vectors vary.");
     }
-    
+
     m_ProjectionVectors = vectors;
-    
+
     m_NeedUpdate = true;
 }
 
@@ -73,7 +73,7 @@ void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
     // Construct orthonormalized vectors.
     std::vector<Vector> vectors;
     vectors.push_back(direction);
-    
+
     // Push back unit vectors for orthonormalization.
     for (Vector::size_type i = 0; i < direction.size(); i++)
     {

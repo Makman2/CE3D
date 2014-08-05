@@ -46,7 +46,7 @@ public:
      */
     void
     SetPosition(Vector const& value);
-    
+
     /**
      * Returns the looking direction of the camera.
      */
@@ -58,8 +58,8 @@ public:
      */
     void
     SetLookAt(Vector const& value);
-    
-       
+
+
 };
 
 }

@@ -48,9 +48,9 @@ public:
      * The type of material used for the camera.
      */
     using material_type = MaterialType;
-    
+
     LinearCamera();
-    
+
     virtual
     ~LinearCamera();
 

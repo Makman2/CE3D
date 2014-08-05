@@ -63,7 +63,7 @@ public:
      * @param value The new column dimension.
      */
     void SetDimension2(Matrix::size_type value);
-    
+
 };
 
 }
