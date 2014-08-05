@@ -28,3 +28,9 @@ build/*
 *.orig
 *.patch
 *.diff
+
+# Other files
+*.pdf
+*.aux
+*.gz
+*.log
