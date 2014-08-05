@@ -27,7 +27,7 @@ BOOST_FIXTURE_TEST_SUITE(OrthogonalProjection, TestEnvironment)
 BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionConstruction)
 {
     CE3D::Transformation::OrthogonalProjection *TestUnit;
-    BOOST_REQUIRE_NO_THROW(TestUnit = 
+    BOOST_REQUIRE_NO_THROW(TestUnit =
         new CE3D::Transformation::OrthogonalProjection());
     BOOST_REQUIRE_NO_THROW(delete TestUnit);
 }
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionConstruction)
 BOOST_AUTO_TEST_CASE(TestOrthogonalDepthProjectionConstruction)
 {
     CE3D::Transformation::OrthogonalProjection *TestUnit;
-    BOOST_REQUIRE_NO_THROW(TestUnit = 
+    BOOST_REQUIRE_NO_THROW(TestUnit =
         new CE3D::Transformation::OrthogonalDepthProjection());
     BOOST_REQUIRE_NO_THROW(delete TestUnit);
 }
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     // First matrix test.
 
     BOOST_TEST_MESSAGE("Testing 3x3 orthogonal projection matrix...");
-    
+
     CE3D::Transformation::OrthogonalProjection TestUnit;
 
     std::vector<CE3D::Vector> span;
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     span3[1] = 3;
     span3[2] = 4;
     span3[3] = 2;
-    
+
     span.push_back(span1);
     span.push_back(span2);
     span.push_back(span3);
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     BOOST_TEST_MESSAGE("Setting projection vectors...");
 
     TestUnit.SetProjectionVectors(span);
-    
+
     BOOST_TEST_MESSAGE("Testing matrix...");
 
     Comparison.resize(3, 4);

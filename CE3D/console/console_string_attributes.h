@@ -44,7 +44,7 @@ private:
      */
     std::uint32_t m_Attributes;
 public:
-    
+
     ConsoleStringAttributes()
     : m_ColorPairId(0)
     , m_Attributes(0)

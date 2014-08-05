@@ -7,7 +7,7 @@ namespace CE3D
 namespace Transformation
 {
 
-    
+
 Scale::Scale()
 : m_Scale()
 {}
@@ -35,7 +35,7 @@ void Scale::UpdateMatrix() const
 void Scale::SetScale(Vector const& scale)
 {
     m_Scale = scale;
-    
+
     m_NeedUpdate = true;
 }
 

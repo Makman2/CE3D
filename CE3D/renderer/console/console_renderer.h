@@ -40,7 +40,7 @@ private:
     RenderVertex(Vertex<ConsoleMaterial> const& Vert,
                  Model<ConsoleMaterial>  const& Mod) const override;
 public:
-    
+
     ConsoleRenderer() {}
     virtual
     ~ConsoleRenderer() {}

@@ -162,7 +162,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalize)
     for (std::array<CE3D::Vector, 4>::size_type i = 0; i < basearray.size();
          i++)
         basearray2[i] = base[i];
-    
+
     testvec = boost::numeric::ublas::orthogonalize(base);
     testvecarr = boost::numeric::ublas::orthogonalize(basearray2);
 
@@ -183,7 +183,7 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     // Test for already orthogonal vectors.
     std::vector<CE3D::Vector> base;
     std::vector<CE3D::Vector> compare;
-    
+
     CE3D::Vector tmp(4);
 
     tmp(0) = 2;

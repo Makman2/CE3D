@@ -64,7 +64,7 @@ public:
      */
     virtual void
     Rotate(Rotation const& rotation) = 0;
-    
+
 };
 
 }

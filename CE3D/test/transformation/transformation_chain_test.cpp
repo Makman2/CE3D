@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     for (auto elem : matrices)
         BOOST_REQUIRE_NO_THROW(chain.PushBack(
             CE3D::Transformation::Custom(elem)));
-    
+
     RequireMatrixEquality(chain.Back().GetMatrix(), matrices[3]);
     RequireMatrixEquality
         (chain.Back<CE3D::Transformation::Custom>().GetMatrix(), matrices[3]);
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
         BOOST_REQUIRE_EQUAL(it == chain.RMiddle(i), true);
         i++;
     }
-    
+
     BOOST_REQUIRE_THROW(chain.Middle(1111), std::out_of_range);
     BOOST_REQUIRE_THROW(chain.RMiddle(1111), std::out_of_range);
 
@@ -132,10 +132,10 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
 
     chain.EmplaceBack<CE3D::Transformation::Custom>(matrices[0]);
     RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[0]);
-    
+
     chain.EmplaceFront<CE3D::Transformation::Custom>(matrices[1]);
     RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[1]);
-    
+
     chain.Emplace<CE3D::Transformation::Custom>
         (chain.Begin() + 1, matrices[2]);
     RequireMatrixEquality(chain.At(1).GetMatrix(), matrices[2]);
@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
 BOOST_AUTO_TEST_CASE(TestGetMatrix)
 {
     CE3D::Transformation::TransformationChain chain;
-    
+
     // Instantiate some defined matrices.
     Matrix mat1(3, 3);
     mat1(0, 0) = 2;
@@ -207,7 +207,7 @@ BOOST_AUTO_TEST_CASE(TestGetMatrix)
 
     chain.Clear();
     chain.PushBack(CE3D::Transformation::Custom(mat4));
-    
+
     RequireMatrixEquality(chain.GetMatrix(), mat4);
 
     // Testing for variable sized matrices.
@@ -278,7 +278,7 @@ BOOST_AUTO_TEST_CASE(TestGetMatrix)
     result2(2, 1) = 368;
     result2(2, 2) = 408;
 
-    RequireMatrixEquality(chain.GetMatrix(), result2);    
+    RequireMatrixEquality(chain.GetMatrix(), result2);
 }
 
 

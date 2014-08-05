@@ -80,7 +80,7 @@ TransformationChain::Replace(TransformationType const& transformation,
 
 template <typename TransformationType>
 void
-TransformationChain::Replace(TransformationType const& transformation, 
+TransformationChain::Replace(TransformationType const& transformation,
                              const_iterator            it)
 {
     auto itm = m_TransformationList.begin();
