@@ -52,7 +52,7 @@ To participate, read this readme and look into the codestyle guidelines (see
 this ok, whatever you have in mind), let us know!
 
 Pronounciation
--------------
+--------------
 Seed.
 
 Logo
