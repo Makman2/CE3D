@@ -45,6 +45,12 @@ Roadmap
   - API freeze
   - Test application available
 
+Participate
+-----------
+To participate, read this readme and look into the codestyle guidelines (see
+[CODESTYLE.md](CODESTYLE.md)). If you have any questions (what can be done, is
+this ok, whatever you have in mind), let us know!
+
 Pronounciation
 -------------
 Seed.
