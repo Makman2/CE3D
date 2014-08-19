@@ -1,6 +1,6 @@
 // This file is part of CE3D. License: GPL3
 
-#include "CE3D/test/transformation/transformation_test.h"
+#include "CE3D/test/testutilities.h"
 
 #include <boost/test/unit_test.hpp>
 #include <stdlib.h>
