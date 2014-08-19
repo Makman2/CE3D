@@ -11,7 +11,6 @@
 #include "CE3D/test/testutilities.h"
 
 #include "CE3D/util/CE3D_matrix.h"
-#include "CE3D/test/transformation/transformation_test.h"
 #include "CE3D/util/boost_extensions.h"
 
 namespace CE3D

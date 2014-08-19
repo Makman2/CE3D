@@ -8,9 +8,8 @@
 
 #include "CE3D/util/stdinc.h"
 
+#include "CE3D/test/testutilities.h"
 #include "CE3D/transformation/identity.h"
-
-#include "CE3D/test/transformation/transformation_test.h"
 
 namespace CE3D
 {

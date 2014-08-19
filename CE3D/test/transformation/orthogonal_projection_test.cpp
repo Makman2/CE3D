@@ -8,8 +8,7 @@
 
 #include "CE3D/util/stdinc.h"
 
-#include "CE3D/test/transformation/transformation_test.h"
-
+#include "CE3D/test/testutilities.h"
 #include "CE3D/transformation/orthogonal_projection.h"
 #include "CE3D/transformation/orthogonal_depth_projection.h"
 
