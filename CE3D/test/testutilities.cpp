@@ -14,9 +14,9 @@ void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b)
 {
     BOOST_REQUIRE_EQUAL(a.size1(), b.size1());
     BOOST_REQUIRE_EQUAL(a.size2(), b.size2());
-    for (CE3D::ModelIdxType i = 0; i < a.size1(); ++i)
+    for (CE3D::Matrix::size_type i = 0; i < a.size1(); ++i)
     {
-        for (CE3D::ModelIdxType j = 0; j < a.size2(); ++j)
+        for (CE3D::Matrix::size_type j = 0; j < a.size2(); ++j)
         {
             BOOST_REQUIRE_EQUAL(a(i,j), b(i,j));
         }
@@ -28,9 +28,9 @@ void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b,
 {
     BOOST_REQUIRE_EQUAL(a.size1(), b.size1());
     BOOST_REQUIRE_EQUAL(a.size2(), b.size2());
-    for (CE3D::ModelIdxType i = 0; i < a.size1(); ++i)
+    for (CE3D::Matrix::size_type i = 0; i < a.size1(); ++i)
     {
-        for (CE3D::ModelIdxType j = 0; j < a.size2(); ++j)
+        for (CE3D::Matrix::size_type j = 0; j < a.size2(); ++j)
         {
             BOOST_REQUIRE_SMALL(std::abs(a(i,j) - b(i,j)), tolerance);
         }
@@ -40,7 +40,7 @@ void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b,
 void RequireVectorEquality(CE3D::Vector const a, CE3D::Vector const b)
 {
     BOOST_REQUIRE_EQUAL(a.size(), b.size());
-    for(CE3D::ModelIdxType i = 0; i < a.size(); ++i)
+    for(CE3D::Matrix::size_type i = 0; i < a.size(); ++i)
     {
         BOOST_REQUIRE_EQUAL(a[i], b[i]);
     }
@@ -50,7 +50,7 @@ void RequireVectorEquality(CE3D::Vector const a, CE3D::Vector const b,
                            CE3D::ModelDataType const tolerance)
 {
     BOOST_REQUIRE_EQUAL(a.size(), b.size());
-    for(CE3D::ModelIdxType i = 0; i < a.size(); ++i)
+    for(CE3D::Matrix::size_type i = 0; i < a.size(); ++i)
     {
         BOOST_REQUIRE_SMALL(std::abs(a[i] - b[i]), tolerance);
     }
