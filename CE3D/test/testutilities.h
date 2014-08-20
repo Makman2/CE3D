@@ -37,6 +37,11 @@ void RequireVectorEquality(CE3D::Vector const&       a,
 
 /**
  * Creates a matrix with randomized values.
+ *
+ * @param m    The row dimension of the new matrix.
+ * @param n    The column dimension of the new matrix.
+ * @param seed A random number to use as starting value
+ *             randomizer-initialization.
  */
 CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
                           CE3D::Matrix::size_type n,
