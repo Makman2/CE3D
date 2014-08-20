@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     CE3D::Transformation::TransformationChain chain;
     // Test PushBack() and Back()
     for (auto elem : matrices)
-        BOOST_REQUIRE_NO_THROW(chain.PushBack(
+        BOOST_CHECK_NO_THROW(chain.PushBack(
             CE3D::Transformation::Custom(elem)));
 
     RequireMatrixEquality(chain.Back().GetMatrix(), matrices[3]);
@@ -43,14 +43,14 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
         (chain.Back<CE3D::Transformation::Custom>().GetMatrix(), matrices[3]);
 
     // Test Size().
-    BOOST_REQUIRE_EQUAL(chain.Size(), matrices.size());
+    BOOST_CHECK_EQUAL(chain.Size(), matrices.size());
 
     // Test iterators: Begin, Middle, End, RBegin, RMiddle, REnd
     CE3D::Transformation::TransformationChain::size_type i = 0;
     for (auto it = chain.Begin(); it != chain.End(); it++)
     {
         RequireMatrixEquality(it->GetMatrix(), matrices[i]);
-        BOOST_REQUIRE_EQUAL(it == chain.Middle(i), true);
+        BOOST_CHECK_EQUAL(it == chain.Middle(i), true);
         i++;
     }
 
@@ -58,12 +58,12 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     for (auto it = chain.RBegin(); it != chain.REnd(); it++)
     {
         RequireMatrixEquality(it->GetMatrix(), matrices[chain.Size() - 1 - i]);
-        BOOST_REQUIRE_EQUAL(it == chain.RMiddle(i), true);
+        BOOST_CHECK_EQUAL(it == chain.RMiddle(i), true);
         i++;
     }
 
-    BOOST_REQUIRE_THROW(chain.Middle(1111), std::out_of_range);
-    BOOST_REQUIRE_THROW(chain.RMiddle(1111), std::out_of_range);
+    BOOST_CHECK_THROW(chain.Middle(1111), std::out_of_range);
+    BOOST_CHECK_THROW(chain.RMiddle(1111), std::out_of_range);
 
     // Test At() (includes the unsafe conversion function) and []-operator
     RequireMatrixEquality(chain.At(0).GetMatrix(), matrices[0]);
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
     //  The call to the index-version automatically invokes the
     //  iterator-version, so both overloaded functions are tested.
     chain.Erase(2);
-    BOOST_REQUIRE_EQUAL(chain.Size(), 3);
+    BOOST_CHECK_EQUAL(chain.Size(), 3);
     RequireMatrixEquality(chain.At(2).GetMatrix(), matrices[3]);
 
     // Test PushFront() and Front()
@@ -104,7 +104,7 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
 
     // Test Clear()
     chain.Clear();
-    BOOST_REQUIRE_EQUAL(chain.Size(), 0);
+    BOOST_CHECK_EQUAL(chain.Size(), 0);
 
     // Test Swap()
     CE3D::Transformation::TransformationChain newchain;
@@ -112,8 +112,8 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
         chain.PushBack(CE3D::Transformation::Custom(elem));
 
     chain.Swap(newchain);
-    BOOST_REQUIRE_EQUAL(newchain.Size(), matrices.size());
-    BOOST_REQUIRE_EQUAL(chain.Size(), 0);
+    BOOST_CHECK_EQUAL(newchain.Size(), matrices.size());
+    BOOST_CHECK_EQUAL(chain.Size(), 0);
 
     // Test Exchange()
     chain.Swap(newchain);

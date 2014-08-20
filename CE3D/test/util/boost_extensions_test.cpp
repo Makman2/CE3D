@@ -114,8 +114,8 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalize)
 
     // The vectors should be equal because they are already orthogonal to each
     // other.
-    BOOST_REQUIRE_EQUAL(base.size(), testvec.size());
-    BOOST_REQUIRE_EQUAL(base.size(), testvecarr.size());
+    BOOST_CHECK_EQUAL(base.size(), testvec.size());
+    BOOST_CHECK_EQUAL(base.size(), testvecarr.size());
     for (std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
     {
         RequireVectorEquality(base[i], testvec[i]);
@@ -165,8 +165,8 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalize)
     testvec = boost::numeric::ublas::orthogonalize(base);
     testvecarr = boost::numeric::ublas::orthogonalize(basearray2);
 
-    BOOST_REQUIRE_EQUAL(base.size(), testvec.size());
-    BOOST_REQUIRE_EQUAL(base.size(), testvecarr.size());
+    BOOST_CHECK_EQUAL(base.size(), testvec.size());
+    BOOST_CHECK_EQUAL(base.size(), testvecarr.size());
     for(std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
     {
         RequireVectorEquality(compare[i], testvec[i]);
@@ -223,8 +223,8 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     auto testvec = boost::numeric::ublas::orthonormalize(base);
     auto testvecarr = boost::numeric::ublas::orthonormalize(basearray);
 
-    BOOST_REQUIRE_EQUAL(base.size(), testvec.size());
-    BOOST_REQUIRE_EQUAL(base.size(), testvecarr.size());
+    BOOST_CHECK_EQUAL(base.size(), testvec.size());
+    BOOST_CHECK_EQUAL(base.size(), testvecarr.size());
     for (std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
     {
         RequireVectorEquality(compare[i], testvec[i]);
@@ -267,8 +267,8 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     compare.push_back(CE3D::ZeroVector(3));
     compare.push_back(CE3D::UnitVector(3, 1));
 
-    BOOST_REQUIRE_EQUAL(base.size() - 1, testvec.size());
-    BOOST_REQUIRE_EQUAL(base.size(), testvecarr.size());
+    BOOST_CHECK_EQUAL(base.size() - 1, testvec.size());
+    BOOST_CHECK_EQUAL(base.size(), testvecarr.size());
 
     RequireVectorEquality(compare[0], testvec[0]);
     RequireVectorEquality(compare[1], testvec[1]);
@@ -289,24 +289,24 @@ BOOST_AUTO_TEST_CASE(TestIsZero)
     CE3D::Vector testvec = boost::numeric::ublas::zero_vector
         <ModelDataType>(4);
 
-    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec), true);
+    BOOST_CHECK_EQUAL(boost::numeric::ublas::is_zero(testvec), true);
 
     testvec(3) = 4;
 
-    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec), false);
+    BOOST_CHECK_EQUAL(boost::numeric::ublas::is_zero(testvec), false);
 
     testvec(0) = 0.1f;
 
-    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec), false);
+    BOOST_CHECK_EQUAL(boost::numeric::ublas::is_zero(testvec), false);
 
     // Change precision.
     // With a precision of 5 the test vector should be recognized as zero.
-    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec, 5.0f), true);
+    BOOST_CHECK_EQUAL(boost::numeric::ublas::is_zero(testvec, 5.0f), true);
 
     testvec(3) = 0.05f;
 
-    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec, 0.15f), true);
-    BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec, 0.05f), false);
+    BOOST_CHECK_EQUAL(boost::numeric::ublas::is_zero(testvec, 0.15f), true);
+    BOOST_CHECK_EQUAL(boost::numeric::ublas::is_zero(testvec, 0.05f), false);
 }
 
 // TODO test vector concatenation
