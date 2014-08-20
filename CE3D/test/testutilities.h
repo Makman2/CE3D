@@ -14,25 +14,26 @@ namespace Testing
 /**
  * Invokes BOOST_REQUIRE_EQUAL for each matrix element.
  */
-void RequireMatrixEquality(CE3D::Matrix const, CE3D::Matrix const);
+void RequireMatrixEquality(CE3D::Matrix const& a, CE3D::Matrix const& b);
 
 /**
  * Invokes BOOST_REQUIRE_SMALL for each matrix element.
  */
-void RequireMatrixEquality
-    (CE3D::Matrix const, CE3D::Matrix const, float tolerance);
+void RequireMatrixEquality(CE3D::Matrix const&       a,
+                           CE3D::Matrix const&       b,
+                           CE3D::ModelDataType const tolerance);
 
 /**
  * Invokes BOOST_REQUIRE_EQUAL for each Vector element.
  */
-void RequireVectorEquality
-    (CE3D::Vector const, CE3D::Vector const);
+void RequireVectorEquality(CE3D::Vector const& a, CE3D::Vector const& b);
 
 /**
  * Invokes BOOST_REQUIRE_SMALL for each vector element.
  */
-void RequireVectorEquality
-    (CE3D::Vector const, CE3D::Vector const, float tolerance);
+void RequireVectorEquality(CE3D::Vector const&       a,
+                           CE3D::Vector const&       b,
+                           CE3D::ModelDataType const tolerance);
 
 /**
  * Creates a matrix with randomized values.

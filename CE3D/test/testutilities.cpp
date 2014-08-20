@@ -10,7 +10,7 @@ namespace CE3D
 namespace Testing
 {
 
-void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b)
+void RequireMatrixEquality(CE3D::Matrix const& a, CE3D::Matrix const& b)
 {
     BOOST_REQUIRE_EQUAL(a.size1(), b.size1());
     BOOST_REQUIRE_EQUAL(a.size2(), b.size2());
@@ -23,7 +23,7 @@ void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b)
     }
 }
 
-void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b,
+void RequireMatrixEquality(CE3D::Matrix const& a, CE3D::Matrix const& b,
                            CE3D::ModelDataType const tolerance)
 {
     BOOST_REQUIRE_EQUAL(a.size1(), b.size1());
@@ -37,7 +37,7 @@ void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b,
     }
 }
 
-void RequireVectorEquality(CE3D::Vector const a, CE3D::Vector const b)
+void RequireVectorEquality(CE3D::Vector const& a, CE3D::Vector const& b)
 {
     BOOST_REQUIRE_EQUAL(a.size(), b.size());
     for(CE3D::Matrix::size_type i = 0; i < a.size(); ++i)
@@ -46,7 +46,7 @@ void RequireVectorEquality(CE3D::Vector const a, CE3D::Vector const b)
     }
 }
 
-void RequireVectorEquality(CE3D::Vector const a, CE3D::Vector const b,
+void RequireVectorEquality(CE3D::Vector const& a, CE3D::Vector const& b,
                            CE3D::ModelDataType const tolerance)
 {
     BOOST_REQUIRE_EQUAL(a.size(), b.size());
