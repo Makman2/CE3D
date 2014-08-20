@@ -24,8 +24,7 @@ Identity::Identity(Matrix::size_type dim1, Matrix::size_type dim2)
 
 void Identity::UpdateMatrix() const
 {
-    m_Matrix = boost::numeric::ublas::identity_matrix<Matrix::value_type>
-        (m_dim1, m_dim2);
+    m_Matrix = IdentityMatrix(m_dim1, m_dim2);
 }
 
 Matrix::size_type const& Identity::GetDimension1() const

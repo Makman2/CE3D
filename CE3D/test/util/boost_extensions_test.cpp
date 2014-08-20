@@ -25,8 +25,7 @@ BOOST_FIXTURE_TEST_SUITE(Util, TestEnvironment)
  */
 BOOST_AUTO_TEST_CASE(TestInverseCalculation)
 {
-    CE3D::Matrix identity =
-        boost::numeric::ublas::identity_matrix<ModelDataType>(4, 4);
+    CE3D::Matrix identity =  CE3D::IdentityMatrix(4, 4);
     CE3D::Matrix inversion(4,4);
 
     boost::numeric::ublas::invert(identity, inversion);
@@ -150,7 +149,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalize)
     tmp2(1) = 0;
     tmp2(2) = 1;
     compare.push_back(tmp2);
-    compare.push_back(boost::numeric::ublas::zero_vector<ModelDataType>(3));
+    compare.push_back(CE3D::ZeroVector(3));
     tmp2(0) = 0;
     tmp2(1) = 3;
     tmp2(2) = 0;
@@ -286,8 +285,7 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
  */
 BOOST_AUTO_TEST_CASE(TestIsZero)
 {
-    CE3D::Vector testvec = boost::numeric::ublas::zero_vector
-        <ModelDataType>(4);
+    CE3D::Vector testvec = CE3D::ZeroVector(4);
 
     BOOST_CHECK_EQUAL(boost::numeric::ublas::is_zero(testvec), true);
 

@@ -35,12 +35,12 @@ BOOST_AUTO_TEST_CASE(TestIdentityMatrix)
 {
     CE3D::Transformation::Identity TestUnit(3, 3);
 
-    boost::numeric::ublas::identity_matrix<Matrix::value_type> compare(3, 3);
+    CE3D::IdentityMatrix compare(3, 3);
 
     RequireMatrixEquality(TestUnit.GetMatrix(), compare);
 
     CE3D::Transformation::Identity TestUnit2(2, 4);
-    boost::numeric::ublas::identity_matrix<Matrix::value_type> compare2(2, 4);
+    CE3D::IdentityMatrix compare2(2, 4);
 
     RequireMatrixEquality(TestUnit2.GetMatrix(), compare2);
 }

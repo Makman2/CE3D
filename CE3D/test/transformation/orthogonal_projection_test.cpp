@@ -69,8 +69,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
 
     BOOST_TEST_MESSAGE("Testing matrix...");
 
-    CE3D::Matrix Comparison =
-        boost::numeric::ublas::matrix<ModelDataType>(2, 3);
+    CE3D::Matrix Comparison = CE3D::Matrix(2, 3);
     Comparison(0, 0) = 0.5f;
     Comparison(0, 1) = 0.0f;
     Comparison(0, 2) = 0.0f;
