@@ -10,7 +10,6 @@
 
 #include "CE3D/test/testutilities.h"
 #include "CE3D/transformation/orthogonal_projection.h"
-#include "CE3D/transformation/orthogonal_depth_projection.h"
 
 
 namespace CE3D
@@ -28,14 +27,6 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionConstruction)
     CE3D::Transformation::OrthogonalProjection *TestUnit;
     BOOST_REQUIRE_NO_THROW(TestUnit =
         new CE3D::Transformation::OrthogonalProjection());
-    BOOST_REQUIRE_NO_THROW(delete TestUnit);
-}
-
-BOOST_AUTO_TEST_CASE(TestOrthogonalDepthProjectionConstruction)
-{
-    CE3D::Transformation::OrthogonalProjection *TestUnit;
-    BOOST_REQUIRE_NO_THROW(TestUnit =
-        new CE3D::Transformation::OrthogonalDepthProjection());
     BOOST_REQUIRE_NO_THROW(delete TestUnit);
 }
 
