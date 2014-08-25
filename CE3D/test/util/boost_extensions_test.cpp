@@ -335,6 +335,28 @@ BOOST_AUTO_TEST_CASE(TestMakeZero)
     BOOST_CHECK(IsMatrixEqual(testmatrix, compare));
 }
 
+BOOST_AUTO_TEST_CASE(TestMakeZero_Vector)
+{
+    CE3D::Vector testvector(6);
+    testvector[0] = 0;
+    testvector[1] = 0.01;
+    testvector[2] = 0.2;
+    testvector[3] = 0.1;
+    testvector[4] = 2;
+    testvector[5] = 0.09;
+
+    CE3D::Vector compare(6);
+    compare[0] = 0;
+    compare[1] = 0;
+    compare[2] = 0.2;
+    compare[3] = 0.1;
+    compare[4] = 2;
+    compare[5] = 0;
+
+    boost::numeric::ublas::make_zero(testvector, 0.1);
+    BOOST_CHECK(IsVectorEqual(testvector, compare));
+}
+
 // TODO test vector concatenation
 
 BOOST_AUTO_TEST_SUITE_END()

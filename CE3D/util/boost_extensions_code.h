@@ -311,6 +311,20 @@ make_zero(M& matrix, typename M::value_type threshold =
         }
 }
 
+template<typename V>
+typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
+    V>::value,
+    void>::type
+make_zero(V& vector, typename V::value_type threshold =
+                     std::numeric_limits<typename V::value_type>::epsilon())
+{
+    for (auto& elem : vector)
+    {
+        if (is_zero<typename V::value_type>(elem, threshold))
+            elem = 0;
+    }
+}
+
 }
 }
 }
