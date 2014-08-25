@@ -176,6 +176,8 @@ is_zero(V vec, typename V::value_type precision =
 /**
  * Makes entries of the given matrix to zero if they are near zero.
  *
+ * @tparam M The matrix type used. Must derive from
+ *           boost::numeric::ublas::matrix.
  * @param matrix The matrix to make near zero values to full zero. The matrix
  *               is modified itself.
  * @param threshold The threshold value when to make to zero.
@@ -190,6 +192,8 @@ make_zero(M& matrix, typename M::value_type threshold =
 /**
  * Makes the entries of the given vector to zero if they are near zero.
  *
+ * @tparam V The vector type used. Must derive from
+ *           boost::numeric::ublas::vector.
  * @param vector The vector to make near zero values to absolute zero. The
  *               The vector is modified itself.
  * @param threshold The threshold value when to make zero.
