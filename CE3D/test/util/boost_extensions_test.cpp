@@ -307,7 +307,7 @@ BOOST_AUTO_TEST_CASE(TestIsZero)
     BOOST_CHECK_EQUAL(boost::numeric::ublas::is_zero(testvec, 0.05f), false);
 }
 
-BOOST_AUTO_TEST_CASE(TestMakeZero)
+BOOST_AUTO_TEST_CASE(TestMakeZero_Matrix)
 {
     CE3D::Matrix testmatrix(3, 3);
     testmatrix(0, 0) = 1;
