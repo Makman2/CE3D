@@ -325,6 +325,14 @@ make_zero(V& vector, typename V::value_type threshold =
     }
 }
 
+template<typename T>
+void
+make_zero(T& value, T threshold = std::numeric_limits<T>::epsilon())
+{
+    if (is_zero<T>(value, threshold))
+        value = 0;
+}
+
 }
 }
 }

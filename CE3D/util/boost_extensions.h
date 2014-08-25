@@ -205,6 +205,17 @@ typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
 make_zero(V& vector, typename V::value_type threshold =
                      std::numeric_limits<typename V::value_type>::epsilon());
 
+/**
+ * Makes the given expression absolute zero if near zero.
+ *
+ * @tparam T Any type to make to zero.
+ * @param value The expression to make to zero. The expression is modified
+ *              itself.
+ * @param threshold The threshold value when make to zero.
+ */
+template<typename T>
+void
+make_zero(T& value, T threshold = std::numeric_limits<T>::epsilon());
 
 }
 }

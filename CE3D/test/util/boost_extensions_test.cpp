@@ -357,6 +357,24 @@ BOOST_AUTO_TEST_CASE(TestMakeZero_Vector)
     BOOST_CHECK(IsVectorEqual(testvector, compare));
 }
 
+BOOST_AUTO_TEST_CASE(TestMakeZero)
+{
+    float x = 3.3f;
+    float y = 0.01f;
+    double z = 0.09198;
+    int w = 1;
+
+    boost::numeric::ublas::make_zero(x, 0.1f);
+    boost::numeric::ublas::make_zero(y, 0.1f);
+    boost::numeric::ublas::make_zero(z, 0.1);
+    boost::numeric::ublas::make_zero(w);
+
+    BOOST_CHECK_EQUAL(x, 3.3f);
+    BOOST_CHECK_EQUAL(y, 0.0f);
+    BOOST_CHECK_EQUAL(z, 0.0);
+    BOOST_CHECK_EQUAL(w, 1);
+}
+
 // TODO test vector concatenation
 
 BOOST_AUTO_TEST_SUITE_END()
