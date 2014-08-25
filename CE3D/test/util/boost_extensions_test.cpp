@@ -307,6 +307,34 @@ BOOST_AUTO_TEST_CASE(TestIsZero)
     BOOST_CHECK_EQUAL(boost::numeric::ublas::is_zero(testvec, 0.05f), false);
 }
 
+BOOST_AUTO_TEST_CASE(TestMakeZero)
+{
+    CE3D::Matrix testmatrix(3, 3);
+    testmatrix(0, 0) = 1;
+    testmatrix(0, 1) = 2;
+    testmatrix(0, 2) = 3;
+    testmatrix(1, 0) = 0.003;
+    testmatrix(1, 1) = 0.02;
+    testmatrix(1, 2) = 4;
+    testmatrix(2, 0) = 0.001;
+    testmatrix(2, 1) = 0;
+    testmatrix(2, 2) = 0.05;
+
+    CE3D::Matrix compare(3, 3);
+    compare(0, 0) = 1;
+    compare(0, 1) = 2;
+    compare(0, 2) = 3;
+    compare(1, 0) = 0;
+    compare(1, 1) = 0;
+    compare(1, 2) = 4;
+    compare(2, 0) = 0;
+    compare(2, 1) = 0;
+    compare(2, 2) = 0;
+
+    boost::numeric::ublas::make_zero(testmatrix, 0.1);
+    RequireMatrixEquality(testmatrix, compare);
+}
+
 // TODO test vector concatenation
 
 BOOST_AUTO_TEST_SUITE_END()

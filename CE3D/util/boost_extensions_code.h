@@ -296,6 +296,21 @@ is_zero(V vec, typename V::value_type precision =
     return true;
 }
 
+template<typename M>
+typename std::enable_if<std::is_base_of<matrix<typename M::value_type>,
+    M>::value,
+    void>::type
+make_zero(M& matrix, typename M::value_type threshold =
+                     std::numeric_limits<typename M::value_type>::epsilon())
+{
+    for (typename M::size_type x = 0; x < matrix.size1(); x++)
+        for (typename M::size_type y = 0; y < matrix.size2(); y++)
+        {
+            if (is_zero<typename M::value_type>(matrix(x, y), threshold))
+                matrix(x, y) = 0;
+        }
+}
+
 }
 }
 }

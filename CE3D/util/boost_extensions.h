@@ -173,6 +173,21 @@ typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
 is_zero(V vec, typename V::value_type precision =
                std::numeric_limits<typename V::value_type>::epsilon());
 
+/**
+ * Makes entries of the given matrix to zero if they are near zero.
+ *
+ * @param matrix The matrix to make near zero values to full zero. The matrix
+ *               is modified itself.
+ * @param threshold The threshold value when to make to zero.
+ */
+template<typename M>
+typename std::enable_if<std::is_base_of<matrix<typename M::value_type>,
+    M>::value,
+    void>::type
+make_zero(M& matrix, typename M::value_type threshold =
+                     std::numeric_limits<typename M::value_type>::epsilon());
+
+
 }
 }
 }
