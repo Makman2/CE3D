@@ -49,11 +49,11 @@ BOOST_AUTO_TEST_CASE(TestTranslationGetSet)
     Comparision(1, 3) = 2;
     Comparision(2, 3) = 7;
 
-    RequireMatrixEquality(Comparision, TestUnit.GetMatrix());
+    BOOST_CHECK(IsMatrixEqual(Comparision, TestUnit.GetMatrix()));
 
-    RequireVectorEquality(TestUnit.GetTranslation(), Shift);
+    BOOST_CHECK(IsVectorEqual(TestUnit.GetTranslation(), Shift));
 
-    RequireVectorEquality(Shift, OrigShift);
+    BOOST_CHECK(IsVectorEqual(Shift, OrigShift));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

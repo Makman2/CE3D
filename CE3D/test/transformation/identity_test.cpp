@@ -37,12 +37,12 @@ BOOST_AUTO_TEST_CASE(TestIdentityMatrix)
 
     CE3D::IdentityMatrix compare(3, 3);
 
-    RequireMatrixEquality(TestUnit.GetMatrix(), compare);
+    BOOST_CHECK(IsMatrixEqual(TestUnit.GetMatrix(), compare));
 
     CE3D::Transformation::Identity TestUnit2(2, 4);
     CE3D::IdentityMatrix compare2(2, 4);
 
-    RequireMatrixEquality(TestUnit2.GetMatrix(), compare2);
+    BOOST_CHECK(IsMatrixEqual(TestUnit2.GetMatrix(), compare2));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -10,54 +10,86 @@ namespace CE3D
 namespace Testing
 {
 
-void RequireMatrixEquality(CE3D::Matrix const& a, CE3D::Matrix const& b)
+bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b)
 {
-    BOOST_REQUIRE_EQUAL(a.size1(), b.size1());
-    BOOST_REQUIRE_EQUAL(a.size2(), b.size2());
-    for (CE3D::Matrix::size_type i = 0; i < a.size1(); ++i)
-    {
-        for (CE3D::Matrix::size_type j = 0; j < a.size2(); ++j)
+    if ((a.size1() != b.size1()) || (a.size2() != b.size2()))
+        return false;
+
+    for (CE3D::Matrix::size_type i = 0; i < a.size1(); i++)
+        for (CE3D::Matrix::size_type j = 0; j < a.size2(); j++)
+            if (a(i, j) != b(i, j))
+                return false;
+
+    return true;
+}
+
+bool IsMatrixEqual(CE3D::Matrix const&       a,
+                   CE3D::Matrix const&       b,
+                   CE3D::ModelDataType const tolerance)
+{
+    if ((a.size1() != b.size1()) || (a.size2() != b.size2()))
+        return false;
+
+    for (CE3D::Matrix::size_type i = 0; i < a.size1(); i++)
+        for (CE3D::Matrix::size_type j = 0; j < a.size2(); j++)
         {
-            BOOST_REQUIRE_EQUAL(a(i,j), b(i,j));
+            if (b(i, j) == 0)
+            {
+                if (a(i, j) != 0)
+                    return false;
+                else
+                    continue;
+            }
+
+            if (a(i, j) / b(i, j) < (1 - tolerance) ||
+                    a(i, j) / b(i, j) > (1 + tolerance))
+                return false;
         }
-    }
+
+    return true;
 }
 
-void RequireMatrixEquality(CE3D::Matrix const& a, CE3D::Matrix const& b,
-                           CE3D::ModelDataType const tolerance)
+
+
+bool IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b)
 {
-    BOOST_REQUIRE_EQUAL(a.size1(), b.size1());
-    BOOST_REQUIRE_EQUAL(a.size2(), b.size2());
-    for (CE3D::Matrix::size_type i = 0; i < a.size1(); ++i)
+    if (a.size() != b.size())
+        return false;
+
+    for (CE3D::Matrix::size_type i = 0; i < a.size(); i++)
+        if (a[i] != b[i])
+            return false;
+
+    return true;
+}
+
+bool IsVectorEqual(CE3D::Vector const&       a,
+                   CE3D::Vector const&       b,
+                   CE3D::ModelDataType const tolerance)
+{
+    if (a.size() != b.size())
+        return false;
+
+    for (CE3D::Matrix::size_type i = 0; i < a.size(); i++)
     {
-        for (CE3D::Matrix::size_type j = 0; j < a.size2(); ++j)
+        if (b[i] == 0)
         {
-            BOOST_REQUIRE_SMALL(std::abs(a(i,j) - b(i,j)), tolerance);
+            if (a[i] != 0)
+                return false;
+            else
+                continue;
         }
+
+        if (a[i] / b[i] < (1 - tolerance) || a[i] / b[i] > (1 + tolerance))
+            return false;
     }
+    
+    return true;
 }
 
-void RequireVectorEquality(CE3D::Vector const& a, CE3D::Vector const& b)
-{
-    BOOST_REQUIRE_EQUAL(a.size(), b.size());
-    for(CE3D::Matrix::size_type i = 0; i < a.size(); ++i)
-    {
-        BOOST_REQUIRE_EQUAL(a[i], b[i]);
-    }
-}
-
-void RequireVectorEquality(CE3D::Vector const& a, CE3D::Vector const& b,
-                           CE3D::ModelDataType const tolerance)
-{
-    BOOST_REQUIRE_EQUAL(a.size(), b.size());
-    for(CE3D::Matrix::size_type i = 0; i < a.size(); ++i)
-    {
-        BOOST_REQUIRE_SMALL(std::abs(a[i] - b[i]), tolerance);
-    }
-}
-
-CE3D::Matrix RandomMatrix
-    (CE3D::Matrix::size_type m, CE3D::Matrix::size_type n, unsigned int seed)
+CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
+                          CE3D::Matrix::size_type n,
+                          unsigned int            seed)
 {
     CE3D::Matrix mat(m, n);
     srand(seed);

@@ -12,28 +12,48 @@ namespace Testing
 {
 
 /**
- * Invokes BOOST_REQUIRE_EQUAL for each matrix element.
+ * Checks if the given matrices are equal.
+ *
+ * @param a The first matrix.
+ * @param b The second matrix.
+ * @returns true if both are equal, false if not.
  */
-void RequireMatrixEquality(CE3D::Matrix const& a, CE3D::Matrix const& b);
+bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b);
 
 /**
- * Invokes BOOST_REQUIRE_SMALL for each matrix element.
+ * Checks if the given matrices are nearly equal.
+ *
+ * @param a The first matrix.
+ * @param b The second matrix.
+ * @param tolerance The relative tolerance the matrix-values are allowed to
+ * differ.
+ * @returns true if both are nearly equal, false if not.
  */
-void RequireMatrixEquality(CE3D::Matrix const&       a,
-                           CE3D::Matrix const&       b,
-                           CE3D::ModelDataType const tolerance);
+bool IsMatrixEqual(CE3D::Matrix const&       a,
+                   CE3D::Matrix const&       b,
+                   CE3D::ModelDataType const tolerance);
 
 /**
- * Invokes BOOST_REQUIRE_EQUAL for each Vector element.
+ * Checks if the given vectors are equal.
+ *
+ * @param a The first vector.
+ * @param b The second vector.
+ * @returns true if both are equal, false if not.
  */
-void RequireVectorEquality(CE3D::Vector const& a, CE3D::Vector const& b);
+bool IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b);
 
 /**
- * Invokes BOOST_REQUIRE_SMALL for each vector element.
+ * Checks if the given vectors are nearly equal.
+ *
+ * @param a The first vector.
+ * @param b The second vector.
+ * @param tolerance The relative tolerance the vector-values are allowed to
+ * differ.
+ * @returns true if both are equal, false if not.
  */
-void RequireVectorEquality(CE3D::Vector const&       a,
-                           CE3D::Vector const&       b,
-                           CE3D::ModelDataType const tolerance);
+bool IsVectorEqual(CE3D::Vector const&       a,
+                   CE3D::Vector const&       b,
+                   CE3D::ModelDataType const tolerance);
 
 /**
  * Creates a matrix with randomized values.

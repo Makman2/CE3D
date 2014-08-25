@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(TestInverseCalculation)
 
     boost::numeric::ublas::invert(identity, inversion);
 
-    RequireMatrixEquality(identity, inversion);
+    BOOST_CHECK(IsMatrixEqual(identity, inversion));
 
     // TODO test what invert does with wrong dimensions
 }
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(TestNormalize)
     compare(3) = 0.5;
 
     boost::numeric::ublas::normalize(test);
-    RequireVectorEquality(test, compare);
+    BOOST_CHECK(IsVectorEqual(test, compare));
 
     CE3D::Vector test2(3);
     test2(0) = 4;
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(TestNormalize)
     compare2(2) = 1.0/3.0;
 
     boost::numeric::ublas::normalize(test2);
-    RequireVectorEquality(test2, compare2);
+    BOOST_CHECK(IsVectorEqual(test2, compare2));
 }
 
 /**
@@ -117,8 +117,8 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalize)
     BOOST_CHECK_EQUAL(base.size(), testvecarr.size());
     for (std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
     {
-        RequireVectorEquality(base[i], testvec[i]);
-        RequireVectorEquality(base[i], testvecarr[i]);
+        BOOST_CHECK(IsVectorEqual(base[i], testvec[i]));
+        BOOST_CHECK(IsVectorEqual(base[i], testvecarr[i]));
     }
 
     // Test 2: Some specific example.
@@ -168,8 +168,8 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalize)
     BOOST_CHECK_EQUAL(base.size(), testvecarr.size());
     for(std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
     {
-        RequireVectorEquality(compare[i], testvec[i]);
-        RequireVectorEquality(compare[i], testvecarr[i]);
+        BOOST_CHECK(IsVectorEqual(compare[i], testvec[i]));
+        BOOST_CHECK(IsVectorEqual(compare[i], testvecarr[i]));
     }
 }
 
@@ -226,8 +226,8 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     BOOST_CHECK_EQUAL(base.size(), testvecarr.size());
     for (std::vector<CE3D::Vector>::size_type i = 0; i < base.size(); i++)
     {
-        RequireVectorEquality(compare[i], testvec[i]);
-        RequireVectorEquality(compare[i], testvecarr[i]);
+        BOOST_CHECK(IsVectorEqual(compare[i], testvec[i]));
+        BOOST_CHECK(IsVectorEqual(compare[i], testvecarr[i]));
     }
 
     // Test 2: Some specific example.
@@ -269,14 +269,14 @@ BOOST_AUTO_TEST_CASE(TestOrthonormalize)
     BOOST_CHECK_EQUAL(base.size() - 1, testvec.size());
     BOOST_CHECK_EQUAL(base.size(), testvecarr.size());
 
-    RequireVectorEquality(compare[0], testvec[0]);
-    RequireVectorEquality(compare[1], testvec[1]);
-    RequireVectorEquality(compare[3], testvec[2]);
+    BOOST_CHECK(IsVectorEqual(compare[0], testvec[0]));
+    BOOST_CHECK(IsVectorEqual(compare[1], testvec[1]));
+    BOOST_CHECK(IsVectorEqual(compare[3], testvec[2]));
 
     for(std::array<CE3D::Vector, 4>::size_type i = 0;
         i < testvecarr.size() - 1; i++)
     {
-        RequireVectorEquality(compare[i], testvecarr[i]);
+        BOOST_CHECK(IsVectorEqual(compare[i], testvecarr[i]));
     }
 }
 
@@ -332,7 +332,7 @@ BOOST_AUTO_TEST_CASE(TestMakeZero)
     compare(2, 2) = 0;
 
     boost::numeric::ublas::make_zero(testmatrix, 0.1);
-    RequireMatrixEquality(testmatrix, compare);
+    BOOST_CHECK(IsMatrixEqual(testmatrix, compare));
 }
 
 // TODO test vector concatenation

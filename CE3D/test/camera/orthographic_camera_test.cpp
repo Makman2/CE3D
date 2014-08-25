@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(TestPropertyFunctions)
 
     cam.SetLookAt(testvector);
 
-    RequireVectorEquality(cam.GetLookAt(), testvector);
+    BOOST_CHECK(IsVectorEqual(cam.GetLookAt(), testvector));
 
     CE3D::Vector testvector2(5);
     testvector2(0) = 1.5;
@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE(TestPropertyFunctions)
 
     cam.SetPosition(testvector2);
 
-    RequireVectorEquality(cam.GetPosition(), testvector2);
+    BOOST_CHECK(IsVectorEqual(cam.GetPosition(), testvector2));
 }
 
 /**
@@ -131,8 +131,8 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
         boost::numeric::ublas::axpy_prod(
             testmatrix, vectors[i], refvector, true);
 
-        RequireVectorEquality(transformed_world->GetModels()[0]->
-            GetVectors()[i], refvector);
+        BOOST_CHECK(IsVectorEqual(transformed_world->GetModels()[0]->
+            GetVectors()[i], refvector));
     }
 
 }
