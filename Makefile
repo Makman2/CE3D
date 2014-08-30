@@ -2,8 +2,8 @@
 
 # this makefile is a wrapper for the projects in here.
 
-CE3D_DEBUG_BUILD_DIR	= build/CE3D_debug
-CE3D_RELEASE_BUILD_DIR	= build/CE3D_release
+CE3D_DEBUG_BUILD_DIR	= build/debug
+CE3D_RELEASE_BUILD_DIR	= build/release
 CE3D_CODEBLOCKS_PROJ_DIR= build/Codeblocks
 CE3D_ECLIPSE_PROJ_DIR   = build/Eclipse
 CE3D_SRC_FROM_BUILD	= ../../CE3D
