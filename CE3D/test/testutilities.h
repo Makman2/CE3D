@@ -38,8 +38,9 @@ void RequireVectorEquality(CE3D::Vector const&       a,
 /**
  * Creates a matrix with randomized values.
  */
-CE3D::Matrix RandomMatrix
-    (CE3D::Matrix::size_type m, CE3D::Matrix::size_type n, unsigned int seed);
+CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
+                          CE3D::Matrix::size_type n,
+                          unsigned int            seed);
 
 }
 }
