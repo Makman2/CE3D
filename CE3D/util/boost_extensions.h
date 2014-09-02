@@ -82,6 +82,68 @@
 #define DEFINE_FUNCTION_DETECTOR(func_name) \
     DEFINE_FUNCTION_DETECTOR_MANUALLY(func_name, has_##func_name)
 
+/**
+ * Defines a meta-function that calls the given function when template
+ * parameter is true. A template parameter of false evaluates to an empty
+ * function. This macro is useful when calling a function from that you don't
+ * know it can exist.
+ * For example: Consider a template function with template parameter T. You
+ * want this function to call T.AMethod(), but only if it exists. If not you
+ * want to skip it. There comes this macro in place. You can just try to
+ * invoke T.AMethod(), but the compilation will fail when T.AMethod() doesn't
+ * exist. The macro creates two functions, that instantiates the function only
+ * if needed, so compiler errors can be avoided. In this example you have to
+ * apply the macro as following.
+ * DEFINE_FUNCTION_DETECTOR(AMethod);
+ * DEFINE_FUNCTION_JACKER_MANUALLY(AMethod, call_AMethod_if)
+ * template <typename T>
+ * void AFunc()
+ * {
+ *     CustomClass a;
+ *     call_AMethod_if<has_AMethod<CustomClass, void()>::value>();
+ *     // Do some other stuff with a...
+ * }
+ * So if CustomClass doesn't provide a signature for 'void AMethod()', the
+ * call ends in an empty function and nothing happens.
+ * If needed arguments are automatically deduced from calling parameters (and
+ * passed to the function).
+ *
+ * Important: Do not write an ';' at the end of the macro!
+ *
+ * @param func    The function name attempting to call.
+ * @param func_id The name of the function jacker.
+ *
+ */
+#define DEFINE_FUNCTION_JACKER_MANUALLY(func, func_id) \
+    template <bool B, typename T, typename... Args>    \
+    typename std::enable_if<!B, void>::type            \
+    func_id(T&, Args...)                               \
+    {}                                                 \
+                                                       \
+    template <bool B, typename T, typename... Args>    \
+    typename std::enable_if<B, void>::type             \
+    func_id(T& obj, Args... args)                      \
+    {                                                  \
+        obj.func(args...);                             \
+    }
+
+/**
+ * Defines a meta-function that calls the given function when template
+ * parameter is true. A template parameter of false evaluates to an empty
+ * function.
+ *
+ * This macro expands to DEFINE_FUNCTION_JACKER_MANUALLY and passes as
+ * func_id 'call_[func]_if'.
+ *
+ * Important: Do not write an ';' at the end of the macro!
+ *
+ * @param func The function name attempting to call.
+ * @see        DEFINE_FUNCTION_JACKER_MANUALLY
+ */
+#define DEFINE_FUNCTION_JACKER(func)              \
+    DEFINE_FUNCTION_JACKER_MANUALLY(func,         \
+    BOOST_PP_CAT(call_, BOOST_PP_CAT(func, _if)))
+
 
 namespace boost
 {
