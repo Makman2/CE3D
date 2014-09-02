@@ -310,6 +310,33 @@ BOOST_AUTO_TEST_CASE(TestIsZero)
     BOOST_REQUIRE_EQUAL(boost::numeric::ublas::is_zero(testvec, 0.05f), false);
 }
 
+DEFINE_FUNCTION_DETECTOR(push_back);
+DEFINE_FUNCTION_DETECTOR(clear);
+BOOST_AUTO_TEST_CASE(TestDefineFunctionDetectorMacros)
+{
+    using listT = std::list<float>;
+    using vectorT = std::vector<float>;
+    using arrayT = std::array<float, 4>;
+
+    bool constexpr checkarray[] =
+    {
+        has_push_back<vectorT, void(vectorT::value_type const&)>::value,
+        has_push_back<arrayT, void(arrayT::value_type const&)>::value,
+        has_push_back<listT, void(listT::value_type const&)>::value,
+        has_clear<vectorT, void()>::value,
+        has_clear<arrayT, void() >::value,
+        has_clear<listT, void() >::value
+    };
+
+    BOOST_CHECK_EQUAL(true, checkarray[0]);
+    BOOST_CHECK_EQUAL(false, checkarray[1]);
+    BOOST_CHECK_EQUAL(true, checkarray[2]);
+
+    BOOST_CHECK_EQUAL(true, checkarray[3]);
+    BOOST_CHECK_EQUAL(false, checkarray[4]);
+    BOOST_CHECK_EQUAL(true, checkarray[5]);
+}
+
 // TODO test vector concatenation
 
 BOOST_AUTO_TEST_SUITE_END()

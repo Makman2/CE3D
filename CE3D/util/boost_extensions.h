@@ -7,6 +7,82 @@
 #include <array>
 #include <limits>
 
+// This macro is except of the rest of the document under the
+// Attribution-ShareAlike 3.0 Unported license
+// (http://creativecommons.org/licenses/by-sa/3.0/). You're allowed to copy and
+// redistribute the material in any medium format and modify as you wish when
+// giving the appropriate credit and distribute as the same license.
+// It builts upon the code in
+// http://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Member_Detector, last
+// modified on 10. June 2014 at 21:18.
+/**
+ * Defines a structure to test whether a class contains a specific function.
+ *
+ * This macro creates a new structure with the ability to test the existence
+ * of a function of your choice. Important: You have to put the structure
+ * outside the function definition because C++11 doesn't support struct
+ * defintions with template arguments inside a scope block.
+ *
+ * For example (test if the function 'void clear()' exists):
+ * DEFINE_FUNCTION_DETECTOR_MANUALLY(clear, has_clear);
+ * std::cout << has_clear<std::vector<float>, void()>::value << std::endl;
+ * This snippet prints out '1'.
+ * Some bigger example with parameters (test for function
+ * 'int xyz(float, double)'):
+ * DEFINE_FUNCTION_DETECTOR_MANUALLY(xyz, has_xyz);
+ * struct XYW { void xyz(float, double); };
+ * struct XYZ { int xyz(float, double); };
+ * std::cout << has_xyz<XYW, int(float, double)>::value << std::endl;
+ * std::cout << has_xyz<XYZ, int(float, double)>::value << std::endl;
+ * This prints out '0' and '1'. The first function definition doesn't agree in
+ * return type.
+ *
+ * @param func_name The function to test.
+ * @param struct_id An ID to give the template structure a name. Typically
+ * 'has_' + the function name.
+ */
+#define DEFINE_FUNCTION_DETECTOR_MANUALLY(func_name, struct_id)            \
+    template<typename, typename T>                                         \
+    struct struct_id                                                       \
+    {                                                                      \
+        static_assert(std::integral_constant<T, false>::value,             \
+                      "Second template parameter needs to be of function " \
+                      "type.");                                            \
+    };                                                                     \
+                                                                           \
+    template<typename C, typename Returns, typename... Args>               \
+    struct struct_id<C, Returns(Args...)>                                  \
+    {                                                                      \
+    private:                                                               \
+        template<typename T>                                               \
+        static constexpr auto check(T*)                                    \
+        -> typename std::is_same<decltype(std::declval<T>()                \
+               .func_name(std::declval<Args>()...)),                       \
+           Returns>::type;                                                 \
+                                                                           \
+        template<typename>                                                 \
+        static constexpr std::false_type check(...);                       \
+                                                                           \
+        using type = decltype(check<C>(0));                                \
+                                                                           \
+    public:                                                                \
+        static constexpr bool value = type::value;                         \
+    }
+
+/**
+ * Defines a meta-structure to test whether a class contains a specific
+ * function.
+ *
+ * This macro expands to DEFINE_FUNCTION_DETECTOR_MANUALLY and passes as
+ * struct_id 'has_[func_name]'.
+ *
+ * @param func_name The function name to check for existence.
+ * @see             DEFINE_FUNCTION_DETECTOR_MANUALLY
+ */
+#define DEFINE_FUNCTION_DETECTOR(func_name) \
+    DEFINE_FUNCTION_DETECTOR_MANUALLY(func_name, has_##func_name)
+
+
 namespace boost
 {
 namespace numeric
