@@ -110,9 +110,6 @@ normalize(V& vec, typename V::value_type precision =
         vec = zero_vector<typename V::value_type>(vec.size());
 }
 
-// FIXME Try to merge the orthogonalization-functions into one with support for
-//       lists and std::array to keep maintainability.
-
 template<typename ListType>
 typename std::enable_if<std::is_base_of<
     vector<typename ListType::value_type::value_type>,
@@ -120,6 +117,25 @@ typename std::enable_if<std::is_base_of<
     ListType>::type
 orthogonalize(ListType const& input)
 {
+    // Constant expressions.
+    auto constexpr supports_push_back =
+        help_traits::has_push_back<ListType,
+        void(typename ListType::value_type const&)>::value;
+    auto constexpr supports_reserve =
+        help_traits::has_reserve<ListType, void(typename ListType::size_type)>
+        ::value;
+    auto constexpr supports_array_accessor =
+        help_traits::has_array_accessor<ListType, typename ListType::reference
+        (typename ListType::size_type)>::value;
+
+    // Static asserts.
+    static_assert(supports_push_back || supports_array_accessor,
+                  "push_back() and operator[] not supported by "
+                  "ListType. Use a ListType that defines one of "
+                  "these functions. Template instantation "
+                  "failed.");
+
+
     // Contains the orthogonalized vectors.
     ListType orthogonalized;
     // The with-calculated squared-orthonormal vectors. With this extra list a
@@ -131,72 +147,67 @@ orthogonalize(ListType const& input)
 
     // If iteratable list supports reserve (like std::vector), we can save
     // memory reserves when calling push_back.
-    if (std::is_function<decltype(declval<ListType>().reserve(
-        declval<typename ListType::size_type>()))
-        (typename ListType::size_type)>::value)
-        orthogonalized.reserve(input.size());
+    help_traits::call_reserve_if<supports_reserve>
+        (orthogonalized, input.size());
 
     typename ListType::value_type currentvec;
 
-    for (auto vec : input)
+    // Define loop variable for input vectors.
+    // Optimized out if push_back is supported by ListType.
+    typename ListType::size_type inputcounter = 0;
+
+    typename ListType::size_type counter;
+    for (auto const& vec : input)
     {
         currentvec = vec;
 
+        // Define loop variable for loop break, because no push-back-able
+        // can't change it's size here. Will be optimized out if the ListType
+        // supports push_back.
+        if (!supports_push_back && supports_array_accessor)
+            counter = 0;
+
         auto onb_it = orthonormalized_sqr.begin();
-        for (auto ortho : orthogonalized)
+        for (auto const& ortho : orthogonalized)
         {
+            if (!supports_push_back && supports_array_accessor)
+                // Abort if no orthogonalized vectors are in array.
+                if (counter >= inputcounter)
+                    break;
+
             auto ip = inner_prod(currentvec, ortho);
             if (ip != 0)
                 currentvec -= ip * (*onb_it);
 
             onb_it++;
+
+            if (!supports_push_back && supports_array_accessor)
+                // Increase abort counter.
+                counter++;
         }
 
-        orthogonalized.push_back(currentvec);
-        orthonormalized_sqr.push_back(
-            currentvec / inner_prod(currentvec, currentvec));
-    }
-
-    return orthogonalized;
-}
-
-template<typename V, size_t count>
-typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
-    V>::value,
-    std::array<V, count>>::type
-orthogonalize(std::array<V, count> const& input)
-{
-    // Contains the orthogonalized vectors.
-    std::array<V, count> orthogonalized;
-    // The with-calculated squared-orthonormal vectors. With this extra list a
-    // permament recalculation of the scalar and vector multiplication is not
-    // needed anymore. This overheads in double memory consumption but the
-    // boost is much greater.
-    std::vector<V> orthonormalized_sqr;
-    orthonormalized_sqr.reserve(count);
-
-    V currentvec;
-
-    for (size_t i = 0; i < count; i++)
-    {
-        currentvec = input[i];
-        for (size_t n = 0; n < i; n++)
+        if (supports_push_back)
         {
-            auto ip = inner_prod(currentvec, orthogonalized[n]);
-            if (ip != 0)
-                currentvec -= ip * orthonormalized_sqr[n];
+            // If supports push_back use that instead.
+            help_traits::call_push_back_if<supports_push_back>
+                (orthogonalized, currentvec);
+        }
+        else if (supports_array_accessor)
+        {
+            // Array version.
+            help_traits::call_array_accessor_and_set_if
+                <supports_array_accessor>
+                (orthogonalized, currentvec, inputcounter);
         }
 
-        orthogonalized[i] = currentvec;
         orthonormalized_sqr.push_back(
             currentvec / inner_prod(currentvec, currentvec));
+
+        inputcounter++;
     }
 
     return orthogonalized;
 }
-
-// FIXME Try to merge the orthonormalization-functions into one with support
-//       for lists and std::array to keep maintainability.
 
 template<typename ListType>
 typename std::enable_if<std::is_base_of<
@@ -205,35 +216,76 @@ typename std::enable_if<std::is_base_of<
     ListType>::type
 orthonormalize(ListType const& input)
 {
+    // Constant expressions.
+    auto constexpr supports_push_back =
+        help_traits::has_push_back<ListType,
+        void(typename ListType::value_type const&)>::value;
+    auto constexpr supports_reserve =
+        help_traits::has_reserve<ListType, void(typename ListType::size_type)>
+        ::value;
+    auto constexpr supports_array_accessor =
+        help_traits::has_array_accessor<ListType, typename ListType::reference
+        (typename ListType::size_type)>::value;
+
+    // Static asserts.
+    static_assert(supports_push_back || supports_array_accessor,
+                  "push_back() and operator[] not supported by "
+                  "ListType. Use a ListType that defines one of "
+                  "these functions. Template instantation "
+                  "failed.");
+
+
     // Contains the orthonormalized vectors.
     ListType orthonormalized;
 
     // If iteratable list supports reserve (like std::vector), we can save
     // memory reserves when calling push_back.
-    if (std::is_function<decltype(declval<ListType>().reserve(
-        declval<typename ListType::size_type>()))
-        (typename ListType::size_type)>::value)
-        orthonormalized.reserve(input[0].size());
+    help_traits::call_reserve_if<supports_reserve>
+        (orthonormalized, input.size());
 
     typename ListType::value_type currentvec;
 
     // The initial precision to use for additive error calculation.
-    const auto prec = std::numeric_limits
+    auto constexpr prec = std::numeric_limits
         <typename ListType::value_type::value_type>::epsilon();
 
     typename ListType::size_type i = 1;
-    for (auto vec : input)
+    typename ListType::size_type orthocount;
+
+    for (auto const& vec : input)
     {
         currentvec = vec;
 
-        for (auto ortho : orthonormalized)
+        if (!supports_push_back && supports_array_accessor)
+            orthocount = 1;
+
+        for (auto const& ortho : orthonormalized)
         {
+            if (!supports_push_back && supports_array_accessor)
+                // Abort if no orthonormalized vectors are in array.
+                if (orthocount >= i)
+                    break;
+
             currentvec -= inner_prod(currentvec, ortho) * ortho;
+
+            if (!supports_push_back && supports_array_accessor)
+                orthocount++;
         }
 
         normalize(currentvec, i * prec);
-        if (!is_zero(currentvec))
-            orthonormalized.push_back(currentvec);
+
+        if (supports_push_back)
+        {
+            // If supports push_back(), don't push back zero vectors.
+            if (!is_zero(currentvec))
+                help_traits::call_push_back_if<supports_push_back>
+                    (orthonormalized, currentvec);
+        }
+        else if (supports_array_accessor)
+            // Array version.
+            help_traits::call_array_accessor_and_set_if
+                <supports_array_accessor>
+                (orthonormalized, currentvec, i - 1);
 
         i++;
     }
@@ -241,36 +293,6 @@ orthonormalize(ListType const& input)
     return orthonormalized;
 }
 
-template<typename V, size_t count>
-typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
-    V>::value,
-    std::array<V, count>>::type
-orthonormalize(std::array<V, count> const& input)
-{
-    // Contains the orthogonalized vectors.
-    std::array<V, count> orthonormalized;
-
-    V currentvec;
-
-    // The initial precision to use for additive error calculation.
-    const auto prec = std::numeric_limits
-        <typename V::value_type>::epsilon();
-
-    for (size_t i = 0; i < count; i++)
-    {
-        currentvec = input[i];
-        for (size_t n = 0; n < i; n++)
-        {
-            currentvec -= inner_prod(currentvec, orthonormalized[n]) *
-                orthonormalized[n];
-        }
-
-        normalize(currentvec, (i + 1) * prec);
-        orthonormalized[i] = currentvec;
-    }
-
-    return orthonormalized;
-}
 
 template<typename T>
 bool

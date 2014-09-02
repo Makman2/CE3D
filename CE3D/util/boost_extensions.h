@@ -151,6 +151,41 @@ namespace numeric
 {
 namespace ublas
 {
+namespace help_traits
+{
+
+// Needed function detectors and code jackers for
+// orthogonalize() and orthonormalize().
+DEFINE_FUNCTION_DETECTOR(reserve);
+DEFINE_FUNCTION_DETECTOR(push_back);
+DEFINE_FUNCTION_DETECTOR_MANUALLY(operator[], has_array_accessor);
+
+DEFINE_FUNCTION_JACKER(reserve)
+DEFINE_FUNCTION_JACKER(push_back)
+
+template <bool B, typename T, typename AssignType, typename... Args>
+typename std::enable_if<!B, void>::type
+call_array_accessor_and_set_if(T&, AssignType&, Args...)
+{}
+
+template <bool B, typename T, typename AssignType, typename... Args>
+typename std::enable_if<B, void>::type
+call_array_accessor_and_set_if(T& obj, AssignType& assign, Args... args)
+{
+    obj.operator[](args...) = assign;
+}
+
+}
+}
+}
+}
+
+namespace boost
+{
+namespace numeric
+{
+namespace ublas
+{
 
 /**
  * Inverts a given matrix.
@@ -214,10 +249,11 @@ normalize(V& vec, typename V::value_type precision =
  * Performs the orthogonalization method of Gram-Schmidt.
  *
  * @tparam ListType The list type the vectors are stored in. The vectors in
- * ListType must derive from boost::numeric::ublas::vector, so
- * ListType::value_type and the first template argument of vector must equal.
+ * ListType must derive from boost::numeric::ublas::vector.
+ * If the list exposes push_back(), zero vectors are automatically filtered.
  * @param input The input vectors that should be orthogonalized.
- * @returns A ListType with orthogonalized vectors.
+ * @returns A ListType with orthogonalized vectors. Zero-Vectors are filtered
+ * if ListType supports push_back(), if not zero vectors aren't filtered.
  */
 template<typename ListType>
 typename std::enable_if<std::is_base_of<
@@ -227,31 +263,15 @@ typename std::enable_if<std::is_base_of<
 orthogonalize(ListType const& input);
 
 /**
- * Performs the orthogonalization method of Gram-Schmidt.
- *
- * @tparam V The vector type used. Must derive from
- * boost::numeric::ublas::vector.
- * @tparam count The number of vectors in the array.
- * @param input The input vectors that should be orthogonalized stored in
- * std::array.
- * @returns An std::array with the same size as input filled with the
- * orthogonalized vectors.
- */
-template<typename V, size_t count>
-typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
-    V>::value,
-    std::array<V, count>>::type
-orthogonalize(std::array<V, count> const& input);
-
-/**
  * Performs the orthonormalization method of Gram-Schmidt. Automatically kicks
- * out zero vectors.
+ * out zero vectors if a size growing container is given.
  *
  * @tparam ListType The list type the vectors are stored in. The vectors in
- * ListType must derive from boost::numeric::ublas::vector, so
- * ListType::value_type and the first template argument of vector must equal.
+ * ListType must derive from boost::numeric::ublas::vector.
+ * If the list exposes push_back(), zero vectors are automatically filtered.
  * @param input The input vectors that should be orthonormalized.
- * @returns A ListType with orthonormalized vectors.
+ * @returns A ListType with orthonormalized vectors. Zero-Vectors are filtered
+ * if ListType supports push_back(), if not zero vectors aren't filtered.
  */
 template<typename ListType>
 typename std::enable_if<std::is_base_of<
@@ -259,24 +279,6 @@ typename std::enable_if<std::is_base_of<
     typename ListType::value_type>::value,
     ListType>::type
 orthonormalize(ListType const& input);
-
-/**
- * Performs the orthonormalization method of Gram-Schmidt.
- *
- * @tparam V The vector type used. Must derive from
- * boost::numeric::ublas::vector.
- * @tparam count The number of vectors in the array.
- * @param input The input vectors that should be orthonormalized stored in
- * std::array.
- * @returns An std::array with the same size as input filled with the
- * orthonormalized vectors.
- */
-template<typename V, size_t count>
-typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
-    V>::value,
-    std::array<V, count>>::type
-orthonormalize(std::array<V, count> const& input);
-
 
 /**
  * Tests if the given expression is zero.
