@@ -29,24 +29,26 @@ public:
      * @param InitialColor The color for the material.
      */
     ConsoleMaterial(ConsoleColor InitialColor);
+
     virtual
-    ~ConsoleMaterial() {}
+    ~ConsoleMaterial();
+
     /**
      * Getter.
      *
      * @return The foreground color.
      */
     ConsoleColor
-    GetColor() const
-    { return m_Color; }
+    GetColor() const;
+
     /**
      * Setter for the foreground color of the vertex.
      *
      * @param ForegroundColor The color.
      */
     void
-    SetColor(ConsoleColor ForegroundColor)
-    { m_Color = ForegroundColor; }
+    SetColor(ConsoleColor ForegroundColor);
+
 };
 
 } /* namespace CE3D */
