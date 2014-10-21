@@ -9,6 +9,8 @@
 namespace CE3D {
 
 ConsoleRenderer::ConsoleRenderer()
+: m_Drawer()
+, m_Console()
 {}
 
 ConsoleRenderer::~ConsoleRenderer()
