@@ -29,21 +29,22 @@ private:
 
     // Inherited documentation comment
     virtual void
-    ClearBuffer() const
-    { m_Console.Clear(); }
+    ClearBuffer() const;
+
     // Inherited documentation comment
     virtual void
-    FlushBuffer() const
-    { m_Console.Flush(); }
+    FlushBuffer() const;
+
     // Inherited documentation comment
     void
     RenderVertex(Vertex<ConsoleMaterial> const& Vert,
                  Model<ConsoleMaterial>  const& Mod) const override;
 public:
 
-    ConsoleRenderer() {}
+    ConsoleRenderer();
     virtual
-    ~ConsoleRenderer() {}
+
+    ~ConsoleRenderer();
 };
 
 } /* namespace CE3D */

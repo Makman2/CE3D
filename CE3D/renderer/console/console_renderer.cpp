@@ -8,6 +8,24 @@
 
 namespace CE3D {
 
+ConsoleRenderer::ConsoleRenderer()
+{}
+
+ConsoleRenderer::~ConsoleRenderer()
+{}
+
+void
+ConsoleRenderer::ClearBuffer() const
+{
+    m_Console.Clear();
+}
+
+void
+ConsoleRenderer::FlushBuffer() const
+{
+    m_Console.Flush();
+}
+
 void ConsoleRenderer::RenderVertex(Vertex<ConsoleMaterial> const& Vert,
                                    Model<ConsoleMaterial>  const& Mod) const
 {
