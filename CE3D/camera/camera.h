@@ -39,16 +39,15 @@ public:
     Paint() const = 0;
 
     virtual
-    ~Camera() {};
+    ~Camera();
 
     /**
      * Gets the world where this camera lives.
      *
      * @return A shared ptr to the world.
      */
-    std::shared_ptr<World<t_Material>  const>
-    GetWorld() const
-    { return m_World; }
+    std::shared_ptr<World<t_Material> const>
+    GetWorld() const;
 
     /**
      * Places the camera in this world.
@@ -56,10 +55,11 @@ public:
      * @param copy The world.
      */
     void
-    SetWorld(std::shared_ptr<World<t_Material> const> const copy)
-    { m_World = copy; }
+    SetWorld(std::shared_ptr<World<t_Material> const> const copy);
 };
 
 }
+
+#include "camera_code.h"
 
 #endif /* CE3D_CAMERA_CAMERA_H */
