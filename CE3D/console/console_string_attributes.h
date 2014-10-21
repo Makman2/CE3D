@@ -3,9 +3,9 @@
 #ifndef CE3D_CONSOLE_CONSOLE_STRING_ATTRIBUTES_H
 #define CE3D_CONSOLE_CONSOLE_STRING_ATTRIBUTES_H
 
-#include "CE3D/util/stdinc.h"
-
 #include <curses.h>
+
+#include "CE3D/util/stdinc.h"
 
 namespace CE3D {
 
@@ -55,7 +55,8 @@ public:
      *
      * @return curses representation for the attributes hold by this object
      */
-    std::uint32_t GetCursesRepresentation() const;
+    std::uint32_t
+    GetCursesRepresentation() const;
 
     /**
      * Sets the color.

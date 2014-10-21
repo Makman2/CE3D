@@ -12,7 +12,8 @@ ConsoleStringAttributes::ConsoleStringAttributes()
 ConsoleStringAttributes::~ConsoleStringAttributes()
 {}
 
-std::uint32_t ConsoleStringAttributes::GetCursesRepresentation() const
+std::uint32_t
+ConsoleStringAttributes::GetCursesRepresentation() const
 {
     return m_Attributes | COLOR_PAIR(m_ColorPairId);
 }
