@@ -17,6 +17,12 @@ namespace CE3D {
  * A renderer for the curses console.
  */
 class ConsoleRenderer: public Renderer<ConsoleMaterial> {
+public:
+    ConsoleRenderer();
+    virtual
+
+    ~ConsoleRenderer();
+
 private:
     /**
      * Helper to draw the things to the real console.
@@ -39,12 +45,6 @@ private:
     void
     RenderVertex(Vertex<ConsoleMaterial> const& Vert,
                  Model<ConsoleMaterial>  const& Mod) const override;
-public:
-
-    ConsoleRenderer();
-    virtual
-
-    ~ConsoleRenderer();
 };
 
 } /* namespace CE3D */
