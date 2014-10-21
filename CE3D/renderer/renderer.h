@@ -50,7 +50,7 @@ public:
     Render(Camera<t_Material> const& camera) const;
 
     virtual
-    ~Renderer() {}
+    ~Renderer();
 };
 
 }

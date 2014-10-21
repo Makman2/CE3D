@@ -10,6 +10,10 @@
 namespace CE3D {
 
 template <typename t_Material>
+Renderer<t_Material>::~Renderer()
+{}
+
+template <typename t_Material>
 void Renderer<t_Material>::Render(const Camera<t_Material>& camera) const
 {
     ClearBuffer();
