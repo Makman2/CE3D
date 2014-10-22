@@ -50,8 +50,9 @@ public:
      * @param direction: The direction of the subspace hyperplane.
      */
     OrthogonalProjection(Vector const& direction);
+
     virtual
-    ~OrthogonalProjection() {}
+    ~OrthogonalProjection();
 
     /**
      * Returns the projection vectors.

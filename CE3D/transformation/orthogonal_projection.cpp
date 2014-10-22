@@ -25,6 +25,9 @@ OrthogonalProjection::OrthogonalProjection(Vector const& direction)
     SetProjectionVectors(direction);
 }
 
+OrthogonalProjection::~OrthogonalProjection()
+{}
+
 void OrthogonalProjection::UpdateMatrix() const
 {
     // For the math behind this function,
