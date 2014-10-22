@@ -19,6 +19,26 @@ Rotation::Rotation(Vector const& planar1, Vector const& planar2, float angle)
 , m_Angle(angle)
 {}
 
+Rotation::~Rotation()
+{}
+
+Vector const&
+Rotation::GetPlanar1() const
+{
+    return m_Planar1;
+}
+
+Vector const&
+Rotation::GetPlanar2() const
+{
+    return m_Planar2;
+}
+
+float
+Rotation::GetAngle() const
+{
+    return m_Angle;
+}
 
 void Rotation::SetPlanar1(Vector const& value)
 {
