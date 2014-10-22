@@ -30,6 +30,20 @@ namespace Transformation
  */
 class Transformation
 {
+public:
+    Transformation();
+
+    virtual
+    ~Transformation();
+
+    /**
+     * Returns the matrix that represents the linear transformation.
+     *
+     * @return The matrix.
+     */
+    virtual Matrix const&
+    GetMatrix() const;
+
 protected:
     /**
      * The matrix that represents the transformation.
@@ -55,22 +69,8 @@ protected:
      * rarely needed for some transformations.
      */
     virtual void UpdateMatrix() const = 0;
-public:
-    Transformation();
-
-    virtual
-    ~Transformation();
-
-    /**
-     * Returns the matrix that represents the linear transformation.
-     *
-     * @return The matrix.
-     */
-    virtual Matrix const&
-    GetMatrix() const;
 
 };
-
 
 }
 }
