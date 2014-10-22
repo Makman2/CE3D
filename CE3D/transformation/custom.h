@@ -20,19 +20,20 @@ class Custom : public Transformation
 {
 protected:
     void
-    UpdateMatrix() const override
-    {}
+    UpdateMatrix() const override;
 
 public:
-    Custom() {}
+    Custom();
+
     /**
      * Instantiates a new object.
      *
      * @param matrix: The matrix to initialize the class with.
      */
     Custom(Matrix const& matrix);
+
     virtual
-    ~Custom() {};
+    ~Custom();
 
     /**
      * Multiplies the matrix of the transformation into the own matrix.
@@ -41,14 +42,15 @@ public:
      */
     void
     AppendTransformation(Transformation const& Trafo);
+
     /**
      * Sets the transformation matrix.
      *
      * @param value: The new matrix.
      */
     void
-    SetMatrix(Matrix const& value)
-    { m_Matrix = value; }
+    SetMatrix(Matrix const& value);
+
 };
 
 }
