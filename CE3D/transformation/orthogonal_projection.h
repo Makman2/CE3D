@@ -24,17 +24,6 @@ namespace Transformation
  */
 class OrthogonalProjection : public Transformation
 {
-private:
-    /**
-     * The vectors describing the projection.
-     */
-    std::vector<Vector> m_ProjectionVectors;
-
-protected:
-    // inherited documentation comment
-    virtual void
-    UpdateMatrix() const override;
-
 public:
     OrthogonalProjection();
     /**
@@ -80,6 +69,17 @@ public:
      */
     void
     SetProjectionVectors(Vector const& direction);
+
+protected:
+    // inherited documentation comment
+    virtual void
+    UpdateMatrix() const override;
+
+private:
+    /**
+     * The vectors describing the projection.
+     */
+    std::vector<Vector> m_ProjectionVectors;
 
 };
 
