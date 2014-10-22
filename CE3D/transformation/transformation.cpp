@@ -7,10 +7,12 @@ namespace CE3D
 namespace Transformation
 {
 
-
 Transformation::Transformation()
 : m_Matrix()
 , m_NeedUpdate(true)
+{}
+
+Transformation::~Transformation()
 {}
 
 Matrix const& Transformation::GetMatrix() const

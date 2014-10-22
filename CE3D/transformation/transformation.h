@@ -57,8 +57,9 @@ protected:
     virtual void UpdateMatrix() const = 0;
 public:
     Transformation();
+
     virtual
-    ~Transformation() {};
+    ~Transformation();
 
     /**
      * Returns the matrix that represents the linear transformation.
