@@ -43,8 +43,9 @@ public:
      * n-th dimension in the n-th row.
      */
     Scale(Vector const& scale);
+
     virtual
-    ~Scale() {}
+    ~Scale();
 
     /**
      * Sets the scale-vector.
@@ -62,8 +63,7 @@ public:
      * n-th dimension in the n-th row.
      */
     Vector const&
-    GetScale() const
-    { return m_Scale; }
+    GetScale() const;
 };
 
 }

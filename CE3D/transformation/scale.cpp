@@ -16,6 +16,9 @@ Scale::Scale(Vector const& scale)
 : m_Scale(scale)
 {}
 
+Scale::~Scale()
+{}
+
 void Scale::UpdateMatrix() const
 {
     m_Matrix.resize(m_Scale.size(), m_Scale.size());
@@ -30,6 +33,12 @@ void Scale::UpdateMatrix() const
                 m_Matrix(row, column) = 0.0f;
         }
     }
+}
+
+Vector const&
+Scale::GetScale() const
+{
+    return m_Scale;
 }
 
 void Scale::SetScale(Vector const& scale)
