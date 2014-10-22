@@ -18,10 +18,6 @@ namespace Transformation
  */
 class Custom : public Transformation
 {
-protected:
-    void
-    UpdateMatrix() const override;
-
 public:
     Custom();
 
@@ -50,6 +46,11 @@ public:
      */
     void
     SetMatrix(Matrix const& value);
+
+protected:
+    // Inherited documentation.
+    void
+    UpdateMatrix() const override;
 
 };
 
