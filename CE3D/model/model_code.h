@@ -12,16 +12,16 @@
 namespace CE3D
 {
 
-template <typename t_Material>
-Model<t_Material>::Model()
+template <typename MaterialType>
+Model<MaterialType>::Model()
 : m_Vectors()
 , m_Vertices()
 , m_Visible(true)
 , m_Name("")
 { }
 
-template <typename t_Material>
-void Model<t_Material>::Transform
+template <typename MaterialType>
+void Model<MaterialType>::Transform
 (Transformation::Transformation const& transformation)
 {
     Matrix matrix = transformation.GetMatrix();
@@ -33,8 +33,8 @@ void Model<t_Material>::Transform
     }
 }
 
-template <typename t_Material>
-void Model<t_Material>::Translate
+template <typename MaterialType>
+void Model<MaterialType>::Translate
 (Transformation::Translation const& translation)
 {
     Vector translationvec = translation.GetTranslation();
@@ -46,8 +46,8 @@ void Model<t_Material>::Translate
     }
 }
 
-template <typename t_Material>
-void Model<t_Material>::Scale(const ModelDataType factor)
+template <typename MaterialType>
+void Model<MaterialType>::Scale(const ModelDataType factor)
 {
     // And again it's more performant not to use matrices.
     for (auto& it : GetVectors())
@@ -56,8 +56,8 @@ void Model<t_Material>::Scale(const ModelDataType factor)
     }
 }
 
-template <typename t_Material>
-void Model<t_Material>::Scale(Transformation::Scale const& scale)
+template <typename MaterialType>
+void Model<MaterialType>::Scale(Transformation::Scale const& scale)
 {
     Vector scalevec = scale.GetScale();
     for (auto& it : GetVectors())
@@ -66,8 +66,8 @@ void Model<t_Material>::Scale(Transformation::Scale const& scale)
     }
 }
 
-template <typename t_Material>
-void Model<t_Material>::Rotate(Transformation::Rotation const& rotation)
+template <typename MaterialType>
+void Model<MaterialType>::Rotate(Transformation::Rotation const& rotation)
 {
     this->Transform(rotation);
 }

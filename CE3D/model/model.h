@@ -18,7 +18,7 @@ namespace CE3D
 /**
  * TODO
  */
-template <typename t_Material>
+template <typename MaterialType>
 class Model : public Transformation::ITransformable
 {
 private:
@@ -29,7 +29,7 @@ private:
     /**
      * The vertices.
      */
-    boost::container::vector<Vertex<t_Material> > m_Vertices;
+    boost::container::vector<Vertex<MaterialType> > m_Vertices;
     /**
      * True if the model is visible.
      */
@@ -119,7 +119,7 @@ public:
      *
      * @return a list of all vertices in this model
      */
-    boost::container::vector<Vertex<t_Material> >&
+    boost::container::vector<Vertex<MaterialType> >&
     GetVertices()
     { return m_Vertices; }
 
@@ -128,7 +128,7 @@ public:
      *
      * @return a list of all vertices in this model (const)
      */
-    boost::container::vector<Vertex<t_Material> > const&
+    boost::container::vector<Vertex<MaterialType> > const&
     GetVertices() const
     { return m_Vertices; }
 

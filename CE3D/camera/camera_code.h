@@ -7,21 +7,21 @@
 
 namespace CE3D {
 
-template <typename t_Material>
-Camera<t_Material>::~Camera()
+template <typename MaterialType>
+Camera<MaterialType>::~Camera()
 {}
 
-template <typename t_Material>
-std::shared_ptr<World<t_Material> const>
-Camera<t_Material>::GetWorld() const
+template <typename MaterialType>
+std::shared_ptr<World<MaterialType> const>
+Camera<MaterialType>::GetWorld() const
 {
     return m_World;
 }
 
-template <typename t_Material>
+template <typename MaterialType>
 void
-Camera<t_Material>::SetWorld(
-    std::shared_ptr<World<t_Material> const> const copy)
+Camera<MaterialType>::SetWorld(
+    std::shared_ptr<World<MaterialType> const> const copy)
 {
     m_World = copy;
 }

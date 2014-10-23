@@ -15,7 +15,7 @@ namespace CE3D
 /**
  * TODO
  */
-template <typename t_Material>
+template <typename MaterialType>
 class World : public Transformation::ITransformable
 {
 public:
@@ -44,7 +44,7 @@ public:
      *
      * @return the list (constant)
      */
-    virtual std::vector<std::shared_ptr<Model<t_Material> > > const&
+    virtual std::vector<std::shared_ptr<Model<MaterialType> > > const&
     GetModels() const
     { return m_Models; }
 
@@ -54,13 +54,13 @@ public:
      * @param Model a shared_ptr to the Model to add.
      */
     virtual void
-    AddModel(std::shared_ptr<Model<t_Material> > Model)
+    AddModel(std::shared_ptr<Model<MaterialType> > Model)
     { m_Models.push_back(Model); }
 private:
     /**
      * Every model in this world.
      */
-    std::vector<std::shared_ptr<Model<t_Material> > > m_Models;
+    std::vector<std::shared_ptr<Model<MaterialType> > > m_Models;
 };
 
 }

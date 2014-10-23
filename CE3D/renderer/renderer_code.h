@@ -9,16 +9,16 @@
 
 namespace CE3D {
 
-template <typename t_Material>
-Renderer<t_Material>::~Renderer()
+template <typename MaterialType>
+Renderer<MaterialType>::~Renderer()
 {}
 
-template <typename t_Material>
-void Renderer<t_Material>::Render(const Camera<t_Material>& camera) const
+template <typename MaterialType>
+void Renderer<MaterialType>::Render(const Camera<MaterialType>& camera) const
 {
     ClearBuffer();
 
-    typename std::unique_ptr<World<t_Material> > World(camera.Paint());
+    typename std::unique_ptr<World<MaterialType> > World(camera.Paint());
 
     for (auto& it : World->GetModels())
     {

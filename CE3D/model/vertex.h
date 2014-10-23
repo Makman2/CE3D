@@ -16,17 +16,17 @@ using VertexIndexType = std::uint32_t;
  * A "thing" out of which a model is made.
  *
  * A vertex is typically a point, a line or a triangle. It holds also some
- * other properties via the template t_Material. (May contain transparency,
+ * other properties via the template MaterialType. (May contain transparency,
  * color and all these things.)
  */
-template <typename t_Material>
+template <typename MaterialType>
 class Vertex
 {
 private:
     /**
      * Contains the material information.
      */
-    t_Material m_Property;
+    MaterialType m_Property;
 
     /**
      * Contains the indexes of the vectors that represent the edges of the
@@ -40,7 +40,7 @@ public:
      * @param Input Your material information.
      */
     void
-    SetMaterial(t_Material const& Input)
+    SetMaterial(MaterialType const& Input)
     { m_Property = Input; }
 
     /**
@@ -48,7 +48,7 @@ public:
      *
      * @return the material.
      */
-    t_Material
+    MaterialType
     GetMaterial() const
     { return m_Property; }
 

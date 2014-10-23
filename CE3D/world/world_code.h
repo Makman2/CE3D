@@ -8,9 +8,9 @@
 namespace CE3D
 {
 
-template <typename t_Material>
+template <typename MaterialType>
 void
-World<t_Material>::Transform(
+World<MaterialType>::Transform(
     Transformation::Transformation const& transformation)
 {
     for (auto& it : GetModels())
@@ -19,9 +19,9 @@ World<t_Material>::Transform(
     }
 }
 
-template <typename t_Material>
+template <typename MaterialType>
 void
-World<t_Material>::Translate(
+World<MaterialType>::Translate(
     Transformation::Translation const& translation)
 {
     for (auto& it : GetModels())
@@ -30,9 +30,9 @@ World<t_Material>::Translate(
     }
 }
 
-template <typename t_Material>
+template <typename MaterialType>
 void
-World<t_Material>::Scale(
+World<MaterialType>::Scale(
     const ModelDataType factor)
 {
     for (auto& it : GetModels())
@@ -41,9 +41,9 @@ World<t_Material>::Scale(
     }
 }
 
-template <typename t_Material>
+template <typename MaterialType>
 void
-World<t_Material>::Scale(
+World<MaterialType>::Scale(
     Transformation::Scale const& scale)
 {
 
@@ -53,8 +53,8 @@ World<t_Material>::Scale(
     }
 }
 
-template <typename t_Material>
-void World<t_Material>::Rotate(
+template <typename MaterialType>
+void World<MaterialType>::Rotate(
     Transformation::Rotation const& rotation)
 {
     for (auto& it : GetModels())

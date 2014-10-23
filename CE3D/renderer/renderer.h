@@ -13,7 +13,7 @@ namespace CE3D
 /**
  * Represents a renderer that can render the view of a camera.
  */
-template <typename t_Material>
+template <typename MaterialType>
 class Renderer
 {
 private:
@@ -24,8 +24,8 @@ private:
      * @param Mod The model containing the vertex.
      */
     virtual void
-    RenderVertex(Vertex<t_Material> const& Vert,
-                 Model<t_Material>  const& Mod) const = 0;
+    RenderVertex(Vertex<MaterialType> const& Vert,
+                 Model<MaterialType>  const& Mod) const = 0;
     /**
      * Will be invoked before the invocations of RenderVertex.
      *
@@ -47,7 +47,7 @@ public:
      * @param camera: The view to render.
      */
     virtual void
-    Render(Camera<t_Material> const& camera) const;
+    Render(Camera<MaterialType> const& camera) const;
 
     virtual
     ~Renderer();
