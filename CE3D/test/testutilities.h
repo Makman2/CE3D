@@ -67,6 +67,15 @@ CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
                           CE3D::Matrix::size_type n,
                           unsigned int            seed);
 
+/**
+ * Creates a matrix with randomized values. The initial seed is calculated from
+ * time when function executes.
+ *
+ * @param m    The row dimension of the new matrix.
+ * @param n    The column dimension of the new matrix.
+ */
+CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
+                          CE3D::Matrix::size_type n);
 }
 }
 

@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <stdlib.h>
+#include <boost/date_time.hpp>
 
 namespace CE3D
 {
@@ -99,6 +100,18 @@ CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
             mat(x, y) = rand();
 
     return mat;
+}
+
+CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
+                          CE3D::Matrix::size_type n)
+{
+    // Get the time since epoch (1.1.1970).
+    boost::posix_time::ptime today =
+        boost::posix_time::second_clock::local_time();
+    boost::posix_time::ptime epoch(boost::gregorian::date(1970, 1, 1));
+    auto since = today - epoch;
+
+    return RandomMatrix(m, n, since.total_seconds());
 }
 
 }
