@@ -27,10 +27,10 @@ BOOST_AUTO_TEST_CASE(TestContainerFunctions)
 {
     // Generate random matrices.
     std::vector<CE3D::Matrix> matrices;
-    matrices.push_back(RandomMatrix(4, 4, 92823));
-    matrices.push_back(RandomMatrix(4, 4, 218983));
-    matrices.push_back(RandomMatrix(4, 4, 85772));
-    matrices.push_back(RandomMatrix(4, 4, 58));
+    matrices.push_back(RandomMatrix(4, 4));
+    matrices.push_back(RandomMatrix(4, 4));
+    matrices.push_back(RandomMatrix(4, 4));
+    matrices.push_back(RandomMatrix(4, 4));
 
     CE3D::Transformation::TransformationChain chain;
     // Test PushBack() and Back()
