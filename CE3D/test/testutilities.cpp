@@ -42,6 +42,9 @@ bool IsMatrixEqual(CE3D::Matrix const&       a,
                     continue;
             }
 
+            // Uses relative tolerance for checking. Better for matrices with
+            // large numbers because of the floating point error that plays a
+            // role when performing math with them.
             if (a(i, j) / b(i, j) < (1 - tolerance) ||
                     a(i, j) / b(i, j) > (1 + tolerance))
                 return false;
@@ -81,6 +84,9 @@ bool IsVectorEqual(CE3D::Vector const&       a,
                 continue;
         }
 
+        // Uses relative tolerance for checking. Better for vectors with
+        // large numbers because of the floating point error that plays a
+        // role when performing math with them.
         if (a[i] / b[i] < (1 - tolerance) || a[i] / b[i] > (1 + tolerance))
             return false;
     }

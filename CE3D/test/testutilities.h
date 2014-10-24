@@ -21,7 +21,7 @@ namespace Testing
 bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b);
 
 /**
- * Checks if the given matrices are nearly equal.
+ * Checks if the given matrices are nearly equal. Tests for relative equality.
  *
  * @param a The first matrix.
  * @param b The second matrix.
@@ -43,7 +43,7 @@ bool IsMatrixEqual(CE3D::Matrix const&       a,
 bool IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b);
 
 /**
- * Checks if the given vectors are nearly equal.
+ * Checks if the given vectors are nearly equal. Tests for relative equality.
  *
  * @param a The first vector.
  * @param b The second vector.
