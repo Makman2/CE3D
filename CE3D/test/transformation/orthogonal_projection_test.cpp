@@ -8,10 +8,9 @@
 
 #include "CE3D/util/stdinc.h"
 
-#include "CE3D/test/transformation/transformation_test.h"
-
+#include "CE3D/test/testutilities.h"
+#include "CE3D/util/boost_extensions.h"
 #include "CE3D/transformation/orthogonal_projection.h"
-#include "CE3D/transformation/orthogonal_depth_projection.h"
 
 
 namespace CE3D
@@ -29,14 +28,6 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionConstruction)
     CE3D::Transformation::OrthogonalProjection *TestUnit;
     BOOST_REQUIRE_NO_THROW(TestUnit =
         new CE3D::Transformation::OrthogonalProjection());
-    BOOST_REQUIRE_NO_THROW(delete TestUnit);
-}
-
-BOOST_AUTO_TEST_CASE(TestOrthogonalDepthProjectionConstruction)
-{
-    CE3D::Transformation::OrthogonalProjection *TestUnit;
-    BOOST_REQUIRE_NO_THROW(TestUnit =
-        new CE3D::Transformation::OrthogonalDepthProjection());
     BOOST_REQUIRE_NO_THROW(delete TestUnit);
 }
 
@@ -70,8 +61,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
 
     BOOST_TEST_MESSAGE("Testing matrix...");
 
-    CE3D::Matrix Comparison =
-        boost::numeric::ublas::matrix<ModelDataType>(2, 3);
+    CE3D::Matrix Comparison = CE3D::Matrix(2, 3);
     Comparison(0, 0) = 0.5f;
     Comparison(0, 1) = 0.0f;
     Comparison(0, 2) = 0.0f;
@@ -79,7 +69,7 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     Comparison(1, 1) = 0.0f;
     Comparison(1, 2) = 1.0f;
 
-    RequireMatrixEquality(Comparison, TestUnit.GetMatrix());
+    BOOST_CHECK(IsMatrixEqual(Comparison, TestUnit.GetMatrix()));
 
     span.clear();
 
@@ -128,8 +118,9 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionGetSet)
     Comparison(2, 2) = 0.5f;
     Comparison(2, 3) = -0.5f;
 
-    RequireMatrixEquality(Comparison, TestUnit.GetMatrix(), 0.00001);
-
+    auto nullified_matrix = TestUnit.GetMatrix();
+    boost::numeric::ublas::make_zero(nullified_matrix, 0.000001);
+    BOOST_CHECK(IsMatrixEqual(Comparison, nullified_matrix, 0.001));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

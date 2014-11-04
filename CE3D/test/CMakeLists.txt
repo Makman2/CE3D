@@ -1,7 +1,10 @@
+set(CE3D_TEST_ROOT ${CMAKE_CURRENT_LIST_DIR})
+
 # Adds a new test target
 function(AddCE3DTest target)
     add_executable(${target}
         ${ARGN}
+        ${CE3D_TEST_ROOT}/testutilities
         )
 
     target_link_libraries(${target}

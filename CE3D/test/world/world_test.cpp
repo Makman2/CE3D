@@ -23,7 +23,10 @@ BOOST_FIXTURE_TEST_SUITE(World, TestEnvironment)
  */
 BOOST_AUTO_TEST_CASE(TestWorldConstruction)
 {
-    CE3D::World<CE3D::ConsoleMaterial> TestWorld;
+    std::shared_ptr<CE3D::World<CE3D::ConsoleMaterial> > TestUnit;
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::World<CE3D::ConsoleMaterial>()));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
 }
 
 /**
@@ -33,7 +36,7 @@ BOOST_AUTO_TEST_CASE(TestWorldGetSet)
 {
     CE3D::World<CE3D::ConsoleMaterial> TestWorld;
 
-    BOOST_REQUIRE_EQUAL(TestWorld.GetModels().size(), 0);
+    BOOST_CHECK_EQUAL(TestWorld.GetModels().size(), 0);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

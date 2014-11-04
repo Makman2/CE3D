@@ -1,63 +1,102 @@
 // This file is part of CE3D. License: GPL3
 
-#include "CE3D/test/transformation/transformation_test.h"
+#include "CE3D/test/testutilities.h"
 
 #include <boost/test/unit_test.hpp>
 #include <stdlib.h>
+#include <boost/date_time.hpp>
 
 namespace CE3D
 {
 namespace Testing
 {
 
-void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b)
+bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b)
 {
-    BOOST_REQUIRE_EQUAL(a.size1(), b.size1());
-    BOOST_REQUIRE_EQUAL(a.size2(), b.size2());
-    for (CE3D::ModelIdxType i = 0; i < a.size1(); ++i)
-    {
-        for (CE3D::ModelIdxType j = 0; j < a.size2(); ++j)
+    if ((a.size1() != b.size1()) || (a.size2() != b.size2()))
+        return false;
+
+    for (CE3D::Matrix::size_type i = 0; i < a.size1(); i++)
+        for (CE3D::Matrix::size_type j = 0; j < a.size2(); j++)
+            if (a(i, j) != b(i, j))
+                return false;
+
+    return true;
+}
+
+bool IsMatrixEqual(CE3D::Matrix const&       a,
+                   CE3D::Matrix const&       b,
+                   CE3D::ModelDataType const tolerance)
+{
+    if ((a.size1() != b.size1()) || (a.size2() != b.size2()))
+        return false;
+
+    for (CE3D::Matrix::size_type i = 0; i < a.size1(); i++)
+        for (CE3D::Matrix::size_type j = 0; j < a.size2(); j++)
         {
-            BOOST_REQUIRE_EQUAL(a(i,j), b(i,j));
+            if (b(i, j) == 0)
+            {
+                if (a(i, j) != 0)
+                    return false;
+                else
+                    continue;
+            }
+
+            // Uses relative tolerance for checking. Better for matrices with
+            // large numbers because of the floating point error that plays a
+            // role when performing math with them.
+            if (a(i, j) / b(i, j) < (1 - tolerance) ||
+                    a(i, j) / b(i, j) > (1 + tolerance))
+                return false;
         }
-    }
+
+    return true;
 }
 
-void RequireMatrixEquality(CE3D::Matrix const a, CE3D::Matrix const b,
-                           CE3D::ModelDataType const tolerance)
+
+
+bool IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b)
 {
-    BOOST_REQUIRE_EQUAL(a.size1(), b.size1());
-    BOOST_REQUIRE_EQUAL(a.size2(), b.size2());
-    for (CE3D::ModelIdxType i = 0; i < a.size1(); ++i)
+    if (a.size() != b.size())
+        return false;
+
+    for (CE3D::Matrix::size_type i = 0; i < a.size(); i++)
+        if (a[i] != b[i])
+            return false;
+
+    return true;
+}
+
+bool IsVectorEqual(CE3D::Vector const&       a,
+                   CE3D::Vector const&       b,
+                   CE3D::ModelDataType const tolerance)
+{
+    if (a.size() != b.size())
+        return false;
+
+    for (CE3D::Matrix::size_type i = 0; i < a.size(); i++)
     {
-        for (CE3D::ModelIdxType j = 0; j < a.size2(); ++j)
+        if (b[i] == 0)
         {
-            BOOST_REQUIRE_SMALL(std::abs(a(i,j) - b(i,j)), tolerance);
+            if (a[i] != 0)
+                return false;
+            else
+                continue;
         }
+
+        // Uses relative tolerance for checking. Better for vectors with
+        // large numbers because of the floating point error that plays a
+        // role when performing math with them.
+        if (a[i] / b[i] < (1 - tolerance) || a[i] / b[i] > (1 + tolerance))
+            return false;
     }
+    
+    return true;
 }
 
-void RequireVectorEquality(CE3D::Vector const a, CE3D::Vector const b)
-{
-    BOOST_REQUIRE_EQUAL(a.size(), b.size());
-    for(CE3D::ModelIdxType i = 0; i < a.size(); ++i)
-    {
-        BOOST_REQUIRE_EQUAL(a[i], b[i]);
-    }
-}
-
-void RequireVectorEquality(CE3D::Vector const a, CE3D::Vector const b,
-                           CE3D::ModelDataType const tolerance)
-{
-    BOOST_REQUIRE_EQUAL(a.size(), b.size());
-    for(CE3D::ModelIdxType i = 0; i < a.size(); ++i)
-    {
-        BOOST_REQUIRE_SMALL(std::abs(a[i] - b[i]), tolerance);
-    }
-}
-
-CE3D::Matrix RandomMatrix
-    (CE3D::Matrix::size_type m, CE3D::Matrix::size_type n, unsigned int seed)
+CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
+                          CE3D::Matrix::size_type n,
+                          unsigned int            seed)
 {
     CE3D::Matrix mat(m, n);
     srand(seed);
@@ -67,6 +106,18 @@ CE3D::Matrix RandomMatrix
             mat(x, y) = rand();
 
     return mat;
+}
+
+CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
+                          CE3D::Matrix::size_type n)
+{
+    // Get the time since epoch (1.1.1970).
+    boost::posix_time::ptime today =
+        boost::posix_time::second_clock::local_time();
+    boost::posix_time::ptime epoch(boost::gregorian::date(1970, 1, 1));
+    auto since = today - epoch;
+
+    return RandomMatrix(m, n, since.total_seconds());
 }
 
 }

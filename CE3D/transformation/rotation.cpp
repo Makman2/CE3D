@@ -81,7 +81,7 @@ void Rotation::UpdateMatrix() const
         boost::numeric::ublas::outer_prod(normvec2, normvec1);
 
 
-    boost::numeric::ublas::identity_matrix<ModelDataType> E(w.size1());
+    IdentityMatrix E(w.size1());
 
     m_Matrix = (cos(m_Angle) - 1.0f) * v + sin(m_Angle) * w + E;
 }

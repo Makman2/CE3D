@@ -13,10 +13,6 @@ namespace CE3D
  * Data type for model vectors.
  */
 using ModelDataType = float;
-/**
- * Index type for model vectors.
- */
-using ModelIdxType = std::uint32_t;
 
 }
 

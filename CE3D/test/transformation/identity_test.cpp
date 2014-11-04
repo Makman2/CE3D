@@ -8,9 +8,8 @@
 
 #include "CE3D/util/stdinc.h"
 
+#include "CE3D/test/testutilities.h"
 #include "CE3D/transformation/identity.h"
-
-#include "CE3D/test/transformation/transformation_test.h"
 
 namespace CE3D
 {
@@ -36,14 +35,14 @@ BOOST_AUTO_TEST_CASE(TestIdentityMatrix)
 {
     CE3D::Transformation::Identity TestUnit(3, 3);
 
-    boost::numeric::ublas::identity_matrix<Matrix::value_type> compare(3, 3);
+    CE3D::IdentityMatrix compare(3, 3);
 
-    RequireMatrixEquality(TestUnit.GetMatrix(), compare);
+    BOOST_CHECK(IsMatrixEqual(TestUnit.GetMatrix(), compare));
 
     CE3D::Transformation::Identity TestUnit2(2, 4);
-    boost::numeric::ublas::identity_matrix<Matrix::value_type> compare2(2, 4);
+    CE3D::IdentityMatrix compare2(2, 4);
 
-    RequireMatrixEquality(TestUnit2.GetMatrix(), compare2);
+    BOOST_CHECK(IsMatrixEqual(TestUnit2.GetMatrix(), compare2));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

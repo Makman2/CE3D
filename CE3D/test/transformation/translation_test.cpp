@@ -8,9 +8,8 @@
 
 #include "CE3D/util/stdinc.h"
 
+#include "CE3D/test/testutilities.h"
 #include "CE3D/transformation/translation.h"
-
-#include "CE3D/test/transformation/transformation_test.h"
 
 namespace CE3D
 {
@@ -45,17 +44,16 @@ BOOST_AUTO_TEST_CASE(TestTranslationGetSet)
 
     TestUnit.SetTranslation(Shift);
 
-    CE3D::Matrix Comparision =
-        boost::numeric::ublas::identity_matrix<ModelDataType>(4, 4);
+    CE3D::Matrix Comparision = CE3D::IdentityMatrix(4, 4);
     Comparision(0, 3) = 4;
     Comparision(1, 3) = 2;
     Comparision(2, 3) = 7;
 
-    RequireMatrixEquality(Comparision, TestUnit.GetMatrix());
+    BOOST_CHECK(IsMatrixEqual(Comparision, TestUnit.GetMatrix()));
 
-    RequireVectorEquality(TestUnit.GetTranslation(), Shift);
+    BOOST_CHECK(IsVectorEqual(TestUnit.GetTranslation(), Shift));
 
-    RequireVectorEquality(Shift, OrigShift);
+    BOOST_CHECK(IsVectorEqual(Shift, OrigShift));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

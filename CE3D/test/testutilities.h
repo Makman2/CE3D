@@ -12,34 +12,70 @@ namespace Testing
 {
 
 /**
- * Invokes BOOST_REQUIRE_EQUAL for each matrix element.
+ * Checks if the given matrices are equal.
+ *
+ * @param a The first matrix.
+ * @param b The second matrix.
+ * @returns true if both are equal, false if not.
  */
-void RequireMatrixEquality(CE3D::Matrix const, CE3D::Matrix const);
+bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b);
 
 /**
- * Invokes BOOST_REQUIRE_SMALL for each matrix element.
+ * Checks if the given matrices are nearly equal. Tests for relative equality.
+ *
+ * @param a The first matrix.
+ * @param b The second matrix.
+ * @param tolerance The relative tolerance the matrix-values are allowed to
+ * differ.
+ * @returns true if both are nearly equal, false if not.
  */
-void RequireMatrixEquality
-    (CE3D::Matrix const, CE3D::Matrix const, float tolerance);
+bool IsMatrixEqual(CE3D::Matrix const&       a,
+                   CE3D::Matrix const&       b,
+                   CE3D::ModelDataType const tolerance);
 
 /**
- * Invokes BOOST_REQUIRE_EQUAL for each Vector element.
+ * Checks if the given vectors are equal.
+ *
+ * @param a The first vector.
+ * @param b The second vector.
+ * @returns true if both are equal, false if not.
  */
-void RequireVectorEquality
-    (CE3D::Vector const, CE3D::Vector const);
+bool IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b);
 
 /**
- * Invokes BOOST_REQUIRE_SMALL for each vector element.
+ * Checks if the given vectors are nearly equal. Tests for relative equality.
+ *
+ * @param a The first vector.
+ * @param b The second vector.
+ * @param tolerance The relative tolerance the vector-values are allowed to
+ * differ.
+ * @returns true if both are equal, false if not.
  */
-void RequireVectorEquality
-    (CE3D::Vector const, CE3D::Vector const, float tolerance);
+bool IsVectorEqual(CE3D::Vector const&       a,
+                   CE3D::Vector const&       b,
+                   CE3D::ModelDataType const tolerance);
 
 /**
  * Creates a matrix with randomized values.
+ *
+ * @param m    The row dimension of the new matrix.
+ * @param n    The column dimension of the new matrix.
+ * @param seed A random number to use as starting value
+ *             randomizer-initialization.
  */
-CE3D::Matrix RandomMatrix
-    (CE3D::Matrix::size_type m, CE3D::Matrix::size_type n, unsigned int seed);
+CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
+                          CE3D::Matrix::size_type n,
+                          unsigned int            seed);
 
+/**
+ * Creates a matrix with randomized values. The initial seed is calculated from
+ * time when function executes.
+ *
+ * @param m    The row dimension of the new matrix.
+ * @param n    The column dimension of the new matrix.
+ */
+CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
+                          CE3D::Matrix::size_type n);
 }
 }
 

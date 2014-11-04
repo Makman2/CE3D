@@ -313,6 +313,50 @@ typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
 is_zero(V vec, typename V::value_type precision =
                std::numeric_limits<typename V::value_type>::epsilon());
 
+/**
+ * Makes entries of the given matrix to zero if they are near zero.
+ *
+ * @tparam M The matrix type used. Must derive from
+ *           boost::numeric::ublas::matrix.
+ * @param matrix The matrix to make near zero values to full zero. The matrix
+ *               is modified itself.
+ * @param threshold The threshold value when to make to zero.
+ */
+template<typename M>
+typename std::enable_if<std::is_base_of<matrix<typename M::value_type>,
+    M>::value,
+    void>::type
+make_zero(M& matrix, typename M::value_type threshold =
+                     std::numeric_limits<typename M::value_type>::epsilon());
+
+/**
+ * Makes the entries of the given vector to zero if they are near zero.
+ *
+ * @tparam V The vector type used. Must derive from
+ *           boost::numeric::ublas::vector.
+ * @param vector The vector to make near zero values to absolute zero. The
+ *               The vector is modified itself.
+ * @param threshold The threshold value when to make zero.
+ */
+template<typename V>
+typename std::enable_if<std::is_base_of<vector<typename V::value_type>,
+    V>::value,
+    void>::type
+make_zero(V& vector, typename V::value_type threshold =
+                     std::numeric_limits<typename V::value_type>::epsilon());
+
+/**
+ * Makes the given expression absolute zero if near zero.
+ *
+ * @tparam T Any type to make to zero.
+ * @param value The expression to make to zero. The expression is modified
+ *              itself.
+ * @param threshold The threshold value when make to zero.
+ */
+template<typename T>
+void
+make_zero(T& value, T threshold = std::numeric_limits<T>::epsilon());
+
 }
 }
 }
