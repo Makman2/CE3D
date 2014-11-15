@@ -18,7 +18,7 @@ class Renderer
 {
 private:
     /**
-     * Renders a vertex to the console.
+     * Renders a vertex to the render target.
      *
      * @param Vert The vertex to render.
      * @param Mod The model containing the vertex.
