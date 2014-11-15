@@ -34,7 +34,7 @@ private:
     virtual void
     ClearBuffer() const = 0;
     /**
-     * Will be invoked after the invocations of RenderVertes.
+     * Will be invoked after the invocations of RenderVertex.
      *
      * Since Render is const to the outside your buffer should be mutable.
      */
