@@ -12,426 +12,425 @@
 \author{MAK}
 \date{25.7.2014}
 
-
 \maketitle
-
-
-
-
-
 
 \section{Einleitung}
 
 Eine orthogonale Projektion ist eine mathematische Funktion, die einen Vektor
-\(\vec{v}\in\mathbb{R}\) auf eine (Hyper-)Ebene \(X\) projiziert, also den Vektor aus dem Raum
-\(X\) abbildet, der die k"urzeste Distanz zum abzubildenden Vektor hat.
+\(\vec{v}\in\mathbb{R}\) auf eine (Hyper-)Ebene \(X\) projiziert, also den
+Vektor aus dem Raum \(X\) abbildet, der die k"urzeste Distanz zum abzubildenden
+Vektor hat.
 
-Dieser Artikel besch"aftigt sich im speziellen mit der dazugeh"origen Projektionsmatrix (f"ur die
-Eingliederung in CE3D).
-
-
-
-
-
+Dieser Artikel besch"aftigt sich im speziellen mit der dazugeh"origen
+Projektionsmatrix (f"ur die Eingliederung in CE3D).
 
 \section{Die orthogonale Projektion}
 
 Eine orthogonale Projektion hat folgende Eigenschaften:
 
-	\begin{itemize}
-		\item Der projizierte Vektor \(p(\vec{x})\) ist eine Linearkombination aus den Basisvektoren
-		      \(\vec{v}_1,\vec{v}_2,...,\vec{v}_m\) der Projektionsebene \(X\).
-		\item Der projizierte Vektor abz"uglich des urspr"unglich zu projizierenden Vektors muss
-		      senkrecht sein zur Projektionsebene (\(\lrangle{ p(\vec{x})-\vec{x},\vec{v} } =0\)).
-	\end{itemize}
+    \begin{itemize}
+        \item Der projizierte Vektor \(p(\vec{x})\) ist eine Linearkombination
+              aus den Basisvektoren \(\vec{v}_1,\vec{v}_2,...,\vec{v}_m\) der
+              Projektionsebene \(X\).
+        \item Der projizierte Vektor abz"uglich des urspr"unglich zu
+              projizierenden Vektors muss senkrecht sein zur Projektionsebene
+              (\(\lrangle{ p(\vec{x})-\vec{x},\vec{v} } =0\)).
+    \end{itemize}
 
 Es folgt eine Liste von Definitionen im Rahmen dieses Artikels:
 
-	\begin{itemize}
-		\item Der "ubergeordnete Vektorraum, in dem projiziert wird: \(V\). Die Dimension
-		      des Raums ist definiert als \(dim(V)=n\).
-		\item Die Projektionsebene: \(X=span(\vec{v}_1,\vec{v}_2,...,\vec{v}_m)\). Damit gilt f"ur
-		      die Dimension der Ebene: \(dim(X)=m\).
-		\item Die Projektionsfunktion: \(p(\vec{x})\).
-		      \(p = \left\{\begin{array}{l}\mathbb{R}^n\to \mathbb{R}^n\\\vec{x}\mapsto
-		      p(\vec{x})\end{array} \right.\)
-	\end{itemize}
-
-
-
-
-
+    \begin{itemize}
+        \item Der "ubergeordnete Vektorraum, in dem projiziert wird: \(V\). Die
+              Dimension des Raums ist definiert als \(dim(V)=n\).
+        \item Die Projektionsebene:
+              \(X=span(\vec{v}_1,\vec{v}_2,...,\vec{v}_m)\). Damit gilt f"ur die
+              Dimension der Ebene: \(dim(X)=m\).
+        \item Die Projektionsfunktion: \(p(\vec{x})\).
+              \(p = \left\{\begin{array}{l}\mathbb{R}^n\to \mathbb{R}^n\\\vec{x}
+              \mapsto p(\vec{x})\end{array} \right.\)
+    \end{itemize}
 
 \section{Die Projektionsmatrix}
-Um die Projektionsmatrix herzuleiten, ziehen wir die obigen Bedingungen heran und geben ihnen eine
-verallgemeinerte mathematische Form:
+Um die Projektionsmatrix herzuleiten, ziehen wir die obigen Bedingungen heran
+und geben ihnen eine verallgemeinerte mathematische Form:
 
-	\begin{equation}
-		\begin{array}{l l}
-			\rz{I}  &
-			p(\vec{x}) = \sum_{i=1}^{m}{\mu _i\vec{v_i}}, \quad \mu _i \in \mathbb{R} \\
-			\rz{II} &
-			\lrangle{ p(\vec{x}) - \vec{x}, \vec{v_i} } = 0, \quad \forall i \in \{ w \in
-			  \mathbb{N} | 1 \leq w \leq m \}
-		\end{array}
-	\end{equation}
+    \begin{equation}
+        \begin{array}{l l}
+            \rz{I}  &
+            p(\vec{x}) = \sum_{i=1}^{m}{\mu _i\vec{v_i}}, \quad \mu _i \in
+              \mathbb{R} \\ \rz{II} &
+            \lrangle{ p(\vec{x}) - \vec{x}, \vec{v_i} } = 0, \quad \forall i \in
+              \{ w \in \mathbb{N} | 1 \leq w \leq m \}
+        \end{array}
+    \end{equation}
 
-Die erste Bedingung l"asst sich in die zweite einsetzen und in ein Gleichungssystem umschreiben:
+Die erste Bedingung l"asst sich in die zweite einsetzen und in ein
+Gleichungssystem umschreiben:
 
-	\begin{equation}
-		\lrangle{ \sum_{j=1}^{m}{\mu _j\vec{v_j}} - \vec{x}, \vec{v_i} } = 0, \quad \forall i
-		  \in \{ w \in \mathbb{N} | 1 \leq w \leq m \}
-	\end{equation}
+    \begin{equation}
+        \lrangle{ \sum_{j=1}^{m}{\mu _j\vec{v_j}} - \vec{x}, \vec{v_i} } = 0,
+          \quad \forall i \in \{ w \in \mathbb{N} | 1 \leq w \leq m \}
+    \end{equation}
 
-	\begin{equation}
-		\iff
-		\begin{array}{c c c}
-			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m - \vec{x},
-			  \vec{v}_1 } &
-			= &
-			0 \\
-			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m - \vec{x},
-			  \vec{v}_2 } &
-			= &
-			0 \\
-			\vdots &
-			= &
-			\vdots \\
-			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m - \vec{x},
-			  \vec{v}_m } &
-			= &
-			0
-		\end{array}
-	\end{equation}
+    \begin{equation}
+        \iff
+        \begin{array}{c c c}
+            \lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m
+              \vec{v}_m - \vec{x}, \vec{v}_1 } &
+            = &
+            0 \\
+            \lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m
+              \vec{v}_m - \vec{x},
+              \vec{v}_2 } &
+            = &
+            0 \\
+            \vdots &
+            = &
+            \vdots \\
+            \lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m
+              \vec{v}_m - \vec{x}, \vec{v}_m } &
+            = &
+            0
+        \end{array}
+    \end{equation}
 
 Alle konstanten Faktoren auf die rechte Seite bringen:
 
-	\begin{equation}
-		\iff
-		\begin{array}{c c c}
-			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m,
-			  \vec{v}_1 } & = & \lrangle{ \vec{x}, \vec{v}_1 } \\
-			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m,
-			  \vec{v}_2 } & = & \lrangle{ \vec{x}, \vec{v}_2 } \\
-			\vdots & = & \vdots \\
-			\lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m \vec{v}_m,
-			  \vec{v}_m } & = & \lrangle{ \vec{x}, \vec{v}_m }
-		\end{array}
-	\end{equation}
+    \begin{equation}
+        \iff
+        \begin{array}{c c c}
+            \lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m
+              \vec{v}_m, \vec{v}_1 } & = & \lrangle{ \vec{x}, \vec{v}_1 } \\
+            \lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m
+              \vec{v}_m, \vec{v}_2 } & = & \lrangle{ \vec{x}, \vec{v}_2 } \\
+            \vdots & = & \vdots \\
+            \lrangle{ \mu _1 \vec{v}_1 + \mu _2 \vec{v}_2 + \cdots + \mu _m
+              \vec{v}_m, \vec{v}_m } & = & \lrangle{ \vec{x}, \vec{v}_m }
+        \end{array}
+    \end{equation}
 
 Ausnutzen der Distributivit"at und Homogenit"at ergibt:
 
-	\begin{equation}
-		\iff
-		\begin{array}{c c c}
-			\mu _1 \lrangle{ \vec{v}_1, \vec{v}_1 } + \mu _2 \lrangle{ \vec{v}_2,
-			  \vec{v}_1 } + \cdots + \mu _3 \lrangle{ \vec{v_3}, \vec{v}_1 } &
-			= &
-			\lrangle{ \vec{x}, \vec{v}_1 } \\
-			\mu _1 \lrangle{ \vec{v}_1, \vec{v}_1 } + \mu _2 \lrangle{ \vec{v}_2,
-			  \vec{v}_1 } + \cdots + \mu _3 \lrangle{ \vec{v_3}, \vec{v}_1 } &
-			= &
-			\lrangle{ \vec{x}, \vec{v}_2 } \\
-			\vdots &
-			= &
-			\vdots \\
-			\mu _1 \lrangle{ \vec{v}_1, \vec{v}_1 } + \mu _2 \lrangle{ \vec{v}_2,
-			  \vec{v}_1 } + \cdots + \mu _3 \lrangle{ \vec{v_3}, \vec{v}_1 } &
-			= &
-			\lrangle{ \vec{x}, \vec{v}_m }
-		\end{array}
-	\end{equation}
+    \begin{equation}
+        \iff
+        \begin{array}{c c c}
+            \mu _1 \lrangle{ \vec{v}_1, \vec{v}_1 } + \mu _2 \lrangle{
+              \vec{v}_2, \vec{v}_1 } + \cdots + \mu _3 \lrangle{ \vec{v_3},
+              \vec{v}_1 } &
+            = &
+            \lrangle{ \vec{x}, \vec{v}_1 } \\
+            \mu _1 \lrangle{ \vec{v}_1, \vec{v}_1 } + \mu _2 \lrangle{
+              \vec{v}_2, \vec{v}_1 } + \cdots + \mu _3 \lrangle{ \vec{v_3},
+              \vec{v}_1 } &
+            = &
+            \lrangle{ \vec{x}, \vec{v}_2 } \\
+            \vdots &
+            = &
+            \vdots \\
+            \mu _1 \lrangle{ \vec{v}_1, \vec{v}_1 } + \mu _2 \lrangle{
+              \vec{v}_2, \vec{v}_1 } + \cdots + \mu _3 \lrangle{ \vec{v_3},
+              \vec{v}_1 } &
+            = &
+            \lrangle{ \vec{x}, \vec{v}_m }
+        \end{array}
+    \end{equation}
 
 Dieses Gleichungssystem kann durch eine Matrix wiedergegeben werden:
 
-	\begin{equation}
-		\iff
-		\begin{pmatrix}
-			\lrangle{ \vec{v}_1, \vec{v}_1 } &
-			\lrangle{ \vec{v}_2, \vec{v}_1 } &
-			\cdots &
-			\lrangle{ \vec{v}_m, \vec{v}_1 } \\
-			\lrangle{ \vec{v}_1, \vec{v}_2 } &
-			\lrangle{ \vec{v}_2, \vec{v}_2 } &
-			\cdots &
-			\lrangle{ \vec{v}_m, \vec{v}_2 } \\
-			\vdots & \vdots & \ddots & \vdots \\
-			\lrangle{ \vec{v}_1, \vec{v}_m } &
-			\lrangle{ \vec{v}_2, \vec{v}_m } &
-			\cdots &
-			\lrangle{ \vec{v}_m, \vec{v}_m }
-		\end{pmatrix}
-		\begin{pmatrix}
-			\mu _1 \\
-			\mu _2 \\
-			\vdots \\
-			\mu _m \\
-		\end{pmatrix}
-		=
-		\begin{pmatrix}
-			\lrangle{ \vec{v}_1, \vec{x} } \\
-			\lrangle{ \vec{v}_2, \vec{x} } \\
-			\vdots \\
-			\lrangle{ \vec{v}_m, \vec{x} } \\
-		\end{pmatrix}
-	\end{equation}
+    \begin{equation}
+        \iff
+        \begin{pmatrix}
+            \lrangle{ \vec{v}_1, \vec{v}_1 } &
+            \lrangle{ \vec{v}_2, \vec{v}_1 } &
+            \cdots &
+            \lrangle{ \vec{v}_m, \vec{v}_1 } \\
+            \lrangle{ \vec{v}_1, \vec{v}_2 } &
+            \lrangle{ \vec{v}_2, \vec{v}_2 } &
+            \cdots &
+            \lrangle{ \vec{v}_m, \vec{v}_2 } \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \lrangle{ \vec{v}_1, \vec{v}_m } &
+            \lrangle{ \vec{v}_2, \vec{v}_m } &
+            \cdots &
+            \lrangle{ \vec{v}_m, \vec{v}_m }
+        \end{pmatrix}
+        \begin{pmatrix}
+            \mu _1 \\
+            \mu _2 \\
+            \vdots \\
+            \mu _m \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \lrangle{ \vec{v}_1, \vec{x} } \\
+            \lrangle{ \vec{v}_2, \vec{x} } \\
+            \vdots \\
+            \lrangle{ \vec{v}_m, \vec{x} } \\
+        \end{pmatrix}
+    \end{equation}
 
 Wir erhalten also die Gram'sche Matrix.
 Nun m"ussen wir diese Gleichung so umformen, sodass wir eine Abbildung der Form
 
-	\begin{equation}
-		P\vec{x}=p(\vec{x})
-	\end{equation}
+    \begin{equation}
+        P\vec{x}=p(\vec{x})
+    \end{equation}
 
 bekommen mit \(P\) als zugeh"orige Projektionsmatrix.
-Desweiteren definieren wir zur Vereinfachung die Gramsche Matrix und den Koeffizientenvektor:
+Desweiteren definieren wir zur Vereinfachung die Gramsche Matrix und den
+Koeffizientenvektor:
 
-	\begin{equation}
-		G :=
-		\begin{pmatrix}
-			\lrangle{ \vec{v}_1, \vec{v}_1 } &
-			\lrangle{ \vec{v}_2, \vec{v}_1 } &
-			\cdots &
-			\lrangle{ \vec{v}_m, \vec{v}_1 } \\
-			\lrangle{ \vec{v}_1, \vec{v}_2 } &
-			\lrangle{ \vec{v}_2, \vec{v}_2 } &
-			\cdots &
-			\lrangle{ \vec{v}_m, \vec{v}_2 } \\
-			\vdots & \vdots & \ddots & \vdots \\
-			\lrangle{ \vec{v}_1, \vec{v}_m } &
-			\lrangle{ \vec{v}_2, \vec{v}_m } &
-			\cdots &
-			\lrangle{ \vec{v}_m, \vec{v}_m }
-		\end{pmatrix}
-	\end{equation}
+    \begin{equation}
+        G :=
+        \begin{pmatrix}
+            \lrangle{ \vec{v}_1, \vec{v}_1 } &
+            \lrangle{ \vec{v}_2, \vec{v}_1 } &
+            \cdots &
+            \lrangle{ \vec{v}_m, \vec{v}_1 } \\
+            \lrangle{ \vec{v}_1, \vec{v}_2 } &
+            \lrangle{ \vec{v}_2, \vec{v}_2 } &
+            \cdots &
+            \lrangle{ \vec{v}_m, \vec{v}_2 } \\
+            \vdots & \vdots & \ddots & \vdots \\
+            \lrangle{ \vec{v}_1, \vec{v}_m } &
+            \lrangle{ \vec{v}_2, \vec{v}_m } &
+            \cdots &
+            \lrangle{ \vec{v}_m, \vec{v}_m }
+        \end{pmatrix}
+    \end{equation}
 
-	\begin{equation}
-		\vec{\mu} :=
-		\begin{pmatrix}
-			\mu _1 \\
-			\mu _2 \\
-			\vdots \\
-			\mu _m \\
-		\end{pmatrix}
-	\end{equation}
+    \begin{equation}
+        \vec{\mu} :=
+        \begin{pmatrix}
+            \mu _1 \\
+            \mu _2 \\
+            \vdots \\
+            \mu _m \\
+        \end{pmatrix}
+    \end{equation}
 
-Unser Gleichungssystem wird nach \( \vec{\mu} \) umgeformt und in unsere erste Bedingung f"ur die
-orthogonale Projektion eingesetzt (jeder projizierte Vektor muss eine Linearkombination der Basis
-der Projektionsebene \(X\) sein):
+Unser Gleichungssystem wird nach \( \vec{\mu} \) umgeformt und in unsere erste
+Bedingung f"ur die orthogonale Projektion eingesetzt (jeder projizierte Vektor
+muss eine Linearkombination der Basis der Projektionsebene \(X\) sein):
 
-	\begin{equation}
-		G \vec{\mu} =
-		\begin{pmatrix}
-			\lrangle{ \vec{v}_1, \vec{x} } \\
-			\lrangle{ \vec{v}_2, \vec{x} } \\
-			\vdots \\
-			\lrangle{ \vec{v}_m, \vec{x} } \\
-		\end{pmatrix}
-		\iff G^{-1}
-		\begin{pmatrix}
-			\lrangle{ \vec{v}_1, \vec{x} } \\
-			\lrangle{ \vec{v}_2, \vec{x} } \\
-			\vdots \\
-			\lrangle{ \vec{v}_m, \vec{x} } \\
-		\end{pmatrix} = \vec{\mu}
-	\end{equation}
+    \begin{equation}
+        G \vec{\mu} =
+        \begin{pmatrix}
+            \lrangle{ \vec{v}_1, \vec{x} } \\
+            \lrangle{ \vec{v}_2, \vec{x} } \\
+            \vdots \\
+            \lrangle{ \vec{v}_m, \vec{x} } \\
+        \end{pmatrix}
+        \iff G^{-1}
+        \begin{pmatrix}
+            \lrangle{ \vec{v}_1, \vec{x} } \\
+            \lrangle{ \vec{v}_2, \vec{x} } \\
+            \vdots \\
+            \lrangle{ \vec{v}_m, \vec{x} } \\
+        \end{pmatrix} = \vec{\mu}
+    \end{equation}
 
-Bevor wir einsetzen wird die erste Bedingung auch in eine Matrixform "uberf"uhrt:
+Bevor wir einsetzen wird die erste Bedingung auch in eine Matrixform
+"uberf"uhrt:
 
-	\begin{equation}
-		\sum_{i=1}^{m}{\mu _i \vec{v}_i} = p(\vec{x}) = 
-		\lrangle{\vec{\mu},
-		\begin{pmatrix}
-			\vec{v}_1 \\
-			\vec{v}_2 \\
-			\vdots \\
-			\vec{v}_m
-		\end{pmatrix}
-		} =
-		\begin{pmatrix}
-			\vec{v}_1 &&
-			\vec{v}_2 &&
-			\cdots &&
-			\vec{v}_m
-		\end{pmatrix}
-		\vec{\mu}
-	\end{equation}
+    \begin{equation}
+        \sum_{i=1}^{m}{\mu _i \vec{v}_i} = p(\vec{x}) =
+        \lrangle{\vec{\mu},
+        \begin{pmatrix}
+            \vec{v}_1 \\
+            \vec{v}_2 \\
+            \vdots \\
+            \vec{v}_m
+        \end{pmatrix}
+        } =
+        \begin{pmatrix}
+            \vec{v}_1 &&
+            \vec{v}_2 &&
+            \cdots &&
+            \vec{v}_m
+        \end{pmatrix}
+        \vec{\mu}
+    \end{equation}
 
 Erneut definieren wir zur Vereinfachung:
 
-	\begin{equation}
-		A :=
-		\begin{pmatrix}
-			\vec{v}_1 &&
-			\vec{v}_2 &&
-			\cdots &&
-			\vec{v}_m
-		\end{pmatrix}
-	\end{equation}
+    \begin{equation}
+        A :=
+        \begin{pmatrix}
+            \vec{v}_1 &&
+            \vec{v}_2 &&
+            \cdots &&
+            \vec{v}_m
+        \end{pmatrix}
+    \end{equation}
 
-\(A\) ist also die Matrix, die die Basis unserer Projektionsebene \(X\) enth"alt.
+\(A\) ist also die Matrix, die die Basis unserer Projektionsebene \(X\)
+enth"alt.
 
-Jetzt muss nur noch mathematisch umgeformt werden um die Projektionsmatrix \(P\) zu erhalten:
+Jetzt muss nur noch mathematisch umgeformt werden um die Projektionsmatrix \(P\)
+zu erhalten:
 
-	\begin{equation}
-		p(\vec{x}) = A\vec{\mu} = AG^{-1}
-		\begin{pmatrix}
-			\lrangle{ \vec{v}_1, \vec{x} } \\
-			\lrangle{ \vec{v}_2, \vec{x} } \\
-			\vdots \\
-			\lrangle{ \vec{v}_m, \vec{x} } \\
-			\end{pmatrix}
-		= AG^{-1}
-		\begin{pmatrix}
-			\vec{v}_{1}^{T} \vec{x} \\
-			\vec{v}_{2}^{T} \vec{x} \\
-			\vdots \\
-			\vec{v}_{m}^{T} \vec{x} \\
-		\end{pmatrix}
-		= AG^{-1}A^T x
-	\end{equation}
+    \begin{equation}
+        p(\vec{x}) = A\vec{\mu} = AG^{-1}
+        \begin{pmatrix}
+            \lrangle{ \vec{v}_1, \vec{x} } \\
+            \lrangle{ \vec{v}_2, \vec{x} } \\
+            \vdots \\
+            \lrangle{ \vec{v}_m, \vec{x} } \\
+            \end{pmatrix}
+        = AG^{-1}
+        \begin{pmatrix}
+            \vec{v}_{1}^{T} \vec{x} \\
+            \vec{v}_{2}^{T} \vec{x} \\
+            \vdots \\
+            \vec{v}_{m}^{T} \vec{x} \\
+        \end{pmatrix}
+        = AG^{-1}A^T x
+    \end{equation}
 
 Die Gram'sche Matrix l"asst sich darstellen durch
 
-	\begin{equation}
-		G = A^T A
-	\end{equation}.
+    \begin{equation}
+        G = A^T A
+    \end{equation}.
 
 Damit haben wir unsere endg"ultige Projektionsmatrix zusammen:
 
-	\begin{equation}
-		p(\vec{x}) = A(A^T A)^{-1} A^T \vec{x}
-	\end{equation}
+    \begin{equation}
+        p(\vec{x}) = A(A^T A)^{-1} A^T \vec{x}
+    \end{equation}
 
-	\begin{equation}
-		P = A(A^T A)^{-1} A^T
-	\end{equation}
+    \begin{equation}
+        P = A(A^T A)^{-1} A^T
+    \end{equation}
 
 mit unserer Basis-Matrix
 
-	\begin{equation}
-		A = \begin{pmatrix} \vec{v}_1 && \vec{v}_2 && \cdots && \vec{v}_m \end{pmatrix}
-	\end{equation}.
-
-
-
-
-
+    \begin{equation}
+        A = \begin{pmatrix} \vec{v}_1 && \vec{v}_2 && \cdots && \vec{v}_m
+        \end{pmatrix}
+    \end{equation}.
 
 \section{Projektion auf die Koeffizienten \(\vec{\mu}\) im Projektionsraum}
 
-F"ur 3D-Anwendungen ist die Projektion auf die Koeffizienten mindestens genauso interessant wie
-wichtig, z.B. um die Funktion einer Kamera zu implementieren, die einem die x- und y-Koordinaten
-der Bildobjekte auf dem Sensor bzw. auf dem Display liefert.
+F"ur 3D-Anwendungen ist die Projektion auf die Koeffizienten mindestens genauso
+interessant wie wichtig, z.B. um die Funktion einer Kamera zu implementieren,
+die einem die x- und y-Koordinaten der Bildobjekte auf dem Sensor bzw. auf dem
+Display liefert.
 
-Die Projektionsmatrix f"ur die Koeffizienten l"asst sich schnell herleiten aus der ersten
-Projektionsbedingung (nach der "Ubersetzung in die Matrixform):
+Die Projektionsmatrix f"ur die Koeffizienten l"asst sich schnell herleiten aus
+der ersten Projektionsbedingung (nach der "Ubersetzung in die Matrixform):
 
-	\begin{equation}
-		p(\vec{x}) = A \vec{\mu} = A(A^T A)^{-1} A^T \vec{x}
-	\end{equation}
+    \begin{equation}
+        p(\vec{x}) = A \vec{\mu} = A(A^T A)^{-1} A^T \vec{x}
+    \end{equation}
 
-	\begin{equation}
-		\iff \vec{\mu} = (A^T A)^{-1} A^T \vec{x}
-	\end{equation}
+    \begin{equation}
+        \iff \vec{\mu} = (A^T A)^{-1} A^T \vec{x}
+    \end{equation}
 
 Also ist die Projektionsmatrix f"ur die Koeffizienten:
 
-	\begin{equation}
-		P_{\mu} = (A^T A)^{-1} A^T
-	\end{equation}
-
-
-
-
-
+    \begin{equation}
+        P_{\mu} = (A^T A)^{-1} A^T
+    \end{equation}
 
 \section{Abstand von \(p(\vec{x})\) zu \(\vec{x}\)}
 
-Der Abstand des projizierten Vektors zum urspr"unglichen Vektor ist von zentraler Bedeutung in der
-Computergrafik. Um verschiedene dreidimensionale Objekte auf dem Bildschirm richtig arrangieren zu
-k"onnen, m"ussen deren Abst"ande zur Projektionsebene bekannt sein. Ansonsten w"are bei
+Der Abstand des projizierten Vektors zum urspr"unglichen Vektor ist von
+zentraler Bedeutung in der Computergrafik. Um verschiedene dreidimensionale
+Objekte auf dem Bildschirm richtig arrangieren zu k"onnen, m"ussen deren
+Abst"ande zur Projektionsebene bekannt sein. Ansonsten w"are bei
 "Uberschneidungen von Objekten die 3D-Szene nicht richtig wiedergegeben.
-Deshalb f"ugt man in die Matrix eine zus"atzliche Zeile ein, die die s.g. Tiefe berechnet.
-Allerdings gibt es dabei ein Problem: Der euklidische Abstand der Vektoren ist eine nicht-lineare
-Funktion! Damit ist sie auch nicht in einer Matrix darstellbar.
+Deshalb f"ugt man in die Matrix eine zus"atzliche Zeile ein, die die s.g. Tiefe
+berechnet. Allerdings gibt es dabei ein Problem: Der euklidische Abstand der
+Vektoren ist eine nicht-lineare Funktion! Damit ist sie auch nicht in einer
+Matrix darstellbar.
 
-	\begin{equation}
-		||\vec{x} - p(\vec{x})||_2 = \sqrt{\sum_{i=1}^{n}{(x_i - p(\vec{x})_i)^2}}, \quad \vec{x} =
-		\begin{pmatrix}
-			x_1 \\
-			x_2 \\
-			\vdots \\
-			x_n
-		\end{pmatrix}
-	\end{equation}
+    \begin{equation}
+        ||\vec{x} - p(\vec{x})||_2 = \sqrt{\sum_{i=1}^{n}{
+        (x_i - p(\vec{x})_i)^2}}, \quad \vec{x} = \begin{pmatrix}
+            x_1 \\
+            x_2 \\
+            \vdots \\
+            x_n
+        \end{pmatrix}
+    \end{equation}
 
-Wir ben"otigen eine Funktion, die den Abstand wiedergibt und eine lineare Funktion ist. Deswegen
-verwenden wir die 1-Norm (und ignorieren den komponentenweisen Betrag):
+Wir ben"otigen eine Funktion, die den Abstand wiedergibt und eine lineare
+Funktion ist. Deswegen verwenden wir die 1-Norm (und ignorieren den
+komponentenweisen Betrag):
 
-	\begin{equation}
-		||\vec{x} - p(\vec{x})||_1 = \sum_{i=1}^{n}{x_i - p(\vec{x})_i} = \begin{pmatrix} 1 && \cdots && 1 \end{pmatrix} (\vec{x} - p(\vec{x}))
-	\end{equation}
+    \begin{equation}
+        ||\vec{x} - p(\vec{x})||_1 = \sum_{i=1}^{n}{x_i - p(\vec{x})_i} =
+        \begin{pmatrix} 1 && \cdots && 1 \end{pmatrix} (\vec{x} - p(\vec{x}))
+    \end{equation}
 
-Es existiert eine Matrixform f"ur diese Abbildung, damit ist sie f"ur unsere Zwecke geeignet.
-Anmerkung: Die 1-Norm gibt nicht die exakte Distanz wieder, ist aber ein guter Ersatz, denn es
-werden insbesondere Reihenfolgen der Vektoren (also welcher Vektor ist weiter weg als ein anderer)
-richtig wiedergegeben.
+Es existiert eine Matrixform f"ur diese Abbildung, damit ist sie f"ur unsere
+Zwecke geeignet. Anmerkung: Die 1-Norm gibt nicht die exakte Distanz wieder, ist
+aber ein guter Ersatz, denn es werden insbesondere Reihenfolgen der Vektoren
+(also welcher Vektor ist weiter weg als ein anderer) richtig wiedergegeben.
 
-Diese Idee l"asst sich allerdings erheblich verbessern, indem wir einen Basiswechsel vollziehen in
-unseren Projektionsraum plus den restlichen dazugeh"origen orthonormalen Vektoren. Diese restlichen
-orthonormalen Vektoren bilden die Freiheitsgrade unserer Tiefenfunktion, also projizieren wir unser
-\(\vec{x}\) im Endeffekt auf diese und erhalten damit automatisch die 1-Norm in unserer neuen
-Basis. Die Projektionen m"ussen dann nur noch aufsummiert werden.
+Diese Idee l"asst sich allerdings erheblich verbessern, indem wir einen
+Basiswechsel vollziehen in unseren Projektionsraum plus den restlichen
+dazugeh"origen orthonormalen Vektoren. Diese restlichen orthonormalen Vektoren
+bilden die Freiheitsgrade unserer Tiefenfunktion, also projizieren wir unser
+\(\vec{x}\) im Endeffekt auf diese und erhalten damit automatisch die 1-Norm in
+unserer neuen Basis. Die Projektionen m"ussen dann nur noch aufsummiert werden.
 
 Unsere Tiefenfunktion \(d_1(\cdot,\cdot)\) lautet also:
 
-	\begin{equation}
-		d_1(\vec{x}, p(\vec{x})) = \sum_{k=1}^{j}{\lrangle{ \vec{n}_k, \vec{x} - p(\vec{x}) }},
-		\quad j = n -m
-	\end{equation}
+    \begin{equation}
+        d_1(\vec{x}, p(\vec{x})) = \sum_{k=1}^{j}{\lrangle{ \vec{n}_k, \vec{x}
+        - p(\vec{x}) }}, \quad j = n -m
+    \end{equation}
 
-mit \(\vec{n}\) als restliche zu unserer Projektionsebene \(X\) orthonormale Basisvektoren.
+mit \(\vec{n}\) als restliche zu unserer Projektionsebene \(X\) orthonormale
+Basisvektoren.
 
 Das formen wir erneut um zu einer Matrix:
 
-	\begin{equation}
-		\iff d_1(\vec{x}, p(\vec{x})) = \lrangle{ \vec{x} - p(\vec{x}), \sum_{k=1}^{j}{\vec{n}_k} }
-	\end{equation}
+    \begin{equation}
+        \iff d_1(\vec{x}, p(\vec{x})) = \lrangle{ \vec{x} - p(\vec{x}),
+        \sum_{k=1}^{j}{\vec{n}_k} }
+    \end{equation}
 
-	\begin{equation}
-		\iff d_1(\vec{x}, p(\vec{x})) = (\sum_{k=1}^{j}{\vec{n}_k})^T (\vec{x} - p(\vec{x}))
-	\end{equation}
+    \begin{equation}
+        \iff d_1(\vec{x}, p(\vec{x})) = (\sum_{k=1}^{j}{\vec{n}_k})^T
+        (\vec{x} - p(\vec{x}))
+    \end{equation}
 
-F"ur die Projektionsfunktion setzen wir die Matrixabbildung ein (mit \(E\) als Einheitsmatrix):
+F"ur die Projektionsfunktion setzen wir die Matrixabbildung ein (mit \(E\) als
+Einheitsmatrix):
 
-	\begin{equation}
-		\iff d_1(\vec{x}, p(\vec{x})) = (\sum_{k=1}^{j}{\vec{n}_k})^T (\vec{x} - P\vec{x})
-	\end{equation}
+    \begin{equation}
+        \iff d_1(\vec{x}, p(\vec{x})) = (\sum_{k=1}^{j}{\vec{n}_k})^T (\vec{x}
+        - P\vec{x})
+    \end{equation}
 
-	\begin{equation}
-		\iff d_1(\vec{x}, p(\vec{x})) = (\sum_{k=1}^{j}{\vec{n}_k})^T (E - P) \vec{x}
-	\end{equation}
+    \begin{equation}
+        \iff d_1(\vec{x}, p(\vec{x})) = (\sum_{k=1}^{j}{\vec{n}_k})^T (E - P)
+        \vec{x}
+    \end{equation}
 
-Und wir erhalten unsere Tiefenmatrix \(T\), die wir als letzte Zeile an unsere Projektionsmatrix
-\(P\) anh"angen k"onnen:
+Und wir erhalten unsere Tiefenmatrix \(T\), die wir als letzte Zeile an unsere
+Projektionsmatrix \(P\) anh"angen k"onnen:
 
-	\begin{equation}
-		T = (\sum_{k=1}^{j}{\vec{n}_k})^T (E-P), \quad j = n - m
-	\end{equation}
+    \begin{equation}
+        T = (\sum_{k=1}^{j}{\vec{n}_k})^T (E-P), \quad j = n - m
+    \end{equation}
 
-Also m"ussen alle orthonormalen Restvektoren unseres Projektionsraums \(X\) nur aufsummiert und
-anschlie"send transponiert werden.
+Also m"ussen alle orthonormalen Restvektoren unseres Projektionsraums \(X\) nur
+aufsummiert und anschlie"send transponiert werden.
 
-Diese Tiefenfunktion hat zus"atzlich einen sehr praktischen Vorteil: Ist \(m = n - 1\), also
-\(j = 1\), so f"allt die Tiefenfunktion mit der Hesse'schen Normalform zusammen und gibt dann sogar
-den euklidischen Abstand wieder!
+Diese Tiefenfunktion hat zus"atzlich einen sehr praktischen Vorteil: Ist
+\(m = n - 1\), also \(j = 1\), so f"allt die Tiefenfunktion mit der Hesse'schen
+Normalform zusammen und gibt dann sogar den euklidischen Abstand wieder!
 Da nur noch ein orthonormaler Vektor vorhanden ist, f"allt die Summe weg:
 
-	\begin{equation}
-		d_1(\vec{x}, p(\vec{x})) = \vec{n}^T \vec{x} = \lrangle{ \vec{n}, \vec{x} - P\vec{x}} =
-		d_2(\vec{x}, p(\vec{x}))
-	\end{equation}
+    \begin{equation}
+        d_1(\vec{x}, p(\vec{x})) = \vec{n}^T \vec{x} = \lrangle{ \vec{n},
+        \vec{x} - P\vec{x}} = d_2(\vec{x}, p(\vec{x}))
+    \end{equation}
 
 \end{document}
-
