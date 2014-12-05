@@ -61,6 +61,18 @@ public:
      * @param Material The material information for the point
      */
     void DrawPoint(Vector const& Point, ConsoleMaterial const& Material) const;
+
+    /**
+     * Draws a line to the console.
+     *
+     * @param p1 The starting point of the line.
+     * @param p2 The ending point of the line.
+     * @param material The material information for the point.
+     */
+    void 
+    DrawLine(Vector const&          p1,
+             Vector const&          p2,
+             ConsoleMaterial const& material) const;
 };
 
 } /* namespace CE3D */
