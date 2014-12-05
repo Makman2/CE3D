@@ -16,24 +16,24 @@ ConsoleDrawer::ConsoleDrawer()
     m_ZBuffer.resize(m_Width*m_Height, -1.0/0.0);
 }
 
-void ConsoleDrawer::DrawPoint(Vector          const& Point,
-      __attribute__((unused)) ConsoleMaterial const& Material) const
+void ConsoleDrawer::DrawPoint(Vector const&          point,
+      __attribute__((unused)) ConsoleMaterial const& material) const
 {
-    if (Point.size() < 3)
+    if (point.size() < 3)
     {
         throw std::invalid_argument(
-                "Vector must have at least three components.");
+            "Vector must have at least three components.");
     }
 
-    if (Point[0] >= m_Width || Point[1] >= m_Height)
+    if (point[0] >= m_Width || point[1] >= m_Height)
     {
         return;
     }
 
     ConsoleIdxType x, y;
-    x = static_cast<ConsoleIdxType>(Point[0]);
-    y = static_cast<ConsoleIdxType>(Point[1]);
-    if (m_ZBuffer[CalculateIndex(x, y)] > Point[2])
+    x = static_cast<ConsoleIdxType>(point[0]);
+    y = static_cast<ConsoleIdxType>(point[1]);
+    if (m_ZBuffer[CalculateIndex(x, y)] > point[2])
     {
         return;
     }

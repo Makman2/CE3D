@@ -54,13 +54,14 @@ public:
      * Will also retrieve the current console size.
      */
     ConsoleDrawer();
+
     /**
-     * Draws a point to the console (if there is no other "thing" above)
+     * Draws a point to the console (if there is no other "thing" above).
      *
-     * @param Point The point
-     * @param Material The material information for the point
+     * @param point The point.
+     * @param material The material information for the point.
      */
-    void DrawPoint(Vector const& Point, ConsoleMaterial const& Material) const;
+    void DrawPoint(Vector const& point, ConsoleMaterial const& material) const;
 
     /**
      * Draws a line to the console.
