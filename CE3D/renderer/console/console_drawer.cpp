@@ -38,6 +38,9 @@ void ConsoleDrawer::DrawPoint(Vector const&          point,
         return;
     }
 
+    // Update z-buffer.
+    m_ZBuffer[CalculateIndex(x, y)] = point[2];
+
     ConsoleStringAttributes Attr;
     Attr.SetColor(ConsoleColor::GREEN, ConsoleColor::WHITE);
     m_Console.WriteChar(x, y, Attr, '.');

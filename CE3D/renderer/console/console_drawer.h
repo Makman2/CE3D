@@ -35,8 +35,9 @@ private:
      *
      * If a new point wants to be drawn and there is already one it will only
      * overwrite the old point if he has a higher z value.
+     * Note: This member is mutable.
      */
-    std::vector<ModelDataType> m_ZBuffer;
+    mutable std::vector<ModelDataType> m_ZBuffer;
     /**
      * Calculates the index for the z buffer array.
      *
