@@ -30,7 +30,11 @@ protected:
 public:
     OrthogonalDepthProjection();
     /**
-     * @param lookat The lookat vector to initialize the projection with.
+     * Construct orthogonal depth projection from normal lookat.
+     *
+     * @param lookat The lookat vector to initialize the projection with. This
+     *               is the subspace hyperplane normal, so the dimension of
+     *               the projection space will be 'dim(lookat) - 1'.
      */
     OrthogonalDepthProjection(Vector const& lookat);
 
