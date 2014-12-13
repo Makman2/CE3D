@@ -15,6 +15,11 @@ OrthogonalDepthProjection::OrthogonalDepthProjection(Vector const& lookat)
 : OrthogonalProjection(lookat)
 {}
 
+OrthogonalDepthProjection::OrthogonalDepthProjection(
+    std::vector<Vector> const& projection_vectors)
+    : OrthogonalProjection(projection_vectors)
+{}
+
 OrthogonalDepthProjection::~OrthogonalDepthProjection()
 {}
 

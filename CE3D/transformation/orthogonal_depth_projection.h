@@ -34,6 +34,14 @@ public:
      */
     OrthogonalDepthProjection(Vector const& lookat);
 
+    /**
+     * Construct orthgonal depth projection from multiple spanning vectors.
+     *
+     * @param projection_vector: The spanning vectors of the supspace
+     *                           hyperplane to poject on.
+     */
+    OrthogonalDepthProjection(std::vector<Vector> const& projection_vectors);
+
     virtual
     ~OrthogonalDepthProjection();
 };

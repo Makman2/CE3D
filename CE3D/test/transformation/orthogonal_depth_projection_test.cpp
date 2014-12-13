@@ -42,6 +42,12 @@ BOOST_AUTO_TEST_CASE(TestOrthogonalDepthProjectionConstruction)
         TestUnit.reset(new CE3D::Transformation::OrthogonalDepthProjection(
         CE3D::Vector())));
     BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // (std::vector<Vector>) constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::OrthogonalDepthProjection(
+        std::vector<CE3D::Vector>(3))));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
