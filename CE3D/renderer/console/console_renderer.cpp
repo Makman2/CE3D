@@ -17,13 +17,13 @@ ConsoleRenderer::~ConsoleRenderer()
 {}
 
 void
-ConsoleRenderer::ClearBuffer() const
+ConsoleRenderer::PreRender() const
 {
     m_Console.Clear();
 }
 
 void
-ConsoleRenderer::FlushBuffer() const
+ConsoleRenderer::PostRender() const
 {
     m_Console.Flush();
 }
