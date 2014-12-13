@@ -28,17 +28,17 @@ private:
                  Model<MaterialType>  const& Mod) const = 0;
 
     /**
-     * Will be invoked before the invocations of RenderVertex.
+     * Invoked before Render().
      *
-     * Since Render is const to the outside your buffer should be mutable.
+     * Since Render() is const to the outside your buffer should be mutable.
      */
     virtual void
     PreRender() const = 0;
 
     /**
-     * Will be invoked after the invocations of RenderVertex.
+     * Invoked after Render().
      *
-     * Since Render is const to the outside your buffer should be mutable.
+     * Since Render() is const to the outside your buffer should be mutable.
      */
     virtual void
     PostRender() const = 0;
