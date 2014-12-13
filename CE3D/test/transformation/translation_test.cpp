@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(TestTranslationConstruction)
 }
 
 /**
- * Tests the construction and destruction of Translation.
+ * Tests the getters and setters of Translation.
  */
 BOOST_AUTO_TEST_CASE(TestTranslationGetSet)
 {

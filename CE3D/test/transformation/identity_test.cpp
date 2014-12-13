@@ -19,7 +19,7 @@ namespace Testing
 BOOST_FIXTURE_TEST_SUITE(Identity, TestEnvironment)
 
 /**
- * Tests the construction and destruction of Translation.
+ * Tests the construction and destruction of Identity.
  */
 BOOST_AUTO_TEST_CASE(TestIdentityConstruction)
 {
@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(TestIdentityConstruction)
 }
 
 /**
- * Tests the construction and destruction of Translation.
+ * Tests the calculated identity matrix.
  */
 BOOST_AUTO_TEST_CASE(TestIdentityMatrix)
 {
