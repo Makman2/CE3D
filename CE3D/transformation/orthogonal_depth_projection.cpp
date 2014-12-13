@@ -11,7 +11,7 @@ namespace Transformation
 OrthogonalDepthProjection::OrthogonalDepthProjection()
 {}
 
-OrthogonalDepthProjection::OrthogonalDepthProjection(Vector lookat)
+OrthogonalDepthProjection::OrthogonalDepthProjection(Vector const& lookat)
 : OrthogonalProjection(lookat)
 {}
 

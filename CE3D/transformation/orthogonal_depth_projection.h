@@ -32,7 +32,7 @@ public:
     /**
      * @param lookat The lookat vector to initialize the projection with.
      */
-    OrthogonalDepthProjection(Vector lookat);
+    OrthogonalDepthProjection(Vector const& lookat);
 
     virtual
     ~OrthogonalDepthProjection();
