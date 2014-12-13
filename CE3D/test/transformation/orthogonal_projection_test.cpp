@@ -25,10 +25,30 @@ BOOST_FIXTURE_TEST_SUITE(OrthogonalProjection, TestEnvironment)
  */
 BOOST_AUTO_TEST_CASE(TestOrthogonalProjectionConstruction)
 {
-    CE3D::Transformation::OrthogonalProjection *TestUnit;
-    BOOST_REQUIRE_NO_THROW(TestUnit =
-        new CE3D::Transformation::OrthogonalProjection());
-    BOOST_REQUIRE_NO_THROW(delete TestUnit);
+    std::shared_ptr<CE3D::Transformation::OrthogonalProjection> TestUnit;
+
+    // Parameterless constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::OrthogonalProjection()));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // Copy constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::OrthogonalProjection(
+        CE3D::Transformation::OrthogonalProjection())));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // (Vector) constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::OrthogonalProjection(
+        CE3D::Vector())));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // (std::vector<Vector>) constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::OrthogonalProjection(
+        std::vector<CE3D::Vector>(1))));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
 }
 
 /**

@@ -24,10 +24,24 @@ BOOST_FIXTURE_TEST_SUITE(OrthogonalDepthProjection, TestEnvironment)
  */
 BOOST_AUTO_TEST_CASE(TestOrthogonalDepthProjectionConstruction)
 {
-    CE3D::Transformation::OrthogonalProjection *TestUnit;
-    BOOST_REQUIRE_NO_THROW(TestUnit =
-        new CE3D::Transformation::OrthogonalDepthProjection());
-    BOOST_REQUIRE_NO_THROW(delete TestUnit);
+    std::shared_ptr<CE3D::Transformation::OrthogonalDepthProjection> TestUnit;
+
+    // Parameterless constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::OrthogonalDepthProjection()));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // Copy constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::OrthogonalDepthProjection(
+        CE3D::Transformation::OrthogonalDepthProjection())));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // (Vector) constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::OrthogonalDepthProjection(
+        CE3D::Vector())));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
