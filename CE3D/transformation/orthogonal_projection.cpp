@@ -19,10 +19,10 @@ OrthogonalProjection::OrthogonalProjection(
 : m_ProjectionVectors(projection_vectors)
 {}
 
-OrthogonalProjection::OrthogonalProjection(Vector const& direction)
+OrthogonalProjection::OrthogonalProjection(Vector const& lookat)
 : m_ProjectionVectors()
 {
-    SetProjectionVectors(direction);
+    SetProjectionVectors(lookat);
 }
 
 OrthogonalProjection::~OrthogonalProjection()

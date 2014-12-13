@@ -36,9 +36,9 @@ public:
     /**
      * Instantiates a new object.
      *
-     * @param direction: The direction of the subspace hyperplane.
+     * @param lookat: The normal of the subspace hyperplane.
      */
-    OrthogonalProjection(Vector const& direction);
+    OrthogonalProjection(Vector const& lookat);
 
     virtual
     ~OrthogonalProjection();
