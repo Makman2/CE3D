@@ -11,6 +11,17 @@ namespace CE3D
 namespace Testing
 {
 
+boost::date_time::time_duration
+<boost::posix_time::time_duration, boost::posix_time::time_res_traits>::
+sec_type
+SecondsSinceEpoch()
+{
+    boost::posix_time::ptime today =
+        boost::posix_time::second_clock::local_time();
+    boost::posix_time::ptime epoch(boost::gregorian::date(1970, 1, 1));
+    return (today - epoch).total_seconds();
+}
+
 bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b)
 {
     if ((a.size1() != b.size1()) || (a.size2() != b.size2()))
@@ -118,6 +129,19 @@ CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
     auto since = today - epoch;
 
     return RandomMatrix(m, n, since.total_seconds());
+}
+
+float
+Random(unsigned int seed)
+{
+    srand(seed);
+    return rand();
+}
+
+float
+Random()
+{
+    return Random(SecondsSinceEpoch());
 }
 
 }

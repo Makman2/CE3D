@@ -3,6 +3,8 @@
 #ifndef CE3D_TEST_TESTUTILITIES_H
 #define CE3D_TEST_TESTUTILITIES_H
 
+#include <boost/date_time.hpp>
+
 #include "CE3D/util/CE3D_matrix.h"
 #include "CE3D/util/CE3D_vector.h"
 
@@ -10,6 +12,16 @@ namespace CE3D
 {
 namespace Testing
 {
+
+/**
+ * Gets the time since epoch (1.1.1970).
+ *
+ * @returns The time since epoch in seconds.
+ */
+boost::date_time::time_duration
+<boost::posix_time::time_duration, boost::posix_time::time_res_traits>::
+sec_type
+SecondsSinceEpoch();
 
 /**
  * Checks if the given matrices are equal.
@@ -76,6 +88,25 @@ CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
  */
 CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
                           CE3D::Matrix::size_type n);
+
+/**
+* Generates a random value.
+*
+* @param seed Any value from that random value is calculated.
+* @returns Random value.
+*/
+float
+Random(unsigned int seed);
+
+/**
+ * Generates a random value. The initial seed is calculated from time when
+ * function executes.
+ *
+ * @returns Random value.
+ */
+float
+Random();
+
 }
 }
 
