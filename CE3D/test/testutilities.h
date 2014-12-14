@@ -107,6 +107,26 @@ Random(unsigned int seed);
 float
 Random();
 
+/**
+ * Generates a vector filled with random values.
+ *
+ * @param count The size of the vector.
+ * @param seed  The random generator initialization value.
+ * @returns     A vector filled with random values.
+ */
+std::vector<float>
+RandomVector(std::vector<float>::size_type count, unsigned int seed);
+
+/**
+* Generates a vector filled with random values. The seed is calculated from
+* the current time.
+*
+* @param count The size of the vector.
+* @returns     A vector filled with random values.
+*/
+std::vector<float>
+RandomVector(std::vector<float>::size_type count);
+
 }
 }
 

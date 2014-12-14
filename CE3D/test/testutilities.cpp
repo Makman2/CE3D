@@ -138,5 +138,25 @@ Random()
     return Random(SecondsSinceEpoch());
 }
 
+std::vector<float>
+RandomVector(std::vector<float>::size_type count, unsigned int seed)
+{
+    srand(seed);
+    std::vector<float> vec(count);
+
+    for (std::vector<float>::size_type i = 0; i < vec.size(); i++)
+    {
+        vec[i] = rand();
+    }
+
+    return vec;
+}
+
+std::vector<float>
+RandomVector(std::vector<float>::size_type count)
+{
+    return RandomVector(count, SecondsSinceEpoch());
+}
+
 }
 }
