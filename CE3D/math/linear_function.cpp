@@ -21,6 +21,10 @@ LinearFunction::LinearFunction(float p1x, float p1y, float p2x, float p2y)
 , m_YAxisIntersection(p1y - m_Gradient * p1x)
 {}
 
+LinearFunction::LinearFunction(Vector p1, Vector p2)
+: LinearFunction(p1[0], p1[1], p2[0], p2[1])
+{}
+
 LinearFunction::~LinearFunction()
 {}
 

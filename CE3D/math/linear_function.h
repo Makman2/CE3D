@@ -3,6 +3,8 @@
 #ifndef CE3D_MATH_LINEAR_FUNCTION_H
 #define CE3D_MATH_LINEAR_FUNCTION_H
 
+#include "CE3D/util/CE3D_vector.h"
+
 namespace CE3D
 {
 namespace Math
@@ -64,6 +66,19 @@ public:
      * @param p2y The y-coordinate of the second point.
      */
     LinearFunction(float p1x, float p1y, float p2x, float p2y);
+
+    /**
+     * Constructs a new linear function from two given points.
+     *
+     * If the inputted vectors have a dimension greater than two, the other
+     * dimensions are ignored.
+     * For special parameter cases see constructor
+     * LinearFunction(float, float, float, float).
+     *
+     * @param p1 The first vector/point.
+     * @param p2 The second vector/point.
+     */
+    LinearFunction(Vector p1, Vector p2);
 
     virtual ~LinearFunction();
     
