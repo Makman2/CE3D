@@ -133,7 +133,7 @@ CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
 CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
                           CE3D::Matrix::size_type n)
 {
-    return RandomMatrix(m, n, SecondsSinceEpoch());
+    return RandomMatrix(m, n, NanosecondsSinceEpoch());
 }
 
 float
@@ -146,7 +146,7 @@ Random(unsigned int seed)
 float
 Random()
 {
-    return Random(SecondsSinceEpoch());
+    return Random(NanosecondsSinceEpoch());
 }
 
 std::vector<float>
@@ -166,7 +166,7 @@ RandomVector(std::vector<float>::size_type count, unsigned int seed)
 std::vector<float>
 RandomVector(std::vector<float>::size_type count)
 {
-    return RandomVector(count, SecondsSinceEpoch());
+    return RandomVector(count, NanosecondsSinceEpoch());
 }
 
 }
