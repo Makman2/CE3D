@@ -22,6 +22,17 @@ SecondsSinceEpoch()
     return (today - epoch).total_seconds();
 }
 
+boost::date_time::time_duration
+<boost::posix_time::time_duration, boost::posix_time::time_res_traits>::
+tick_type
+NanosecondsSinceEpoch()
+{
+    boost::posix_time::ptime today =
+        boost::posix_time::second_clock::local_time();
+    boost::posix_time::ptime epoch(boost::gregorian::date(1970, 1, 1));
+    return (today - epoch).total_nanoseconds();
+}
+
 bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b)
 {
     if ((a.size1() != b.size1()) || (a.size2() != b.size2()))

@@ -24,6 +24,16 @@ sec_type
 SecondsSinceEpoch();
 
 /**
+ * Gets the time since epoch (1.1.1970).
+ *
+ * @returns The time since epoch in nanoseconds.
+ */
+boost::date_time::time_duration
+<boost::posix_time::time_duration, boost::posix_time::time_res_traits>::
+tick_type
+NanosecondsSinceEpoch();
+
+/**
  * Checks if the given matrices are equal.
  *
  * @param a The first matrix.
