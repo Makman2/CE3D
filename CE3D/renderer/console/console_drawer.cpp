@@ -19,6 +19,9 @@ ConsoleDrawer::ConsoleDrawer()
 void ConsoleDrawer::DrawPoint(Vector const&          point,
       __attribute__((unused)) ConsoleMaterial const& material) const
 {
+    // TODO: Trigger log warning when dimension of point is bigger than three,
+    // more is just ignored (point.size() > 3).
+
     if (point.size() < 3)
     {
         throw std::invalid_argument(
