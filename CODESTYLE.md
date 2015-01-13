@@ -438,6 +438,9 @@ Code sequences
   }
   ```
 
+  This style is advised for `for`-loops since it doesn't break the middle of the
+  statement and such is better readable.
+
 * Control statements have everytime scope blocks (`{` and `}`), even if there's
   only a single statement in there.
 
