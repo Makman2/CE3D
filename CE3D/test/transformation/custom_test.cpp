@@ -41,6 +41,9 @@ BOOST_AUTO_TEST_CASE(TestCustomMatrixConstruction)
     BOOST_REQUIRE_NO_THROW(delete TestUnit);
 }
 
+/**
+ * Tests the getters and setters of Custom.
+ */
 BOOST_AUTO_TEST_CASE(TestCustomGetSet)
 {
     CE3D::Transformation::Custom TestUnit;
@@ -52,6 +55,9 @@ BOOST_AUTO_TEST_CASE(TestCustomGetSet)
     BOOST_CHECK(IsMatrixEqual(TestMatrix, TestUnit.GetMatrix()));
 }
 
+/**
+ * Tests the append function of Custom.
+ */
 BOOST_AUTO_TEST_CASE(TestCustomAppend)
 {
     CE3D::Transformation::Custom TestUnit;

@@ -25,20 +25,25 @@ namespace Transformation
 class OrthogonalProjection : public Transformation
 {
 public:
-    OrthogonalProjection();
     /**
-     * Instantiates a new object.
+     * Construct an empty orthogonal projection.
+     */
+    OrthogonalProjection();
+
+    /**
+     * Constructs a new orthogonal projection from spanning vectors.
      *
      * @param projection_vectors: The projection vectors of the subspace to
-     * project on.
+     *                            project on.
      */
     OrthogonalProjection(std::vector<Vector> const& projection_vectors);
+
     /**
      * Instantiates a new object.
      *
-     * @param direction: The direction of the subspace hyperplane.
+     * @param lookat: The normal of the subspace hyperplane.
      */
-    OrthogonalProjection(Vector const& direction);
+    OrthogonalProjection(Vector const& lookat);
 
     virtual
     ~OrthogonalProjection();

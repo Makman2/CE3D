@@ -19,17 +19,36 @@ namespace Testing
 BOOST_FIXTURE_TEST_SUITE(Identity, TestEnvironment)
 
 /**
- * Tests the construction and destruction of Translation.
+ * Tests the construction and destruction of Identity.
  */
 BOOST_AUTO_TEST_CASE(TestIdentityConstruction)
 {
-    CE3D::Transformation::Identity *TestUnit;
-    BOOST_REQUIRE_NO_THROW(TestUnit = new CE3D::Transformation::Identity());
-    BOOST_REQUIRE_NO_THROW(delete TestUnit);
+    std::shared_ptr<CE3D::Transformation::Identity> TestUnit;
+
+    // Parameterless constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::Identity()));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // Copy constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::Identity(
+        CE3D::Transformation::Identity())));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // (size_type) constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::Identity(3)));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // (size_type, size_type) constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::Identity(3, 2)));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
 }
 
 /**
- * Tests the construction and destruction of Translation.
+ * Tests the calculated identity matrix.
  */
 BOOST_AUTO_TEST_CASE(TestIdentityMatrix)
 {

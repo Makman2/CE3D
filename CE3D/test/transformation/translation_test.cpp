@@ -23,13 +23,28 @@ BOOST_FIXTURE_TEST_SUITE(Translation, TestEnvironment)
  */
 BOOST_AUTO_TEST_CASE(TestTranslationConstruction)
 {
-    CE3D::Transformation::Translation *TestUnit;
-    BOOST_REQUIRE_NO_THROW(TestUnit = new CE3D::Transformation::Translation());
-    BOOST_REQUIRE_NO_THROW(delete TestUnit);
+    std::shared_ptr<CE3D::Transformation::Translation> TestUnit;
+
+    // Parameterless constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::Translation()));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // Copy constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::Translation(
+        CE3D::Transformation::Translation())));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // (Vector) constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new CE3D::Transformation::Translation(
+        CE3D::Vector())));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
 }
 
 /**
- * Tests the construction and destruction of Translation.
+ * Tests the getters and setters of Translation.
  */
 BOOST_AUTO_TEST_CASE(TestTranslationGetSet)
 {

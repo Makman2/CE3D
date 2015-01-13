@@ -20,13 +20,18 @@ namespace Testing
 
 BOOST_FIXTURE_TEST_SUITE(TransformationChain, TestEnvironment)
 
+/**
+ * Tests the construction and destruction of TransformationChain.
+ */
 BOOST_AUTO_TEST_CASE(TestTransformationChainConstruction)
 {
     std::shared_ptr<CE3D::Transformation::TransformationChain> TestUnit;
+
     // Parameterless constructor.
     BOOST_REQUIRE_NO_THROW(
         TestUnit.reset(new CE3D::Transformation::TransformationChain()));
     BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
     // Copy constructor.
     BOOST_REQUIRE_NO_THROW(
         TestUnit.reset(new CE3D::Transformation::TransformationChain(
