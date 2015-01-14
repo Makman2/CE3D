@@ -11,6 +11,28 @@ namespace CE3D
 namespace Testing
 {
 
+boost::date_time::time_duration
+<boost::posix_time::time_duration, boost::posix_time::time_res_traits>::
+sec_type
+SecondsSinceEpoch()
+{
+    boost::posix_time::ptime today =
+        boost::posix_time::second_clock::local_time();
+    boost::posix_time::ptime epoch(boost::gregorian::date(1970, 1, 1));
+    return (today - epoch).total_seconds();
+}
+
+boost::date_time::time_duration
+<boost::posix_time::time_duration, boost::posix_time::time_res_traits>::
+tick_type
+NanosecondsSinceEpoch()
+{
+    boost::posix_time::ptime today =
+        boost::posix_time::second_clock::local_time();
+    boost::posix_time::ptime epoch(boost::gregorian::date(1970, 1, 1));
+    return (today - epoch).total_nanoseconds();
+}
+
 bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b)
 {
     if ((a.size1() != b.size1()) || (a.size2() != b.size2()))
@@ -111,13 +133,42 @@ CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
 CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
                           CE3D::Matrix::size_type n)
 {
-    // Get the time since epoch (1.1.1970).
-    boost::posix_time::ptime today =
-        boost::posix_time::second_clock::local_time();
-    boost::posix_time::ptime epoch(boost::gregorian::date(1970, 1, 1));
-    auto since = today - epoch;
+    return RandomMatrix(
+        m, n, static_cast<unsigned int>(NanosecondsSinceEpoch()));
+}
 
-    return RandomMatrix(m, n, since.total_seconds());
+float
+Random(unsigned int seed)
+{
+    srand(seed);
+    return rand();
+}
+
+float
+Random()
+{
+    return Random(NanosecondsSinceEpoch());
+}
+
+std::vector<float>
+RandomVector(std::vector<float>::size_type count, unsigned int seed)
+{
+    srand(seed);
+    std::vector<float> vec(count);
+
+    for (std::vector<float>::size_type i = 0; i < vec.size(); i++)
+    {
+        vec[i] = rand();
+    }
+
+    return vec;
+}
+
+std::vector<float>
+RandomVector(std::vector<float>::size_type count)
+{
+    return RandomVector(
+        count, static_cast<unsigned int>(NanosecondsSinceEpoch()));
 }
 
 }
