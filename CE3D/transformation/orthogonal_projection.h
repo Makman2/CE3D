@@ -69,11 +69,10 @@ public:
      * Sets the projection vectors of the n-1 subspace orthonormal to the given
      * direction.
      *
-     * @param direction: The direction in which the projection plane is
-     * orientated.
+     * @param normal: The normal vector of the projection plane.
      */
     void
-    SetProjectionVectors(Vector const& direction);
+    SetProjectionVectors(Vector const& normal);
 
 protected:
     // inherited documentation comment
