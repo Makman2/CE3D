@@ -71,21 +71,21 @@ void OrthogonalProjection::SetProjectionVectors
     m_NeedUpdate = true;
 }
 
-void OrthogonalProjection::SetProjectionVectors(Vector const& direction)
+void OrthogonalProjection::SetProjectionVectors(Vector const& normal)
 {
     // Construct orthonormalized vectors.
     std::vector<Vector> vectors;
-    vectors.push_back(direction);
+    vectors.push_back(normal);
 
     // Push back unit vectors for orthonormalization.
-    for (Vector::size_type i = 0; i < direction.size(); i++)
+    for (Vector::size_type i = 0; i < normal.size(); i++)
     {
-        vectors.push_back(UnitVector(direction.size(), i));
+        vectors.push_back(UnitVector(normal.size(), i));
     }
 
     m_ProjectionVectors = boost::numeric::ublas::orthonormalize(vectors);
 
-    // Delete the first vector because we don't project onto the direction
+    // Delete the first vector because we don't project onto the normal
     // vector (but only if we have projection vectors left).
     if (m_ProjectionVectors.size() > 0)
         m_ProjectionVectors.erase(m_ProjectionVectors.begin());
