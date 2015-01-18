@@ -425,6 +425,22 @@ Code sequences
           // Your code.
   ```
 
+  For `for`-statements you can also indent like the following example if content
+  doesn't fit into one line but each sub-part does.
+  The previous example could also be written like this:
+
+  ```cpp
+  for (int i = 0;
+       i < foo.bar().superlongfunc().continues_now_here();
+       i++)
+  {
+      // ...
+  }
+  ```
+
+  This style is advised for `for`-loops since it doesn't break the middle of the
+  statement and such is better readable.
+
 * Control statements have everytime scope blocks (`{` and `}`), even if there's
   only a single statement in there.
 

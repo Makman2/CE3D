@@ -35,11 +35,11 @@ private:
 
     // Inherited documentation comment
     virtual void
-    ClearBuffer() const;
+    PreRender() const override;
 
     // Inherited documentation comment
     virtual void
-    FlushBuffer() const;
+    PostRender() const override;
 
     // Inherited documentation comment
     void

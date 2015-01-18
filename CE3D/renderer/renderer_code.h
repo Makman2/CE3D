@@ -16,7 +16,7 @@ Renderer<MaterialType>::~Renderer()
 template <typename MaterialType>
 void Renderer<MaterialType>::Render(const Camera<MaterialType>& camera) const
 {
-    ClearBuffer();
+    PreRender();
 
     typename std::unique_ptr<World<MaterialType> > World(camera.Paint());
 
@@ -32,7 +32,7 @@ void Renderer<MaterialType>::Render(const Camera<MaterialType>& camera) const
         }
     }
 
-    FlushBuffer();
+    PostRender();
 }
 
 } /* namespace CE3D */

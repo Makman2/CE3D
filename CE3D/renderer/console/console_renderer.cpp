@@ -17,13 +17,13 @@ ConsoleRenderer::~ConsoleRenderer()
 {}
 
 void
-ConsoleRenderer::ClearBuffer() const
+ConsoleRenderer::PreRender() const
 {
     m_Console.Clear();
 }
 
 void
-ConsoleRenderer::FlushBuffer() const
+ConsoleRenderer::PostRender() const
 {
     m_Console.Flush();
 }
@@ -40,6 +40,8 @@ void ConsoleRenderer::RenderVertex(Vertex<ConsoleMaterial> const& Vert,
         m_Drawer.DrawPoint(Vectors[VectorIndices[0]], Vert.GetMaterial());
         break;
     case 2:
+        m_Drawer.DrawLine(Vectors[VectorIndices[0]], Vectors[VectorIndices[1]],
+            Vert.GetMaterial());
         break;
     case 3:
         break;

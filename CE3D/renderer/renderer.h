@@ -18,7 +18,7 @@ class Renderer
 {
 private:
     /**
-     * Renders a vertex to the console.
+     * Renders a vertex to the render target.
      *
      * @param Vert The vertex to render.
      * @param Mod The model containing the vertex.
@@ -26,20 +26,23 @@ private:
     virtual void
     RenderVertex(Vertex<MaterialType> const& Vert,
                  Model<MaterialType>  const& Mod) const = 0;
+
     /**
-     * Will be invoked before the invocations of RenderVertex.
+     * Invoked before Render().
      *
-     * Since Render is const to the outside your buffer should be mutable.
+     * Since Render() is const to the outside your buffer should be mutable.
      */
     virtual void
-    ClearBuffer() const = 0;
+    PreRender() const = 0;
+
     /**
-     * Will be invoked after the invocations of RenderVertes.
+     * Invoked after Render().
      *
-     * Since Render is const to the outside your buffer should be mutable.
+     * Since Render() is const to the outside your buffer should be mutable.
      */
     virtual void
-    FlushBuffer() const = 0;
+    PostRender() const = 0;
+
 public:
     /**
      * Renders the view of the given camera.

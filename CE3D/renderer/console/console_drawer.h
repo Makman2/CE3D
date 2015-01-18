@@ -35,8 +35,9 @@ private:
      *
      * If a new point wants to be drawn and there is already one it will only
      * overwrite the old point if he has a higher z value.
+     * Note: This member is mutable.
      */
-    std::vector<ModelDataType> m_ZBuffer;
+    mutable std::vector<ModelDataType> m_ZBuffer;
     /**
      * Calculates the index for the z buffer array.
      *
@@ -54,13 +55,26 @@ public:
      * Will also retrieve the current console size.
      */
     ConsoleDrawer();
+
     /**
-     * Draws a point to the console (if there is no other "thing" above)
+     * Draws a point to the console (if there is no other "thing" above).
      *
-     * @param Point The point
-     * @param Material The material information for the point
+     * @param point The point.
+     * @param material The material information for the point.
      */
-    void DrawPoint(Vector const& Point, ConsoleMaterial const& Material) const;
+    void DrawPoint(Vector const& point, ConsoleMaterial const& material) const;
+
+    /**
+     * Draws a line to the console.
+     *
+     * @param p1 The starting point of the line.
+     * @param p2 The ending point of the line.
+     * @param material The material information for the point.
+     */
+    void 
+    DrawLine(Vector const&          p1,
+             Vector const&          p2,
+             ConsoleMaterial const& material) const;
 };
 
 } /* namespace CE3D */
