@@ -1,0 +1,4 @@
+[Default]
+bears = SpaceConsistencyBear
+files = CE3D/**/*.cpp,CE3D/**/*.h
+use_spaces = True
