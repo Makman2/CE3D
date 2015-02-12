@@ -3,3 +3,9 @@ bears = SpaceConsistencyBear, LineLengthBear
 files = CE3D/**/*.cpp,CE3D/**/*.h
 use_spaces = True
 max_line_length = 80
+
+[TODOS]
+enabled = False
+bears = KeywordBear
+cs_keywords = TODO, FIXME
+ci_keywords =
