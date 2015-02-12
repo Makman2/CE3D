@@ -112,7 +112,7 @@ bool IsVectorEqual(CE3D::Vector const&       a,
         if (a[i] / b[i] < (1 - tolerance) || a[i] / b[i] > (1 + tolerance))
             return false;
     }
-    
+
     return true;
 }
 

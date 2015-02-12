@@ -81,7 +81,7 @@ public:
     LinearFunction(Vector p1, Vector p2);
 
     virtual ~LinearFunction();
-    
+
     /**
      * Returns the gradient of the linear function.
      *
@@ -139,7 +139,7 @@ private:
     float m_Gradient;
     // The y-axis-intersection value.
     float m_YAxisIntersection;
-    
+
 };
 
 }
