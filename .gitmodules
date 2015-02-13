@@ -1,0 +1,3 @@
+[submodule "submodules/coala"]
+	path = submodules/coala
+	url = https://github.com/coala-analyzer/coala.git
