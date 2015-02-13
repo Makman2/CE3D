@@ -22,7 +22,7 @@ Reliability
 -----------
 We try to improve and maintain code quality and functionality with
 * unit tests/integration tests
-* a code checking utility (planned)
+* a code checking utility
 * a continous build, test and codecheck server (planned)
 
 If you have any hints about how we could improve our code quality in any way,
@@ -50,6 +50,23 @@ Participate
 To participate, read this readme and look into the codestyle guidelines (see
 [CODESTYLE.md](CODESTYLE.md)). If you have any questions (what can be done, is
 this ok, whatever you have in mind), let us know!
+
+We also support limited codestyle checking via coala. You can do that without
+having to install coala from the CE3D root directory:
+
+```
+git submodule init
+git submodule update
+submodules/coala/coala
+```
+
+This will check all code for some spacing issues and assure maximum line length.
+
+If you want to see all TODOs and FIXMEs in the code, use:
+
+```
+submodules/coala/coala todos
+```
 
 Pronounciation
 --------------
