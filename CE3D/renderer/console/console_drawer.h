@@ -71,7 +71,7 @@ public:
      * @param p2 The ending point of the line.
      * @param material The material information for the point.
      */
-    void 
+    void
     DrawLine(Vector const&          p1,
              Vector const&          p2,
              ConsoleMaterial const& material) const;
