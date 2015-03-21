@@ -55,8 +55,8 @@ void OrthogonalProjection::UpdateMatrix() const
     boost::numeric::ublas::axpy_prod(inverted, transposed, m_Matrix);
 }
 
-void OrthogonalProjection::SetProjectionVectors
-(std::vector<Vector> const& vectors)
+void OrthogonalProjection::SetProjectionVectors(
+    std::vector<Vector> const& vectors)
 {
     // Check size equality of vectors.
     for (std::size_t i = 1; i < m_ProjectionVectors.size(); i++)
