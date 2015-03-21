@@ -17,8 +17,6 @@ namespace CE3D
 namespace Transformation
 {
 
-
-
 /**
  * A transformation that describes an orthogonal projection.
  */
@@ -84,12 +82,9 @@ private:
      * The vectors describing the projection.
      */
     std::vector<Vector> m_ProjectionVectors;
-
 };
 
 }
 }
-
-
 
 #endif /* CE3D_TRANSFORMATION_ORTHOGONAL_PROJECTION_H */
