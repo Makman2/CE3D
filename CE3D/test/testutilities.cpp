@@ -33,7 +33,8 @@ NanosecondsSinceEpoch()
     return (today - epoch).total_nanoseconds();
 }
 
-bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b)
+bool
+IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b)
 {
     if ((a.size1() != b.size1()) || (a.size2() != b.size2()))
         return false;
@@ -46,9 +47,10 @@ bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b)
     return true;
 }
 
-bool IsMatrixEqual(CE3D::Matrix const&       a,
-                   CE3D::Matrix const&       b,
-                   CE3D::ModelDataType const tolerance)
+bool
+IsMatrixEqual(CE3D::Matrix const&       a,
+              CE3D::Matrix const&       b,
+              CE3D::ModelDataType const tolerance)
 {
     if ((a.size1() != b.size1()) || (a.size2() != b.size2()))
         return false;
@@ -77,7 +79,8 @@ bool IsMatrixEqual(CE3D::Matrix const&       a,
 
 
 
-bool IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b)
+bool
+IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b)
 {
     if (a.size() != b.size())
         return false;
@@ -89,9 +92,10 @@ bool IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b)
     return true;
 }
 
-bool IsVectorEqual(CE3D::Vector const&       a,
-                   CE3D::Vector const&       b,
-                   CE3D::ModelDataType const tolerance)
+bool
+IsVectorEqual(CE3D::Vector const&       a,
+              CE3D::Vector const&       b,
+              CE3D::ModelDataType const tolerance)
 {
     if (a.size() != b.size())
         return false;
@@ -116,9 +120,10 @@ bool IsVectorEqual(CE3D::Vector const&       a,
     return true;
 }
 
-CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
-                          CE3D::Matrix::size_type n,
-                          unsigned int            seed)
+CE3D::Matrix
+RandomMatrix(CE3D::Matrix::size_type m,
+             CE3D::Matrix::size_type n,
+             unsigned int            seed)
 {
     CE3D::Matrix mat(m, n);
     srand(seed);
@@ -130,8 +135,8 @@ CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
     return mat;
 }
 
-CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
-                          CE3D::Matrix::size_type n)
+CE3D::Matrix
+RandomMatrix(CE3D::Matrix::size_type m, CE3D::Matrix::size_type n)
 {
     return RandomMatrix(
         m, n, static_cast<unsigned int>(NanosecondsSinceEpoch()));
