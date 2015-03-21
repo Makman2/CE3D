@@ -6,8 +6,6 @@
 #define BOOST_TEST_MODULE World
 #include <boost/test/unit_test.hpp>
 
-#include "CE3D/util/stdinc.h"
-
 #include "CE3D/world/world.h"
 #include "CE3D/renderer/console/console_material.h"
 
