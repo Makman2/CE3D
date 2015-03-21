@@ -17,10 +17,6 @@ namespace CE3D
 template <typename MaterialType>
 class OrthographicCamera : public LinearCamera<MaterialType>
 {
-private:
-    Vector m_RealPosition;
-    Vector m_LookAt;
-
 public:
     /**
      * Constructs an OrthographicCamera from given position and
@@ -59,7 +55,9 @@ public:
     void
     SetLookAt(Vector const& value);
 
-
+private:
+    Vector m_RealPosition;
+    Vector m_LookAt;
 };
 
 }
