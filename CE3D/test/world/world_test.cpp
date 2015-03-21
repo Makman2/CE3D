@@ -3,7 +3,7 @@
 #include "CE3D/test/TestEnvironment.h"
 
 #define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE Translation
+#define BOOST_TEST_MODULE World
 #include <boost/test/unit_test.hpp>
 
 #include "CE3D/util/stdinc.h"
