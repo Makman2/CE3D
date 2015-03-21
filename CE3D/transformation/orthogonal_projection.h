@@ -52,8 +52,7 @@ public:
      * @return The projection vectors array.
      */
     std::vector<Vector> const&
-    GetProjectionVectors() const
-    { return m_ProjectionVectors; }
+    GetProjectionVectors() const;
 
     /**
      * Sets the projection vectors.

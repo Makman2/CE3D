@@ -55,6 +55,12 @@ void OrthogonalProjection::UpdateMatrix() const
     boost::numeric::ublas::axpy_prod(inverted, transposed, m_Matrix);
 }
 
+std::vector<Vector> const&
+OrthogonalProjection::GetProjectionVectors() const
+{
+    return m_ProjectionVectors;
+}
+
 void OrthogonalProjection::SetProjectionVectors(
     std::vector<Vector> const& vectors)
 {
