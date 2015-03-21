@@ -77,8 +77,6 @@ IsMatrixEqual(CE3D::Matrix const&       a,
     return true;
 }
 
-
-
 bool
 IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b)
 {
