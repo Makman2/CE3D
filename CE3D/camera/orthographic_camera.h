@@ -22,8 +22,8 @@ public:
      * Constructs an OrthographicCamera from given position and
      * look-at vectors.
      *
-     * @param lookAt: The vector the camera looks at.
-     * @param position: The position of the camera.
+     * @param lookAt   The vector the camera looks at.
+     * @param position The position of the camera.
      */
     OrthographicCamera(Vector const& lookAt, Vector const& position);
 
@@ -38,19 +38,23 @@ public:
     /**
      * Sets the position of the camera.
      *
-     * @param value: The new position.
+     * @param value The new position.
      */
     void
     SetPosition(Vector const& value);
 
     /**
      * Returns the looking direction of the camera.
+     *
+     * @return The look-at vector.
      */
     Vector const&
     GetLookAt() const;
 
     /**
      * Sets the looking direction of the camera.
+     *
+     * @param value The new look-at vector.
      */
     void
     SetLookAt(Vector const& value);
