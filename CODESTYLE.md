@@ -338,6 +338,18 @@ Functions
                             FooBar&           foo3);
   ```
 
+* If no argument fits into one line, break the argument list onto the next line.
+  Each param is placed in an own line.
+
+  ```cpp
+  FooBarType FooBarFunction(
+      FooBarTypeThatIsMuchTooLong const& foo_bar1,
+      FooBarType const&                  foo_bar2,
+      FooBarType                         foo,
+      Foo                                foo2,
+      FooBar&                            foo3);
+  ```
+
 Member variables
 ----------------
 
