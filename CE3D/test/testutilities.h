@@ -40,7 +40,8 @@ NanosecondsSinceEpoch();
  * @param b The second matrix.
  * @returns true if both are equal, false if not.
  */
-bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b);
+bool
+IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b);
 
 /**
  * Checks if the given matrices are nearly equal. Tests for relative equality.
@@ -51,9 +52,10 @@ bool IsMatrixEqual(CE3D::Matrix const& a, CE3D::Matrix const& b);
  * differ.
  * @returns true if both are nearly equal, false if not.
  */
-bool IsMatrixEqual(CE3D::Matrix const&       a,
-                   CE3D::Matrix const&       b,
-                   CE3D::ModelDataType const tolerance);
+bool
+IsMatrixEqual(CE3D::Matrix const&       a,
+              CE3D::Matrix const&       b,
+              CE3D::ModelDataType const tolerance);
 
 /**
  * Checks if the given vectors are equal.
@@ -62,7 +64,8 @@ bool IsMatrixEqual(CE3D::Matrix const&       a,
  * @param b The second vector.
  * @returns true if both are equal, false if not.
  */
-bool IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b);
+bool
+IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b);
 
 /**
  * Checks if the given vectors are nearly equal. Tests for relative equality.
@@ -73,9 +76,10 @@ bool IsVectorEqual(CE3D::Vector const& a, CE3D::Vector const& b);
  * differ.
  * @returns true if both are equal, false if not.
  */
-bool IsVectorEqual(CE3D::Vector const&       a,
-                   CE3D::Vector const&       b,
-                   CE3D::ModelDataType const tolerance);
+bool
+IsVectorEqual(CE3D::Vector const&       a,
+              CE3D::Vector const&       b,
+              CE3D::ModelDataType const tolerance);
 
 /**
  * Creates a matrix with randomized values.
@@ -85,9 +89,10 @@ bool IsVectorEqual(CE3D::Vector const&       a,
  * @param seed A random number to use as starting value
  *             randomizer-initialization.
  */
-CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
-                          CE3D::Matrix::size_type n,
-                          unsigned int            seed);
+CE3D::Matrix
+RandomMatrix(CE3D::Matrix::size_type m,
+             CE3D::Matrix::size_type n,
+             unsigned int            seed);
 
 /**
  * Creates a matrix with randomized values. The initial seed is calculated from
@@ -96,8 +101,8 @@ CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
  * @param m    The row dimension of the new matrix.
  * @param n    The column dimension of the new matrix.
  */
-CE3D::Matrix RandomMatrix(CE3D::Matrix::size_type m,
-                          CE3D::Matrix::size_type n);
+CE3D::Matrix
+RandomMatrix(CE3D::Matrix::size_type m, CE3D::Matrix::size_type n);
 
 /**
 * Generates a random value.
