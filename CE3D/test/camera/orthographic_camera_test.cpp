@@ -22,7 +22,7 @@ namespace Testing
 BOOST_FIXTURE_TEST_SUITE(OrthographicCamera, TestEnvironment)
 
 /**
- * Tests the construction of and destruction of OrthographicCamera.
+ * Tests the construction and destruction of OrthographicCamera.
  */
 BOOST_AUTO_TEST_CASE(TestOrthographicCameraConstruction)
 {
