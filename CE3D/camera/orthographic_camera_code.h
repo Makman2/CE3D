@@ -12,6 +12,12 @@ namespace CE3D
 {
 
 template <typename MaterialType>
+OrthographicCamera<MaterialType>::OrthographicCamera(Vector const& look_at,
+                                                     Vector const& worlds_up)
+: OrthographicCamera(ZeroVector(look_at.size()), look_at, worlds_up)
+{}
+
+template <typename MaterialType>
 OrthographicCamera<MaterialType>::OrthographicCamera(Vector const& position,
                                                      Vector const& look_at,
                                                      Vector const& worlds_up)

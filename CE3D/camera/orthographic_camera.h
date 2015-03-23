@@ -21,6 +21,18 @@ class OrthographicCamera : public LinearCamera<MaterialType>
 {
 public:
     /**
+     * Constructs an OrthographicCamera from given look-at and worlds-up
+     * vectors.
+     *
+     * The initial camera position is set to zero (the coordinate space
+     * origin).
+     *
+     * @param look_at   The vector the camera looks at.
+     * @param worlds_up The vector that defines the "up" direction.
+     */
+    OrthographicCamera(Vector const& look_at, Vector const& worlds_up);
+
+    /**
      * Constructs an OrthographicCamera from given position, look-at and
      * worlds-up vectors.
      *
