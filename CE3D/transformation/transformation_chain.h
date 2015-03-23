@@ -63,7 +63,6 @@ public:
     ::const_reverse_iterator>;
 
     TransformationChain();
-    virtual
 
     /**
      * Returns a const_iterator pointing at first transformation in the chain.
