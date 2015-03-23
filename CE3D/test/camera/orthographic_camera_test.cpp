@@ -7,10 +7,9 @@
 #include <boost/test/unit_test.hpp>
 
 #include "CE3D/util/stdinc.h"
-#include "CE3D/test/testutilities.h"
 
 #include <vector>
-
+#include "CE3D/test/testutilities.h"
 #include "CE3D/camera/orthographic_camera.h"
 #include "CE3D/renderer/console/console_renderer.h"
 
@@ -26,11 +25,31 @@ BOOST_FIXTURE_TEST_SUITE(OrthographicCamera, TestEnvironment)
  */
 BOOST_AUTO_TEST_CASE(TestOrthographicCameraConstruction)
 {
-    CE3D::OrthographicCamera<CE3D::ConsoleMaterial> *TestUnit;
+    using test_type = CE3D::OrthographicCamera<CE3D::ConsoleMaterial>;
+
+    std::shared_ptr<test_type> TestUnit;
+
+    // (CE3D::Vector, CE3D::Vector, CE3D::Vector) constructor.
     BOOST_REQUIRE_NO_THROW(
-        TestUnit = new CE3D::OrthographicCamera<CE3D::ConsoleMaterial>
-        (CE3D::Vector(), CE3D::Vector(), (CE3D::Vector())));
-    BOOST_REQUIRE_NO_THROW(delete TestUnit);
+        TestUnit.reset(new test_type(
+            (CE3D::Vector()),
+            (CE3D::Vector()),
+            (CE3D::Vector()))));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // (CE3D::Vector, CE3D::Vector) constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new test_type(
+            (CE3D::Vector()),
+            (CE3D::Vector()))));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
+
+    // (CE3D::Vector, std::vector<CE3D::Vector>) constructor.
+    BOOST_REQUIRE_NO_THROW(
+        TestUnit.reset(new test_type(
+            (CE3D::Vector()),
+            (std::vector<CE3D::Vector>()))));
+    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
 }
 
 /**
