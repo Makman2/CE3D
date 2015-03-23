@@ -34,3 +34,6 @@ build/*
 *.aux
 *.gz
 *.log
+
+# Files generated from build
+CE3D/CE3D_config.h
