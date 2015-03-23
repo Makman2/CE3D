@@ -19,13 +19,26 @@ class OrthographicCamera : public LinearCamera<MaterialType>
 {
 public:
     /**
-     * Constructs an OrthographicCamera from given position and
-     * look-at vectors.
+     * Constructs an OrthographicCamera from given position, look-at and
+     * worlds-up vectors.
      *
-     * @param lookAt   The vector the camera looks at.
-     * @param position The position of the camera.
+     * @param position  The position of the camera.
+     * @param look_at   The vector the camera looks at.
+     * @param worlds_up The vector that defines the "up" direction.
      */
-    OrthographicCamera(Vector const& lookAt, Vector const& position);
+    OrthographicCamera(Vector const& position,
+                       Vector const& look_at,
+                       Vector const& worlds_up);
+
+    /**
+     * Constructs an OrthographicCamera.
+     *
+     * @param position   The position of the camera
+     * @param projection The list of vectors that define the projection plane
+     *                   of the camera.
+     */
+    OrthographicCamera(Vector const& position,
+                       std::vector<Vector> const& projection);
 
     /**
      * Returns the position of the camera.
@@ -44,24 +57,49 @@ public:
     SetPosition(Vector const& value);
 
     /**
-     * Returns the looking direction of the camera.
+     * Returns the projection vectors that define the viewing projection plane.
      *
-     * @return The look-at vector.
+     * @return The list projection vectors.
      */
-    Vector const&
-    GetLookAt() const;
+    std::vector<Vector> const&
+    GetProjectionVectors() const;
 
     /**
-     * Sets the looking direction of the camera.
+     * Sets the projection vectors.
      *
-     * @param value The new look-at vector.
+     * @param vectors The projection vectors that define the viewing projection
+     *                plane.
      */
     void
-    SetLookAt(Vector const& value);
+    SetProjectionVectors(std::vector<Vector> const& vectors);
+
+    /**
+     * Sets the projection vectors using a look-at vector and a worlds-up
+     * vector.
+     *
+     * This method is intended to use for 3-dimensional vectors only. It
+     * supports other dimensions as well but missing projection vectors will
+     * be computed automatically from the unit-vectors when supplying these.
+     *
+     * @param look_at   The look-at vector the camera shall look at.
+     * @param worlds_up The vector that defines the "up" direction.
+     */
+    void
+    SetProjectionVectors(Vector const& look_at, Vector const& worlds_up);
 
 private:
+    /**
+     * Constructs a the span list from a look-at and worlds-up vector passed to
+     * the OrthogonalDepthProjection.
+     *
+     * @param look_at   The look-at vector.
+     * @param worlds_up The worlds-up vector.
+     * @return          The span list.
+     */
+    static std::vector<Vector>
+    ConstructProjection(Vector const& look_at, Vector const& worlds_up);
+
     Vector m_RealPosition;
-    Vector m_LookAt;
 };
 
 }

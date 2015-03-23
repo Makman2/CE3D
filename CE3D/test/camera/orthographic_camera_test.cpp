@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(TestOrthographicCameraConstruction)
     CE3D::OrthographicCamera<CE3D::ConsoleMaterial> *TestUnit;
     BOOST_REQUIRE_NO_THROW(
         TestUnit = new CE3D::OrthographicCamera<CE3D::ConsoleMaterial>
-        (CE3D::Vector(), CE3D::Vector()));
+        (CE3D::Vector(), CE3D::Vector(), (CE3D::Vector())));
     BOOST_REQUIRE_NO_THROW(delete TestUnit);
 }
 
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(TestOrthographicCameraConstruction)
 BOOST_AUTO_TEST_CASE(TestPropertyFunctions)
 {
     CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam
-        ((CE3D::Vector()), (CE3D::Vector()));
+        ((CE3D::Vector()), (CE3D::Vector()), (CE3D::Vector()));
 
     CE3D::Vector testvector(5);
     testvector(0) = 17;
@@ -48,9 +48,12 @@ BOOST_AUTO_TEST_CASE(TestPropertyFunctions)
     testvector(3) = 100;
     testvector(4) = 121;
 
-    cam.SetLookAt(testvector);
+    std::vector<CE3D::Vector> projection_vecs;
+    projection_vecs.push_back(testvector);
 
-    BOOST_CHECK(IsVectorEqual(cam.GetLookAt(), testvector));
+    cam.SetProjectionVectors(projection_vecs);
+
+    BOOST_CHECK(IsVectorEqual(cam.GetProjectionVectors()[0], testvector));
 
     CE3D::Vector testvector2(5);
     testvector2(0) = 1.5;
@@ -70,7 +73,7 @@ BOOST_AUTO_TEST_CASE(TestPropertyFunctions)
 BOOST_AUTO_TEST_CASE(TestMatrix)
 {
     CE3D::OrthographicCamera<CE3D::ConsoleMaterial> cam
-        ((CE3D::Vector()), (CE3D::Vector()));
+        ((CE3D::Vector()), (CE3D::Vector()), (CE3D::Vector()));
 
     std::shared_ptr<CE3D::World<CE3D::ConsoleMaterial>>
         world(new CE3D::World<CE3D::ConsoleMaterial>());
@@ -112,12 +115,22 @@ BOOST_AUTO_TEST_CASE(TestMatrix)
     lookatvector(1) = 6;
     lookatvector(2) = 6;
 
+    CE3D::Vector worldsupvector(3);
+    worldsupvector(0) = 0;
+    worldsupvector(0) = 0;
+    worldsupvector(0) = 1;
+
     CE3D::Transformation::FinalTranslation translation(-translationvector);
     cam.SetPosition(translationvector);
 
     CE3D::Transformation::OrthogonalDepthProjection projection;
-    projection.SetProjectionVectors(lookatvector);
-    cam.SetLookAt(lookatvector);
+
+    std::vector<Vector> projection_vecs;
+    projection_vecs.push_back(lookatvector);
+    projection_vecs.push_back(worldsupvector);
+
+    projection.SetProjectionVectors(projection_vecs);
+    cam.SetProjectionVectors(lookatvector, worldsupvector);
 
     CE3D::Matrix testmatrix(3, 4);
     boost::numeric::ublas::axpy_prod(

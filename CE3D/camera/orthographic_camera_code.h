@@ -12,14 +12,22 @@ namespace CE3D
 {
 
 template <typename MaterialType>
-OrthographicCamera<MaterialType>::OrthographicCamera(Vector const& lookAt,
-                                                     Vector const& position)
+OrthographicCamera<MaterialType>::OrthographicCamera(Vector const& position,
+                                                     Vector const& look_at,
+                                                     Vector const& worlds_up)
+: OrthographicCamera(position, ConstructProjection(look_at, worlds_up))
+{}
+
+template <typename MaterialType>
+OrthographicCamera<MaterialType>::OrthographicCamera(
+    Vector const& position,
+    std::vector<Vector> const& projection)
 : m_RealPosition(position)
-, m_LookAt(lookAt)
 {
     auto& chain = LinearCamera<MaterialType>::GetTransformationChain();
-    chain.template EmplaceBack<Transformation::OrthogonalDepthProjection>
-        (lookAt);
+
+    chain.template EmplaceBack<Transformation::OrthogonalDepthProjection>(
+        projection);
     chain.template EmplaceBack<Transformation::FinalTranslation>(-position);
 }
 
@@ -35,25 +43,52 @@ void
 OrthographicCamera<MaterialType>::SetPosition(Vector const& value)
 {
     m_RealPosition = value;
-    LinearCamera<MaterialType>::GetTransformationChain().Replace(
-        Transformation::FinalTranslation(-value), 1);
+    LinearCamera<MaterialType>::GetTransformationChain()
+        .Replace(Transformation::FinalTranslation(-value), 1);
 }
 
 template <typename MaterialType>
-Vector const&
-OrthographicCamera<MaterialType>::GetLookAt() const
+std::vector<Vector> const&
+OrthographicCamera<MaterialType>::GetProjectionVectors() const
 {
-    return m_LookAt;
+    return LinearCamera<MaterialType>::GetTransformationChain()
+        .template At<Transformation::OrthogonalDepthProjection>(0)
+        .GetProjectionVectors();
 }
 
 template <typename MaterialType>
 void
-OrthographicCamera<MaterialType>::SetLookAt(Vector const& value)
+OrthographicCamera<MaterialType>::SetProjectionVectors(
+    std::vector<Vector> const& vectors)
 {
-    LinearCamera<MaterialType>::GetTransformationChain().Replace(
-        Transformation::OrthogonalDepthProjection(value), 0);
+    LinearCamera<MaterialType>::GetTransformationChain()
+        .Replace(Transformation::OrthogonalDepthProjection(vectors), 0);
+}
 
-    m_LookAt = value;
+template <typename MaterialType>
+void
+OrthographicCamera<MaterialType>::SetProjectionVectors(Vector const& look_at,
+                                                       Vector const& worlds_up)
+{
+    LinearCamera<MaterialType>::GetTransformationChain()
+        .Replace(Transformation::OrthogonalDepthProjection(
+                ConstructProjection(look_at, worlds_up)), 0);
+}
+
+template <typename MaterialType>
+std::vector<Vector>
+OrthographicCamera<MaterialType>::ConstructProjection(
+    Vector const& look_at,
+    Vector const& worlds_up)
+{
+    std::vector<Vector> span_list;
+
+    // The vector order is important due to the Gram-Schmidt method performed
+    // from OrthogonalDepthProjection.
+    span_list.push_back(look_at);
+    span_list.push_back(worlds_up);
+
+    return span_list;
 }
 
 }
