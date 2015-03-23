@@ -72,7 +72,7 @@ public:
     SetProjectionVectors(Vector const& normal);
 
 protected:
-    // inherited documentation comment
+    // Inherited documentation comment
     virtual void
     UpdateMatrix() const override;
 
