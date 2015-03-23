@@ -62,6 +62,9 @@ public:
     dereference_iterator<std::vector<std::unique_ptr<Transformation> >
     ::const_reverse_iterator>;
 
+    /**
+     * Constructs an empty TransformationChain.
+     */
     TransformationChain();
 
     /**
