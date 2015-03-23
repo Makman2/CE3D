@@ -44,7 +44,8 @@ OrthographicCamera<MaterialType>::SetPosition(Vector const& value)
 {
     m_RealPosition = value;
     LinearCamera<MaterialType>::GetTransformationChain()
-        .Replace(Transformation::FinalTranslation(-value), 1);
+        .Replace(Transformation::FinalTranslation(-value),
+            POSITION_INDEX_FINAL_TRANSLATION);
 }
 
 template <typename MaterialType>
@@ -52,7 +53,8 @@ std::vector<Vector> const&
 OrthographicCamera<MaterialType>::GetProjectionVectors() const
 {
     return LinearCamera<MaterialType>::GetTransformationChain()
-        .template At<Transformation::OrthogonalDepthProjection>(0)
+        .template At<Transformation::OrthogonalDepthProjection>(
+            POSITION_INDEX_ORTHOGONAL_DEPTH_PROJECTION)
         .GetProjectionVectors();
 }
 
@@ -62,7 +64,8 @@ OrthographicCamera<MaterialType>::SetProjectionVectors(
     std::vector<Vector> const& vectors)
 {
     LinearCamera<MaterialType>::GetTransformationChain()
-        .Replace(Transformation::OrthogonalDepthProjection(vectors), 0);
+        .Replace(Transformation::OrthogonalDepthProjection(vectors),
+            POSITION_INDEX_ORTHOGONAL_DEPTH_PROJECTION);
 }
 
 template <typename MaterialType>
@@ -72,7 +75,8 @@ OrthographicCamera<MaterialType>::SetProjectionVectors(Vector const& look_at,
 {
     LinearCamera<MaterialType>::GetTransformationChain()
         .Replace(Transformation::OrthogonalDepthProjection(
-                ConstructProjection(look_at, worlds_up)), 0);
+                ConstructProjection(look_at, worlds_up)),
+            POSITION_INDEX_ORTHOGONAL_DEPTH_PROJECTION);
 }
 
 template <typename MaterialType>

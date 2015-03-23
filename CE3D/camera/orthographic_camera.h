@@ -7,6 +7,8 @@
 
 #include "CE3D/camera/linear_camera.h"
 
+#include "CE3D/transformation/transformation_chain.h"
+
 namespace CE3D
 {
 
@@ -100,6 +102,11 @@ private:
     ConstructProjection(Vector const& look_at, Vector const& worlds_up);
 
     Vector m_RealPosition;
+
+    static constexpr Transformation::TransformationChain::size_type
+        POSITION_INDEX_ORTHOGONAL_DEPTH_PROJECTION = 0;
+    static constexpr Transformation::TransformationChain::size_type
+        POSITION_INDEX_FINAL_TRANSLATION = 1;
 };
 
 }
