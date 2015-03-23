@@ -31,12 +31,6 @@ BOOST_AUTO_TEST_CASE(TestTransformationChainConstruction)
     BOOST_REQUIRE_NO_THROW(
         TestUnit.reset(new CE3D::Transformation::TransformationChain()));
     BOOST_REQUIRE_NO_THROW(TestUnit.reset());
-
-    // Copy constructor.
-    BOOST_REQUIRE_NO_THROW(
-        TestUnit.reset(new CE3D::Transformation::TransformationChain(
-        CE3D::Transformation::TransformationChain())));
-    BOOST_REQUIRE_NO_THROW(TestUnit.reset());
 }
 
 /**

@@ -67,6 +67,8 @@ public:
      */
     TransformationChain();
 
+    TransformationChain(const TransformationChain& obj) = delete;
+
     /**
      * Returns a const_iterator pointing at first transformation in the chain.
      *
